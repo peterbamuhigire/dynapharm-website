@@ -14,7 +14,6 @@ docs/
   seo.md           -> SEO meta tags, structured data, sitemap config
   en/              -> English content (source language)
   fr/              -> French content (translated)
-  sw/              -> Kiswahili content (translated)
 photo-bank/
   branding/        -> Logos, brand marks
   hero/            -> Hero/banner images
@@ -34,7 +33,7 @@ The workflow is always: **read content -> establish design -> process photos -> 
 
 ## Multi-Language Support
 
-This site supports 3 languages: English (en), French (fr), Kiswahili (sw).
+This site supports 2 languages: English (en) and French (fr).
 
 - **Configuration:** `docs/i18n-config.md` controls which languages are enabled
 - **Content:** Each language has its own directory under `docs/{lang}/`
@@ -46,11 +45,9 @@ This site supports 3 languages: English (en), French (fr), Kiswahili (sw).
 ### Language Standards
 - **English:** British spelling (colour, organisation), formal East African professional tone
 - **French:** Formal francophone African, vouvoiement (vous), professional and respectful
-- **Kiswahili:** Standard East African, formal/respectful business register
 
 ### Text Expansion
 - French: 20-40% longer than English
-- Kiswahili: 10-30% longer than English
 - All designs must accommodate longer text without breaking
 
 ## Skills
@@ -189,4 +186,4 @@ If the site already exists (src/ is populated):
 - If `photo-bank/` is empty, build with CSS gradient placeholders and document all needed photos.
 - If `npm run build` fails, read the error output, fix the issue, and try again.
 - If a font package fails to install, fall back to another distinctive font — never fall back to system fonts.
-- If a language directory (fr/, sw/) is empty, skip that language in the build.
+- If the French directory (fr/) is empty, skip it in the build.
