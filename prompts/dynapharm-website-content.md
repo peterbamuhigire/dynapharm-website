@@ -63,6 +63,30 @@ cd /c/wamp64/bin/mysql/mysql8.4.7/bin
 ./mysql -u root dynapharm_web -e "SELECT name, country FROM tbl_franchises ORDER BY name;"
 ```
 
+### Product Images — Retrieval & Setup
+
+Product images exist in the ERP at `C:/wamp64/www/DMS_web/uploads/product_images/`. There are ~101 PNG files. The filenames correspond to product codes with the `WK` prefix stripped:
+
+- Product code `WK1201` → image file `1201.png`
+- Product code `WK10801` → image file `10801.png`
+- Product code `WK1802A` → image file `1802A.png`
+- A few extra images have descriptive names (e.g., `blackganotongkat500.png`, `GanoSavon500.png`) — include these too
+
+**Step: Copy all product images into the website project:**
+
+```bash
+# Copy all product images to the photo-bank
+cp C:/wamp64/www/DMS_web/uploads/product_images/*.png photo-bank/services/
+
+# Rename with Product- prefix for the photo-manager skill
+cd photo-bank/services/
+for f in *.png; do
+  mv "$f" "Product-$f"
+done
+```
+
+After copying, generate a `docs/en/products-catalog.md` file (see below) that maps each product code to its image filename, category, display name, and auto-generated description.
+
 ### What You Are Generating
 
 Generate all 11 content files in `docs/en/` for a **marketing website** that presents Dynapharm to three audiences:
@@ -153,7 +177,7 @@ The ERP maps products to 11 health categories. Present these as "Wellness Soluti
 Design a website with these pages:
 
 - **Home** — Hero with aspirational health + wealth message, product category highlights, "Why Dynapharm" trust section, business opportunity teaser, testimonials, global presence map
-- **Products** — Category-based product showcase with the 8 categories above; each category page shows products with descriptions; "Wellness Solutions" cross-reference linking products to health categories
+- **Products** — Interactive product catalogue (see detailed spec below)
 - **Business Opportunity** — The MLM business model explained clearly and honestly: how it works, rank progression, earning potential (without specific numbers), what a typical day looks like, registration process, support and training
 - **Wellness Guide** — Health categories mapped to product recommendations (the 11 wellness categories); educational content about natural health; NOT medical advice
 - **About** — Company history, mission, values, global reach, manufacturing quality, certifications
@@ -162,6 +186,60 @@ Design a website with these pages:
 Nav order: Home, Products, Business Opportunity, Wellness Guide, About, Contact
 Primary CTA: "Start Your Journey" or "Become a Distributor" linking to /contact
 Secondary CTA: "Explore Products" linking to /products
+
+##### Products Page — Interactive Catalogue (DETAILED SPEC)
+
+The Products page is the centrepiece of the website. It must feel like browsing a polished e-commerce catalogue — but without prices (franchise-neutral).
+
+**Layout:**
+
+1. **Category filter bar** at the top — horizontal tabs or pill buttons showing the 8 product categories. One tab is "All Products" (default). Clicking a category filters the grid instantly (Alpine.js, no page reload). Include a product count badge per category.
+
+2. **Product grid** below — responsive card grid (2 columns on mobile, 3 on tablet, 4 on desktop). Each card shows:
+   - Product image (from `photo-bank/services/Product-{code}.png`)
+   - Product display name (cleaned-up, title-case version of the database name — e.g., "Instant Coffee Mix with Ginkgo & Ginseng" not "INSTANT COFFEE MIX W/ GINKGO & GINSENG 20S X 21G")
+   - Category tag/badge
+   - A subtle "View Details" prompt or the card itself is clickable
+
+3. **Product detail modal** — when a card is clicked, an Alpine.js modal opens showing:
+   - Larger product image
+   - Full display name
+   - Category badge
+   - **Auto-generated description** (see description rules below)
+   - Key ingredients list (extracted from the product name)
+   - A "Contact your distributor" or "Find a DPC near you" CTA button
+   - Close button (X) and click-outside-to-close
+
+**NO prices anywhere** — the site is franchise-neutral and prices vary by country.
+
+##### Product Description Generation Rules (CRITICAL)
+
+Generate a short description (2-3 sentences) for each product based STRICTLY on the ingredients and product type visible in the product name. Do NOT research or add external claims. Do NOT make health/medical claims.
+
+**Rules:**
+
+1. **Identify the product type** from the name: coffee mix, capsule, tablet, powder, lotion, toothpaste, cream, juice, syrup, ointment, wash, gel, fertiliser, etc.
+2. **Extract the key ingredients** from the name: Ganoderma, Ginseng, Tongkat Ali, Spirulina, Chlorophyll, Bee Pollen, Noni, Green Tea, Goat's Milk, Sea Cucumber, Milk Thistle, Guarana, Soybean, Kacip Fatimah, Tea Tree Oil, Maca, Ginkgo, Wheatgrass, Mangosteen, etc.
+3. **Write a factual description** that says what the product IS (form, ingredients) and how it is typically used — NOT what it does medically.
+4. **Use safe, general language:**
+   - OK: "A nourishing coffee blend featuring Ganoderma and Green Tea"
+   - OK: "Contains Spirulina, a nutrient-rich superfood"
+   - OK: "Traditionally valued for its natural properties"
+   - OK: "A convenient way to incorporate [ingredient] into your daily routine"
+   - NOT OK: "Boosts immunity", "Fights cancer", "Cures diabetes", "Lowers blood pressure"
+   - NOT OK: "Clinically proven", "Scientifically shown to"
+5. **Strip packaging details** from the display name: remove "20S X 21G", "150ML", "100S", "30S", "4 LTRS" etc. These can go in a small "Size" field if needed but not in the main name.
+6. **Clean up abbreviations** in display names: "W/" → "with", "W/GANO" → "with Ganoderma", "D.I." → "DI" or spell it out contextually.
+
+**Example descriptions:**
+
+| Product Name (DB) | Display Name | Description |
+|---|---|---|
+| INSTANT COFFEE MIX W/ GINKGO & GINSENG 20S X 21G | Instant Coffee Mix with Ginkgo & Ginseng | A smooth instant coffee blend enriched with Ginkgo and Ginseng. A flavourful way to enjoy these traditionally valued herbs as part of your daily coffee routine. |
+| SPIRULINA TABLETS 300S | Spirulina Tablets | Convenient tablets made from Spirulina, a nutrient-dense blue-green algae naturally rich in protein, vitamins, and minerals. An easy addition to your daily nutrition. |
+| D.I. GROW (RED) 4 LTRS | DI Grow Bio-Fertiliser (Red) | A liquid bio-fertiliser formulated to support plant growth and flowering. Suitable for fruits, vegetables, and flowering plants. Available in multiple sizes. |
+| TEA TREE OIL FEMININE WASH 250ML | Tea Tree Oil Feminine Wash | A gentle personal care wash formulated with Tea Tree Oil, known for its natural cleansing properties. Designed for daily feminine hygiene. |
+| YEEGANO CAPSULE 90S | Yeegano Capsule | A herbal supplement capsule featuring Ganoderma (Lingzhi mushroom), a traditional ingredient valued in Asian wellness practices for centuries. |
 
 #### 3. `docs/en/style-brief.md`
 
@@ -300,6 +378,53 @@ Create placeholder entries across categories:
 
 Include descriptions of what each photo should convey. Emphasise authentic African settings, real people, and genuine product use.
 
+#### 12. `docs/en/products-catalog.md` (NEW — additional file)
+
+This is the structured product data file that drives the Products page. Generate it by querying the database and processing every product.
+
+**Format:** YAML frontmatter with a `products` array. Each entry contains:
+
+```yaml
+products:
+  - code: "WK1201"
+    name: "Instant Coffee Mix with Ginkgo & Ginseng"
+    category: "Health Beverages"
+    image: "Product-1201.png"
+    ingredients:
+      - Ginkgo
+      - Ginseng
+    description: "A smooth instant coffee blend enriched with Ginkgo and Ginseng. A flavourful way to enjoy these traditionally valued herbs as part of your daily coffee routine."
+    size: "20 sachets x 21g"
+```
+
+**Generation process:**
+
+1. Query ALL products: `SELECT code, name FROM tbl_products WHERE franchise_id = 1 ORDER BY code;`
+2. For each product:
+   - Strip `WK` prefix from code to derive image filename → `Product-{stripped_code}.png`
+   - Verify the image exists at `C:/wamp64/www/DMS_web/uploads/product_images/{stripped_code}.png`
+   - Clean up the display name (title case, expand abbreviations, remove size/quantity)
+   - Extract size/quantity info into a separate `size` field
+   - Assign to one of the 8 categories based on product type
+   - Extract ingredient names into the `ingredients` array
+   - Generate a 2-3 sentence description following the description rules above
+   - If no image exists for a product, set `image: null` and add a comment
+3. Also list the categories with display names and optional icons:
+
+```yaml
+categories:
+  - id: "health-beverages"
+    name: "Health Beverages"
+    description: "Nourishing coffee blends, teas, and chocolate drinks enriched with natural ingredients"
+    icon: "coffee"
+    count: 12
+  - id: "nutritional-supplements"
+    name: "Nutritional Supplements"
+    # ... etc for all 8
+```
+
+**Skip the Distributor Registration Kit** (WK10801) — it is not a consumer product.
+
 ### Additional Files to Generate
 
 #### `docs/i18n-config.md`
@@ -339,11 +464,26 @@ Fill in the SEO template with:
 
 Once all files are generated:
 
-1. Review each file for accuracy against the Dynapharm product database and ERP documentation
-2. Update `docs/i18n-config.md` with the translation status table
-3. Do NOT start building the website yet — content review comes first
-4. Report a summary of what was generated and what needs human input:
-   - Product photos (all 91 products need photography)
+1. **Copy product images** from the ERP into the website project:
+   ```bash
+   # Copy all product images
+   cp C:/wamp64/www/DMS_web/uploads/product_images/*.png photo-bank/services/
+
+   # Rename with Product- prefix for the photo-manager skill
+   cd photo-bank/services/
+   for f in *.png; do
+     mv "$f" "Product-$f"
+   done
+   cd ../..
+   ```
+2. **Verify image coverage** — cross-reference `docs/en/products-catalog.md` against actual files in `photo-bank/services/`. Report any products missing images.
+3. Review each content file for accuracy against the Dynapharm product database and ERP documentation
+4. Verify all product descriptions follow the "no medical claims" rules — flag any that slip into health benefit language
+5. Update `docs/i18n-config.md` with the translation status table
+6. Do NOT start building the website yet — content review comes first
+7. Report a summary of what was generated and what needs human input:
+   - Products with missing images (list codes)
+   - Products where the image filename didn't match the expected pattern
    - Real testimonials from actual distributors
    - Company leadership profiles and photos
    - Founding date and milestone dates
@@ -351,3 +491,4 @@ Once all files are generated:
    - Country-specific DPC locations for the contact page
    - Social media account URLs
    - Official domain name decision
+   - Lifestyle/hero/event photos for non-product pages
