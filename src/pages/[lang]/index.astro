@@ -381,19 +381,19 @@ const pillarColors = [
       </svg>
     </div>
 
-    <div class="bg-gradient-to-br from-dynared to-dynared-dark py-28 md:py-36 grain-overlay">
-      <div class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-white/5" aria-hidden="true"></div>
-      <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-white/5" aria-hidden="true"></div>
+    <div class="bg-dynared-50 py-28 md:py-36">
+      <div class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-dynared/5" aria-hidden="true"></div>
+      <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-gold/5" aria-hidden="true"></div>
       <div class="section-container relative z-10">
         <div class="max-w-3xl mx-auto text-center">
-          <span class="badge bg-white/20 text-white mb-6">{c.business.sectionTag}</span>
-          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+          <span class="badge bg-dynared-100 text-dynared mb-6">{c.business.sectionTag}</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal mb-6">
             {c.business.heading}
           </h2>
-          <p class="text-lg text-white/80 font-body mb-10 leading-relaxed max-w-2xl mx-auto">
+          <p class="text-lg text-charcoal-light font-body mb-10 leading-relaxed max-w-2xl mx-auto">
             {c.business.description}
           </p>
-          <a href={`/${lang}/business-opportunity`} class="inline-flex items-center justify-center px-8 py-4 bg-white text-dynared font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-xl transition-all duration-300 text-base font-bold">
+          <a href={`/${lang}/business-opportunity`} class="btn-primary text-base px-8 py-4 font-bold">
             {c.business.cta}
           </a>
         </div>
