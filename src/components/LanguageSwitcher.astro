@@ -1,0 +1,32 @@
+---
+import { LANGUAGES, getAlternateLang, getLocalizedPath, t } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const altLang = getAlternateLang(lang);
+const altPath = getLocalizedPath(Astro.url.pathname, altLang);
+const currentLangData = LANGUAGES[lang];
+const altLangData = LANGUAGES[altLang];
+const ariaLabel = t(lang, 'common', 'languageSwitcher');
+---
+
+<nav aria-label={ariaLabel} class="language-switcher">
+  <span class="inline-flex items-center gap-1 font-accent text-sm font-medium" aria-current="true">
+    <span aria-hidden="true">{currentLangData.flag}</span>
+    <span class="uppercase">{lang}</span>
+  </span>
+  <span class="mx-1.5 text-grey select-none" aria-hidden="true">/</span>
+  <a
+    href={altPath}
+    hreflang={altLang}
+    class="inline-flex items-center gap-1 font-accent text-sm font-medium text-grey hover:text-dynared transition-colors duration-200"
+    aria-label={`${altLangData.name}`}
+  >
+    <span aria-hidden="true">{altLangData.flag}</span>
+    <span class="uppercase">{altLang}</span>
+  </a>
+</nav>

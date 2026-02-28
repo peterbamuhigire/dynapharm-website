@@ -1,0 +1,518 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import heroImg from '@assets/images/hero/freshair-yoga-portrait-young-african-american-woman-meditating-outdoors.jpg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+/* ------------------------------------------------------------------ */
+/*  Bilingual content                                                  */
+/* ------------------------------------------------------------------ */
+
+const content = {
+  en: {
+    title: 'Wellness Guide — Natural Health Solutions by Category | Dynapharm Africa',
+    description: 'Explore Dynapharm\'s 11 wellness categories — from cardiovascular health to weight management. Discover natural products that support your wellbeing.',
+    heading: 'Your Wellness Guide',
+    subtitle: 'Explore our natural health products by wellness category. Speak with a trained Dynapharm distributor for personalised recommendations.',
+    disclaimer: 'Our products are food supplements, not medicines. Always consult a healthcare professional for medical concerns.',
+    categoriesHeading: 'Wellness Categories',
+    categoriesSubtitle: 'Browse 11 wellness categories to find natural products that support your wellbeing.',
+    relatedProducts: 'Related Products',
+    viewProduct: 'View on Products Page',
+    fullDisclaimer: 'This information is provided for educational purposes only and does not constitute medical advice. Dynapharm products are food supplements and are not intended to diagnose, treat, cure, or prevent any disease. Always consult a qualified healthcare professional before starting any new supplement regimen.',
+    disclaimerTitle: 'Important Disclaimer',
+    ctaTitle: 'Want Personalised Wellness Advice?',
+    ctaText: 'Speak with a trained Dynapharm distributor who can recommend products tailored to your individual wellness needs.',
+    ctaButton: 'Get in Touch',
+    productsLink: 'Browse All Products',
+    expandAll: 'Expand All',
+    collapseAll: 'Collapse All',
+  },
+  fr: {
+    title: 'Guide Bien-\u00CAtre — Solutions de sant\u00E9 naturelles par cat\u00E9gorie | Dynapharm Africa',
+    description: 'Explorez les 11 cat\u00E9gories de bien-\u00EAtre Dynapharm — de la sant\u00E9 cardiovasculaire \u00E0 la gestion du poids. D\u00E9couvrez les produits naturels qui soutiennent votre bien-\u00EAtre.',
+    heading: 'Votre Guide Bien-\u00CAtre',
+    subtitle: 'Explorez nos produits de sant\u00E9 naturels par cat\u00E9gorie de bien-\u00EAtre. Parlez \u00E0 un distributeur Dynapharm form\u00E9 pour des recommandations personnalis\u00E9es.',
+    disclaimer: 'Nos produits sont des compl\u00E9ments alimentaires, pas des m\u00E9dicaments. Consultez toujours un professionnel de sant\u00E9 pour les pr\u00E9occupations m\u00E9dicales.',
+    categoriesHeading: 'Cat\u00E9gories de bien-\u00EAtre',
+    categoriesSubtitle: 'Parcourez 11 cat\u00E9gories de bien-\u00EAtre pour trouver les produits naturels qui soutiennent votre bien-\u00EAtre.',
+    relatedProducts: 'Produits associ\u00E9s',
+    viewProduct: 'Voir sur la page Produits',
+    fullDisclaimer: 'Ces informations sont fournies \u00E0 des fins \u00E9ducatives uniquement et ne constituent pas un avis m\u00E9dical. Les produits Dynapharm sont des compl\u00E9ments alimentaires et ne sont pas destin\u00E9s \u00E0 diagnostiquer, traiter, gu\u00E9rir ou pr\u00E9venir une maladie. Consultez toujours un professionnel de sant\u00E9 qualifi\u00E9 avant de commencer tout nouveau r\u00E9gime de suppl\u00E9mentation.',
+    disclaimerTitle: 'Avertissement important',
+    ctaTitle: 'Vous souhaitez des conseils personnalis\u00E9s ?',
+    ctaText: 'Parlez \u00E0 un distributeur Dynapharm form\u00E9 qui pourra vous recommander des produits adapt\u00E9s \u00E0 vos besoins individuels de bien-\u00EAtre.',
+    ctaButton: 'Nous Contacter',
+    productsLink: 'Parcourir Tous les Produits',
+    expandAll: 'Tout d\u00E9plier',
+    collapseAll: 'Tout replier',
+  },
+};
+
+const t = content[lang];
+
+/* ------------------------------------------------------------------ */
+/*  Wellness categories with descriptions and related products         */
+/* ------------------------------------------------------------------ */
+
+interface WellnessCategory {
+  id: string;
+  name: { en: string; fr: string };
+  icon: string;
+  description: { en: string; fr: string };
+  products: { en: string; fr: string }[];
+  productCount: number;
+}
+
+const wellnessCategories: WellnessCategory[] = [
+  {
+    id: 'cardiovascular',
+    name: { en: 'Cardiovascular Health', fr: 'Sant\u00E9 cardiovasculaire' },
+    icon: 'heart',
+    description: {
+      en: 'Products that may support overall cardiovascular wellbeing. Many traditional herbs, such as Ginkgo Biloba and Garlic, have been valued for centuries for their role in supporting healthy circulation and heart function.',
+      fr: 'Produits pouvant soutenir le bien-\u00EAtre cardiovasculaire g\u00E9n\u00E9ral. De nombreuses plantes traditionnelles, comme le Ginkgo Biloba et l\'ail, sont valoris\u00E9es depuis des si\u00E8cles pour leur r\u00F4le dans le soutien de la circulation saine.',
+    },
+    products: [
+      { en: 'Yeeginkgo Tablets (Ginkgo Biloba)', fr: 'Comprim\u00E9s Yeeginkgo (Ginkgo Biloba)' },
+      { en: 'Yeegarlic Capsules (Garlic Extract)', fr: 'G\u00E9lules Yeegarlic (Extrait d\'ail)' },
+      { en: 'Ginali Capsules (Ginkgo & Tongkat Ali)', fr: 'G\u00E9lules Ginali (Ginkgo et Tongkat Ali)' },
+      { en: 'Liquid Chlorophyll Plus Guarana', fr: 'Chlorophylle liquide plus Guarana' },
+      { en: 'Yee Yang Yen Tablets (Grape Seed OPC)', fr: 'Comprim\u00E9s Yee Yang Yen (OPC de pépins de raisin)' },
+    ],
+    productCount: 5,
+  },
+  {
+    id: 'digestive',
+    name: { en: 'Digestive and Gut Health', fr: 'Sant\u00E9 digestive et intestinale' },
+    icon: 'salad',
+    description: {
+      en: 'Products traditionally associated with supporting healthy digestion and gut function. A balanced digestive system is fundamental to overall wellbeing, and these products may contribute to digestive comfort.',
+      fr: 'Produits traditionnellement associ\u00E9s au soutien d\'une digestion saine. Un syst\u00E8me digestif \u00E9quilibr\u00E9 est fondamental pour le bien-\u00EAtre g\u00E9n\u00E9ral.',
+    },
+    products: [
+      { en: 'Pro-LSB Probiotic Tablets', fr: 'Comprim\u00E9s probiotiques Pro-LSB' },
+      { en: 'High Fibre Nutrition Food', fr: 'Aliment nutritionnel riche en fibres' },
+      { en: 'Noni Juice', fr: 'Jus de Noni' },
+      { en: 'Instant Ginseng Honey Ginger', fr: 'Ginseng, miel et gingembre instantan\u00E9' },
+      { en: 'Spirulina Tablets', fr: 'Comprim\u00E9s de Spiruline' },
+    ],
+    productCount: 5,
+  },
+  {
+    id: 'energy',
+    name: { en: 'Energy and Vitality', fr: '\u00C9nergie et vitalit\u00E9' },
+    icon: 'zap',
+    description: {
+      en: 'Products that may help support natural energy levels and overall vitality. Traditional adaptogens like Ginseng and Tongkat Ali have been valued across cultures for their potential to support stamina and resilience.',
+      fr: 'Produits pouvant aider \u00E0 soutenir les niveaux d\'\u00E9nergie naturels et la vitalit\u00E9 g\u00E9n\u00E9rale. Les adaptog\u00E8nes traditionnels comme le Ginseng et le Tongkat Ali sont valoris\u00E9s \u00E0 travers les cultures.',
+    },
+    products: [
+      { en: 'Ginseng Capsules', fr: 'G\u00E9lules de Ginseng' },
+      { en: 'Tongkat Ali Capsules', fr: 'G\u00E9lules de Tongkat Ali' },
+      { en: 'Dyna Tonic (15-Herb Formula)', fr: 'Dyna Tonic (Formule aux 15 plantes)' },
+      { en: 'Instant Coffee Mix with Tongkat Ali & Maca', fr: 'M\u00E9lange de caf\u00E9 instantan\u00E9 au Tongkat Ali et Maca' },
+      { en: 'Bee Pollen Capsules', fr: 'G\u00E9lules de pollen d\'abeille' },
+      { en: 'Spirulina Tablets', fr: 'Comprim\u00E9s de Spiruline' },
+    ],
+    productCount: 6,
+  },
+  {
+    id: 'eye-health',
+    name: { en: 'Eye Health and Vision', fr: 'Sant\u00E9 oculaire et vision' },
+    icon: 'eye',
+    description: {
+      en: 'Products formulated with ingredients traditionally associated with supporting eye health and visual comfort. Proper nutrition plays an important role in maintaining visual wellness throughout life.',
+      fr: 'Produits formul\u00E9s avec des ingr\u00E9dients traditionnellement associ\u00E9s au soutien de la sant\u00E9 oculaire et du confort visuel.',
+    },
+    products: [
+      { en: 'Eye-Max Tablets', fr: 'Comprim\u00E9s Eye-Max' },
+      { en: 'Spirulina Tablets', fr: 'Comprim\u00E9s de Spiruline' },
+      { en: 'Bee Pollen Capsules', fr: 'G\u00E9lules de pollen d\'abeille' },
+    ],
+    productCount: 3,
+  },
+  {
+    id: 'general-health',
+    name: { en: 'General Health Issues', fr: 'Probl\u00E8mes de sant\u00E9 g\u00E9n\u00E9raux' },
+    icon: 'activity',
+    description: {
+      en: 'A broad selection of products that may support overall health and wellbeing. From nutrient-dense superfoods to traditional herbal preparations, these products are designed to complement a balanced lifestyle.',
+      fr: 'Une large s\u00E9lection de produits pouvant soutenir la sant\u00E9 et le bien-\u00EAtre g\u00E9n\u00E9raux. Des superaliments riches en nutriments aux pr\u00E9parations \u00E0 base de plantes traditionnelles.',
+    },
+    products: [
+      { en: 'Spirulina Tablets', fr: 'Comprim\u00E9s de Spiruline' },
+      { en: 'Yeegano Capsules (Ganoderma)', fr: 'G\u00E9lules Yeegano (Ganoderma)' },
+      { en: 'Dyna C Vitamin C Tablets', fr: 'Comprim\u00E9s de Vitamine C Dyna C' },
+      { en: 'Daily Vite Multi-Vitamins with Lysine', fr: 'Multi-vitamines Daily Vite avec Lysine' },
+      { en: 'Goat\'s Milk Tablets', fr: 'Comprim\u00E9s de lait de ch\u00E8vre' },
+      { en: 'Liquid Chlorophyll Plus Guarana', fr: 'Chlorophylle liquide plus Guarana' },
+    ],
+    productCount: 6,
+  },
+  {
+    id: 'immune',
+    name: { en: 'Immune System Support', fr: 'Soutien du syst\u00E8me immunitaire' },
+    icon: 'shield',
+    description: {
+      en: 'Products that may contribute to supporting the body\'s natural immune function. Traditional ingredients such as Ganoderma, Spirulina, and Vitamin C have long been valued for their role in overall immune wellness.',
+      fr: 'Produits pouvant contribuer au soutien de la fonction immunitaire naturelle du corps. Des ingr\u00E9dients traditionnels comme le Ganoderma, la Spiruline et la Vitamine C sont valoris\u00E9s depuis longtemps.',
+    },
+    products: [
+      { en: 'Yeegano Capsules (Ganoderma)', fr: 'G\u00E9lules Yeegano (Ganoderma)' },
+      { en: 'Dyna C Vitamin C Tablets', fr: 'Comprim\u00E9s de Vitamine C Dyna C' },
+      { en: 'Prolink Colostrum', fr: 'Colostrum Prolink' },
+      { en: 'Noni Juice', fr: 'Jus de Noni' },
+      { en: 'Spirulina Tablets', fr: 'Comprim\u00E9s de Spiruline' },
+      { en: 'Bee Pollen Capsules', fr: 'G\u00E9lules de pollen d\'abeille' },
+    ],
+    productCount: 6,
+  },
+  {
+    id: 'joint-bone',
+    name: { en: 'Joint and Bone Health', fr: 'Sant\u00E9 articulaire et osseuse' },
+    icon: 'bone',
+    description: {
+      en: 'Products that may support joint comfort and bone health. Ingredients such as Glucosamine, Chondroitin, and Sea Cucumber have been traditionally associated with maintaining joint mobility and cartilage health.',
+      fr: 'Produits pouvant soutenir le confort articulaire et la sant\u00E9 osseuse. Des ingr\u00E9dients comme la Glucosamine, la Chondro\u00EFtine et le Concombre de mer sont traditionnellement associ\u00E9s au maintien de la mobilit\u00E9 articulaire.',
+    },
+    products: [
+      { en: 'Dyna RH Joint Capsules', fr: 'G\u00E9lules articulaires Dyna RH' },
+      { en: 'Sea Cucumber Jelly', fr: 'Gel\u00E9e de concombre de mer' },
+      { en: 'Goat\'s Milk Tablets', fr: 'Comprim\u00E9s de lait de ch\u00E8vre' },
+    ],
+    productCount: 3,
+  },
+  {
+    id: 'sexual-reproductive',
+    name: { en: 'Sexual and Reproductive Health', fr: 'Sant\u00E9 sexuelle et reproductive' },
+    icon: 'flame',
+    description: {
+      en: 'Products formulated with ingredients traditionally valued for supporting sexual wellness and reproductive health. Herbs like Tongkat Ali, Maca, and Kacip Fatimah have deep cultural roots in traditional wellness practices.',
+      fr: 'Produits formul\u00E9s avec des ingr\u00E9dients traditionnellement valoris\u00E9s pour le bien-\u00EAtre sexuel et la sant\u00E9 reproductive. Des plantes comme le Tongkat Ali, le Maca et le Kacip Fatimah ont des racines culturelles profondes.',
+    },
+    products: [
+      { en: 'Tongkat Ali Capsules', fr: 'G\u00E9lules de Tongkat Ali' },
+      { en: 'Instant Coffee Mix with Tongkat Ali & Maca', fr: 'M\u00E9lange de caf\u00E9 instantan\u00E9 au Tongkat Ali et Maca' },
+      { en: 'Instant Coffee Mix with Kacip Fatimah', fr: 'M\u00E9lange de caf\u00E9 au Kacip Fatimah' },
+      { en: 'Dyna Serenoa Tablets (Saw Palmetto)', fr: 'Comprim\u00E9s Dyna Serenoa (Palmier nain)' },
+      { en: 'Ginseng Capsules', fr: 'G\u00E9lules de Ginseng' },
+    ],
+    productCount: 5,
+  },
+  {
+    id: 'skin',
+    name: { en: 'Skin Conditions', fr: 'Affections cutan\u00E9es' },
+    icon: 'sparkles',
+    description: {
+      en: 'Products that may support skin health from the inside out, as well as topical personal care products formulated with natural botanical ingredients. Healthy skin often reflects overall internal wellness.',
+      fr: 'Produits pouvant soutenir la sant\u00E9 de la peau de l\'int\u00E9rieur vers l\'ext\u00E9rieur, ainsi que des produits de soins topiques formul\u00E9s avec des ingr\u00E9dients botaniques naturels.',
+    },
+    products: [
+      { en: 'E-Vita Cream', fr: 'Cr\u00E8me E-Vita' },
+      { en: 'Snail Aqua Sleep Cream', fr: 'Cr\u00E8me de nuit Snail Aqua' },
+      { en: 'Tea Tree Oil Lotion', fr: 'Lotion \u00E0 l\'huile d\'arbre \u00E0 th\u00E9' },
+      { en: 'Ganoderma Lotion', fr: 'Lotion au Ganoderma' },
+      { en: 'Spirulina Tablets', fr: 'Comprim\u00E9s de Spiruline' },
+      { en: 'Yee Yang Yen Tablets (Grape Seed OPC)', fr: 'Comprim\u00E9s Yee Yang Yen (OPC de pépins de raisin)' },
+    ],
+    productCount: 6,
+  },
+  {
+    id: 'stress-mood',
+    name: { en: 'Stress, Mood and Mental Wellness', fr: 'Stress, humeur et bien-\u00EAtre mental' },
+    icon: 'brain',
+    description: {
+      en: 'Products that may support mental wellness, stress management, and mood balance. Adaptogenic herbs such as Ginseng and Ganoderma have been traditionally valued for their potential to support the body\'s response to stress.',
+      fr: 'Produits pouvant soutenir le bien-\u00EAtre mental, la gestion du stress et l\'\u00E9quilibre de l\'humeur. Les plantes adaptog\u00E8nes comme le Ginseng et le Ganoderma sont traditionnellement valoris\u00E9es pour leur potentiel \u00E0 soutenir la r\u00E9ponse du corps au stress.',
+    },
+    products: [
+      { en: 'Ginseng Capsules', fr: 'G\u00E9lules de Ginseng' },
+      { en: 'Yeegano Capsules (Ganoderma)', fr: 'G\u00E9lules Yeegano (Ganoderma)' },
+      { en: 'Yeeginkgo Tablets (Ginkgo Biloba)', fr: 'Comprim\u00E9s Yeeginkgo (Ginkgo Biloba)' },
+      { en: 'Dyna Tonic (15-Herb Formula)', fr: 'Dyna Tonic (Formule aux 15 plantes)' },
+      { en: 'Instant Coffee Mix with Ginkgo & Ginseng', fr: 'M\u00E9lange de caf\u00E9 au Ginkgo et Ginseng' },
+    ],
+    productCount: 5,
+  },
+  {
+    id: 'weight',
+    name: { en: 'Weight Management', fr: 'Gestion du poids' },
+    icon: 'scale',
+    description: {
+      en: 'Products that may complement a balanced diet and regular exercise as part of a weight management programme. These products are designed to be used alongside healthy lifestyle choices, not as standalone solutions.',
+      fr: 'Produits pouvant compl\u00E9ter une alimentation \u00E9quilibr\u00E9e et une activit\u00E9 physique r\u00E9guli\u00E8re dans le cadre d\'un programme de gestion du poids. Ces produits sont con\u00E7us pour accompagner un mode de vie sain.',
+    },
+    products: [
+      { en: 'High Fibre Nutrition Food', fr: 'Aliment nutritionnel riche en fibres' },
+      { en: 'Green Tea Extract Capsules', fr: 'G\u00E9lules d\'extrait de th\u00E9 vert' },
+      { en: 'Instant Wheatgrass with Chlorophyll', fr: 'Herbe de bl\u00E9 instantan\u00E9e \u00E0 la Chlorophylle' },
+      { en: 'Spirulina Tablets', fr: 'Comprim\u00E9s de Spiruline' },
+    ],
+    productCount: 4,
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Category icons                                                     */
+/* ------------------------------------------------------------------ */
+
+const categoryIcons: Record<string, string> = {
+  heart: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>',
+  salad: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10"/><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M11.38 12a2.4 2.4 0 0 1-.4-4.77 2.4 2.4 0 0 1 3.2-2.77 2.4 2.4 0 0 1 3.47-.63 2.4 2.4 0 0 1 3.13 1.33l-12.4 6.84Z"/><path d="M13 10.2A6.22 6.22 0 0 0 8.9 6.9"/></svg>',
+  zap: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+  eye: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>',
+  activity: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+  shield: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>',
+  bone: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>',
+  flame: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>',
+  sparkles: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>',
+  brain: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>',
+  scale: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>',
+};
+---
+
+<BaseLayout title={t.title} description={t.description} lang={lang}>
+
+  <!-- Hero / Page Header -->
+  <section class="relative overflow-hidden bg-green-dark text-white">
+    <div class="absolute inset-0">
+      <Image
+        src={heroImg}
+        alt=""
+        class="w-full h-full object-cover opacity-20"
+        widths={[640, 1024, 1600]}
+        sizes="100vw"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-green-800/80 via-green-900/60 to-green-900"></div>
+    </div>
+    <div class="relative section-container section-padding text-center">
+      <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-green-300 mb-4">
+        {lang === 'en' ? 'Natural Health Solutions' : 'Solutions de sant\u00E9 naturelles'}
+      </span>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+        {t.heading}
+      </h1>
+      <p class="text-lg md:text-xl text-green-100/80 max-w-3xl mx-auto font-body leading-relaxed mb-6">
+        {t.subtitle}
+      </p>
+      <!-- Inline disclaimer -->
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2.5 border border-white/20">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-300 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+        <span class="text-sm text-green-100 font-accent">{t.disclaimer}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wellness Categories Overview Grid -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="text-center mb-12 md:mb-16">
+        <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-green mb-3">
+          {lang === 'en' ? '11 Categories' : '11 Cat\u00E9gories'}
+        </span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal mb-4">{t.categoriesHeading}</h2>
+        <p class="text-charcoal-light font-body text-lg max-w-2xl mx-auto">{t.categoriesSubtitle}</p>
+      </div>
+
+      <!-- Categories Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        {wellnessCategories.map((cat) => (
+          <a
+            href={`#${cat.id}`}
+            class="group card p-5 md:p-6 text-center hover:border-green-200 transition-all duration-300"
+          >
+            <div class="w-14 h-14 rounded-xl bg-green-50 text-green mx-auto mb-4 flex items-center justify-center group-hover:bg-green group-hover:text-white transition-all duration-300">
+              <span set:html={categoryIcons[cat.icon]} />
+            </div>
+            <h3 class="font-heading text-sm md:text-base font-semibold text-charcoal mb-2 group-hover:text-green transition-colors duration-200 leading-snug">
+              {cat.name[lang]}
+            </h3>
+            <span class="font-accent text-xs text-grey">
+              {cat.productCount} {t.relatedProducts.toLowerCase()}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Detail Sections (Accordion) -->
+  <section
+    class="section-padding bg-white"
+    x-data="{ openSection: null, toggleSection(id) { this.openSection = this.openSection === id ? null : id; } }"
+  >
+    <div class="section-container max-w-4xl">
+      <div class="flex items-center justify-between mb-8 md:mb-12">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal">
+          {lang === 'en' ? 'Explore Each Category' : 'Explorer chaque cat\u00E9gorie'}
+        </h2>
+        <div class="flex gap-2">
+          <button
+            type="button"
+            class="font-accent text-xs font-medium text-green hover:text-green-dark transition-colors px-3 py-1.5 rounded-full border border-green-200 hover:bg-green-50"
+            x-on:click="openSection = 'all'"
+          >
+            {t.expandAll}
+          </button>
+          <button
+            type="button"
+            class="font-accent text-xs font-medium text-grey hover:text-charcoal transition-colors px-3 py-1.5 rounded-full border border-grey-light hover:bg-cream"
+            x-on:click="openSection = null"
+          >
+            {t.collapseAll}
+          </button>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        {wellnessCategories.map((cat) => (
+          <div
+            id={cat.id}
+            class="border border-grey-light/50 rounded-xl overflow-hidden transition-all duration-200 scroll-mt-24"
+            x-bind:class={`(openSection === '${cat.id}' || openSection === 'all') ? 'bg-white shadow-md border-green-200' : 'bg-cream-dark/30 hover:bg-cream-dark/50'`}
+          >
+            <!-- Accordion Header -->
+            <button
+              type="button"
+              class="w-full flex items-center gap-4 p-5 md:p-6 text-left focus:outline-2 focus:outline-green focus:outline-offset-2"
+              x-on:click={`toggleSection('${cat.id}')`}
+              x-bind:aria-expanded={`(openSection === '${cat.id}' || openSection === 'all').toString()`}
+              aria-controls={`panel-${cat.id}`}
+            >
+              <div class="w-12 h-12 rounded-xl bg-green-50 text-green flex items-center justify-center flex-shrink-0 transition-all duration-200"
+                x-bind:class={`(openSection === '${cat.id}' || openSection === 'all') ? 'bg-green text-white' : 'bg-green-50 text-green'`}
+              >
+                <span set:html={categoryIcons[cat.icon]} />
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-heading text-lg md:text-xl font-bold text-charcoal">
+                  {cat.name[lang]}
+                </h3>
+                <span class="font-accent text-xs text-grey">
+                  {cat.productCount} {t.relatedProducts.toLowerCase()}
+                </span>
+              </div>
+              <!-- Chevron -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-grey flex-shrink-0 transition-transform duration-200"
+                x-bind:class={`(openSection === '${cat.id}' || openSection === 'all') ? 'rotate-180' : ''`}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+
+            <!-- Accordion Panel -->
+            <div
+              id={`panel-${cat.id}`}
+              x-show={`openSection === '${cat.id}' || openSection === 'all'`}
+              x-transition:enter="transition ease-out duration-200"
+              x-transition:enter-start="opacity-0 -translate-y-2"
+              x-transition:enter-end="opacity-100 translate-y-0"
+              x-transition:leave="transition ease-in duration-150"
+              x-transition:leave-start="opacity-100"
+              x-transition:leave-end="opacity-0"
+              x-cloak
+              role="region"
+              aria-labelledby={`heading-${cat.id}`}
+            >
+              <div class="px-5 md:px-6 pb-6 pt-0">
+                <div class="border-t border-grey-light/40 pt-5">
+                  <!-- Description -->
+                  <p class="text-charcoal-light font-body leading-relaxed mb-6">
+                    {cat.description[lang]}
+                  </p>
+
+                  <!-- Related Products -->
+                  <h4 class="font-heading text-sm font-semibold uppercase tracking-wider text-green mb-3 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 19 2c1 2 2 4.5 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                    {t.relatedProducts}
+                  </h4>
+                  <ul class="space-y-2">
+                    {cat.products.map((product) => (
+                      <li class="flex items-center gap-3">
+                        <div class="w-1.5 h-1.5 rounded-full bg-green flex-shrink-0"></div>
+                        <span class="font-body text-sm text-charcoal">{product[lang]}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <!-- Link to products page -->
+                  <a
+                    href={`/${lang}/products`}
+                    class="inline-flex items-center gap-1.5 mt-5 font-accent text-sm font-medium text-green hover:text-green-dark transition-colors"
+                  >
+                    {t.viewProduct}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Medical Disclaimer -->
+  <section class="section-padding bg-green-50 border-y border-green-100">
+    <div class="section-container max-w-3xl">
+      <div class="flex gap-4 md:gap-6">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-green-100 text-green flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+        </div>
+        <div>
+          <h2 class="font-heading text-xl md:text-2xl font-bold text-charcoal mb-3">{t.disclaimerTitle}</h2>
+          <p class="font-body text-charcoal-light leading-relaxed">
+            {t.fullDisclaimer}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-br from-green to-green-dark text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-20"></div>
+    <!-- Decorative elements -->
+    <div class="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-white/5" aria-hidden="true"></div>
+    <div class="absolute -bottom-12 -left-12 w-40 h-40 rounded-full bg-white/5" aria-hidden="true"></div>
+
+    <div class="relative section-container text-center">
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{t.ctaTitle}</h2>
+      <p class="text-green-100/80 font-body text-lg max-w-2xl mx-auto mb-8">{t.ctaText}</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={`/${lang}/contact`} class="inline-flex items-center justify-center px-8 py-4 bg-white text-green font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-xl transition-all duration-300 text-lg gap-2">
+          {t.ctaButton}
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href={`/${lang}/products`} class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-heading font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 text-lg">
+          {t.productsLink}
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+</style>

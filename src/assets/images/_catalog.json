@@ -1,0 +1,1965 @@
+{
+  "images": [
+    {
+      "path": "branding/Logo-Dark-Mode.png",
+      "source": "photo-bank/branding/Logo-Dark-Mode.png",
+      "category": "branding",
+      "dimensions": "512x512",
+      "description": "Dynapharm Africa logo for dark backgrounds",
+      "usedIn": [
+        "Footer",
+        "Dark sections"
+      ],
+      "notes": "Square format (512x512), suitable for dark-mode footer"
+    },
+    {
+      "path": "branding/Logo-Full-Color.png",
+      "source": "photo-bank/branding/Logo-Full-Color.png",
+      "category": "branding",
+      "dimensions": "982x1280",
+      "description": "Main Dynapharm Africa logo, full colour on transparent background",
+      "usedIn": [
+        "Header",
+        "Footer",
+        "About",
+        "OG Image"
+      ],
+      "notes": "Portrait orientation (982x1280), use carefully in horizontal header slots"
+    },
+    {
+      "path": "hero/DISTRIBUTORS-05.jpg",
+      "source": "photo-bank/hero/DISTRIBUTORS-05.jpg",
+      "category": "hero",
+      "dimensions": "2222x1481",
+      "description": "Group of Dynapharm distributors at an event - hero banner for Community/Distributors page",
+      "usedIn": [
+        "Home Hero",
+        "Distributors Page"
+      ],
+      "notes": "Wide landscape (2222x1481), suitable for full-width hero banners. Use loading=eager."
+    },
+    {
+      "path": "hero/HEALTH-GENERIC-02.jpg",
+      "source": "photo-bank/hero/HEALTH-GENERIC-02.jpg",
+      "category": "hero",
+      "dimensions": "2222x1480",
+      "description": "Health and wellness lifestyle stock photo - hero for Health pages",
+      "usedIn": [
+        "Products Page Hero"
+      ],
+      "notes": "Wide landscape (2222x1480), suitable for full-width hero banners. Use loading=eager."
+    },
+    {
+      "path": "hero/HERBS-GENERIC-04.jpg",
+      "source": "photo-bank/hero/HERBS-GENERIC-04.jpg",
+      "category": "hero",
+      "dimensions": "2222x1245",
+      "description": "Herbal ingredients close-up - hero for Products or Ingredients page",
+      "usedIn": [
+        "Products Page Hero Alt"
+      ],
+      "notes": "Wide landscape (2222x1245), suitable for full-width hero banners. Use loading=eager."
+    },
+    {
+      "path": "hero/HERBS-GINKGO-03.jpg",
+      "source": "photo-bank/hero/HERBS-GINKGO-03.jpg",
+      "category": "hero",
+      "dimensions": "2222x1472",
+      "description": "Ginkgo biloba leaves close-up - hero for Herbal/Traditional Medicine section",
+      "usedIn": [
+        "Herbal Medicine Section"
+      ],
+      "notes": "Wide landscape (2222x1472), suitable for full-width hero banners. Use loading=eager."
+    },
+    {
+      "path": "hero/freshair-yoga-portrait-young-african-american-woman-meditating-outdoors.jpg",
+      "source": "photo-bank/hero/freshair-yoga-portrait-young-african-american-woman-meditating-outdoors.jpg",
+      "category": "hero",
+      "dimensions": "2222x1481",
+      "description": "Young African woman meditating outdoors - hero for Wellness/Health lifestyle section",
+      "usedIn": [
+        "Home Hero Alt",
+        "About Page"
+      ],
+      "notes": "Wide landscape (2222x1481), suitable for full-width hero banners. Use loading=eager."
+    },
+    {
+      "path": "about/DISTRIBUTORS-06.jpg",
+      "source": "photo-bank/about/DISTRIBUTORS-06.jpg",
+      "category": "about",
+      "dimensions": "2222x1481",
+      "description": "Dynapharm distributors group photo - about page, community section",
+      "usedIn": [
+        "About Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "about/DISTRIBUTORS-08.jpg",
+      "source": "photo-bank/about/DISTRIBUTORS-08.jpg",
+      "category": "about",
+      "dimensions": "2222x3333",
+      "description": "Portrait-orientation distributor event photo - about page sidebar",
+      "usedIn": [
+        "About Page"
+      ],
+      "notes": "Dimensions: 2222x3333"
+    },
+    {
+      "path": "about/HEALTH-GENERIC-01.jpg",
+      "source": "photo-bank/about/HEALTH-GENERIC-01.jpg",
+      "category": "about",
+      "dimensions": "2222x1482",
+      "description": "Health and wellness lifestyle - about page hero or section image",
+      "usedIn": [
+        "About Page"
+      ],
+      "notes": "Dimensions: 2222x1482"
+    },
+    {
+      "path": "about/HERBS-GANODERMA-02.jpg",
+      "source": "photo-bank/about/HERBS-GANODERMA-02.jpg",
+      "category": "about",
+      "dimensions": "2222x2659",
+      "description": "Ganoderma (Lingzhi/Reishi) mushroom - about our ingredients section",
+      "usedIn": [
+        "About Page"
+      ],
+      "notes": "Dimensions: 2222x2659"
+    },
+    {
+      "path": "about/HERBS-GINSENG-01.jpg",
+      "source": "photo-bank/about/HERBS-GINSENG-01.jpg",
+      "category": "about",
+      "dimensions": "2222x1483",
+      "description": "Ginseng root/plant - about our ingredients section",
+      "usedIn": [
+        "About Page"
+      ],
+      "notes": "Dimensions: 2222x1483"
+    },
+    {
+      "path": "testimonials/African-Farmer-Man.jpg",
+      "source": "photo-bank/testimonials/African-Farmer-Man.jpg",
+      "category": "testimonials",
+      "dimensions": "3749x2500",
+      "description": "African farmer portrait - testimonial from agricultural client",
+      "usedIn": [
+        "Testimonials Section",
+        "Home Page Testimonials"
+      ],
+      "notes": "Dimensions: 3749x2500. Crop to square/circle for testimonial cards."
+    },
+    {
+      "path": "testimonials/African-Happy-Family.jpg",
+      "source": "photo-bank/testimonials/African-Happy-Family.jpg",
+      "category": "testimonials",
+      "dimensions": "3353x2500",
+      "description": "Happy African family - testimonial about family health products",
+      "usedIn": [
+        "Testimonials Section",
+        "Home Page Testimonials"
+      ],
+      "notes": "Dimensions: 3353x2500. Crop to square/circle for testimonial cards."
+    },
+    {
+      "path": "testimonials/African-Lady-Teacher.jpg",
+      "source": "photo-bank/testimonials/African-Lady-Teacher.jpg",
+      "category": "testimonials",
+      "dimensions": "7947x5352",
+      "description": "African woman teacher/professional - testimonial from wellness client",
+      "usedIn": [
+        "Testimonials Section",
+        "Home Page Testimonials"
+      ],
+      "notes": "Dimensions: 7947x5352. Crop to square/circle for testimonial cards."
+    },
+    {
+      "path": "testimonials/Client-Carlos-Machel.jpg",
+      "source": "photo-bank/testimonials/Client-Carlos-Machel.jpg",
+      "category": "testimonials",
+      "dimensions": "2222x1472",
+      "description": "Carlos Machel client portrait - testimonial photo",
+      "usedIn": [
+        "Testimonials Section",
+        "Home Page Testimonials"
+      ],
+      "notes": "Dimensions: 2222x1472. Crop to square/circle for testimonial cards."
+    },
+    {
+      "path": "testimonials/Client-Fatou-Sow.jpg",
+      "source": "photo-bank/testimonials/Client-Fatou-Sow.jpg",
+      "category": "testimonials",
+      "dimensions": "2222x1481",
+      "description": "Fatou Sow client portrait - testimonial photo",
+      "usedIn": [
+        "Testimonials Section",
+        "Home Page Testimonials"
+      ],
+      "notes": "Dimensions: 2222x1481. Crop to square/circle for testimonial cards."
+    },
+    {
+      "path": "testimonials/Client-Grace-Nakamya.jpg",
+      "source": "photo-bank/testimonials/Client-Grace-Nakamya.jpg",
+      "category": "testimonials",
+      "dimensions": "2222x1436",
+      "description": "Grace Nakamya client portrait - testimonial photo",
+      "usedIn": [
+        "Testimonials Section",
+        "Home Page Testimonials"
+      ],
+      "notes": "Dimensions: 2222x1436. Crop to square/circle for testimonial cards."
+    },
+    {
+      "path": "testimonials/Client-Mamello-Ramatla.jpg",
+      "source": "photo-bank/testimonials/Client-Mamello-Ramatla.jpg",
+      "category": "testimonials",
+      "dimensions": "2222x1472",
+      "description": "Mamello Ramatla client portrait - testimonial photo",
+      "usedIn": [
+        "Testimonials Section",
+        "Home Page Testimonials"
+      ],
+      "notes": "Dimensions: 2222x1472. Crop to square/circle for testimonial cards."
+    },
+    {
+      "path": "testimonials/Elderly-African-Man.jpg",
+      "source": "photo-bank/testimonials/Elderly-African-Man.jpg",
+      "category": "testimonials",
+      "dimensions": "6720x4480",
+      "description": "Elderly African gentleman portrait - testimonial from senior wellness client",
+      "usedIn": [
+        "Testimonials Section",
+        "Home Page Testimonials"
+      ],
+      "notes": "Dimensions: 6720x4480. Crop to square/circle for testimonial cards."
+    },
+    {
+      "path": "gallery/ARTISTIC-IMPRESSION-NEW-HEADQUARTERS.jpg",
+      "source": "photo-bank/ARTISTIC-IMPRESSION-NEW-HEADQUARTERS.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1787",
+      "description": "Architectural rendering of planned Dynapharm new headquarters building",
+      "usedIn": [
+        "About Page",
+        "Gallery"
+      ],
+      "notes": "Dimensions: 2222x1787"
+    },
+    {
+      "path": "gallery/DISTRIBUTORS-01.jpg",
+      "source": "photo-bank/DISTRIBUTORS-01.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1525",
+      "description": "Dynapharm distributors event photo 1",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1525"
+    },
+    {
+      "path": "gallery/DISTRIBUTORS-02.jpg",
+      "source": "photo-bank/gallery/DISTRIBUTORS-02.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Dynapharm distributors event photo 2",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/DISTRIBUTORS-03.jpg",
+      "source": "photo-bank/DISTRIBUTORS-03.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Dynapharm distributors event photo 3",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/DISTRIBUTORS-04.jpg",
+      "source": "photo-bank/DISTRIBUTORS-04.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Dynapharm distributors event photo 4",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/DISTRIBUTORS-07.jpg",
+      "source": "photo-bank/DISTRIBUTORS-07.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1477",
+      "description": "Dynapharm distributors event photo 7",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1477"
+    },
+    {
+      "path": "gallery/DISTRIBUTORS-09.jpg",
+      "source": "photo-bank/gallery/DISTRIBUTORS-09.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Dynapharm distributors event photo 9",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/DYNAPHARM-AWARDS-CERTIFICATES.jpg",
+      "source": "photo-bank/DYNAPHARM-AWARDS-CERTIFICATES.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1980",
+      "description": "Display of Dynapharm awards and certificates of achievement",
+      "usedIn": [
+        "About Page",
+        "Gallery"
+      ],
+      "notes": "Dimensions: 2222x1980"
+    },
+    {
+      "path": "gallery/DYNAPHARM-RANDOM-POSTER.jpg",
+      "source": "photo-bank/DYNAPHARM-RANDOM-POSTER.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1566",
+      "description": "Dynapharm promotional poster",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1566"
+    },
+    {
+      "path": "gallery/DYNATONIC-INGREDIENTS.jpg",
+      "source": "photo-bank/DYNATONIC-INGREDIENTS.jpg",
+      "category": "gallery",
+      "dimensions": "2222x2222",
+      "description": "Dynatonic product ingredients illustration",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x2222"
+    },
+    {
+      "path": "gallery/ESTHER-AMPUMUZA.jpg",
+      "source": "photo-bank/ESTHER-AMPUMUZA.jpg",
+      "category": "gallery",
+      "dimensions": "2222x2694",
+      "description": "Esther Ampumuza portrait - Dynapharm Africa top distributor",
+      "usedIn": [
+        "About Page",
+        "Leadership Section",
+        "Gallery"
+      ],
+      "notes": "Dimensions: 2222x2694"
+    },
+    {
+      "path": "gallery/ESTHER_AMPUMUZA-AND-OI_HO_CHOOI.jpg",
+      "source": "photo-bank/ESTHER_AMPUMUZA-AND-OI_HO_CHOOI.jpg",
+      "category": "gallery",
+      "dimensions": "2222x2115",
+      "description": "Esther Ampumuza (Africa top distributor) with Oi Ho Chooi (Dynapharm founder)",
+      "usedIn": [
+        "About Page",
+        "Leadership Section",
+        "Gallery"
+      ],
+      "notes": "Dimensions: 2222x2115"
+    },
+    {
+      "path": "gallery/HEALTH-GENERIC-03.jpg",
+      "source": "photo-bank/HEALTH-GENERIC-03.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Health and wellness lifestyle stock image",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/HERBS-GANODERMA-01.jpg",
+      "source": "photo-bank/HERBS-GANODERMA-01.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Ganoderma (Reishi/Lingzhi) mushroom close-up",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/HERBS-GENERIC-01.jpg",
+      "source": "photo-bank/HERBS-GENERIC-01.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1483",
+      "description": "Herbal ingredients stock image 1",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1483"
+    },
+    {
+      "path": "gallery/HERBS-GENERIC-02.jpg",
+      "source": "photo-bank/gallery/HERBS-GENERIC-02.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1245",
+      "description": "Herbal ingredients stock image 2",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1245"
+    },
+    {
+      "path": "gallery/HERBS-GENERIC-03.jpg",
+      "source": "photo-bank/HERBS-GENERIC-03.jpg",
+      "category": "gallery",
+      "dimensions": "2222x3233",
+      "description": "Herbal ingredients stock image 3 (portrait orientation)",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x3233"
+    },
+    {
+      "path": "gallery/HERBS-GINKGO-01.jpg",
+      "source": "photo-bank/gallery/HERBS-GINKGO-01.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1483",
+      "description": "Ginkgo biloba leaves close-up",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1483"
+    },
+    {
+      "path": "gallery/HERBS-GINKGO-02.jpg",
+      "source": "photo-bank/HERBS-GINKGO-02.jpg",
+      "category": "gallery",
+      "dimensions": "2222x3144",
+      "description": "Ginkgo biloba leaves (portrait orientation)",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x3144"
+    },
+    {
+      "path": "gallery/HERBS-GINSENG-02.jpg",
+      "source": "photo-bank/gallery/HERBS-GINSENG-02.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Ginseng root/plant close-up",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/HERBS-GINSENG-03.jpg",
+      "source": "photo-bank/HERBS-GINSENG-03.jpg",
+      "category": "gallery",
+      "dimensions": "2222x3333",
+      "description": "Ginseng root (portrait orientation)",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 2222x3333"
+    },
+    {
+      "path": "gallery/Oi-Ho-Chooi-Quote.jpg",
+      "source": "photo-bank/Oi-Ho-Chooi-Quote.jpg",
+      "category": "gallery",
+      "dimensions": "960x960",
+      "description": "Oi Ho Chooi with inspirational quote overlay",
+      "usedIn": [
+        "About Page",
+        "Founder Quote Section"
+      ],
+      "notes": "Dimensions: 960x960"
+    },
+    {
+      "path": "gallery/Oi-Ho-Chooi.jpg",
+      "source": "photo-bank/Oi-Ho-Chooi.jpg",
+      "category": "gallery",
+      "dimensions": "353x312",
+      "description": "Oi Ho Chooi portrait - Dynapharm International founder/CEO",
+      "usedIn": [
+        "About Page",
+        "Founder Section"
+      ],
+      "notes": "Dimensions: 353x312"
+    },
+    {
+      "path": "gallery/REAL-PIC-DI-GROW-FERTILIZER.jpg",
+      "source": "photo-bank/REAL-PIC-DI-GROW-FERTILIZER.jpg",
+      "category": "gallery",
+      "dimensions": "1024x851",
+      "description": "Real photo of Di Grow fertiliser in use on farm",
+      "usedIn": [
+        "Products Page",
+        "Agriculture Section"
+      ],
+      "notes": "Dimensions: 1024x851"
+    },
+    {
+      "path": "gallery/REAL-PIC-DI-GROW.png",
+      "source": "photo-bank/REAL-PIC-DI-GROW.png",
+      "category": "gallery",
+      "dimensions": "600x450",
+      "description": "Real photo of Di Grow bio-fertiliser product",
+      "usedIn": [
+        "Products Page",
+        "Agriculture Section"
+      ],
+      "notes": "Dimensions: 600x450"
+    },
+    {
+      "path": "gallery/REAL-PIC-DYNAPHARM-AFRICA-LEADERS.jpg",
+      "source": "photo-bank/REAL-PIC-DYNAPHARM-AFRICA-LEADERS.jpg",
+      "category": "gallery",
+      "dimensions": "1080x810",
+      "description": "Dynapharm Africa leadership team group photo",
+      "usedIn": [
+        "About Page",
+        "Gallery"
+      ],
+      "notes": "Dimensions: 1080x810"
+    },
+    {
+      "path": "gallery/REAL-PIC-DYNAPHARM-INTERNATIONAL-HEADQUARTERS.jpg",
+      "source": "photo-bank/REAL-PIC-DYNAPHARM-INTERNATIONAL-HEADQUARTERS.jpg",
+      "category": "gallery",
+      "dimensions": "978x551",
+      "description": "Dynapharm International headquarters building exterior",
+      "usedIn": [
+        "About Page",
+        "Gallery"
+      ],
+      "notes": "Dimensions: 978x551"
+    },
+    {
+      "path": "gallery/REAL-PIC-DYNAPHARM-LEADERS-CONFERENCE.jpg",
+      "source": "photo-bank/REAL-PIC-DYNAPHARM-LEADERS-CONFERENCE.jpg",
+      "category": "gallery",
+      "dimensions": "1032x581",
+      "description": "Dynapharm leaders at a conference event",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 1032x581"
+    },
+    {
+      "path": "gallery/REAL-PIC-DYNAPHARM-PRODUCT-DELIVERY.jpg",
+      "source": "photo-bank/REAL-PIC-DYNAPHARM-PRODUCT-DELIVERY.jpg",
+      "category": "gallery",
+      "dimensions": "720x960",
+      "description": "Dynapharm product delivery/logistics photo",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 720x960"
+    },
+    {
+      "path": "gallery/REAL-PIC-FOUNDER-JUSTUS-MUHANGI-AFRICA-TOP-DISTRIBUTOR.jpeg",
+      "source": "photo-bank/REAL-PIC-FOUNDER-JUSTUS-MUHANGI-AFRICA-TOP-DISTRIBUTOR.jpeg",
+      "category": "gallery",
+      "dimensions": "1080x720",
+      "description": "Justus Muhangi - Dynapharm Africa founder/top distributor",
+      "usedIn": [
+        "About Page",
+        "Leadership Section"
+      ],
+      "notes": "Dimensions: 1080x720"
+    },
+    {
+      "path": "gallery/REAL-PIC-LADIES-PRODUCTS.jpg",
+      "source": "photo-bank/REAL-PIC-LADIES-PRODUCTS.jpg",
+      "category": "gallery",
+      "dimensions": "677x960",
+      "description": "Women showcasing Dynapharm products",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 677x960"
+    },
+    {
+      "path": "gallery/REAL-PIC-OI-HO-CHOI-AFRICA-VISIT.jpg",
+      "source": "photo-bank/REAL-PIC-OI-HO-CHOI-AFRICA-VISIT.jpg",
+      "category": "gallery",
+      "dimensions": "1080x717",
+      "description": "Oi Ho Chooi visiting Dynapharm Africa operations",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 1080x717"
+    },
+    {
+      "path": "gallery/REAL-PIC-OI-HO-CHOI-WITH-DYNAPHARM-AFRICA-DISTRIBUTORS.jpg",
+      "source": "photo-bank/REAL-PIC-OI-HO-CHOI-WITH-DYNAPHARM-AFRICA-DISTRIBUTORS.jpg",
+      "category": "gallery",
+      "dimensions": "1080x717",
+      "description": "Oi Ho Chooi with Dynapharm Africa distributors group",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 1080x717"
+    },
+    {
+      "path": "gallery/REAL-PIC-OI-HO-CHOOI-VISITING-AFRICA.jpg",
+      "source": "photo-bank/REAL-PIC-OI-HO-CHOOI-VISITING-AFRICA.jpg",
+      "category": "gallery",
+      "dimensions": "1080x717",
+      "description": "Oi Ho Chooi visiting Africa - event photo",
+      "usedIn": [
+        "Gallery Page"
+      ],
+      "notes": "Dimensions: 1080x717"
+    },
+    {
+      "path": "gallery/REAL-PIC-PRODUCT-1203-KACIP-FATIMAH-COFFEE.jpg",
+      "source": "photo-bank/REAL-PIC-PRODUCT-1203-KACIP-FATIMAH-COFFEE.jpg",
+      "category": "gallery",
+      "dimensions": "720x720",
+      "description": "Real photo of Kacip Fatimah Coffee product (Product-1203)",
+      "usedIn": [
+        "Products Page"
+      ],
+      "notes": "Dimensions: 720x720"
+    },
+    {
+      "path": "gallery/REAL-PIC-PRODUCT-4810-TONGKAT-ALI-COFFEE.jpg",
+      "source": "photo-bank/REAL-PIC-PRODUCT-4810-TONGKAT-ALI-COFFEE.jpg",
+      "category": "gallery",
+      "dimensions": "1439x1303",
+      "description": "Real photo of Tongkat Ali Coffee product (Product-4810)",
+      "usedIn": [
+        "Products Page"
+      ],
+      "notes": "Dimensions: 1439x1303"
+    },
+    {
+      "path": "gallery/REAL-PIC-PRODUCTS-FEMINIME-WASH-RANGE.jpg",
+      "source": "photo-bank/REAL-PIC-PRODUCTS-FEMINIME-WASH-RANGE.jpg",
+      "category": "gallery",
+      "dimensions": "1080x1080",
+      "description": "Real photo of Dynapharm feminine wash product range",
+      "usedIn": [
+        "Products Page"
+      ],
+      "notes": "Dimensions: 1080x1080"
+    },
+    {
+      "path": "gallery/REAL-PIC-TOTAL-HEALTH-PACKAGE-SPIRULINA-CHLOROPHYL-YEEYANGYEN.jpg",
+      "source": "photo-bank/REAL-PIC-TOTAL-HEALTH-PACKAGE-SPIRULINA-CHLOROPHYL-YEEYANGYEN.jpg",
+      "category": "gallery",
+      "dimensions": "960x706",
+      "description": "Total health package: Spirulina, Chlorophyll and Yee Yang Yen products",
+      "usedIn": [
+        "Products Page"
+      ],
+      "notes": "Dimensions: 960x706"
+    },
+    {
+      "path": "gallery/records-of-acievement.jpg",
+      "source": "photo-bank/records-of-acievement.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1081",
+      "description": "Records of achievement display/wall",
+      "usedIn": [
+        "About Page",
+        "Gallery"
+      ],
+      "notes": "Dimensions: 2222x1081"
+    },
+    {
+      "path": "gallery/supplements-generic-01.jpg",
+      "source": "photo-bank/supplements-generic-01.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Generic supplement/health product lifestyle image 1",
+      "usedIn": [
+        "Products Page",
+        "Home Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/supplements-generic-02.jpg",
+      "source": "photo-bank/supplements-generic-02.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Generic supplement/health product lifestyle image 2",
+      "usedIn": [
+        "Products Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/supplements-generic-03.jpg",
+      "source": "photo-bank/supplements-generic-03.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Generic supplement/health product lifestyle image 3",
+      "usedIn": [
+        "Products Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/supplements-generic-04.jpg",
+      "source": "photo-bank/supplements-generic-04.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Generic supplement/health product lifestyle image 4",
+      "usedIn": [
+        "Products Page"
+      ],
+      "notes": "Dimensions: 2222x1481"
+    },
+    {
+      "path": "gallery/supplements-generic-05.jpg",
+      "source": "photo-bank/supplements-generic-05.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1274",
+      "description": "Generic supplement/health product lifestyle image 5",
+      "usedIn": [
+        "Products Page"
+      ],
+      "notes": "Dimensions: 2222x1274"
+    },
+    {
+      "path": "products/Product-10801.png",
+      "source": "photo-bank/services/Product-10801.png",
+      "category": "products",
+      "dimensions": "384x350",
+      "description": "Product image for item code 10801",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 384x350. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1201.png",
+      "source": "photo-bank/services/Product-1201.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 1201",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1202.png",
+      "source": "photo-bank/services/Product-1202.png",
+      "category": "products",
+      "dimensions": "1042x1042",
+      "description": "Product image for item code 1202",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1042x1042. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1203.png",
+      "source": "photo-bank/services/Product-1203.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 1203",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1204.png",
+      "source": "photo-bank/services/Product-1204.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 1204",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1205.png",
+      "source": "photo-bank/services/Product-1205.png",
+      "category": "products",
+      "dimensions": "450x450",
+      "description": "Product image for item code 1205",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 450x450. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1208.png",
+      "source": "photo-bank/services/Product-1208.png",
+      "category": "products",
+      "dimensions": "225x225",
+      "description": "Product image for item code 1208",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 225x225. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1801.png",
+      "source": "photo-bank/services/Product-1801.png",
+      "category": "products",
+      "dimensions": "745x745",
+      "description": "Product image for item code 1801",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 745x745. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1802.png",
+      "source": "photo-bank/services/Product-1802.png",
+      "category": "products",
+      "dimensions": "389x377",
+      "description": "Product image for item code 1802",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 389x377. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1802A.png",
+      "source": "photo-bank/services/Product-1802A.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 1802A",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1804.png",
+      "source": "photo-bank/services/Product-1804.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 1804",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1806.png",
+      "source": "photo-bank/services/Product-1806.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 1806",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1809.png",
+      "source": "photo-bank/services/Product-1809.png",
+      "category": "products",
+      "dimensions": "777x777",
+      "description": "Product image for item code 1809",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 777x777. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1810.png",
+      "source": "photo-bank/services/Product-1810.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 1810",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1811.png",
+      "source": "photo-bank/services/Product-1811.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 1811",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1813.png",
+      "source": "photo-bank/services/Product-1813.png",
+      "category": "products",
+      "dimensions": "369x369",
+      "description": "Product image for item code 1813",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 369x369. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-1817.png",
+      "source": "photo-bank/services/Product-1817.png",
+      "category": "products",
+      "dimensions": "982x1280",
+      "description": "Product image for item code 1817",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 982x1280. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2802.png",
+      "source": "photo-bank/services/Product-2802.png",
+      "category": "products",
+      "dimensions": "283x300",
+      "description": "Product image for item code 2802",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 283x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2803.png",
+      "source": "photo-bank/services/Product-2803.png",
+      "category": "products",
+      "dimensions": "1257x1257",
+      "description": "Product image for item code 2803",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1257x1257. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2804.png",
+      "source": "photo-bank/services/Product-2804.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 2804",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2805.png",
+      "source": "photo-bank/services/Product-2805.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 2805",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2806.png",
+      "source": "photo-bank/services/Product-2806.png",
+      "category": "products",
+      "dimensions": "1047x1047",
+      "description": "Product image for item code 2806",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1047x1047. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2807.png",
+      "source": "photo-bank/services/Product-2807.png",
+      "category": "products",
+      "dimensions": "1047x1047",
+      "description": "Product image for item code 2807",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1047x1047. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2808.png",
+      "source": "photo-bank/services/Product-2808.png",
+      "category": "products",
+      "dimensions": "1047x1047",
+      "description": "Product image for item code 2808",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1047x1047. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2809.png",
+      "source": "photo-bank/services/Product-2809.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 2809",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2811.png",
+      "source": "photo-bank/services/Product-2811.png",
+      "category": "products",
+      "dimensions": "776x935",
+      "description": "Product image for item code 2811",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 776x935. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2812.png",
+      "source": "photo-bank/services/Product-2812.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 2812",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2813.png",
+      "source": "photo-bank/services/Product-2813.png",
+      "category": "products",
+      "dimensions": "1163x957",
+      "description": "Product image for item code 2813",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1163x957. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-2815.png",
+      "source": "photo-bank/services/Product-2815.png",
+      "category": "products",
+      "dimensions": "1000x1000",
+      "description": "Product image for item code 2815",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1000x1000. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3801.png",
+      "source": "photo-bank/services/Product-3801.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 3801",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3802.png",
+      "source": "photo-bank/services/Product-3802.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 3802",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3803.png",
+      "source": "photo-bank/services/Product-3803.png",
+      "category": "products",
+      "dimensions": "600x600",
+      "description": "Product image for item code 3803",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 600x600. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3804a.png",
+      "source": "photo-bank/services/Product-3804a.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 3804a",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3805.png",
+      "source": "photo-bank/services/Product-3805.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 3805",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3806.png",
+      "source": "photo-bank/services/Product-3806.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 3806",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3808.png",
+      "source": "photo-bank/services/Product-3808.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 3808",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3809.png",
+      "source": "photo-bank/services/Product-3809.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 3809",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3810.png",
+      "source": "photo-bank/services/Product-3810.png",
+      "category": "products",
+      "dimensions": "1049x1049",
+      "description": "Product image for item code 3810",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1049x1049. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3811.png",
+      "source": "photo-bank/services/Product-3811.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 3811",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3812.png",
+      "source": "photo-bank/services/Product-3812.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 3812",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3814.png",
+      "source": "photo-bank/services/Product-3814.png",
+      "category": "products",
+      "dimensions": "1313x1055",
+      "description": "Product image for item code 3814",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1313x1055. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-3816.png",
+      "source": "photo-bank/services/Product-3816.png",
+      "category": "products",
+      "dimensions": "1313x1055",
+      "description": "Product image for item code 3816",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1313x1055. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4803.png",
+      "source": "photo-bank/services/Product-4803.png",
+      "category": "products",
+      "dimensions": "1347x972",
+      "description": "Product image for item code 4803",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1347x972. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4805.png",
+      "source": "photo-bank/services/Product-4805.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 4805",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4808.png",
+      "source": "photo-bank/services/Product-4808.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 4808",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4808a.png",
+      "source": "photo-bank/services/Product-4808a.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 4808a",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4810.png",
+      "source": "photo-bank/services/Product-4810.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 4810",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4810n.png",
+      "source": "photo-bank/services/Product-4810n.png",
+      "category": "products",
+      "dimensions": "374x295",
+      "description": "Product image for item code 4810n",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 374x295. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4811.png",
+      "source": "photo-bank/services/Product-4811.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 4811",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4812.png",
+      "source": "photo-bank/services/Product-4812.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 4812",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4813.png",
+      "source": "photo-bank/services/Product-4813.png",
+      "category": "products",
+      "dimensions": "807x1068",
+      "description": "Product image for item code 4813",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 807x1068. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4814.png",
+      "source": "photo-bank/services/Product-4814.png",
+      "category": "products",
+      "dimensions": "800x800",
+      "description": "Product image for item code 4814",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 800x800. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4815.png",
+      "source": "photo-bank/services/Product-4815.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 4815",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4816.png",
+      "source": "photo-bank/services/Product-4816.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 4816",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4817.png",
+      "source": "photo-bank/services/Product-4817.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 4817",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4819.png",
+      "source": "photo-bank/services/Product-4819.png",
+      "category": "products",
+      "dimensions": "923x969",
+      "description": "Product image for item code 4819",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 923x969. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4820.png",
+      "source": "photo-bank/services/Product-4820.png",
+      "category": "products",
+      "dimensions": "2304x2304",
+      "description": "Product image for item code 4820",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 2304x2304. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4822.png",
+      "source": "photo-bank/services/Product-4822.png",
+      "category": "products",
+      "dimensions": "982x1280",
+      "description": "Product image for item code 4822",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 982x1280. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-4823.png",
+      "source": "photo-bank/services/Product-4823.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 4823",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5801.png",
+      "source": "photo-bank/services/Product-5801.png",
+      "category": "products",
+      "dimensions": "900x900",
+      "description": "Product image for item code 5801",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 900x900. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5801N.png",
+      "source": "photo-bank/services/Product-5801N.png",
+      "category": "products",
+      "dimensions": "982x1280",
+      "description": "Product image for item code 5801N",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 982x1280. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5801a.png",
+      "source": "photo-bank/services/Product-5801a.png",
+      "category": "products",
+      "dimensions": "1479x1112",
+      "description": "Product image for item code 5801a",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1479x1112. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5802a.png",
+      "source": "photo-bank/services/Product-5802a.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 5802a",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5802n.png",
+      "source": "photo-bank/services/Product-5802n.png",
+      "category": "products",
+      "dimensions": "615x615",
+      "description": "Product image for item code 5802n",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 615x615. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5803.png",
+      "source": "photo-bank/services/Product-5803.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 5803",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5806.png",
+      "source": "photo-bank/services/Product-5806.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 5806",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5807.png",
+      "source": "photo-bank/services/Product-5807.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 5807",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5807N.png",
+      "source": "photo-bank/services/Product-5807N.png",
+      "category": "products",
+      "dimensions": "982x1280",
+      "description": "Product image for item code 5807N",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 982x1280. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5810.png",
+      "source": "photo-bank/services/Product-5810.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 5810",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-5810n.png",
+      "source": "photo-bank/services/Product-5810n.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 5810n",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-6801.png",
+      "source": "photo-bank/services/Product-6801.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 6801",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-6802.png",
+      "source": "photo-bank/services/Product-6802.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 6802",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-6803.png",
+      "source": "photo-bank/services/Product-6803.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 6803",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7813.png",
+      "source": "photo-bank/services/Product-7813.png",
+      "category": "products",
+      "dimensions": "1065x1344",
+      "description": "Product image for item code 7813",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1065x1344. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7816.png",
+      "source": "photo-bank/services/Product-7816.png",
+      "category": "products",
+      "dimensions": "1524x1524",
+      "description": "Product image for item code 7816",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1524x1524. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7833.png",
+      "source": "photo-bank/services/Product-7833.png",
+      "category": "products",
+      "dimensions": "500x251",
+      "description": "Product image for item code 7833",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x251. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7835.png",
+      "source": "photo-bank/services/Product-7835.png",
+      "category": "products",
+      "dimensions": "300x300",
+      "description": "Product image for item code 7835",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 300x300. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7837.png",
+      "source": "photo-bank/services/Product-7837.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 7837",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7841.png",
+      "source": "photo-bank/services/Product-7841.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 7841",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7842.png",
+      "source": "photo-bank/services/Product-7842.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 7842",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7843.png",
+      "source": "photo-bank/services/Product-7843.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 7843",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7916.png",
+      "source": "photo-bank/services/Product-7916.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 7916",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7919.png",
+      "source": "photo-bank/services/Product-7919.png",
+      "category": "products",
+      "dimensions": "500x329",
+      "description": "Product image for item code 7919",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x329. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7920.png",
+      "source": "photo-bank/services/Product-7920.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code 7920",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-7928.png",
+      "source": "photo-bank/services/Product-7928.png",
+      "category": "products",
+      "dimensions": "512x512",
+      "description": "Product image for item code 7928",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 512x512. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-8805.png",
+      "source": "photo-bank/services/Product-8805.png",
+      "category": "products",
+      "dimensions": "500x762",
+      "description": "Product image for item code 8805",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x762. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-9829.png",
+      "source": "photo-bank/services/Product-9829.png",
+      "category": "products",
+      "dimensions": "400x400",
+      "description": "Product image for item code 9829",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 400x400. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-9830.png",
+      "source": "photo-bank/services/Product-9830.png",
+      "category": "products",
+      "dimensions": "640x640",
+      "description": "Product image for item code 9830",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 640x640. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-9845.png",
+      "source": "photo-bank/services/Product-9845.png",
+      "category": "products",
+      "dimensions": "982x1280",
+      "description": "Product image for item code 9845",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 982x1280. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-9846.png",
+      "source": "photo-bank/services/Product-9846.png",
+      "category": "products",
+      "dimensions": "982x1280",
+      "description": "Product image for item code 9846",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 982x1280. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-9848.png",
+      "source": "photo-bank/services/Product-9848.png",
+      "category": "products",
+      "dimensions": "982x1280",
+      "description": "Product image for item code 9848",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 982x1280. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-9849.png",
+      "source": "photo-bank/services/Product-9849.png",
+      "category": "products",
+      "dimensions": "982x1280",
+      "description": "Product image for item code 9849",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 982x1280. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-9918N.png",
+      "source": "photo-bank/services/Product-9918N.png",
+      "category": "products",
+      "dimensions": "982x1280",
+      "description": "Product image for item code 9918N",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 982x1280. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-9919.png",
+      "source": "photo-bank/services/Product-9919.png",
+      "category": "products",
+      "dimensions": "1019x880",
+      "description": "Product image for item code 9919",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1019x880. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-9923.png",
+      "source": "photo-bank/services/Product-9923.png",
+      "category": "products",
+      "dimensions": "1027x942",
+      "description": "Product image for item code 9923",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1027x942. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-BodyContour500.png",
+      "source": "photo-bank/services/Product-BodyContour500.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code BodyContour500",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-GamatSoap.png",
+      "source": "photo-bank/services/Product-GamatSoap.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code GamatSoap",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-GanoSavon500.png",
+      "source": "photo-bank/services/Product-GanoSavon500.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code GanoSavon500",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-PegagaSopa500.png",
+      "source": "photo-bank/services/Product-PegagaSopa500.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code PegagaSopa500",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-PremixMangosteen22.png",
+      "source": "photo-bank/services/Product-PremixMangosteen22.png",
+      "category": "products",
+      "dimensions": "1000x1000",
+      "description": "Product image for item code PremixMangosteen22",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 1000x1000. PNG with transparent background, display on white or light card."
+    },
+    {
+      "path": "products/Product-blackganotongkat500.png",
+      "source": "photo-bank/services/Product-blackganotongkat500.png",
+      "category": "products",
+      "dimensions": "500x500",
+      "description": "Product image for item code blackganotongkat500",
+      "usedIn": [
+        "Products Page",
+        "Product Modal"
+      ],
+      "notes": "Dimensions: 500x500. PNG with transparent background, display on white or light card."
+    }
+  ],
+  "placeholders_needed": [
+    "team/Team-CEO.jpg -- No dedicated CEO headshot available. Consider using gallery/REAL-PIC-FOUNDER-JUSTUS-MUHANGI-AFRICA-TOP-DISTRIBUTOR.jpeg from gallery",
+    "team/Team-Founder-International.jpg -- For Oi Ho Chooi. gallery/Oi-Ho-Chooi.jpg exists but is small (353x312). Consider gallery/Oi-Ho-Chooi-Quote.jpg (960x960) instead",
+    "team/Team-Esther-Ampumuza.jpg -- Top Africa distributor. gallery/ESTHER-AMPUMUZA.jpg available at 2222x2694",
+    "hero/Hero-Home-Primary.jpg -- Need a primary hero for homepage. Multiple candidates in hero/ directory",
+    "about/About-Mission-Statement.jpg -- Dedicated mission/vision photo not available, use CSS gradient or existing about/ photos"
+  ],
+  "total_images": 165,
+  "categories": {
+    "branding": 2,
+    "hero": 5,
+    "about": 5,
+    "testimonials": 8,
+    "gallery": 44,
+    "products": 101
+  }
+}

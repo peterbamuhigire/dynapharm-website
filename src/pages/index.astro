@@ -1,0 +1,17 @@
+---
+import { DEFAULT_LANG } from '@utils/i18n';
+---
+
+<html lang={DEFAULT_LANG}>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=/${DEFAULT_LANG}`} />
+    <title>Redirecting&hellip;</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={`/${DEFAULT_LANG}`}>/{DEFAULT_LANG}</a>&hellip;</p>
+    <script define:vars={{ DEFAULT_LANG }}>
+      window.location.replace(`/${DEFAULT_LANG}`);
+    </script>
+  </body>
+</html>

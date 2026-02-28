@@ -1,0 +1,681 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+// Hero image
+import heroAbout from '@assets/images/about/DISTRIBUTORS-06.jpg';
+
+// Origins photos
+import photoOiHoChooi from '@assets/images/gallery/Oi-Ho-Chooi-Quote.jpg';
+import photoHeadquarters from '@assets/images/gallery/REAL-PIC-DYNAPHARM-INTERNATIONAL-HEADQUARTERS.jpg';
+
+// Africa chapter photos
+import photoEsther from '@assets/images/gallery/ESTHER-AMPUMUZA.jpg';
+import photoEstherOi from '@assets/images/gallery/ESTHER_AMPUMUZA-AND-OI_HO_CHOOI.jpg';
+
+// Leadership photos
+import photoFounder from '@assets/images/gallery/Oi-Ho-Chooi.jpg';
+import photoJustus from '@assets/images/gallery/REAL-PIC-FOUNDER-JUSTUS-MUHANGI-AFRICA-TOP-DISTRIBUTOR.jpeg';
+
+// Awards photos
+import photoAwards from '@assets/images/gallery/DYNAPHARM-AWARDS-CERTIFICATES.jpg';
+import photoRecords from '@assets/images/gallery/records-of-acievement.jpg';
+
+// Future
+import photoNewHQ from '@assets/images/gallery/ARTISTIC-IMPRESSION-NEW-HEADQUARTERS.jpg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+/* ──────────────────────────────────────────
+   CONTENT — all translations live here
+   ────────────────────────────────────────── */
+const content = {
+  en: {
+    meta: {
+      title: 'About Dynapharm Africa \u2014 Our Story, Mission & Values',
+      description: 'Learn about Dynapharm Africa \u2014 over 20 years of natural health products, operating in 40+ countries, empowering communities through wellness and entrepreneurship.',
+    },
+    hero: {
+      heading: 'Our Story',
+      subtitle: 'From Malaysia to Africa \u2014 bringing nature\u2019s finest health products to the continent and empowering communities along the way.',
+      heroAlt: 'Dynapharm community gathering',
+    },
+    origins: {
+      sectionTag: 'Our Origins',
+      heading: 'Rooted in Nature, Built for the World',
+      p1: 'In 1981, in the vibrant city of Penang, Malaysia, Mr. Oi Ho Chooi founded Dynapharm with a bold vision: to improve the quality of life for people everywhere through the finest natural health products. Rooted in centuries of traditional Asian herbal wisdom \u2014 Ganoderma (Lingzhi mushroom), Tongkat Ali, Spirulina, Chlorophyll \u2014 Mr. Oi set out to make these time-honoured ingredients accessible, affordable, and convenient.',
+      p2: 'From the beginning, Dynapharm\u2019s approach combined the best of tradition and modernity. Traditional ingredients valued for centuries in Chinese, Malay, and Southeast Asian wellness practices were formulated into modern product formats \u2014 tablets, capsules, powders, beverages, and personal care products. In 1990, the company moved to its current GMP-certified manufacturing premises, cementing its commitment to international quality standards.',
+      p3: 'In 1995, Dynapharm entered the world of person-to-person selling through network marketing, opening the door for individuals everywhere to share its products and build their own businesses. What started as one man\u2019s dream in Penang grew into an international wellness company. Today, Dynapharm\u2019s product catalogue spans over 90 items across eight categories, reaching communities in more than 40 countries.',
+      altOiHoChooi: 'Mr. Oi Ho Chooi, Founder of Dynapharm International',
+      altHQ: 'Dynapharm International Headquarters in Penang, Malaysia',
+    },
+    africa: {
+      sectionTag: 'The Africa Chapter',
+      heading: 'Empowering Africa Through Health, Wealth & Freedom',
+      p1: 'In 2005, through the vision and determination of Ms Esther Ampumuza, Dynapharm arrived in Africa \u2014 marking a defining chapter in the company\u2019s story. Africa \u2014 a continent rich in natural healing traditions and entrepreneurial energy \u2014 proved to be a natural fit for Dynapharm\u2019s mission.',
+      p2: 'Ms Ampumuza recognised that African communities have long valued natural remedies, herbal preparations, and holistic approaches to wellbeing. Dynapharm\u2019s products, rooted in similar philosophies from across Asia, resonated deeply with this heritage.',
+      p3: 'But Dynapharm brought more than products. Through its network marketing model, the company offered something equally valuable: a genuine business opportunity. In markets where formal employment can be scarce and entrepreneurial spirit runs deep, Dynapharm gave individuals a path to financial independence \u2014 requiring no formal qualifications, no large investment, and no previous business experience.',
+      p4: 'Today, Dynapharm Africa operates across the continent through independent franchises and a growing network of Distribution Point Centres (DPCs) \u2014 local wellness hubs that serve their communities with products, training, and support.',
+      altEsther: 'Ms Esther Ampumuza, Pioneer of Dynapharm Africa',
+      altEstherOi: 'Ms Esther Ampumuza with Mr. Oi Ho Chooi',
+    },
+    mission: {
+      sectionTag: 'Our Purpose',
+      heading: 'Mission, Vision & Values',
+      mission: {
+        title: 'Our Mission',
+        text: 'Empowering people with natural health products and entrepreneurial opportunity.',
+      },
+      vision: {
+        title: 'Our Vision',
+        text: 'A world where natural health and financial independence are within everyone\u2019s reach.',
+      },
+      values: {
+        title: 'Our Values',
+        items: [
+          { name: 'Quality First', description: 'Every product meets international manufacturing standards. Quality is not negotiable.' },
+          { name: 'Natural Always', description: 'Our products are rooted in nature \u2014 Spirulina, Ganoderma, herbs sourced from traditional growing regions.' },
+          { name: 'People Before Profit', description: 'Our distributors are partners. Their success is our success.' },
+          { name: 'Community Impact', description: 'Healthy people build healthy communities. Every product sold contributes to a larger mission.' },
+          { name: 'Integrity', description: 'We present our business honestly. We do not promise overnight success \u2014 we promise support and a proven model.' },
+        ],
+      },
+    },
+    pillars: {
+      sectionTag: 'Brand Pillars',
+      heading: 'Health. Wealth. Freedom.',
+      items: [
+        {
+          title: 'Health',
+          description: 'Premium natural products \u2014 scientifically formulated using ingredients valued in traditional wellness practices for centuries. Over 90 products across 8 categories, manufactured to international quality standards.',
+        },
+        {
+          title: 'Wealth',
+          description: 'A proven business opportunity \u2014 7 achievement ranks from Distributor to Crown Diamond Manager. Multiple income streams through personal sales and team building. Low barrier to entry, comprehensive training, and ongoing support.',
+        },
+        {
+          title: 'Freedom',
+          description: 'Financial independence on your own terms. Build your wellness business at your own pace \u2014 part-time or full-time. No formal qualifications required. The freedom to earn, grow, and make a difference in your community.',
+        },
+      ],
+    },
+    milestones: {
+      sectionTag: 'Our Journey',
+      heading: 'Key Milestones',
+      items: [
+        { year: '1981', title: 'The Beginning', description: 'Dynapharm founded in Penang, Malaysia by Mr. Oi Ho Chooi \u2014 driven by a vision to improve quality of life through natural health products.' },
+        { year: '1990', title: 'Quality Certified', description: 'Moved to current GMP-certified manufacturing premises, strengthening quality standards.' },
+        { year: '1995', title: 'Network Marketing', description: 'Entered the world of network marketing, empowering individuals to build their own wellness businesses.' },
+        { year: '2005', title: 'Africa Arrives', description: 'Ms Esther Ampumuza brought Dynapharm to Africa, establishing the first African franchise.' },
+        { year: 'Today', title: '90+ Products, 40+ Countries', description: 'Product catalogue exceeds 90 items, with a presence in 40+ countries across Africa and beyond.' },
+        { year: 'Future', title: 'Building Our Future', description: 'A new Dynapharm International Headquarters is on the way, reflecting the company\u2019s continued growth and ambition.' },
+      ],
+    },
+    leadership: {
+      sectionTag: 'Leadership',
+      heading: 'The People Behind Dynapharm',
+      members: [
+        {
+          name: 'Mr. Oi Ho Chooi',
+          title: 'Founder, Dynapharm International',
+          bio: 'In 1981, Mr. Oi Ho Chooi founded Dynapharm with a single, powerful vision: to improve the quality of life for people through natural health products. Under his leadership, the company grew from a small manufacturing operation into an international wellness company present in over 40 countries.',
+        },
+        {
+          name: 'Ms Esther Ampumuza',
+          title: 'Pioneer & Director, Dynapharm Africa',
+          bio: 'Ms Esther Ampumuza is the visionary who brought Dynapharm to the African continent in 2005. Her leadership and entrepreneurial spirit transformed Dynapharm into a truly global enterprise, with Africa becoming the company\u2019s strongest growth market.',
+        },
+        {
+          name: 'Justus Muhangi',
+          title: 'Africa Top Distributor',
+          bio: 'Justus Muhangi is one of Dynapharm Africa\u2019s most accomplished distributors and a recognised leader within the continental network. His dedication to building teams, mentoring new distributors, and promoting natural wellness has contributed significantly to Dynapharm\u2019s growth across Africa.',
+        },
+      ],
+    },
+    awards: {
+      sectionTag: 'Recognition',
+      heading: 'Awards & Achievements',
+      description: 'Dynapharm\u2019s commitment to quality and innovation has been recognised through numerous awards and certifications over the years.',
+      altAwards: 'Dynapharm awards and certificates display',
+      altRecords: 'Dynapharm records of achievement',
+    },
+    cta: {
+      heading: 'Join the Dynapharm Family',
+      subtitle: 'Whether you seek better health, a business opportunity, or both \u2014 there is a place for you in the Dynapharm community.',
+      ctaPrimary: 'Become a Distributor',
+      ctaSecondary: 'Explore Products',
+    },
+  },
+  fr: {
+    meta: {
+      title: '\u00c0 propos de Dynapharm Africa \u2014 Notre histoire, notre mission et nos valeurs',
+      description: 'D\u00e9couvrez Dynapharm Africa \u2014 plus de 20 ans de produits naturels de sant\u00e9, pr\u00e9sent dans plus de 40 pays, au service des communaut\u00e9s \u00e0 travers le bien-\u00eatre et l\u2019entrepreneuriat.',
+    },
+    hero: {
+      heading: 'Notre Histoire',
+      subtitle: 'De la Malaisie \u00e0 l\u2019Afrique \u2014 apporter les meilleurs produits de sant\u00e9 naturels au continent et donner des moyens aux communaut\u00e9s tout au long du chemin.',
+      heroAlt: 'Rassemblement de la communaut\u00e9 Dynapharm',
+    },
+    origins: {
+      sectionTag: 'Nos Origines',
+      heading: 'Enracin\u00e9s dans la Nature, B\u00e2tis pour le Monde',
+      p1: 'En 1981, M. Oi Ho Chooi a fond\u00e9 Dynapharm \u00e0 Penang, en Malaisie, port\u00e9 par une vision audacieuse : am\u00e9liorer la qualit\u00e9 de vie gr\u00e2ce aux produits de sant\u00e9 naturels. Enracin\u00e9e dans des si\u00e8cles de sagesse traditionnelle asiatique en mati\u00e8re de plantes m\u00e9dicinales \u2014 Ganoderma (champignon Lingzhi), Tongkat Ali, Spirulina, Chlorophyll \u2014 l\u2019entreprise s\u2019est donn\u00e9 pour mission de rendre ces ingr\u00e9dients ancestraux accessibles, abordables et pratiques.',
+      p2: 'En 1990, Dynapharm a franchi une \u00e9tape d\u00e9cisive en emm\u00e9nageant dans ses locaux actuels, certifi\u00e9s GMP (Good Manufacturing Practice). Cette installation a renforc\u00e9 les normes de qualit\u00e9 de l\u2019entreprise, garantissant que chaque produit respecte les exigences les plus strictes en mati\u00e8re de fabrication internationale. Puis, en 1995, Dynapharm a adopt\u00e9 le mod\u00e8le du marketing de r\u00e9seau \u2014 la vente de personne \u00e0 personne \u2014 offrant \u00e0 chacun la possibilit\u00e9 de b\u00e2tir sa propre entreprise de bien-\u00eatre.',
+      p3: 'Ce qui a commenc\u00e9 comme une petite activit\u00e9 \u00e0 Penang est devenu une entreprise internationale de bien-\u00eatre. Aujourd\u2019hui, le catalogue de produits Dynapharm comprend plus de 90 articles r\u00e9partis dans huit cat\u00e9gories, touchant des communaut\u00e9s dans plus de 40 pays.',
+      altOiHoChooi: 'M. Oi Ho Chooi, Fondateur de Dynapharm International',
+      altHQ: 'Si\u00e8ge international de Dynapharm \u00e0 Penang, Malaisie',
+    },
+    africa: {
+      sectionTag: 'Le Chapitre Africain',
+      heading: 'Autonomiser l\u2019Afrique par la Sant\u00e9, la Richesse et la Libert\u00e9',
+      p1: 'En 2005, Mme Esther Ampumuza a introduit Dynapharm en Afrique, \u00e9tablissant la premi\u00e8re franchise africaine et marquant un chapitre d\u00e9terminant dans l\u2019histoire de l\u2019entreprise. L\u2019Afrique \u2014 un continent riche en traditions de gu\u00e9rison naturelle et en \u00e9nergie entrepreneuriale \u2014 s\u2019est r\u00e9v\u00e9l\u00e9e \u00eatre un terrain naturel pour la mission de Dynapharm.',
+      p2: 'Les communaut\u00e9s africaines ont depuis longtemps valoris\u00e9 les rem\u00e8des naturels, les pr\u00e9parations \u00e0 base de plantes et les approches holistiques du bien-\u00eatre. Les produits Dynapharm, enracin\u00e9s dans des philosophies similaires venues d\u2019Asie, ont trouv\u00e9 un \u00e9cho dans cet h\u00e9ritage.',
+      p3: 'Mais Dynapharm a apport\u00e9 bien plus que des produits. Gr\u00e2ce \u00e0 son mod\u00e8le de marketing de r\u00e9seau, l\u2019entreprise a offert quelque chose d\u2019une valeur \u00e9gale : une v\u00e9ritable opportunit\u00e9 d\u2019affaires. Sur des march\u00e9s o\u00f9 l\u2019emploi formel peut \u00eatre rare et o\u00f9 l\u2019esprit entrepreneurial est profond\u00e9ment ancr\u00e9, Dynapharm a donn\u00e9 aux individus un chemin vers l\u2019ind\u00e9pendance financi\u00e8re.',
+      p4: 'Aujourd\u2019hui, Dynapharm Africa op\u00e8re \u00e0 travers le continent par le biais de franchises ind\u00e9pendantes et d\u2019un r\u00e9seau croissant de Centres de Distribution (DPC) \u2014 des p\u00f4les locaux de bien-\u00eatre qui servent leurs communaut\u00e9s avec des produits, des formations et un accompagnement.',
+      altEsther: 'Mme Esther Ampumuza, Pionnière de Dynapharm Africa',
+      altEstherOi: 'Mme Esther Ampumuza avec M. Oi Ho Chooi',
+    },
+    mission: {
+      sectionTag: 'Notre Raison d\u2019\u00catre',
+      heading: 'Mission, Vision et Valeurs',
+      mission: {
+        title: 'Notre Mission',
+        text: 'Donner aux gens les moyens d\u2019agir gr\u00e2ce \u00e0 des produits de sant\u00e9 naturels et des opportunit\u00e9s entrepreneuriales.',
+      },
+      vision: {
+        title: 'Notre Vision',
+        text: 'Un monde o\u00f9 la sant\u00e9 naturelle et l\u2019ind\u00e9pendance financi\u00e8re sont \u00e0 la port\u00e9e de tous.',
+      },
+      values: {
+        title: 'Nos Valeurs',
+        items: [
+          { name: 'La qualit\u00e9 avant tout', description: 'Chaque produit r\u00e9pond aux normes internationales de fabrication. La qualit\u00e9 n\u2019est pas n\u00e9gociable.' },
+          { name: 'Le naturel, toujours', description: 'Nos produits sont enracin\u00e9s dans la nature \u2014 Spirulina, Ganoderma, plantes issues de r\u00e9gions de culture traditionnelles.' },
+          { name: 'Les personnes avant le profit', description: 'Nos distributeurs sont des partenaires. Leur succ\u00e8s est notre succ\u00e8s.' },
+          { name: 'Impact communautaire', description: 'Des personnes en bonne sant\u00e9 b\u00e2tissent des communaut\u00e9s saines. Chaque produit vendu contribue \u00e0 une mission plus grande.' },
+          { name: 'Int\u00e9grit\u00e9', description: 'Nous pr\u00e9sentons notre entreprise avec honn\u00eatet\u00e9. Nous ne promettons pas un succ\u00e8s du jour au lendemain \u2014 nous promettons un accompagnement et un mod\u00e8le \u00e9prouv\u00e9.' },
+        ],
+      },
+    },
+    pillars: {
+      sectionTag: 'Piliers de la Marque',
+      heading: 'Sant\u00e9. Richesse. Libert\u00e9.',
+      items: [
+        {
+          title: 'Sant\u00e9',
+          description: 'Des produits naturels haut de gamme \u2014 formul\u00e9s scientifiquement \u00e0 partir d\u2019ingr\u00e9dients valoris\u00e9s dans les pratiques traditionnelles de bien-\u00eatre depuis des si\u00e8cles. Plus de 90 produits r\u00e9partis dans 8 cat\u00e9gories, fabriqu\u00e9s selon les normes internationales de qualit\u00e9.',
+        },
+        {
+          title: 'Richesse',
+          description: 'Une opportunit\u00e9 d\u2019affaires \u00e9prouv\u00e9e \u2014 7 niveaux de r\u00e9ussite, de Distributor \u00e0 Crown Diamond Manager. Des sources de revenus multiples gr\u00e2ce aux ventes personnelles et au d\u00e9veloppement d\u2019\u00e9quipe. Faible barri\u00e8re \u00e0 l\u2019entr\u00e9e, formation compl\u00e8te et accompagnement continu.',
+        },
+        {
+          title: 'Libert\u00e9',
+          description: 'L\u2019ind\u00e9pendance financi\u00e8re selon vos propres termes. D\u00e9veloppez votre entreprise de bien-\u00eatre \u00e0 votre rythme \u2014 \u00e0 temps partiel ou \u00e0 temps plein. Aucun dipl\u00f4me requis. La libert\u00e9 de gagner, de grandir et de faire la diff\u00e9rence dans votre communaut\u00e9.',
+        },
+      ],
+    },
+    milestones: {
+      sectionTag: 'Notre Parcours',
+      heading: 'Jalons Cl\u00e9s',
+      items: [
+        { year: '1981', title: 'Les D\u00e9buts', description: 'Dynapharm fond\u00e9 \u00e0 Penang, Malaisie par M. Oi Ho Chooi \u2014 port\u00e9 par une vision d\u2019am\u00e9liorer la qualit\u00e9 de vie gr\u00e2ce aux produits de sant\u00e9 naturels.' },
+        { year: '1990', title: 'Certifi\u00e9 Qualit\u00e9', description: 'Installation dans les locaux actuels certifi\u00e9s GMP, renfor\u00e7ant les normes de qualit\u00e9.' },
+        { year: '1995', title: 'Marketing de R\u00e9seau', description: 'Entr\u00e9e dans le monde du marketing de r\u00e9seau, permettant \u00e0 chacun de b\u00e2tir sa propre entreprise de bien-\u00eatre.' },
+        { year: '2005', title: 'L\u2019Afrique Arrive', description: 'Mme Esther Ampumuza introduit Dynapharm en Afrique, \u00e9tablissant la premi\u00e8re franchise africaine.' },
+        { year: 'Aujourd\u2019hui', title: '90+ Produits, 40+ Pays', description: 'Le catalogue de produits d\u00e9passe 90 articles, avec une pr\u00e9sence dans plus de 40 pays en Afrique et au-del\u00e0.' },
+        { year: 'L\u2019Avenir', title: 'Construire Notre Avenir', description: 'Un nouveau si\u00e8ge international Dynapharm est en cours de r\u00e9alisation, t\u00e9moignant de la croissance et de l\u2019ambition continues de l\u2019entreprise.' },
+      ],
+    },
+    leadership: {
+      sectionTag: 'Direction',
+      heading: 'Les Personnes Derri\u00e8re Dynapharm',
+      members: [
+        {
+          name: 'M. Oi Ho Chooi',
+          title: 'Fondateur, Dynapharm International',
+          bio: 'En 1981, M. Oi Ho Chooi a fond\u00e9 Dynapharm avec une vision unique et puissante : am\u00e9liorer la qualit\u00e9 de vie des gens gr\u00e2ce \u00e0 des produits de sant\u00e9 naturels. Sous sa direction, l\u2019entreprise est pass\u00e9e d\u2019une petite op\u00e9ration de fabrication \u00e0 une entreprise internationale de bien-\u00eatre pr\u00e9sente dans plus de 40 pays.',
+        },
+        {
+          name: 'Mme Esther Ampumuza',
+          title: 'Pionni\u00e8re et Directrice, Dynapharm Africa',
+          bio: 'Mme Esther Ampumuza est la visionnaire qui a introduit Dynapharm sur le continent africain en 2005. Son leadership et son esprit entrepreneurial ont transform\u00e9 Dynapharm en une entreprise v\u00e9ritablement mondiale, l\u2019Afrique devenant le march\u00e9 de croissance le plus fort de l\u2019entreprise.',
+        },
+        {
+          name: 'Justus Muhangi',
+          title: 'Premier Distributeur Afrique',
+          bio: 'Justus Muhangi est l\u2019un des distributeurs les plus accomplis de Dynapharm Africa et un leader reconnu au sein du r\u00e9seau continental. Son d\u00e9vouement \u00e0 b\u00e2tir des \u00e9quipes, \u00e0 encadrer de nouveaux distributeurs et \u00e0 promouvoir le bien-\u00eatre naturel a contribu\u00e9 de mani\u00e8re significative \u00e0 la croissance de Dynapharm en Afrique.',
+        },
+      ],
+    },
+    awards: {
+      sectionTag: 'Reconnaissance',
+      heading: 'R\u00e9compenses et R\u00e9alisations',
+      description: 'L\u2019engagement de Dynapharm envers la qualit\u00e9 et l\u2019innovation a \u00e9t\u00e9 reconnu \u00e0 travers de nombreuses r\u00e9compenses et certifications au fil des ans.',
+      altAwards: 'Pr\u00e9sentation des r\u00e9compenses et certificats Dynapharm',
+      altRecords: 'Records de r\u00e9ussite Dynapharm',
+    },
+    cta: {
+      heading: 'Rejoignez la Famille Dynapharm',
+      subtitle: 'Que vous cherchiez une meilleure sant\u00e9, une opportunit\u00e9 d\u2019affaires, ou les deux \u2014 il y a une place pour vous dans la communaut\u00e9 Dynapharm.',
+      ctaPrimary: 'Devenir Distributeur',
+      ctaSecondary: 'Explorer Nos Produits',
+    },
+  },
+} as const;
+
+const c = content[lang];
+const leadershipPhotos = [photoFounder, photoEsther, photoJustus];
+
+/* Pillar colour mapping */
+const pillarColors = [
+  { bg: 'bg-green-50', border: 'border-green', text: 'text-green', iconBg: 'bg-green-100' },
+  { bg: 'bg-gold-50', border: 'border-gold', text: 'text-gold-dark', iconBg: 'bg-gold-100' },
+  { bg: 'bg-dynared-50', border: 'border-dynared', text: 'text-dynared', iconBg: 'bg-dynared-100' },
+];
+
+/* Timeline dot colours */
+const timelineColors = ['bg-green', 'bg-gold', 'bg-dynared', 'bg-green', 'bg-gold', 'bg-dynared'];
+---
+
+<BaseLayout title={c.meta.title} description={c.meta.description} lang={lang}>
+
+  <!-- ═══════════════════════════════════════════
+       HERO — About page hero
+       ═══════════════════════════════════════════ -->
+  <section class="relative min-h-[50vh] md:min-h-[60vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <Image
+        src={heroAbout}
+        alt={c.hero.heroAlt}
+        class="w-full h-full object-cover"
+        widths={[640, 1024, 1600]}
+        sizes="100vw"
+        loading="eager"
+        quality={80}
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/75 to-charcoal/50"></div>
+    </div>
+
+    <div class="relative section-container py-20 md:py-28">
+      <div class="max-w-2xl">
+        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+          {c.hero.heading}
+        </h1>
+        <p class="mt-4 text-lg md:text-xl text-cream/85 font-body max-w-xl leading-relaxed">
+          {c.hero.subtitle}
+        </p>
+      </div>
+    </div>
+
+    <!-- Diagonal bottom edge -->
+    <div class="absolute bottom-0 left-0 right-0 h-16 md:h-24">
+      <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 100L1440 30V100H0Z" fill="var(--color-cream)" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ORIGINS — The founding story
+       ═══════════════════════════════════════════ -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge bg-green-50 text-green mb-4">{c.origins.sectionTag}</span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal">
+          {c.origins.heading}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Text -->
+        <div class="space-y-5">
+          <p class="font-body text-charcoal-light leading-relaxed">{c.origins.p1}</p>
+          <p class="font-body text-charcoal-light leading-relaxed">{c.origins.p2}</p>
+          <p class="font-body text-charcoal-light leading-relaxed">{c.origins.p3}</p>
+        </div>
+
+        <!-- Photos -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src={photoOiHoChooi}
+              alt={c.origins.altOiHoChooi}
+              class="w-full h-auto object-cover"
+              widths={[300, 480]}
+              sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 100vw"
+              loading="lazy"
+            />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-lg sm:mt-8">
+            <Image
+              src={photoHeadquarters}
+              alt={c.origins.altHQ}
+              class="w-full h-auto object-cover"
+              widths={[300, 480]}
+              sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 100vw"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagonal divider -->
+  <div class="relative h-16 md:h-24 bg-cream">
+    <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute bottom-0 w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 100L1440 0V100H0Z" fill="white" />
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       AFRICA CHAPTER — Esther Ampumuza story
+       ═══════════════════════════════════════════ -->
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge bg-dynared-50 text-dynared mb-4">{c.africa.sectionTag}</span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal">
+          {c.africa.heading}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Photos first on desktop (order reversed) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:order-1">
+          <div class="rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src={photoEsther}
+              alt={c.africa.altEsther}
+              class="w-full h-auto object-cover"
+              widths={[300, 480]}
+              sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 100vw"
+              loading="lazy"
+            />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-lg sm:mt-8">
+            <Image
+              src={photoEstherOi}
+              alt={c.africa.altEstherOi}
+              class="w-full h-auto object-cover"
+              widths={[300, 480]}
+              sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 100vw"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="space-y-5 lg:order-2">
+          <p class="font-body text-charcoal-light leading-relaxed">{c.africa.p1}</p>
+          <p class="font-body text-charcoal-light leading-relaxed">{c.africa.p2}</p>
+          <p class="font-body text-charcoal-light leading-relaxed">{c.africa.p3}</p>
+          <p class="font-body text-charcoal-light leading-relaxed">{c.africa.p4}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       MISSION, VISION & VALUES
+       ═══════════════════════════════════════════ -->
+  <section class="relative overflow-hidden">
+    <!-- Diagonal top -->
+    <div class="absolute top-0 left-0 right-0 h-16 md:h-24 z-10">
+      <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V60L0 100V0Z" fill="white" />
+      </svg>
+    </div>
+
+    <div class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 py-28 md:py-36 grain-overlay">
+      <div class="section-container relative z-10">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="badge bg-gold/20 text-gold mb-4">{c.mission.sectionTag}</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+            {c.mission.heading}
+          </h2>
+        </div>
+
+        <!-- Mission & Vision cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="w-12 h-12 rounded-xl bg-dynared/20 flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-dynared-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.58-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white mb-3">{c.mission.mission.title}</h3>
+            <p class="text-cream/80 font-body leading-relaxed text-lg">{c.mission.mission.text}</p>
+          </div>
+
+          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gold-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white mb-3">{c.mission.vision.title}</h3>
+            <p class="text-cream/80 font-body leading-relaxed text-lg">{c.mission.vision.text}</p>
+          </div>
+        </div>
+
+        <!-- Values -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-white/10">
+          <h3 class="font-heading text-xl font-bold text-white mb-6">{c.mission.values.title}</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {c.mission.values.items.map((value, i) => (
+              <div class="flex gap-3">
+                <div class="w-8 h-8 rounded-lg bg-green/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-heading text-sm font-bold text-white mb-1">{value.name}</p>
+                  <p class="text-cream/70 font-body text-sm leading-relaxed">{value.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagonal bottom -->
+    <div class="absolute bottom-0 left-0 right-0 h-16 md:h-24 z-10">
+      <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 40L1440 100V0H0V40Z" fill="var(--color-cream)" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       BRAND PILLARS — Health, Wealth, Freedom
+       ═══════════════════════════════════════════ -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge bg-gold-50 text-gold-dark mb-4">{c.pillars.sectionTag}</span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal">
+          {c.pillars.heading}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {c.pillars.items.map((pillar, i) => (
+          <div class={`rounded-2xl p-8 md:p-10 border-l-4 ${pillarColors[i].border} ${pillarColors[i].bg} transition-all duration-300 hover:shadow-lg`}>
+            <div class={`w-14 h-14 rounded-2xl ${pillarColors[i].iconBg} ${pillarColors[i].text} flex items-center justify-center mb-6`}>
+              {i === 0 && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+              )}
+              {i === 1 && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4 4L21.75 6M17.25 6h4.5v4.5" /></svg>
+              )}
+              {i === 2 && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+              )}
+            </div>
+            <h3 class={`font-heading text-2xl font-bold mb-3 ${pillarColors[i].text}`}>{pillar.title}</h3>
+            <p class="text-charcoal-light font-body leading-relaxed">{pillar.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       MILESTONES TIMELINE
+       ═══════════════════════════════════════════ -->
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge bg-dynared-50 text-dynared mb-4">{c.milestones.sectionTag}</span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal">
+          {c.milestones.heading}
+        </h2>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative max-w-4xl mx-auto">
+        <!-- Vertical line -->
+        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-grey-light/50 -translate-x-1/2" aria-hidden="true"></div>
+
+        {c.milestones.items.map((item, i) => (
+          <div class={`relative flex items-start mb-12 last:mb-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+            <!-- Dot -->
+            <div class="absolute left-4 md:left-1/2 w-4 h-4 rounded-full border-4 border-white shadow -translate-x-1/2 z-10" class:list={[timelineColors[i]]} aria-hidden="true"></div>
+
+            <!-- Content card -->
+            <div class={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left md:ml-auto'}`}>
+              <div class="card p-6">
+                <span class="badge bg-gold-50 text-gold-dark text-xs mb-2">{item.year}</span>
+                <h3 class="font-heading text-lg font-bold text-charcoal mt-2">{item.title}</h3>
+                <p class="font-body text-sm text-charcoal-light mt-2 leading-relaxed">{item.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Future HQ image -->
+      <div class="mt-16 max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-lg">
+        <Image
+          src={photoNewHQ}
+          alt={lang === 'en' ? 'Artistic impression of the new Dynapharm International Headquarters' : 'Impression artistique du nouveau si\u00e8ge international Dynapharm'}
+          class="w-full h-auto object-cover"
+          widths={[400, 700]}
+          sizes="(min-width: 768px) 672px, 100vw"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       LEADERSHIP — Key people
+       ═══════════════════════════════════════════ -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge bg-green-50 text-green mb-4">{c.leadership.sectionTag}</span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal">
+          {c.leadership.heading}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {c.leadership.members.map((member, i) => (
+          <div class="card overflow-hidden group">
+            <div class="aspect-[4/5] overflow-hidden bg-grey-light/30">
+              <Image
+                src={leadershipPhotos[i]}
+                alt={member.name}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                widths={[300, 450]}
+                sizes="(min-width: 768px) 33vw, 100vw"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-heading text-xl font-bold text-charcoal">{member.name}</h3>
+              <p class="font-accent text-sm text-dynared font-medium mt-1">{member.title}</p>
+              <p class="font-body text-sm text-charcoal-light mt-3 leading-relaxed">{member.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       AWARDS & ACHIEVEMENTS
+       ═══════════════════════════════════════════ -->
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge bg-gold-50 text-gold-dark mb-4">{c.awards.sectionTag}</span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal">
+          {c.awards.heading}
+        </h2>
+        <p class="mt-4 text-lg text-charcoal-light font-body">{c.awards.description}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div class="rounded-2xl overflow-hidden shadow-lg">
+          <Image
+            src={photoAwards}
+            alt={c.awards.altAwards}
+            class="w-full h-auto object-cover"
+            widths={[400, 600]}
+            sizes="(min-width: 768px) 48vw, 100vw"
+            loading="lazy"
+          />
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-lg">
+          <Image
+            src={photoRecords}
+            alt={c.awards.altRecords}
+            class="w-full h-auto object-cover"
+            widths={[400, 600]}
+            sizes="(min-width: 768px) 48vw, 100vw"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FINAL CTA — Join the family
+       ═══════════════════════════════════════════ -->
+  <section class="relative bg-gradient-to-r from-green-dark via-green to-green-light py-20 md:py-28 overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-50" aria-hidden="true"></div>
+
+    <div class="section-container relative z-10 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+        {c.cta.heading}
+      </h2>
+      <p class="text-lg text-green-100 font-body max-w-2xl mx-auto mb-10">
+        {c.cta.subtitle}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`/${lang}/contact`} class="btn-primary bg-white text-green hover:bg-cream hover:text-green-dark text-base px-8 py-4 font-bold">
+          {c.cta.ctaPrimary}
+        </a>
+        <a href={`/${lang}/products`} class="btn-secondary border-white text-white hover:bg-white hover:text-green text-base px-8 py-4">
+          {c.cta.ctaSecondary}
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

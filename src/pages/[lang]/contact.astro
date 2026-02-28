@@ -1,0 +1,424 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+/* ──────────────────────────────────────────
+   CONTENT — all translations live here
+   ────────────────────────────────────────── */
+const content = {
+  en: {
+    meta: {
+      title: 'Contact Dynapharm Africa \u2014 Get in Touch',
+      description: 'Contact Dynapharm Africa for product enquiries, distributor registration, or general questions. Email us at info@dynapharmafrica.com.',
+    },
+    hero: {
+      heading: 'Get in Touch',
+      subtitle: 'We would love to hear from you. Whether you are interested in our products, the business opportunity, or have a general enquiry, please do not hesitate to reach out.',
+    },
+    form: {
+      heading: 'Send Us a Message',
+      name: 'Full Name',
+      namePlaceholder: 'Your full name',
+      email: 'Email Address',
+      emailPlaceholder: 'your.email@example.com',
+      subject: 'Subject',
+      subjectPlaceholder: 'Select a subject',
+      subjectOptions: [
+        'Product Enquiry',
+        'Business Opportunity',
+        'Distributor Support',
+        'General Enquiry',
+        'Other',
+      ],
+      message: 'Message',
+      messagePlaceholder: 'How can we help you?',
+      submit: 'Send Your Message',
+      required: 'Required',
+      successMessage: 'Thank you for your message. We shall respond within 2\u20133 working days.',
+      errorMessage: 'Please fill in all required fields before submitting.',
+      sending: 'Sending...',
+    },
+    distributor: {
+      sectionTag: 'Business Opportunity',
+      heading: 'Interested in Becoming a Distributor?',
+      description: 'Starting your own wellness business with Dynapharm is straightforward. As a distributor, you gain access to over 90 premium natural health products, comprehensive training, mentorship from experienced leaders, and a clear path to building a sustainable business.',
+      listTitle: 'What you need to get started:',
+      items: [
+        'A genuine interest in health and wellness',
+        'A willingness to learn and grow',
+        'The Distributor Registration Kit (available through your local DPC)',
+      ],
+      cta: 'Find Out More About the Business Opportunity',
+    },
+    existing: {
+      heading: 'Already a Distributor?',
+      description: 'If you are an existing Dynapharm distributor, please contact your upline leader or visit your local Distribution Point Centre (DPC) for product orders, training, and business support. Your DPC team is your first point of contact for day-to-day queries.',
+      emailNote: 'For matters that require head office attention, you are welcome to email us at',
+    },
+    email: {
+      heading: 'Contact Us Directly',
+      label: 'Email',
+      address: 'info@dynapharmafrica.com',
+      note: 'This is the sole contact method for Dynapharm Africa. For local product availability and distributor registration, please enquire via the contact form above.',
+    },
+  },
+  fr: {
+    meta: {
+      title: 'Contactez Dynapharm Africa \u2014 Nous Contacter',
+      description: 'Contactez Dynapharm Africa pour des demandes sur les produits, l\u2019inscription en tant que distributeur ou des questions g\u00e9n\u00e9rales. \u00c9crivez-nous \u00e0 info@dynapharmafrica.com.',
+    },
+    hero: {
+      heading: 'Nous Contacter',
+      subtitle: 'Nous serions ravis d\u2019avoir de vos nouvelles. Que vous soyez int\u00e9ress\u00e9 par nos produits, l\u2019opportunit\u00e9 d\u2019affaires, ou que vous ayez une demande g\u00e9n\u00e9rale, n\u2019h\u00e9sitez pas \u00e0 nous \u00e9crire.',
+    },
+    form: {
+      heading: 'Envoyez-nous un message',
+      name: 'Nom complet',
+      namePlaceholder: 'Votre nom complet',
+      email: 'Adresse e-mail',
+      emailPlaceholder: 'votre.email@exemple.com',
+      subject: 'Objet',
+      subjectPlaceholder: 'S\u00e9lectionnez un objet',
+      subjectOptions: [
+        'Demande sur les produits',
+        'Opportunit\u00e9 d\u2019affaires',
+        'Soutien aux distributeurs',
+        'Demande g\u00e9n\u00e9rale',
+        'Autre',
+      ],
+      message: 'Message',
+      messagePlaceholder: 'Comment pouvons-nous vous aider ?',
+      submit: 'Envoyer votre message',
+      required: 'Obligatoire',
+      successMessage: 'Merci pour votre message. Nous vous r\u00e9pondrons dans un d\u00e9lai de 2 \u00e0 3 jours ouvrables.',
+      errorMessage: 'Veuillez remplir tous les champs obligatoires avant de soumettre.',
+      sending: 'Envoi en cours...',
+    },
+    distributor: {
+      sectionTag: 'Opportunit\u00e9 d\u2019Affaires',
+      heading: 'Vous souhaitez devenir distributeur ?',
+      description: 'Lancer votre propre activit\u00e9 de bien-\u00eatre avec Dynapharm est simple. En tant que distributeur, vous b\u00e9n\u00e9ficiez d\u2019un acc\u00e8s \u00e0 plus de 90 produits de sant\u00e9 naturels de qualit\u00e9 sup\u00e9rieure, d\u2019une formation compl\u00e8te, d\u2019un accompagnement par des leaders exp\u00e9riment\u00e9s et d\u2019un parcours clair pour b\u00e2tir une entreprise durable.',
+      listTitle: 'Ce dont vous avez besoin pour commencer :',
+      items: [
+        'Un int\u00e9r\u00eat sinc\u00e8re pour la sant\u00e9 et le bien-\u00eatre',
+        'Une volont\u00e9 d\u2019apprendre et de progresser',
+        'Le Kit d\u2019inscription distributeur (disponible aupr\u00e8s de votre DPC local)',
+      ],
+      cta: 'En savoir plus sur l\u2019opportunit\u00e9 d\u2019affaires',
+    },
+    existing: {
+      heading: 'Vous \u00eates d\u00e9j\u00e0 distributeur ?',
+      description: 'Si vous \u00eates un distributeur Dynapharm existant, veuillez contacter votre leader de parrainage (upline) ou vous rendre \u00e0 votre Centre de Distribution (DPC) local pour les commandes de produits, la formation et le soutien commercial. Votre \u00e9quipe DPC est votre premier point de contact pour les questions quotidiennes.',
+      emailNote: 'Pour les questions n\u00e9cessitant l\u2019attention du si\u00e8ge, vous \u00eates invit\u00e9 \u00e0 nous \u00e9crire \u00e0',
+    },
+    email: {
+      heading: 'Contactez-nous directement',
+      label: 'E-mail',
+      address: 'info@dynapharmafrica.com',
+      note: 'Il s\u2019agit du seul moyen de contact pour Dynapharm Africa. Pour la disponibilit\u00e9 locale des produits et l\u2019inscription des distributeurs, veuillez nous contacter via le formulaire ci-dessus.',
+    },
+  },
+} as const;
+
+const c = content[lang];
+---
+
+<BaseLayout title={c.meta.title} description={c.meta.description} lang={lang}>
+
+  <!-- ═══════════════════════════════════════════
+       HERO — Contact page header
+       ═══════════════════════════════════════════ -->
+  <section class="relative bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 py-20 md:py-28 overflow-hidden grain-overlay">
+    <!-- Decorative circles -->
+    <div class="absolute top-10 right-10 w-72 h-72 rounded-full bg-dynared/5 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute bottom-0 left-10 w-56 h-56 rounded-full bg-gold/5 blur-3xl" aria-hidden="true"></div>
+
+    <div class="section-container relative z-10">
+      <div class="max-w-2xl">
+        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+          {c.hero.heading}
+        </h1>
+        <p class="mt-4 text-lg md:text-xl text-cream/80 font-body max-w-xl leading-relaxed">
+          {c.hero.subtitle}
+        </p>
+      </div>
+    </div>
+
+    <!-- Diagonal bottom edge -->
+    <div class="absolute bottom-0 left-0 right-0 h-16 md:h-24">
+      <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 100L1440 30V100H0Z" fill="var(--color-cream)" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT FORM + SIDEBAR
+       ═══════════════════════════════════════════ -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+
+        <!-- LEFT: Contact Form (3 cols) -->
+        <div class="lg:col-span-3">
+          <div class="card p-8 md:p-10">
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-8">
+              {c.form.heading}
+            </h2>
+
+            <form
+              method="POST"
+              action="mailto:info@dynapharmafrica.com"
+              enctype="text/plain"
+              class="space-y-6"
+              x-data="{
+                name: '',
+                email: '',
+                subject: '',
+                message: '',
+                submitted: false,
+                error: false,
+                sending: false,
+                validate() {
+                  if (!this.name || !this.email || !this.subject || !this.message) {
+                    this.error = true;
+                    this.submitted = false;
+                    return false;
+                  }
+                  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                  if (!emailRegex.test(this.email)) {
+                    this.error = true;
+                    this.submitted = false;
+                    return false;
+                  }
+                  this.error = false;
+                  this.sending = true;
+                  setTimeout(() => {
+                    this.sending = false;
+                    this.submitted = true;
+                  }, 1000);
+                  return true;
+                }
+              }"
+              x-on:submit.prevent="validate()"
+            >
+              <!-- Success message -->
+              <div
+                x-show="submitted"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 -translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                class="bg-green-50 border border-green-200 rounded-xl p-5 flex gap-3 items-start"
+                x-cloak
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="font-body text-green-dark">{c.form.successMessage}</p>
+              </div>
+
+              <!-- Error message -->
+              <div
+                x-show="error"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 -translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                class="bg-dynared-50 border border-dynared-200 rounded-xl p-5 flex gap-3 items-start"
+                x-cloak
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-dynared flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                </svg>
+                <p class="font-body text-dynared-dark">{c.form.errorMessage}</p>
+              </div>
+
+              <!-- Full Name -->
+              <div>
+                <label for="name" class="block font-heading text-sm font-semibold text-charcoal mb-2">
+                  {c.form.name} <span class="text-dynared">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  x-model="name"
+                  placeholder={c.form.namePlaceholder}
+                  class="w-full px-4 py-3 rounded-xl border border-grey-light bg-white font-body text-charcoal placeholder:text-grey focus:outline-none focus:ring-2 focus:ring-dynared focus:border-dynared transition-all duration-200"
+                />
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label for="email" class="block font-heading text-sm font-semibold text-charcoal mb-2">
+                  {c.form.email} <span class="text-dynared">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  x-model="email"
+                  placeholder={c.form.emailPlaceholder}
+                  class="w-full px-4 py-3 rounded-xl border border-grey-light bg-white font-body text-charcoal placeholder:text-grey focus:outline-none focus:ring-2 focus:ring-dynared focus:border-dynared transition-all duration-200"
+                />
+              </div>
+
+              <!-- Subject -->
+              <div>
+                <label for="subject" class="block font-heading text-sm font-semibold text-charcoal mb-2">
+                  {c.form.subject} <span class="text-dynared">*</span>
+                </label>
+                <select
+                  id="subject"
+                  name="subject"
+                  required
+                  x-model="subject"
+                  class="w-full px-4 py-3 rounded-xl border border-grey-light bg-white font-body text-charcoal focus:outline-none focus:ring-2 focus:ring-dynared focus:border-dynared transition-all duration-200 appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%239E9792%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:1.25rem] bg-[right_1rem_center] bg-no-repeat"
+                >
+                  <option value="" disabled selected>{c.form.subjectPlaceholder}</option>
+                  {c.form.subjectOptions.map((opt) => (
+                    <option value={opt}>{opt}</option>
+                  ))}
+                </select>
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label for="message" class="block font-heading text-sm font-semibold text-charcoal mb-2">
+                  {c.form.message} <span class="text-dynared">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows="6"
+                  x-model="message"
+                  placeholder={c.form.messagePlaceholder}
+                  class="w-full px-4 py-3 rounded-xl border border-grey-light bg-white font-body text-charcoal placeholder:text-grey focus:outline-none focus:ring-2 focus:ring-dynared focus:border-dynared transition-all duration-200 resize-vertical"
+                ></textarea>
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                class="btn-primary w-full text-base py-4 relative"
+                x-bind:disabled="sending"
+              >
+                <span x-show="!sending">{c.form.submit}</span>
+                <span x-show="sending" x-cloak class="inline-flex items-center gap-2">
+                  <svg class="animate-spin w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  {c.form.sending}
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- RIGHT: Sidebar (2 cols) -->
+        <div class="lg:col-span-2 space-y-8">
+
+          <!-- Email card -->
+          <div class="card p-8 border-t-4 border-dynared">
+            <h3 class="font-heading text-xl font-bold text-charcoal mb-4">
+              {c.email.heading}
+            </h3>
+            <a
+              href="mailto:info@dynapharmafrica.com"
+              class="inline-flex items-center gap-3 text-dynared hover:text-dynared-dark font-heading font-bold text-lg transition-colors duration-200 group"
+            >
+              <div class="w-12 h-12 rounded-xl bg-dynared-50 flex items-center justify-center group-hover:bg-dynared group-hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              {c.email.address}
+            </a>
+            <p class="mt-4 font-body text-sm text-charcoal-light leading-relaxed">
+              {c.email.note}
+            </p>
+          </div>
+
+          <!-- Already a distributor card -->
+          <div class="card p-8 border-t-4 border-gold">
+            <h3 class="font-heading text-xl font-bold text-charcoal mb-3">
+              {c.existing.heading}
+            </h3>
+            <p class="font-body text-charcoal-light leading-relaxed text-sm">
+              {c.existing.description}
+            </p>
+            <p class="mt-3 font-body text-sm text-charcoal-light">
+              {c.existing.emailNote}{' '}
+              <a href="mailto:info@dynapharmafrica.com" class="text-dynared hover:text-dynared-dark font-semibold transition-colors duration-200">
+                info@dynapharmafrica.com
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       BECOME A DISTRIBUTOR CTA
+       ═══════════════════════════════════════════ -->
+  <section class="relative overflow-hidden">
+    <!-- Diagonal top -->
+    <div class="absolute top-0 left-0 right-0 h-16 md:h-24 z-10">
+      <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V60L0 100V0Z" fill="var(--color-cream)" />
+      </svg>
+    </div>
+
+    <div class="bg-gradient-to-br from-green-dark via-green to-green-light py-28 md:py-36 grain-overlay">
+      <div class="section-container relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <span class="badge bg-white/20 text-white mb-6">{c.distributor.sectionTag}</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            {c.distributor.heading}
+          </h2>
+          <p class="text-lg text-green-100 font-body mb-8 leading-relaxed">
+            {c.distributor.description}
+          </p>
+
+          <!-- Requirements list -->
+          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-left max-w-xl mx-auto mb-10 border border-white/10">
+            <p class="font-heading text-sm font-bold text-white mb-4">{c.distributor.listTitle}</p>
+            <ul class="space-y-3">
+              {c.distributor.items.map((item) => (
+                <li class="flex items-start gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  <span class="text-cream/90 font-body text-sm">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <a href={`/${lang}/business-opportunity`} class="btn-primary bg-white text-green hover:bg-cream hover:text-green-dark text-base px-8 py-4 font-bold">
+            {c.distributor.cta}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+</style>

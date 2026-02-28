@@ -1,0 +1,524 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+// Hero image
+import heroImg from '@assets/images/hero/DISTRIBUTORS-05.jpg';
+
+// Testimonial photos
+import photoFatou from '@assets/images/testimonials/Client-Fatou-Sow.jpg';
+import photoGrace from '@assets/images/testimonials/Client-Grace-Nakamya.jpg';
+import photoCarlos from '@assets/images/testimonials/Client-Carlos-Machel.jpg';
+import photoMamello from '@assets/images/testimonials/Client-Mamello-Ramatla.jpg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+/* ──────────────────────────────────────────
+   CONTENT — all translations live here
+   ────────────────────────────────────────── */
+const content = {
+  en: {
+    meta: {
+      title: 'Dynapharm Africa \u2014 Health, Wealth, Freedom',
+      description: 'Discover 90+ premium natural health products and a proven business opportunity. Join thousands of distributors building healthier, wealthier communities across Africa.',
+    },
+    hero: {
+      headline: 'Empowering Africa Through Health, Wealth & Freedom',
+      subtitle: 'Over 90 premium natural products. A proven business opportunity. A community that lifts you up.',
+      ctaPrimary: 'Start Your Journey',
+      ctaSecondary: 'Explore Our Products',
+      heroAlt: 'Dynapharm distributors celebrating together at an event',
+    },
+    categories: {
+      sectionTag: 'Our Products',
+      heading: 'Eight Categories of Natural Wellness',
+      subtitle: 'From health beverages to agriculture \u2014 discover over 90 premium products crafted from nature\u2019s finest ingredients.',
+      items: [
+        { name: 'Health Beverages', count: '12+', tagline: 'Wellness in every cup', icon: 'cup' },
+        { name: 'Nutritional Supplements', count: '15+', tagline: 'Nature\u2019s nutrition, simplified', icon: 'pill' },
+        { name: 'Herbal & Traditional Medicine', count: '14+', tagline: 'Ancient wisdom, modern form', icon: 'leaf' },
+        { name: 'Immune & Vitality Boosters', count: '10+', tagline: 'Daily vitality support', icon: 'shield' },
+        { name: 'Personal Care', count: '12+', tagline: 'Natural beauty, naturally', icon: 'sparkle' },
+        { name: 'Wellness Foods', count: '8+', tagline: 'Nourish from within', icon: 'wheat' },
+        { name: 'Agriculture', count: '4+', tagline: 'Grow naturally', icon: 'plant' },
+        { name: 'Home & Lifestyle', count: '5+', tagline: 'Wellness for the home', icon: 'home' },
+      ],
+    },
+    pillars: {
+      sectionTag: 'Why Dynapharm',
+      heading: 'Three Pillars. One Mission.',
+      items: [
+        {
+          title: 'Health',
+          description: '90+ premium natural products \u2014 Spirulina, Ganoderma, Chlorophyll, and more \u2014 manufactured to international quality standards.',
+          icon: 'heart',
+        },
+        {
+          title: 'Wealth',
+          description: 'A proven business opportunity with 7 achievement ranks, comprehensive training, and multiple income streams.',
+          icon: 'trending',
+        },
+        {
+          title: 'Freedom',
+          description: 'Build your business at your own pace. No formal qualifications needed. Full support from day one.',
+          icon: 'sun',
+        },
+      ],
+    },
+    business: {
+      sectionTag: 'Business Opportunity',
+      heading: 'Your Business, Your Way',
+      description: 'Join a community of entrepreneurs building healthier, wealthier lives through natural wellness products. Low barrier to entry, comprehensive training, and clear rank progression from Distributor to Crown Diamond Manager.',
+      cta: 'Find Out More',
+    },
+    testimonials: {
+      sectionTag: 'Testimonials',
+      heading: 'Voices From Our Community',
+      items: [
+        {
+          name: 'Fatou Sow',
+          location: 'Senegal',
+          quote: 'When I first heard about Dynapharm, I was sceptical \u2014 but the quality of the products spoke for itself. Within eight months, I had built a small but dedicated team and qualified as Manager.',
+        },
+        {
+          name: 'Grace Nakamya',
+          location: 'Uganda',
+          quote: 'I was introduced to Dynapharm\u2019s Liquid Chlorophyll Plus Guarana by a friend, and it quickly became part of my daily routine. My family appreciates the quality and the fact that these are natural products.',
+        },
+        {
+          name: 'Carlos Machel',
+          location: 'Mozambique',
+          quote: 'I joined Dynapharm as a Distributor with no business experience at all. In two years, I progressed to Senior Manager. Dynapharm is more than a business \u2014 it is a community.',
+        },
+        {
+          name: 'Mamello Ramatla',
+          location: 'Lesotho',
+          quote: 'D.I. Grow bio-fertiliser has been remarkable for our vegetable garden. Dynapharm serves both our health and our livelihood.',
+        },
+      ],
+    },
+    global: {
+      heading: 'Operating in 40+ Countries',
+      subtitle: 'Global Reach, Local Presence \u2014 through Distribution Point Centres serving your community.',
+    },
+    finalCta: {
+      heading: 'Ready to Begin Your Wellness Journey?',
+      subtitle: 'Whether you want to improve your health or build a business, Dynapharm is your partner every step of the way.',
+      ctaPrimary: 'Become a Distributor',
+      ctaSecondary: 'Explore Products',
+    },
+  },
+  fr: {
+    meta: {
+      title: 'Dynapharm Africa \u2014 Sant\u00e9, Richesse, Libert\u00e9',
+      description: 'D\u00e9couvrez plus de 90 produits naturels de sant\u00e9 haut de gamme et une opportunit\u00e9 d\u2019affaires \u00e9prouv\u00e9e. Rejoignez des milliers de distributeurs qui b\u00e2tissent des communaut\u00e9s plus saines et plus prosp\u00e8res \u00e0 travers l\u2019Afrique.',
+    },
+    hero: {
+      headline: 'Donner \u00e0 l\u2019Afrique les moyens d\u2019agir gr\u00e2ce \u00e0 la Sant\u00e9, la Richesse et la Libert\u00e9',
+      subtitle: 'Plus de 90 produits naturels haut de gamme. Une opportunit\u00e9 d\u2019affaires \u00e9prouv\u00e9e. Une communaut\u00e9 qui vous soutient.',
+      ctaPrimary: 'Commencer Maintenant',
+      ctaSecondary: 'Explorer Nos Produits',
+      heroAlt: 'Distributeurs Dynapharm c\u00e9l\u00e9brant ensemble lors d\u2019un \u00e9v\u00e9nement',
+    },
+    categories: {
+      sectionTag: 'Nos Produits',
+      heading: 'Huit Cat\u00e9gories de Bien-\u00catre Naturel',
+      subtitle: 'Des boissons de sant\u00e9 \u00e0 l\u2019agriculture \u2014 d\u00e9couvrez plus de 90 produits haut de gamme \u00e9labor\u00e9s \u00e0 partir des meilleurs ingr\u00e9dients de la nature.',
+      items: [
+        { name: 'Boissons de sant\u00e9', count: '12+', tagline: 'Le bien-\u00eatre dans chaque tasse', icon: 'cup' },
+        { name: 'Compl\u00e9ments alimentaires', count: '15+', tagline: 'La nutrition de la nature, simplifi\u00e9e', icon: 'pill' },
+        { name: 'M\u00e9decine traditionnelle et \u00e0 base de plantes', count: '14+', tagline: 'Sagesse ancestrale, forme moderne', icon: 'leaf' },
+        { name: 'Stimulants immunitaires et de vitalit\u00e9', count: '10+', tagline: 'Soutien quotidien de la vitalit\u00e9', icon: 'shield' },
+        { name: 'Soins personnels', count: '12+', tagline: 'Beaut\u00e9 naturelle, naturellement', icon: 'sparkle' },
+        { name: 'Aliments bien-\u00eatre', count: '8+', tagline: 'Nourrir de l\u2019int\u00e9rieur', icon: 'wheat' },
+        { name: 'Agriculture', count: '4+', tagline: 'Cultiver naturellement', icon: 'plant' },
+        { name: 'Maison et vie quotidienne', count: '5+', tagline: 'Le bien-\u00eatre \u00e0 la maison', icon: 'home' },
+      ],
+    },
+    pillars: {
+      sectionTag: 'Pourquoi Dynapharm',
+      heading: 'Trois Piliers. Une Mission.',
+      items: [
+        {
+          title: 'Sant\u00e9',
+          description: 'Plus de 90 produits naturels haut de gamme \u2014 Spirulina, Ganoderma, Chlorophyll, et bien d\u2019autres \u2014 fabriqu\u00e9s selon les normes internationales de qualit\u00e9.',
+          icon: 'heart',
+        },
+        {
+          title: 'Richesse',
+          description: 'Une opportunit\u00e9 d\u2019affaires \u00e9prouv\u00e9e avec 7 rangs d\u2019accomplissement, une formation compl\u00e8te et de multiples sources de revenus.',
+          icon: 'trending',
+        },
+        {
+          title: 'Libert\u00e9',
+          description: 'D\u00e9veloppez votre activit\u00e9 \u00e0 votre rythme. Aucune qualification formelle requise. Un accompagnement complet d\u00e8s le premier jour.',
+          icon: 'sun',
+        },
+      ],
+    },
+    business: {
+      sectionTag: 'Opportunit\u00e9 d\u2019Affaires',
+      heading: 'Votre activit\u00e9, \u00e0 votre image',
+      description: 'Rejoignez une communaut\u00e9 d\u2019entrepreneurs qui b\u00e2tissent des vies plus saines et plus prosp\u00e8res gr\u00e2ce aux produits de bien-\u00eatre naturels. Faible barri\u00e8re \u00e0 l\u2019entr\u00e9e, formation compl\u00e8te et progression claire des rangs de Distributeur \u00e0 Crown Diamond Manager.',
+      cta: 'En Savoir Plus',
+    },
+    testimonials: {
+      sectionTag: 'T\u00e9moignages',
+      heading: 'Les Voix de Notre Communaut\u00e9',
+      items: [
+        {
+          name: 'Fatou Sow',
+          location: 'S\u00e9n\u00e9gal',
+          quote: 'Lorsque j\u2019ai entendu parler de Dynapharm pour la premi\u00e8re fois, j\u2019\u00e9tais sceptique \u2014 mais la qualit\u00e9 des produits a parl\u00e9 d\u2019elle-m\u00eame. En huit mois, j\u2019avais constitu\u00e9 une petite \u00e9quipe d\u00e9vou\u00e9e et obtenu le rang de Manager.',
+        },
+        {
+          name: 'Grace Nakamya',
+          location: 'Ouganda',
+          quote: 'J\u2019ai \u00e9t\u00e9 initi\u00e9e au Liquid Chlorophyll Plus Guarana de Dynapharm par une amie, et il est rapidement devenu un \u00e9l\u00e9ment de ma routine quotidienne. Ma famille appr\u00e9cie la qualit\u00e9 et le fait qu\u2019il s\u2019agisse de produits naturels.',
+        },
+        {
+          name: 'Carlos Machel',
+          location: 'Mozambique',
+          quote: 'J\u2019ai rejoint Dynapharm en tant que Distributor sans aucune exp\u00e9rience en affaires. En deux ans, je suis pass\u00e9 \u00e0 Senior Manager. Dynapharm est bien plus qu\u2019une entreprise \u2014 c\u2019est une communaut\u00e9.',
+        },
+        {
+          name: 'Mamello Ramatla',
+          location: 'Lesotho',
+          quote: 'Le bio-fertilisant D.I. Grow a \u00e9t\u00e9 remarquable pour notre potager. Dynapharm est au service de notre sant\u00e9 et de notre subsistance.',
+        },
+      ],
+    },
+    global: {
+      heading: 'Pr\u00e9sent dans plus de 40 pays',
+      subtitle: 'Port\u00e9e mondiale, pr\u00e9sence locale \u2014 gr\u00e2ce aux Centres de Distribution (DPC) au service de votre communaut\u00e9.',
+    },
+    finalCta: {
+      heading: 'Pr\u00eat \u00e0 commencer votre parcours bien-\u00eatre ?',
+      subtitle: 'Que vous souhaitiez am\u00e9liorer votre sant\u00e9 ou b\u00e2tir une entreprise, Dynapharm est votre partenaire \u00e0 chaque \u00e9tape.',
+      ctaPrimary: 'Devenir Distributeur',
+      ctaSecondary: 'Explorer Nos Produits',
+    },
+  },
+} as const;
+
+const c = content[lang];
+const testimonialPhotos = [photoFatou, photoGrace, photoCarlos, photoMamello];
+
+/* Pillar colour mapping */
+const pillarColors = [
+  { bg: 'bg-green-50', border: 'border-green', text: 'text-green', iconBg: 'bg-green-100' },
+  { bg: 'bg-gold-50', border: 'border-gold', text: 'text-gold-dark', iconBg: 'bg-gold-100' },
+  { bg: 'bg-dynared-50', border: 'border-dynared', text: 'text-dynared', iconBg: 'bg-dynared-100' },
+];
+---
+
+<BaseLayout title={c.meta.title} description={c.meta.description} lang={lang}>
+
+  <!-- ═══════════════════════════════════════════
+       HERO — Full viewport, dramatic, diagonal edge
+       ═══════════════════════════════════════════ -->
+  <section class="relative min-h-[calc(100vh-5rem)] flex items-center overflow-hidden">
+    <!-- Background image -->
+    <div class="absolute inset-0">
+      <Image
+        src={heroImg}
+        alt={c.hero.heroAlt}
+        class="w-full h-full object-cover"
+        widths={[640, 1024, 1600, 2222]}
+        sizes="100vw"
+        loading="eager"
+        quality={80}
+      />
+      <!-- Overlay gradient -->
+      <div class="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/70 to-charcoal/40"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative section-container py-20 md:py-28 lg:py-32">
+      <div class="max-w-3xl">
+        <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight">
+          {c.hero.headline}
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-cream/90 font-body max-w-2xl leading-relaxed">
+          {c.hero.subtitle}
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          <a href={`/${lang}/contact`} class="btn-primary text-base px-8 py-4">
+            {c.hero.ctaPrimary}
+          </a>
+          <a href={`/${lang}/products`} class="btn-secondary text-base px-8 py-4 border-white text-white hover:bg-white hover:text-charcoal">
+            {c.hero.ctaSecondary}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagonal bottom edge -->
+    <div class="absolute bottom-0 left-0 right-0 h-20 md:h-28">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 120L1440 40V120H0Z" fill="var(--color-cream)" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PRODUCT CATEGORIES — 8-card staggered grid
+       ═══════════════════════════════════════════ -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <!-- Section header -->
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge bg-dynared-50 text-dynared mb-4">{c.categories.sectionTag}</span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal">
+          {c.categories.heading}
+        </h2>
+        <p class="mt-4 text-lg text-charcoal-light font-body">
+          {c.categories.subtitle}
+        </p>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        {c.categories.items.map((cat, i) => (
+          <a
+            href={`/${lang}/products`}
+            class="card group p-6 md:p-7 text-center flex flex-col items-center gap-3 border-t-4 border-transparent hover:border-dynared"
+            style={`animation-delay: ${i * 80}ms`}
+          >
+            <!-- Icon -->
+            <div class="w-14 h-14 rounded-2xl bg-dynared-50 flex items-center justify-center text-dynared group-hover:bg-dynared group-hover:text-white transition-colors duration-300">
+              {cat.icon === 'cup' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              )}
+              {cat.icon === 'pill' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0 4.14-3.36 7.5-7.5 7.5S4.5 16.14 4.5 12 7.86 4.5 12 4.5s7.5 3.36 7.5 7.5zm-7.5-3v6m-3-3h6" /></svg>
+              )}
+              {cat.icon === 'leaf' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4-4-8-7.5-8-12a8 8 0 0116 0c0 4.5-4 8-8 12z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 13V7" /></svg>
+              )}
+              {cat.icon === 'shield' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+              )}
+              {cat.icon === 'sparkle' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
+              )}
+              {cat.icon === 'wheat' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22V12m0 0c2-2 4.5-3 7-3-2.5 0-5-1-7-3m0 6c-2-2-4.5-3-7-3 2.5 0 5-1 7-3" /></svg>
+              )}
+              {cat.icon === 'plant' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22V8m0 0c0-4 3-7 7-7-1 3-3 5.5-7 7zm0 0c0-4-3-7-7-7 1 3 3 5.5 7 7z" /></svg>
+              )}
+              {cat.icon === 'home' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+              )}
+            </div>
+            <h3 class="font-heading text-sm md:text-base font-bold text-charcoal leading-snug">{cat.name}</h3>
+            <span class="badge bg-gold-50 text-gold-dark text-xs">{cat.count} {lang === 'en' ? 'products' : 'produits'}</span>
+            <p class="text-sm text-grey font-body">{cat.tagline}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagonal divider -->
+  <div class="relative h-16 md:h-24 bg-cream">
+    <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute bottom-0 w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 100L1440 0V100H0Z" fill="white" />
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       BRAND PILLARS — Health, Wealth, Freedom
+       ═══════════════════════════════════════════ -->
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge bg-green-50 text-green mb-4">{c.pillars.sectionTag}</span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal">
+          {c.pillars.heading}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {c.pillars.items.map((pillar, i) => (
+          <div class={`rounded-2xl p-8 md:p-10 border-l-4 ${pillarColors[i].border} ${pillarColors[i].bg} transition-all duration-300 hover:shadow-lg`}>
+            <!-- Icon -->
+            <div class={`w-14 h-14 rounded-2xl ${pillarColors[i].iconBg} ${pillarColors[i].text} flex items-center justify-center mb-6`}>
+              {pillar.icon === 'heart' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+              )}
+              {pillar.icon === 'trending' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4 4L21.75 6M17.25 6h4.5v4.5" /></svg>
+              )}
+              {pillar.icon === 'sun' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+              )}
+            </div>
+            <h3 class={`font-heading text-2xl font-bold mb-3 ${pillarColors[i].text}`}>{pillar.title}</h3>
+            <p class="text-charcoal-light font-body leading-relaxed">{pillar.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       BUSINESS OPPORTUNITY TEASER
+       ═══════════════════════════════════════════ -->
+  <section class="relative overflow-hidden">
+    <!-- Diagonal top -->
+    <div class="absolute top-0 left-0 right-0 h-16 md:h-24 z-10">
+      <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V60L0 100V0Z" fill="white" />
+      </svg>
+    </div>
+
+    <div class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 py-28 md:py-36 grain-overlay">
+      <div class="section-container relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <span class="badge bg-gold/20 text-gold mb-6">{c.business.sectionTag}</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            {c.business.heading}
+          </h2>
+          <p class="text-lg text-cream/80 font-body mb-10 leading-relaxed max-w-2xl mx-auto">
+            {c.business.description}
+          </p>
+          <a href={`/${lang}/business-opportunity`} class="btn-gold text-base px-8 py-4">
+            {c.business.cta}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagonal bottom -->
+    <div class="absolute bottom-0 left-0 right-0 h-16 md:h-24 z-10">
+      <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 40L1440 100V0H0V40Z" fill="var(--color-cream)" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TESTIMONIALS — 2x2 grid
+       ═══════════════════════════════════════════ -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge bg-dynared-50 text-dynared mb-4">{c.testimonials.sectionTag}</span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal">
+          {c.testimonials.heading}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        {c.testimonials.items.map((t, i) => (
+          <div class="card p-8 flex flex-col gap-6">
+            <!-- Quote -->
+            <div class="flex-1">
+              <svg class="w-8 h-8 text-dynared/20 mb-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11H10v10H0z" />
+              </svg>
+              <blockquote class="text-charcoal-light font-body leading-relaxed italic">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+            </div>
+            <!-- Author -->
+            <div class="flex items-center gap-4 pt-4 border-t border-grey-light/30">
+              <Image
+                src={testimonialPhotos[i]}
+                alt={t.name}
+                class="w-14 h-14 rounded-full object-cover ring-2 ring-dynared-100"
+                widths={[56, 112]}
+                sizes="56px"
+                loading="lazy"
+              />
+              <div>
+                <p class="font-heading text-sm font-bold text-charcoal">{t.name}</p>
+                <p class="font-accent text-sm text-grey">{t.location}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       GLOBAL PRESENCE — 40+ Countries
+       ═══════════════════════════════════════════ -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-dynared via-dynared-dark to-charcoal py-24 md:py-32">
+    <!-- Decorative SVG globe -->
+    <div class="absolute inset-0 flex items-center justify-center opacity-10" aria-hidden="true">
+      <svg viewBox="0 0 400 400" class="w-[500px] h-[500px] md:w-[700px] md:h-[700px]" fill="none" stroke="white" stroke-width="0.5">
+        <circle cx="200" cy="200" r="180" />
+        <circle cx="200" cy="200" r="140" />
+        <circle cx="200" cy="200" r="100" />
+        <circle cx="200" cy="200" r="60" />
+        <ellipse cx="200" cy="200" rx="180" ry="60" />
+        <ellipse cx="200" cy="200" rx="180" ry="120" />
+        <ellipse cx="200" cy="200" rx="60" ry="180" />
+        <ellipse cx="200" cy="200" rx="120" ry="180" />
+        <line x1="20" y1="200" x2="380" y2="200" />
+        <line x1="200" y1="20" x2="200" y2="380" />
+      </svg>
+    </div>
+
+    <div class="section-container relative z-10 text-center">
+      <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4">
+        {c.global.heading}
+      </h2>
+      <p class="text-lg md:text-xl text-cream/80 font-body max-w-2xl mx-auto">
+        {c.global.subtitle}
+      </p>
+      <!-- Stat markers -->
+      <div class="mt-12 flex flex-wrap justify-center gap-8 md:gap-16">
+        <div class="text-center">
+          <p class="font-heading text-5xl md:text-6xl font-extrabold text-gold">40+</p>
+          <p class="font-accent text-sm text-cream/70 mt-1 uppercase tracking-wide">{lang === 'en' ? 'Countries' : 'Pays'}</p>
+        </div>
+        <div class="text-center">
+          <p class="font-heading text-5xl md:text-6xl font-extrabold text-gold">90+</p>
+          <p class="font-accent text-sm text-cream/70 mt-1 uppercase tracking-wide">{lang === 'en' ? 'Products' : 'Produits'}</p>
+        </div>
+        <div class="text-center">
+          <p class="font-heading text-5xl md:text-6xl font-extrabold text-gold">8</p>
+          <p class="font-accent text-sm text-cream/70 mt-1 uppercase tracking-wide">{lang === 'en' ? 'Categories' : 'Cat\u00e9gories'}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FINAL CTA — Full-width banner
+       ═══════════════════════════════════════════ -->
+  <section class="relative bg-gradient-to-r from-green-dark via-green to-green-light py-20 md:py-28 overflow-hidden">
+    <!-- Subtle pattern -->
+    <div class="absolute inset-0 grain-overlay opacity-50" aria-hidden="true"></div>
+
+    <div class="section-container relative z-10 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+        {c.finalCta.heading}
+      </h2>
+      <p class="text-lg text-green-100 font-body max-w-2xl mx-auto mb-10">
+        {c.finalCta.subtitle}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`/${lang}/contact`} class="btn-primary bg-white text-green hover:bg-cream hover:text-green-dark text-base px-8 py-4 font-bold">
+          {c.finalCta.ctaPrimary}
+        </a>
+        <a href={`/${lang}/products`} class="btn-secondary border-white text-white hover:bg-white hover:text-green text-base px-8 py-4">
+          {c.finalCta.ctaSecondary}
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

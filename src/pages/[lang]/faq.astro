@@ -1,0 +1,308 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { SUPPORTED_LANGS, t } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface FaqSection {
+  title: string;
+  items: FaqItem[];
+}
+
+const content = {
+  en: {
+    title: 'Frequently Asked Questions — Dynapharm Africa',
+    description: 'Answers to common questions about Dynapharm Africa, our products, and the business opportunity.',
+    heading: 'Frequently Asked Questions',
+    subtitle: 'Find answers to the most common questions about Dynapharm, our products, the business opportunity, and how to get started.',
+    sections: [
+      {
+        title: 'About Dynapharm',
+        items: [
+          {
+            question: 'What is Dynapharm?',
+            answer: 'Dynapharm is an international health and wellness company that manufactures and distributes natural health products through a network marketing (MLM) model. Founded in Malaysia in 1981, Dynapharm has grown to operate in over 40 countries across Africa and beyond. Our product range includes over 90 items spanning health beverages, nutritional supplements, herbal formulations, personal care, wellness foods, and agricultural solutions.',
+          },
+          {
+            question: 'Where does Dynapharm operate?',
+            answer: 'Dynapharm operates in over 40 countries worldwide, with a strong presence across the African continent. Each country is served through an independent franchise supported by local Distribution Point Centres (DPCs). For enquiries about product availability in your area, please contact us at info@dynapharmafrica.com.',
+          },
+          {
+            question: 'How long has Dynapharm been in business?',
+            answer: 'Dynapharm was founded in 1981 in Penang, Malaysia by Mr. Oi Ho Chooi. The company has over four decades of experience in natural health products. In 1990, Dynapharm moved to its current GMP-certified manufacturing facility. In 1995, the company entered network marketing, and in 2005, Ms Esther Ampumuza brought Dynapharm to Africa — establishing what would become the company\'s strongest growth region, now spanning 40+ countries.',
+          },
+          {
+            question: 'Are Dynapharm products safe?',
+            answer: 'Dynapharm products are manufactured to international quality standards in our GMP-certified facility, using carefully selected natural ingredients. Our products are food supplements and personal care items — they are not medicines. As with any supplement, we recommend consulting a qualified healthcare professional before starting a new product, particularly if you have existing health conditions, are pregnant, or are taking medication.',
+          },
+          {
+            question: 'What makes Dynapharm different from other health supplement companies?',
+            answer: 'Dynapharm combines the best of traditional herbal wisdom with modern manufacturing standards. Our products feature ingredients valued for centuries in Asian and global wellness traditions — Ganoderma (Lingzhi mushroom), Spirulina, Tongkat Ali, Bee Pollen, and Chlorophyll, among others. Beyond products, Dynapharm offers a genuine business opportunity through its network marketing model, enabling individuals to build sustainable businesses whilst promoting wellness in their communities.',
+          },
+        ],
+      },
+      {
+        title: 'Products',
+        items: [
+          {
+            question: 'What types of products does Dynapharm offer?',
+            answer: 'Dynapharm\'s catalogue of over 90 products is organised into eight categories: Health Beverages (coffee mixes enriched with Ganoderma, Ginseng, and more), Nutritional Supplements (Spirulina, Bee Pollen, Goat\'s Milk, Multi-Vitamins), Herbal & Traditional Medicine (Yeegano, Yeegarlic, Tongkat Ali), Immune & Vitality Boosters (Liquid Chlorophyll, Noni Juice, Dyna Tonic), Personal Care (Tea Tree Oil products, Ganoderma skincare), Wellness Foods (Instant Cereal, Wheatgrass), Agriculture (D.I. Grow bio-fertiliser), and Home & Lifestyle (Mineral Pot water filtration).',
+          },
+          {
+            question: 'What is Ganoderma and why is it in so many Dynapharm products?',
+            answer: 'Ganoderma, also known as Lingzhi (Chinese) or Reishi (Japanese), is a large, dark mushroom revered in traditional Asian medicine for over 2,000 years. Known as the "mushroom of immortality," it is rich in bioactive compounds including beta-glucan polysaccharides and triterpenes, and is traditionally valued as an adaptogen. Dynapharm incorporates Ganoderma into coffees, capsules, soaps, toothpaste, shower gel, and lotion.',
+          },
+          {
+            question: 'What is Spirulina?',
+            answer: 'Spirulina is a blue-green microalgae that has been consumed for centuries — by the ancient Aztecs in Mexico and the Kanembu people near Lake Chad in Africa. It is exceptionally nutrient-dense, containing 60-70% protein by weight along with all essential amino acids, iron, calcium, magnesium, B-vitamins, and vitamin E. Dynapharm offers Spirulina in tablet form and as a sea water powder.',
+          },
+          {
+            question: 'Are Dynapharm products medicines?',
+            answer: 'No. Dynapharm products are food supplements, personal care items, and agricultural products — they are not medicines. They are not intended to diagnose, treat, cure, or prevent any disease. Our products support wellness as part of a healthy lifestyle. If you have a medical condition, please consult a qualified healthcare professional.',
+          },
+          {
+            question: 'Where can I buy Dynapharm products?',
+            answer: 'Dynapharm products are available through our network of authorised distributors and at Distribution Point Centres (DPCs) across Africa and beyond. To find products in your area, contact us at info@dynapharmafrica.com or reach out to a local Dynapharm distributor.',
+          },
+        ],
+      },
+      {
+        title: 'Business Opportunity',
+        items: [
+          {
+            question: 'How do I become a Dynapharm distributor?',
+            answer: 'Becoming a Dynapharm distributor is straightforward. You register through an existing distributor (your sponsor/upline) and receive the Distributor Registration Kit. From there, you receive training in product knowledge, sales techniques, and network building. No formal qualifications or prior business experience are required. To express your interest, contact us at info@dynapharmafrica.com.',
+          },
+          {
+            question: 'What are the ranks and how do I advance?',
+            answer: 'Dynapharm has seven achievement ranks: Distributor (DI, 0 BV), Manager (M, 500 BV), Senior Manager (SM, 1,000 BV), Ruby Manager (RM, 2,500 BV), Pearl Manager (PM, 5,000 BV), Diamond Manager (DM, 10,000 BV), and Crown Diamond Manager (CDM, 20,000 BV). Advancement is based on your accumulated Business Volume. Higher ranks bring greater recognition, responsibilities, and earning potential.',
+          },
+          {
+            question: 'How do I earn with Dynapharm?',
+            answer: 'Dynapharm distributors earn through multiple streams: personal sales margin (the difference between distributor and retail price), team performance bonuses (based on your network\'s sales), and rank-based rewards (additional benefits as you advance). Your earnings depend directly on your personal effort, your team\'s performance, and your commitment. There are no guaranteed income levels.',
+          },
+          {
+            question: 'What is a Distribution Point Centre (DPC)?',
+            answer: 'A Distribution Point Centre (DPC) is a local Dynapharm hub — a physical location where distributors can access products, receive training, and connect with the Dynapharm community. DPCs are operated within each franchise country and serve as the foundation of Dynapharm\'s "Global Reach, Local Presence" approach.',
+          },
+          {
+            question: 'Is this a pyramid scheme?',
+            answer: 'No. Dynapharm is a legitimate network marketing company with real, physical products that customers purchase and use. Income is generated from actual product sales, not merely from recruiting new members. In a pyramid scheme, money flows primarily from recruitment fees with no real product. In Dynapharm\'s model, distributors earn from selling genuine health, personal care, and agricultural products to real customers.',
+          },
+        ],
+      },
+    ] as FaqSection[],
+    ctaHeading: 'Still Have Questions?',
+    ctaText: 'We are happy to help. Get in touch with us and a member of our team will respond within 2-3 working days.',
+    ctaButton: 'Get in Touch',
+  },
+  fr: {
+    title: 'Foire aux questions — Dynapharm Africa',
+    description: 'Réponses aux questions fréquentes sur Dynapharm Africa, nos produits et l\'opportunité d\'affaires.',
+    heading: 'Foire aux questions',
+    subtitle: 'Trouvez les réponses aux questions les plus fréquentes sur Dynapharm, nos produits, l\'opportunité d\'affaires et comment démarrer.',
+    sections: [
+      {
+        title: 'À propos de Dynapharm',
+        items: [
+          {
+            question: 'Qu\'est-ce que Dynapharm ?',
+            answer: 'Dynapharm est une entreprise internationale de santé et de bien-être qui fabrique et distribue des produits de santé naturels par le biais d\'un modèle de marketing de réseau (MLM). Fondée en Malaisie en 1981, Dynapharm s\'est développée pour opérer dans plus de 40 pays à travers l\'Afrique et au-delà. Notre gamme comprend plus de 90 articles couvrant les boissons de santé, les compléments alimentaires, les formulations à base de plantes, les soins personnels, les aliments de bien-être et les solutions agricoles.',
+          },
+          {
+            question: 'Où Dynapharm opère-t-elle ?',
+            answer: 'Dynapharm opère dans plus de 40 pays à travers le monde, avec une forte présence sur le continent africain. Chaque pays est desservi par une franchise indépendante soutenue par des Centres de Distribution (DPC) locaux. Pour toute question sur la disponibilité des produits dans votre région, veuillez nous contacter à info@dynapharmafrica.com.',
+          },
+          {
+            question: 'Depuis combien de temps Dynapharm existe-t-elle ?',
+            answer: 'Dynapharm a été fondée en 1981 à Penang, en Malaisie, par M. Oi Ho Chooi, ce qui représente plus de quatre décennies d\'expérience dans la santé naturelle. En 1990, l\'entreprise a emménagé dans ses locaux actuels certifiés GMP. En 1995, Dynapharm a adopté le marketing de réseau. En 2005, Mme Esther Ampumuza a introduit Dynapharm en Afrique, établissant la première franchise africaine.',
+          },
+          {
+            question: 'Les produits Dynapharm sont-ils sûrs ?',
+            answer: 'Les produits Dynapharm sont fabriqués dans des locaux certifiés GMP depuis 1990, garantissant le respect des normes internationales. Nos produits sont des compléments alimentaires et des articles de soins personnels à base d\'ingrédients naturels — ce ne sont pas des médicaments. Nous recommandons de consulter un professionnel de santé qualifié avant de commencer un nouveau produit.',
+          },
+          {
+            question: 'Qu\'est-ce qui distingue Dynapharm des autres entreprises de compléments ?',
+            answer: 'Dynapharm allie le meilleur de la sagesse herboriste traditionnelle aux normes de fabrication modernes. Nos produits contiennent des ingrédients valorisés depuis des siècles — Ganoderma, Spirulina, Tongkat Ali, Bee Pollen et Chlorophyll. Au-delà des produits, Dynapharm offre une véritable opportunité d\'affaires grâce à son modèle de marketing de réseau et nos DPC locaux offrent un accompagnement de proximité.',
+          },
+        ],
+      },
+      {
+        title: 'Produits',
+        items: [
+          {
+            question: 'Quels types de produits Dynapharm propose-t-elle ?',
+            answer: 'Le catalogue de Dynapharm, qui compte plus de 90 produits, est organisé en huit catégories : Boissons de santé, Compléments alimentaires, Herboristerie et médecine traditionnelle, Stimulants immunitaires et de vitalité, Soins personnels, Aliments de bien-être, Agriculture (D.I. Grow bio-fertilisant), et Maison et style de vie.',
+          },
+          {
+            question: 'Qu\'est-ce que le Ganoderma ?',
+            answer: 'Le Ganoderma, également connu sous le nom de Lingzhi ou Reishi, est un grand champignon foncé vénéré dans la médecine traditionnelle asiatique depuis plus de 2 000 ans. Surnommé le « champignon de l\'immortalité », il est riche en composés bioactifs et traditionnellement valorisé comme adaptogène. Dynapharm incorpore le Ganoderma dans ses cafés, gélules, savons, dentifrices, gels douche et lotions.',
+          },
+          {
+            question: 'Qu\'est-ce que la Spirulina ?',
+            answer: 'La Spirulina est une microalgue bleu-vert consommée depuis des siècles. Elle est exceptionnellement riche en nutriments, contenant 60 à 70 % de protéines ainsi que tous les acides aminés essentiels, du fer, du calcium, du magnésium, des vitamines B et de la vitamine E. Dynapharm propose la Spirulina sous forme de comprimés et de poudre.',
+          },
+          {
+            question: 'Les produits Dynapharm sont-ils des médicaments ?',
+            answer: 'Non. Les produits Dynapharm sont des compléments alimentaires, des articles de soins personnels et des produits agricoles — ce ne sont pas des médicaments. Ils ne sont pas destinés à diagnostiquer, traiter, guérir ou prévenir une quelconque maladie.',
+          },
+          {
+            question: 'Où puis-je acheter les produits Dynapharm ?',
+            answer: 'Les produits Dynapharm sont disponibles par l\'intermédiaire de notre réseau de distributeurs agréés et dans les Centres de Distribution (DPC) à travers l\'Afrique et au-delà. Contactez-nous à info@dynapharmafrica.com.',
+          },
+        ],
+      },
+      {
+        title: 'Opportunité d\'affaires',
+        items: [
+          {
+            question: 'Comment devenir distributeur Dynapharm ?',
+            answer: 'Devenir distributeur Dynapharm est simple. Vous vous inscrivez par l\'intermédiaire d\'un distributeur existant et vous recevez le Kit d\'inscription. Vous bénéficiez ensuite d\'une formation complète. Aucune qualification formelle ni expérience préalable n\'est requise. Contactez-nous à info@dynapharmafrica.com.',
+          },
+          {
+            question: 'Quels sont les rangs et comment progresser ?',
+            answer: 'Dynapharm compte sept rangs : Distributor (DI, 0 BV), Manager (M, 500 BV), Senior Manager (SM, 1 000 BV), Ruby Manager (RM, 2 500 BV), Pearl Manager (PM, 5 000 BV), Diamond Manager (DM, 10 000 BV), et Crown Diamond Manager (CDM, 20 000 BV). La progression est basée sur votre Business Volume accumulé.',
+          },
+          {
+            question: 'Comment puis-je gagner avec Dynapharm ?',
+            answer: 'Les distributeurs gagnent par plusieurs sources : marge sur les ventes personnelles, primes de performance d\'équipe et récompenses liées au rang. Vos revenus dépendent de votre effort personnel, des performances de votre équipe et de votre engagement. Il n\'y a aucun niveau de revenu garanti.',
+          },
+          {
+            question: 'Qu\'est-ce qu\'un Centre de Distribution (DPC) ?',
+            answer: 'Un DPC est un point d\'ancrage local de Dynapharm — un lieu physique où les distributeurs peuvent accéder aux produits, recevoir une formation et se connecter à la communauté Dynapharm.',
+          },
+          {
+            question: 'Est-ce un système pyramidal ?',
+            answer: 'Non. Dynapharm est une entreprise de marketing de réseau légitime proposant de véritables produits physiques. Les revenus proviennent de ventes réelles de produits, et non du recrutement. Les distributeurs gagnent en vendant de véritables produits de santé, de soins personnels et agricoles à de vrais clients.',
+          },
+        ],
+      },
+    ] as FaqSection[],
+    ctaHeading: 'Vous avez encore des questions ?',
+    ctaText: 'Nous sommes à votre disposition. Contactez-nous et un membre de notre équipe vous répondra dans un délai de 2 à 3 jours ouvrables.',
+    ctaButton: 'Nous contacter',
+  },
+};
+
+const c = content[lang as keyof typeof content];
+---
+
+<BaseLayout title={c.title} description={c.description} lang={lang}>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-30"></div>
+    <div class="section-container relative z-10 py-16 md:py-24">
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        {c.heading}
+      </h1>
+      <p class="font-body text-lg md:text-xl text-grey-light max-w-2xl">
+        {c.subtitle}
+      </p>
+    </div>
+    <!-- Diagonal divider -->
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-8 md:h-12">
+        <polygon fill="var(--color-cream)" points="0,60 1200,60 1200,0"></polygon>
+      </svg>
+    </div>
+  </section>
+
+  <!-- FAQ Sections -->
+  <section class="section-padding bg-cream">
+    <div class="section-container max-w-4xl">
+      {c.sections.map((section: FaqSection, sIndex: number) => (
+        <div class={sIndex > 0 ? 'mt-12' : ''}>
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-6 flex items-center gap-3">
+            <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+            {section.title}
+          </h2>
+
+          <div
+            class="space-y-4"
+            x-data="{ openItem: null }"
+          >
+            {section.items.map((item: FaqItem, iIndex: number) => {
+              const itemId = `faq-${sIndex}-${iIndex}`;
+              return (
+                <div class="bg-white rounded-xl border border-grey-light/30 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
+                  <button
+                    class="w-full text-left px-6 py-5 flex items-start justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-dynared focus-visible:ring-offset-2 rounded-xl"
+                    x-on:click={`openItem = openItem === '${itemId}' ? null : '${itemId}'`}
+                    aria-expanded="false"
+                    x-bind:aria-expanded={`openItem === '${itemId}' ? 'true' : 'false'`}
+                    aria-controls={`panel-${itemId}`}
+                  >
+                    <span class="font-heading text-base md:text-lg font-semibold text-charcoal pr-4">
+                      {item.question}
+                    </span>
+                    <span
+                      class="flex-shrink-0 w-6 h-6 text-dynared transition-transform duration-300 mt-0.5"
+                      x-bind:class={`openItem === '${itemId}' ? 'rotate-180' : ''`}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </button>
+                  <div
+                    id={`panel-${itemId}`}
+                    x-show={`openItem === '${itemId}'`}
+                    x-transition:enter="transition ease-out duration-200"
+                    x-transition:enter-start="opacity-0 -translate-y-2"
+                    x-transition:enter-end="opacity-100 translate-y-0"
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100 translate-y-0"
+                    x-transition:leave-end="opacity-0 -translate-y-2"
+                    x-cloak
+                    role="region"
+                  >
+                    <div class="px-6 pb-5 pt-0">
+                      <div class="border-t border-grey-light/30 pt-4">
+                        <p class="font-body text-base text-charcoal-light leading-relaxed">
+                          {item.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-gradient-to-r from-dynared to-dynared-dark text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-20"></div>
+    <div class="section-container relative z-10 py-16 md:py-20 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">
+        {c.ctaHeading}
+      </h2>
+      <p class="font-body text-lg text-dynared-100 max-w-xl mx-auto mb-8">
+        {c.ctaText}
+      </p>
+      <a
+        href={`/${lang}/contact`}
+        class="inline-flex items-center gap-2 px-8 py-4 bg-white text-dynared font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-lg transition-all duration-300"
+      >
+        {c.ctaButton}
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

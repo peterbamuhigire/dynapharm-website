@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dynapharmafrica.com/sitemap-index.xml

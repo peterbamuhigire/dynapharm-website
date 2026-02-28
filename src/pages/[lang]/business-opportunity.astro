@@ -1,0 +1,427 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import heroImg from '@assets/images/hero/DISTRIBUTORS-05.jpg';
+import distributorsImg from '@assets/images/about/DISTRIBUTORS-06.jpg';
+import distributorsImg2 from '@assets/images/about/DISTRIBUTORS-08.jpg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+/* ------------------------------------------------------------------ */
+/*  Bilingual content                                                  */
+/* ------------------------------------------------------------------ */
+
+const content = {
+  en: {
+    title: 'Business Opportunity — Build Your Wellness Business | Dynapharm Africa',
+    description: 'Start your own health and wellness business with Dynapharm. Low investment, full training, 7 achievement ranks. Join thousands of distributors across 40+ countries in Africa.',
+    heroTitle: 'Your Business, Your Way',
+    heroSubtitle: 'Join a community of entrepreneurs building healthier, wealthier lives through natural wellness products.',
+    heroCta: 'Start Your Journey',
+    howItWorksTitle: 'How It Works',
+    howItWorksSubtitle: 'Five simple steps to building your Dynapharm business.',
+    steps: [
+      { title: 'Register', description: 'Sign up as a Dynapharm Distributor and receive your Registration Kit with everything you need to get started.', icon: 'clipboard' },
+      { title: 'Learn', description: 'Access comprehensive product knowledge training, sales techniques, and business building strategies from experienced mentors.', icon: 'book' },
+      { title: 'Share', description: 'Introduce Dynapharm\'s premium natural health products to your community, friends, and family.', icon: 'share' },
+      { title: 'Grow', description: 'Build your team by mentoring new distributors. Advance through 7 achievement ranks as your network expands.', icon: 'trending-up' },
+      { title: 'Earn', description: 'Generate income through personal sales margins and team performance bonuses. Your effort determines your reward.', icon: 'star' },
+    ],
+    rankTitle: 'Rank Progression',
+    rankSubtitle: 'Advance through 7 achievement ranks — each milestone reflecting your growth, dedication, and leadership.',
+    whatYouEarnTitle: 'What You Earn',
+    whatYouEarnSubtitle: 'Your earnings depend on your effort, your team, and your commitment.',
+    earnDisclaimer: 'Income levels vary and depend on individual effort, market conditions, and team performance. No specific income is guaranteed.',
+    incomeStreams: [
+      { title: 'Personal Sales Margin', description: 'Earn a margin on every product you sell directly to your customers. The more you sell, the more you earn.', icon: 'wallet' },
+      { title: 'Team Performance Bonuses', description: 'As you build and mentor your team, earn bonuses based on your team\'s collective sales performance.', icon: 'users' },
+      { title: 'Rank Achievement Bonuses', description: 'Celebrate each new rank with achievement bonuses that recognise your growth and leadership milestones.', icon: 'award' },
+      { title: 'Training & Mentorship Rewards', description: 'Support your team\'s development and earn recognition for nurturing the next generation of Dynapharm leaders.', icon: 'heart' },
+    ],
+    trainingTitle: 'Training & Support',
+    trainingSubtitle: 'Every Dynapharm distributor receives comprehensive support from day one.',
+    trainingItems: [
+      { title: 'Product Knowledge Training', description: 'Deep understanding of all 90+ products, their ingredients, and their heritage in traditional wellness.' },
+      { title: 'Sales Techniques', description: 'Proven approaches to sharing products naturally with your community and building lasting customer relationships.' },
+      { title: 'Network Building Strategies', description: 'Learn how to identify, recruit, and mentor new team members to grow a thriving distribution network.' },
+      { title: 'Leadership Development', description: 'As you advance through ranks, access advanced leadership and management training programmes.' },
+      { title: 'Online & In-Person Training', description: 'Flexible training available both online and in-person at your local Distribution Point Centre (DPC).' },
+      { title: 'Mentorship from Upline Leaders', description: 'Benefit from the experience and guidance of successful distributors who have walked the path before you.' },
+    ],
+    dpcTitle: 'What is a DPC?',
+    dpcSubtitle: 'Distribution Point Centres — Your Local Wellness Hub',
+    dpcDescription: 'Distribution Point Centres (DPCs) are local wellness hubs where Dynapharm distributors access products, receive training, and build community. Think of your DPC as your local base for building your business — a place where you can collect products, attend training sessions, meet fellow distributors, and get the support you need to succeed.',
+    dpcFeatures: [
+      'Product collection and distribution',
+      'Regular training sessions and workshops',
+      'Community events and networking',
+      'Business support and mentorship',
+      'Product demonstrations and sampling',
+    ],
+    ctaTitle: 'Ready to Begin?',
+    ctaText: 'Take the first step towards building your own wellness business. No formal qualifications needed — just passion, commitment, and a desire to make a difference.',
+    ctaPrimary: 'Get in Touch',
+    ctaSecondary: 'Explore Our Products',
+  },
+  fr: {
+    title: 'Opportunité d\'Affaires — Créez votre activité bien-être | Dynapharm Africa',
+    description: 'Lancez votre propre activité de santé et bien-être avec Dynapharm. Faible investissement, formation complète, 7 rangs de réussite. Rejoignez des milliers de distributeurs dans plus de 40 pays en Afrique.',
+    heroTitle: 'Votre Activité, à Votre Image',
+    heroSubtitle: 'Rejoignez une communauté d\'entrepreneurs qui construisent des vies plus saines et plus prospères grâce aux produits de bien-être naturels.',
+    heroCta: 'Commencer Maintenant',
+    howItWorksTitle: 'Comment Ça Fonctionne',
+    howItWorksSubtitle: 'Cinq étapes simples pour construire votre activité Dynapharm.',
+    steps: [
+      { title: 'S\'inscrire', description: 'Inscrivez-vous en tant que distributeur Dynapharm et recevez votre kit d\'inscription avec tout le nécessaire pour démarrer.', icon: 'clipboard' },
+      { title: 'Apprendre', description: 'Accédez à une formation complète sur les produits, les techniques de vente et les stratégies de développement commercial.', icon: 'book' },
+      { title: 'Partager', description: 'Présentez les produits naturels de qualité supérieure de Dynapharm à votre communauté, vos amis et votre famille.', icon: 'share' },
+      { title: 'Développer', description: 'Construisez votre équipe en accompagnant de nouveaux distributeurs. Progressez à travers 7 rangs de réussite.', icon: 'trending-up' },
+      { title: 'Gagner', description: 'Générez des revenus grâce aux marges de vente personnelles et aux bonus de performance d\'équipe. Votre effort détermine votre récompense.', icon: 'star' },
+    ],
+    rankTitle: 'Progression des Rangs',
+    rankSubtitle: 'Progressez à travers 7 rangs de réussite — chaque étape reflétant votre croissance, votre dévouement et votre leadership.',
+    whatYouEarnTitle: 'Ce Que Vous Gagnez',
+    whatYouEarnSubtitle: 'Vos revenus dépendent de votre effort, de votre équipe et de votre engagement.',
+    earnDisclaimer: 'Les niveaux de revenus varient et dépendent de l\'effort individuel, des conditions du marché et de la performance de l\'équipe. Aucun revenu spécifique n\'est garanti.',
+    incomeStreams: [
+      { title: 'Marge sur ventes personnelles', description: 'Gagnez une marge sur chaque produit vendu directement à vos clients. Plus vous vendez, plus vous gagnez.', icon: 'wallet' },
+      { title: 'Bonus de performance d\'équipe', description: 'En construisant et accompagnant votre équipe, gagnez des bonus basés sur les ventes collectives de votre équipe.', icon: 'users' },
+      { title: 'Bonus de progression de rang', description: 'Célébrez chaque nouveau rang avec des bonus qui reconnaissent votre croissance et vos accomplissements.', icon: 'award' },
+      { title: 'Récompenses de formation et mentorat', description: 'Soutenez le développement de votre équipe et recevez une reconnaissance pour avoir formé la prochaine génération de leaders.', icon: 'heart' },
+    ],
+    trainingTitle: 'Formation et Accompagnement',
+    trainingSubtitle: 'Chaque distributeur Dynapharm reçoit un accompagnement complet dès le premier jour.',
+    trainingItems: [
+      { title: 'Formation sur les produits', description: 'Compréhension approfondie des 90+ produits, de leurs ingrédients et de leur héritage dans le bien-être traditionnel.' },
+      { title: 'Techniques de vente', description: 'Approches éprouvées pour partager naturellement les produits avec votre communauté et construire des relations durables.' },
+      { title: 'Stratégies de développement réseau', description: 'Apprenez à identifier, recruter et accompagner de nouveaux membres d\'équipe pour développer un réseau de distribution florissant.' },
+      { title: 'Développement du leadership', description: 'En progressant dans les rangs, accédez à des programmes avancés de formation en leadership et en gestion.' },
+      { title: 'Formation en ligne et en personne', description: 'Formation flexible disponible en ligne et en personne dans votre Centre de Distribution local (DPC).' },
+      { title: 'Mentorat des leaders de la lignée ascendante', description: 'Bénéficiez de l\'expérience et des conseils de distributeurs prospères qui ont déjà parcouru le chemin.' },
+    ],
+    dpcTitle: 'Qu\'est-ce qu\'un DPC ?',
+    dpcSubtitle: 'Centres de Distribution — Votre hub bien-être local',
+    dpcDescription: 'Les Centres de Distribution (DPC) sont des hubs de bien-être locaux où les distributeurs Dynapharm accèdent aux produits, reçoivent une formation et construisent une communauté. Considérez votre DPC comme votre base locale pour développer votre activité — un lieu où vous pouvez collecter des produits, assister à des sessions de formation, rencontrer d\'autres distributeurs et obtenir le soutien nécessaire pour réussir.',
+    dpcFeatures: [
+      'Collecte et distribution de produits',
+      'Sessions de formation et ateliers réguliers',
+      'Événements communautaires et réseautage',
+      'Soutien commercial et mentorat',
+      'Démonstrations et dégustations de produits',
+    ],
+    ctaTitle: 'Prêt à Commencer ?',
+    ctaText: 'Faites le premier pas vers la construction de votre propre activité de bien-être. Aucune qualification formelle requise — juste de la passion, de l\'engagement et le désir de faire la différence.',
+    ctaPrimary: 'Nous Contacter',
+    ctaSecondary: 'Explorer Nos Produits',
+  },
+};
+
+const t = content[lang];
+
+/* ------------------------------------------------------------------ */
+/*  Rank progression data                                              */
+/* ------------------------------------------------------------------ */
+
+const ranks = [
+  { abbr: 'DI', name: 'Distributor', nameFr: 'Distributeur', bv: 0, description: { en: 'Your starting point. Begin your journey with Dynapharm and start sharing products with your community.', fr: 'Votre point de départ. Commencez votre parcours avec Dynapharm et partagez les produits avec votre communauté.' }, color: 'bg-grey-light', textColor: 'text-charcoal' },
+  { abbr: 'M', name: 'Manager', nameFr: 'Manager', bv: 500, description: { en: 'Your first leadership milestone. You have built a foundation and are growing your network.', fr: 'Votre première étape de leadership. Vous avez construit une base et développez votre réseau.' }, color: 'bg-green-100', textColor: 'text-green-700' },
+  { abbr: 'SM', name: 'Senior Manager', nameFr: 'Senior Manager', bv: 1000, description: { en: 'Demonstrating consistent effort and growing influence within your distribution network.', fr: 'Démontrant un effort constant et une influence croissante au sein de votre réseau de distribution.' }, color: 'bg-green-200', textColor: 'text-green-800' },
+  { abbr: 'RM', name: 'Ruby Manager', nameFr: 'Ruby Manager', bv: 2500, description: { en: 'A significant achievement. Your team and sales volume reflect real dedication and business acumen.', fr: 'Une réalisation significative. Votre équipe et votre volume de ventes reflètent un vrai dévouement.' }, color: 'bg-dynared-100', textColor: 'text-dynared-700' },
+  { abbr: 'PM', name: 'Pearl Manager', nameFr: 'Pearl Manager', bv: 5000, description: { en: 'An established leader with a strong team. Your influence extends across your community.', fr: 'Un leader établi avec une équipe solide. Votre influence s\'étend à travers votre communauté.' }, color: 'bg-cream-dark', textColor: 'text-charcoal' },
+  { abbr: 'DM', name: 'Diamond Manager', nameFr: 'Diamond Manager', bv: 10000, description: { en: 'Elite leadership status. You are among Dynapharm\'s most accomplished business builders.', fr: 'Statut de leadership d\'élite. Vous êtes parmi les bâtisseurs d\'activité les plus accomplis de Dynapharm.' }, color: 'bg-gold-100', textColor: 'text-gold-700' },
+  { abbr: 'CDM', name: 'Crown Diamond Manager', nameFr: 'Crown Diamond Manager', bv: 20000, description: { en: 'The pinnacle of achievement. A Crown Diamond Manager represents the very best in Dynapharm leadership.', fr: 'Le sommet de la réussite. Un Crown Diamond Manager représente le meilleur du leadership Dynapharm.' }, color: 'bg-gold-200', textColor: 'text-gold-800' },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Step icons                                                         */
+/* ------------------------------------------------------------------ */
+
+const stepIcons: Record<string, string> = {
+  clipboard: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>',
+  book: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>',
+  share: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>',
+  'trending-up': '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+  star: '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+};
+
+const earnIcons: Record<string, string> = {
+  wallet: '<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>',
+  users: '<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  award: '<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>',
+  heart: '<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>',
+};
+---
+
+<BaseLayout title={t.title} description={t.description} lang={lang}>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-charcoal text-white min-h-[60vh] flex items-center">
+    <div class="absolute inset-0">
+      <Image
+        src={heroImg}
+        alt=""
+        class="w-full h-full object-cover opacity-25"
+        widths={[640, 1024, 1920]}
+        sizes="100vw"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/80 to-charcoal/60"></div>
+    </div>
+    <div class="relative section-container section-padding">
+      <div class="max-w-3xl">
+        <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-gold-300 mb-4">
+          {lang === 'en' ? 'Dynapharm Business Opportunity' : 'Opportunité d\'Affaires Dynapharm'}
+        </span>
+        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          {t.heroTitle}
+        </h1>
+        <p class="text-lg md:text-xl text-grey-light font-body leading-relaxed mb-8 max-w-2xl">
+          {t.heroSubtitle}
+        </p>
+        <a href={`/${lang}/contact`} class="btn-primary text-lg px-8 py-4 gap-2">
+          {t.heroCta}
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="text-center mb-12 md:mb-16">
+        <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-dynared mb-3">
+          {lang === 'en' ? 'Getting Started' : 'Pour commencer'}
+        </span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal mb-4">{t.howItWorksTitle}</h2>
+        <p class="text-charcoal-light font-body text-lg max-w-2xl mx-auto">{t.howItWorksSubtitle}</p>
+      </div>
+
+      <!-- Steps - horizontal on desktop, vertical on mobile -->
+      <div class="relative">
+        <!-- Connection line (desktop) -->
+        <div class="hidden md:block absolute top-16 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-dynared via-gold to-green" aria-hidden="true"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4">
+          {t.steps.map((step, index) => (
+            <div class="relative flex md:flex-col items-start md:items-center text-left md:text-center gap-4 md:gap-0">
+              <!-- Step number circle -->
+              <div class="relative z-10 flex-shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-full bg-white shadow-lg border-2 border-dynared flex items-center justify-center md:mb-6">
+                <span class="text-dynared" set:html={stepIcons[step.icon]} />
+              </div>
+              <!-- Mobile connection line -->
+              {index < t.steps.length - 1 && (
+                <div class="md:hidden absolute left-7 top-14 w-0.5 h-full bg-gradient-to-b from-dynared to-gold" aria-hidden="true"></div>
+              )}
+              <div class="md:px-2 pb-8 md:pb-0">
+                <div class="font-accent text-xs font-bold uppercase tracking-widest text-dynared mb-1">
+                  {lang === 'en' ? `Step ${index + 1}` : `Étape ${index + 1}`}
+                </div>
+                <h3 class="font-heading text-lg font-bold text-charcoal mb-2">{step.title}</h3>
+                <p class="text-sm text-charcoal-light font-body leading-relaxed">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rank Progression -->
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="text-center mb-12 md:mb-16">
+        <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-gold mb-3">
+          {lang === 'en' ? 'Your Growth Path' : 'Votre parcours de croissance'}
+        </span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-charcoal mb-4">{t.rankTitle}</h2>
+        <p class="text-charcoal-light font-body text-lg max-w-2xl mx-auto">{t.rankSubtitle}</p>
+      </div>
+
+      <!-- Rank Path -->
+      <div class="max-w-4xl mx-auto">
+        {ranks.map((rank, index) => (
+          <div class="relative flex items-start gap-4 md:gap-6 mb-2 last:mb-0">
+            <!-- Vertical line connector -->
+            {index < ranks.length - 1 && (
+              <div class="absolute left-6 md:left-8 top-16 w-0.5 h-[calc(100%-2rem)] bg-gradient-to-b from-gold-200 to-gold-400" aria-hidden="true"></div>
+            )}
+
+            <!-- Rank badge circle -->
+            <div class={`relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full ${rank.color} ${rank.textColor} flex items-center justify-center font-heading font-bold text-sm md:text-base shadow-md border-2 border-white`}>
+              {rank.abbr}
+            </div>
+
+            <!-- Rank details card -->
+            <div class={`flex-1 p-4 md:p-6 rounded-xl ${index === ranks.length - 1 ? 'bg-gradient-to-r from-gold-50 to-cream border border-gold-200' : 'bg-cream-dark/50 border border-grey-light/30'} mb-4`}>
+              <div class="flex flex-wrap items-center gap-2 md:gap-4 mb-2">
+                <h3 class="font-heading text-lg md:text-xl font-bold text-charcoal">
+                  {lang === 'en' ? rank.name : rank.nameFr}
+                </h3>
+                <span class={`badge text-xs ${index === ranks.length - 1 ? 'bg-gold-100 text-gold-700 border border-gold-300' : 'bg-white text-charcoal-light border border-grey-light'}`}>
+                  {rank.bv.toLocaleString()} BV
+                </span>
+              </div>
+              <p class="text-sm text-charcoal-light font-body leading-relaxed">
+                {rank.description[lang]}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Earn -->
+  <section class="section-padding bg-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-30"></div>
+    <div class="relative section-container">
+      <div class="text-center mb-12 md:mb-16">
+        <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-gold-300 mb-3">
+          {lang === 'en' ? 'Income Streams' : 'Sources de revenus'}
+        </span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{t.whatYouEarnTitle}</h2>
+        <p class="text-grey-light font-body text-lg max-w-2xl mx-auto">{t.whatYouEarnSubtitle}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+        {t.incomeStreams.map((stream) => (
+          <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 hover:bg-white/10 transition-all duration-300">
+            <div class="w-14 h-14 rounded-xl bg-gold/20 text-gold-300 flex items-center justify-center mb-4">
+              <span set:html={earnIcons[stream.icon]} />
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white mb-3">{stream.title}</h3>
+            <p class="text-grey-light font-body text-sm leading-relaxed">{stream.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-grey text-xs font-accent mt-10 max-w-xl mx-auto italic">
+        {t.earnDisclaimer}
+      </p>
+    </div>
+  </section>
+
+  <!-- Training & Support -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- Left: Image -->
+        <div class="relative">
+          <div class="rounded-2xl overflow-hidden shadow-xl">
+            <Image
+              src={distributorsImg}
+              alt={lang === 'en' ? 'Dynapharm distributors at a training event' : 'Distributeurs Dynapharm lors d\'un événement de formation'}
+              class="w-full h-auto object-cover"
+              widths={[400, 600, 800]}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              loading="lazy"
+            />
+          </div>
+          <!-- Floating stat card -->
+          <div class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white rounded-xl shadow-lg p-4 md:p-5 border border-grey-light/30">
+            <div class="font-heading text-2xl md:text-3xl font-bold text-dynared">40+</div>
+            <div class="font-accent text-xs text-charcoal-light uppercase tracking-wider">
+              {lang === 'en' ? 'Countries' : 'Pays'}
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Training items -->
+        <div>
+          <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-dynared mb-3">
+            {lang === 'en' ? 'We Support You' : 'Nous vous accompagnons'}
+          </span>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">{t.trainingTitle}</h2>
+          <p class="text-charcoal-light font-body text-lg mb-8">{t.trainingSubtitle}</p>
+
+          <div class="space-y-4">
+            {t.trainingItems.map((item) => (
+              <div class="flex gap-4">
+                <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-green-50 text-green flex items-center justify-center mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                  <h3 class="font-heading text-base font-semibold text-charcoal mb-1">{item.title}</h3>
+                  <p class="text-sm text-charcoal-light font-body leading-relaxed">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is a DPC? -->
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- Left: Content -->
+        <div class="order-2 lg:order-1">
+          <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-gold mb-3">
+            {lang === 'en' ? 'Local Presence' : 'Présence locale'}
+          </span>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-2">{t.dpcTitle}</h2>
+          <p class="font-accent text-lg text-gold font-medium mb-6">{t.dpcSubtitle}</p>
+          <p class="text-charcoal-light font-body leading-relaxed mb-8">{t.dpcDescription}</p>
+
+          <ul class="space-y-3">
+            {t.dpcFeatures.map((feature) => (
+              <li class="flex items-center gap-3">
+                <div class="w-6 h-6 rounded-full bg-gold-50 text-gold flex items-center justify-center flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="font-body text-sm text-charcoal">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Right: Image -->
+        <div class="order-1 lg:order-2">
+          <div class="rounded-2xl overflow-hidden shadow-xl">
+            <Image
+              src={distributorsImg2}
+              alt={lang === 'en' ? 'Dynapharm Distribution Point Centre' : 'Centre de Distribution Dynapharm'}
+              class="w-full h-auto object-cover"
+              widths={[400, 600, 800]}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section-padding bg-gradient-to-br from-dynared to-dynared-dark text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-20"></div>
+    <!-- Decorative circles -->
+    <div class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-white/5" aria-hidden="true"></div>
+    <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-white/5" aria-hidden="true"></div>
+
+    <div class="relative section-container text-center">
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{t.ctaTitle}</h2>
+      <p class="text-white/80 font-body text-lg max-w-2xl mx-auto mb-8">{t.ctaText}</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={`/${lang}/contact`} class="inline-flex items-center justify-center px-8 py-4 bg-white text-dynared font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-xl transition-all duration-300 text-lg gap-2">
+          {t.ctaPrimary}
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href={`/${lang}/products`} class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-heading font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 text-lg">
+          {t.ctaSecondary}
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

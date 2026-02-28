@@ -1,0 +1,562 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import heroImg from '@assets/images/hero/HEALTH-GENERIC-02.jpg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+/* ------------------------------------------------------------------ */
+/*  Bilingual content                                                  */
+/* ------------------------------------------------------------------ */
+
+const content = {
+  en: {
+    title: 'Our Products — 90+ Natural Health & Wellness Products | Dynapharm Africa',
+    description: 'Browse Dynapharm\'s complete product catalogue — health beverages, nutritional supplements, herbal medicine, personal care, wellness foods, and agriculture.',
+    heading: 'Our Products',
+    subtitle: 'Over 90 premium natural products across 8 categories — crafted from nature\'s finest ingredients.',
+    allProducts: 'All Products',
+    viewDetails: 'View Details',
+    ingredients: 'Key Ingredients',
+    availableSizes: 'Available Sizes',
+    contactDistributor: 'Contact Your Distributor',
+    close: 'Close',
+    ctaHeading: 'Interested in our products?',
+    ctaText: 'Contact your local distributor or get in touch with us for personalised product recommendations.',
+    ctaButton: 'Get in Touch',
+    noProducts: 'No products found in this category.',
+    filterLabel: 'Filter by category',
+    productCount: 'products',
+  },
+  fr: {
+    title: 'Nos produits — Plus de 90 produits naturels | Dynapharm Africa',
+    description: 'Parcourez le catalogue complet Dynapharm — boissons de santé, compléments alimentaires, médecine traditionnelle, soins personnels, aliments bien-être et agriculture.',
+    heading: 'Nos Produits',
+    subtitle: 'Plus de 90 produits naturels de qualité supérieure répartis en 8 catégories — élaborés à partir des meilleurs ingrédients de la nature.',
+    allProducts: 'Tous les Produits',
+    viewDetails: 'Voir les Détails',
+    ingredients: 'Ingrédients clés',
+    availableSizes: 'Formats disponibles',
+    contactDistributor: 'Contacter Votre Distributeur',
+    close: 'Fermer',
+    ctaHeading: 'Intéressé par nos produits ?',
+    ctaText: 'Contactez votre distributeur local ou contactez-nous pour des recommandations personnalisées.',
+    ctaButton: 'Nous Contacter',
+    noProducts: 'Aucun produit trouvé dans cette catégorie.',
+    filterLabel: 'Filtrer par catégorie',
+    productCount: 'produits',
+  },
+};
+
+const t = content[lang];
+
+/* ------------------------------------------------------------------ */
+/*  Categories                                                         */
+/* ------------------------------------------------------------------ */
+
+const categories = [
+  {
+    id: 'health-beverages',
+    name: { en: 'Health Beverages', fr: 'Boissons de santé' },
+    icon: 'coffee',
+    description: { en: 'Nourishing coffee blends, teas, and chocolate drinks enriched with traditional herbal ingredients', fr: 'Mélanges de café nourrissants, thés et boissons au chocolat enrichis d\'ingrédients à base de plantes traditionnelles' },
+  },
+  {
+    id: 'nutritional-supplements',
+    name: { en: 'Nutritional Supplements', fr: 'Compléments alimentaires' },
+    icon: 'pill',
+    description: { en: 'Nutrient-dense tablets, powders, and capsules from nature\'s finest superfoods', fr: 'Comprimés, poudres et gélules riches en nutriments issus des meilleurs superaliments de la nature' },
+  },
+  {
+    id: 'herbal-traditional-medicine',
+    name: { en: 'Herbal & Traditional Medicine', fr: 'Médecine traditionnelle et à base de plantes' },
+    icon: 'leaf',
+    description: { en: 'Time-honoured herbal formulations rooted in centuries of traditional wellness practice', fr: 'Formulations à base de plantes ancrées dans des siècles de pratique traditionnelle du bien-être' },
+  },
+  {
+    id: 'immune-vitality-boosters',
+    name: { en: 'Immune & Vitality Boosters', fr: 'Stimulants immunitaires et de vitalité' },
+    icon: 'zap',
+    description: { en: 'Natural tonics, juices, and supplements traditionally valued for vitality and overall wellbeing', fr: 'Toniques naturels, jus et compléments traditionnellement valorisés pour la vitalité et le bien-être général' },
+  },
+  {
+    id: 'personal-care',
+    name: { en: 'Personal Care', fr: 'Soins personnels' },
+    icon: 'sparkles',
+    description: { en: 'Skincare, oral care, and personal hygiene products formulated with natural botanical ingredients', fr: 'Soins de la peau, soins bucco-dentaires et produits d\'hygiène formulés avec des ingrédients botaniques naturels' },
+  },
+  {
+    id: 'wellness-foods',
+    name: { en: 'Wellness Foods', fr: 'Aliments bien-être' },
+    icon: 'wheat',
+    description: { en: 'Wholesome cereals, nutrition meals, and traditional food preparations for daily nourishment', fr: 'Céréales complètes, repas nutritifs et préparations alimentaires traditionnelles pour une alimentation quotidienne' },
+  },
+  {
+    id: 'agriculture',
+    name: { en: 'Agriculture', fr: 'Agriculture' },
+    icon: 'sprout',
+    description: { en: 'Bio-fertiliser solutions for healthier crops and sustainable farming', fr: 'Solutions de bio-fertilisants pour des cultures plus saines et une agriculture durable' },
+  },
+  {
+    id: 'home-lifestyle',
+    name: { en: 'Home & Lifestyle', fr: 'Maison et vie quotidienne' },
+    icon: 'home',
+    description: { en: 'Everyday wellness essentials for the home', fr: 'Essentiels de bien-être quotidien pour la maison' },
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Products — complete catalogue with actual image filenames          */
+/* ------------------------------------------------------------------ */
+
+const products = [
+  // ── HEALTH BEVERAGES ──
+  { name: { en: 'Instant Coffee Mix with Ginkgo & Ginseng', fr: 'Mélange de café instantané au Ginkgo et Ginseng' }, category: 'health-beverages', image: 'Product-1201.png', description: { en: 'A smooth instant coffee blend enriched with Ginkgo Biloba and Ginseng — two herbs with a rich heritage in traditional Asian wellness. A flavourful way to enjoy these time-honoured herbs as part of your daily coffee ritual.', fr: 'Un mélange de café instantané onctueux enrichi en Ginkgo Biloba et Ginseng — deux plantes au riche héritage dans le bien-être traditionnel asiatique.' }, ingredients: ['Ginkgo Biloba', 'Ginseng'], sizes: ['20 sachets x 21g'] },
+  { name: { en: 'Instant Coffee Mix with Ganoderma & Green Tea', fr: 'Mélange de café instantané au Ganoderma et thé vert' }, category: 'health-beverages', image: 'Product-1202.png', description: { en: 'An aromatic coffee blend featuring Ganoderma (Lingzhi mushroom) and Green Tea extract. A distinguished coffee experience with two of Asia\'s most celebrated botanical ingredients.', fr: 'Un mélange de café aromatique à base de Ganoderma (champignon Lingzhi) et d\'extrait de thé vert.' }, ingredients: ['Ganoderma', 'Green Tea'], sizes: ['20 sachets x 21g'] },
+  { name: { en: 'Instant Coffee Mix with Kacip Fatimah, Green Tea & Ganoderma', fr: 'Mélange de café instantané au Kacip Fatimah, thé vert et Ganoderma' }, category: 'health-beverages', image: 'Product-1203.png', description: { en: 'A unique coffee blend combining three traditional ingredients. Kacip Fatimah is a small herbaceous plant native to Malaysian tropical forests, traditionally used for feminine wellness.', fr: 'Un mélange de café unique combinant trois ingrédients traditionnels. Le Kacip Fatimah est une petite plante herbacée originaire des forêts tropicales malaisiennes.' }, ingredients: ['Kacip Fatimah', 'Green Tea', 'Ganoderma'], sizes: ['20 sachets x 21g'] },
+  { name: { en: 'Instant Coffee Mix with Tongkat Ali & Maca', fr: 'Mélange de café instantané au Tongkat Ali et Maca' }, category: 'health-beverages', image: 'Product-1204.png', description: { en: 'A bold coffee blend featuring two celebrated traditional ingredients from opposite sides of the world. Tongkat Ali from Southeast Asia and Maca from the high Andes of Peru create an invigorating coffee ritual.', fr: 'Un mélange de café audacieux avec deux ingrédients traditionnels célèbres de deux côtés du monde.' }, ingredients: ['Tongkat Ali', 'Maca'], sizes: ['15 sachets x 21g'] },
+  { name: { en: 'Instant Cappuccino Coffee Mix with Ganoderma', fr: 'Mélange de cappuccino instantané au Ganoderma' }, category: 'health-beverages', image: 'Product-1205.png', description: { en: 'A creamy cappuccino-style coffee enriched with Ganoderma (Lingzhi mushroom). Rich and smooth, it is a satisfying way to include this traditional ingredient in your daily routine.', fr: 'Un café style cappuccino crémeux enrichi en Ganoderma (champignon Lingzhi). Onctueux et satisfaisant.' }, ingredients: ['Ganoderma'], sizes: ['15 sachets x 35g'] },
+  { name: { en: 'Arabica Coffee Mix with Goat\'s Milk & Ganoderma', fr: 'Mélange de café Arabica au lait de chèvre et Ganoderma' }, category: 'health-beverages', image: 'Product-1208.png', description: { en: 'A premium 6-in-1 Arabica coffee blend combining the smoothness of goat\'s milk with the traditional heritage of Ganoderma. Goat\'s milk is naturally rich in calcium and contains over 200 nutrients.', fr: 'Un mélange de café Arabica 6-en-1 premium combinant la douceur du lait de chèvre et l\'héritage traditionnel du Ganoderma.' }, ingredients: ['Arabica Coffee', 'Goat\'s Milk', 'Ganoderma'], sizes: ['20 sachets x 25g'] },
+  { name: { en: 'Instant Coffee Mix with Ganoderma', fr: 'Mélange de café instantané au Ganoderma' }, category: 'health-beverages', image: 'Product-1804.png', description: { en: 'The classic Dynapharm coffee — a smooth instant blend featuring Ganoderma (Lingzhi mushroom), one of the most extensively studied medicinal mushrooms in the world.', fr: 'Le café classique Dynapharm — un mélange instantané onctueux au Ganoderma (champignon Lingzhi).' }, ingredients: ['Ganoderma'], sizes: ['20 sachets x 21g'] },
+  { name: { en: 'Instant Chocolate Mix with Ganoderma', fr: 'Mélange de chocolat instantané au Ganoderma' }, category: 'health-beverages', image: 'Product-1806.png', description: { en: 'A rich, indulgent chocolate drink enriched with Ganoderma. Perfect for those who prefer a non-coffee option. Enjoy hot or cold.', fr: 'Une boisson chocolatée riche et gourmande enrichie au Ganoderma. Parfaite pour ceux qui préfèrent une option sans café.' }, ingredients: ['Chocolate', 'Ganoderma'], sizes: ['30 sachets x 30g'] },
+  { name: { en: 'President\'s Choice 4-in-1 Coffee & Chocolate', fr: 'Choix du Président 4-en-1 Café et Chocolat' }, category: 'health-beverages', image: 'Product-1817.png', description: { en: 'A distinctive 4-in-1 blend that combines coffee and chocolate with Ganoderma in a convenient single-serve format. A versatile beverage for any time of day.', fr: 'Un mélange 4-en-1 distinctif combinant café et chocolat avec du Ganoderma dans un format pratique.' }, ingredients: ['Coffee', 'Chocolate', 'Ganoderma'], sizes: ['20 sachets x 30g'] },
+  { name: { en: 'Red Coffee with Ginseng', fr: 'Café rouge au Ginseng' }, category: 'health-beverages', image: 'Product-3810.png', description: { en: 'A distinctive red coffee blend enriched with Ginseng — one of the most valued herbs in Traditional Chinese Medicine. This unique red coffee offers a bold flavour with the heritage of one of the world\'s most studied herbs.', fr: 'Un mélange de café rouge distinctif enrichi au Ginseng — l\'une des plantes les plus valorisées de la médecine traditionnelle chinoise.' }, ingredients: ['Ginseng'], sizes: ['12 sachets x 25g'] },
+  { name: { en: 'Instant Coffee Mix with Tongkat Ali', fr: 'Mélange de café instantané au Tongkat Ali' }, category: 'health-beverages', image: 'Product-4810.png', description: { en: 'An instant coffee blend featuring Tongkat Ali, one of Malaysia\'s most prized traditional herbs. Traditionally valued as a tonic for energy and stamina.', fr: 'Un mélange de café instantané au Tongkat Ali, l\'une des plantes traditionnelles les plus prisées de Malaisie.' }, ingredients: ['Tongkat Ali'], sizes: ['20 sachets x 21g'] },
+  { name: { en: 'Milk Tea with Tongkat Ali', fr: 'Thé au lait au Tongkat Ali' }, category: 'health-beverages', image: 'Product-4810n.png', description: { en: 'A smooth milk tea infused with Tongkat Ali, offering an alternative to coffee for those who prefer a milder, creamier beverage.', fr: 'Un thé au lait onctueux infusé au Tongkat Ali, offrant une alternative au café pour ceux qui préfèrent une boisson plus douce.' }, ingredients: ['Tongkat Ali', 'Milk Tea'], sizes: ['20 sachets x 21g'] },
+
+  // ── NUTRITIONAL SUPPLEMENTS ──
+  { name: { en: 'Spirulina Tablets', fr: 'Comprimés de Spiruline' }, category: 'nutritional-supplements', image: 'Product-2807.png', description: { en: 'Tablets made from Spirulina, an exceptionally nutrient-dense blue-green microalgae containing 60-70% protein by weight along with all essential amino acids, iron, calcium, and B-vitamins.', fr: 'Comprimés de Spiruline, une microalgue bleu-vert exceptionnellement riche en nutriments contenant 60-70% de protéines.' }, ingredients: ['Spirulina'], sizes: ['100 tablets', '300 tablets', '1,000 tablets'] },
+  { name: { en: 'Sea Water Spirulina Powder', fr: 'Poudre de Spiruline d\'eau de mer' }, category: 'nutritional-supplements', image: 'Product-2805.png', description: { en: 'Premium Spirulina in powder form, harvested from nutrient-rich sea water. Ideal for mixing into smoothies, juices, or water. Rich in 17 amino acids and beta-carotene.', fr: 'Spiruline premium en poudre, récoltée dans une eau de mer riche en nutriments. Idéale pour les smoothies et jus.' }, ingredients: ['Spirulina'], sizes: ['500g'] },
+  { name: { en: 'Bee Pollen Capsules', fr: 'Gélules de pollen d\'abeille' }, category: 'nutritional-supplements', image: 'Product-3802.png', description: { en: 'Capsules containing Bee Pollen — one of the most complete natural foods found in nature, containing over 250 biologically active substances including vitamins, minerals, and approximately 25% protein.', fr: 'Gélules de pollen d\'abeille — l\'un des aliments naturels les plus complets, contenant plus de 250 substances biologiquement actives.' }, ingredients: ['Bee Pollen'], sizes: ['30 capsules', '100 capsules'] },
+  { name: { en: 'Goat\'s Milk Tablets', fr: 'Comprimés de lait de chèvre' }, category: 'nutritional-supplements', image: 'Product-2802.png', description: { en: 'Tablets made from French goat\'s milk, naturally rich in calcium and containing over 200 nutrients. A convenient way to incorporate goat\'s milk into your daily nutrition.', fr: 'Comprimés de lait de chèvre français, naturellement riche en calcium et contenant plus de 200 nutriments.' }, ingredients: ['Goat\'s Milk'], sizes: ['75 tablets', '150 tablets'] },
+  { name: { en: 'Soybean Powder', fr: 'Poudre de soja' }, category: 'nutritional-supplements', image: 'Product-2804.png', description: { en: 'A fine powder made from soybeans, naturally high in complete plant protein and dietary fibre. A staple food in Asian diets for thousands of years.', fr: 'Une poudre fine à base de soja, naturellement riche en protéines végétales complètes et en fibres alimentaires.' }, ingredients: ['Soybean'], sizes: ['454g'] },
+  { name: { en: 'Daily Vite Multi-Vitamins with Lysine', fr: 'Multi-vitamines Daily Vite avec Lysine' }, category: 'nutritional-supplements', image: 'Product-2811.png', description: { en: 'A liquid multi-vitamin formula enriched with Lysine, an essential amino acid. Convenient liquid format suitable for children and the whole family.', fr: 'Une formule multi-vitaminée liquide enrichie en Lysine, un acide aminé essentiel. Format liquide pratique pour toute la famille.' }, ingredients: ['Multi-Vitamins', 'Lysine'], sizes: ['100ml'] },
+  { name: { en: 'Pro-LSB Probiotic Tablets', fr: 'Comprimés probiotiques Pro-LSB' }, category: 'nutritional-supplements', image: 'Product-2809.png', description: { en: 'Pro-LSB tablets contain beneficial probiotic cultures — the friendly microorganisms that are a natural part of a healthy digestive system.', fr: 'Les comprimés Pro-LSB contiennent des cultures probiotiques bénéfiques — les micro-organismes amicaux pour un système digestif sain.' }, ingredients: ['Probiotics'], sizes: ['150 tablets'] },
+  { name: { en: 'Instant Goat\'s Milk Powder Premix', fr: 'Prémélange de poudre de lait de chèvre instantané' }, category: 'nutritional-supplements', image: 'Product-2815.png', description: { en: 'A premium instant goat\'s milk powder containing over 200 nutrients plus EGF (Epidermal Growth Factor). Nourishing and suitable for the whole family.', fr: 'Une poudre de lait de chèvre instantanée premium contenant plus de 200 nutriments plus le FGE.' }, ingredients: ['Goat\'s Milk', 'EGF'], sizes: ['20 sachets x 21g'] },
+  { name: { en: 'Prolink Colostrum', fr: 'Colostrum Prolink' }, category: 'nutritional-supplements', image: 'Product-3814.png', description: { en: 'Prolink contains bovine colostrum — the first milk produced after birth, naturally rich in immunoglobulins, lactoferrin, and nano-calcium.', fr: 'Prolink contient du colostrum bovin — le premier lait produit après la naissance, naturellement riche en immunoglobulines.' }, ingredients: ['Bovine Colostrum'], sizes: ['10 sachets x 20g', '20 sachets x 20g'] },
+
+  // ── HERBAL & TRADITIONAL MEDICINE ──
+  { name: { en: 'Yeegano Capsules (Ganoderma)', fr: 'Gélules Yeegano (Ganoderma)' }, category: 'herbal-traditional-medicine', image: 'Product-1810.png', description: { en: 'Herbal supplement capsules featuring concentrated Ganoderma (Lingzhi/Reishi mushroom), revered for over 2,000 years in Chinese, Japanese, and Korean traditional medicine.', fr: 'Gélules de complément à base de Ganoderma concentré (champignon Lingzhi/Reishi), vénéré depuis plus de 2 000 ans.' }, ingredients: ['Ganoderma'], sizes: ['30 capsules', '90 capsules'] },
+  { name: { en: 'Yeegarlic Capsules (Garlic Extract)', fr: 'Gélules Yeegarlic (Extrait d\'ail)' }, category: 'herbal-traditional-medicine', image: 'Product-1811.png', description: { en: 'Capsules containing concentrated garlic extract. Garlic has been used as both a food and traditional remedy for thousands of years across virtually every major civilisation.', fr: 'Gélules contenant de l\'extrait d\'ail concentré. L\'ail est utilisé comme aliment et remède traditionnel depuis des millénaires.' }, ingredients: ['Garlic Extract'], sizes: ['90 capsules'] },
+  { name: { en: 'Yeeginkgo Tablets (Ginkgo Biloba)', fr: 'Comprimés Yeeginkgo (Ginkgo Biloba)' }, category: 'herbal-traditional-medicine', image: 'Product-4815.png', description: { en: 'Tablets made from Ginkgo Biloba extract — one of the oldest living tree species on Earth, dating back over 200 million years. Traditionally valued for supporting mental clarity.', fr: 'Comprimés d\'extrait de Ginkgo Biloba — l\'une des plus anciennes espèces d\'arbres vivants sur Terre.' }, ingredients: ['Ginkgo Biloba'], sizes: ['30 tablets', '90 tablets', '300 tablets'] },
+  { name: { en: 'Ginali Capsules (Ginkgo Biloba & Tongkat Ali)', fr: 'Gélules Ginali (Ginkgo Biloba et Tongkat Ali)' }, category: 'herbal-traditional-medicine', image: 'Product-4811.png', description: { en: 'A dual-ingredient herbal capsule combining Ginkgo Biloba and Tongkat Ali — two of Asia\'s most celebrated traditional herbs united in one convenient capsule.', fr: 'Une gélule à base de deux plantes combinant Ginkgo Biloba et Tongkat Ali — deux des plantes traditionnelles les plus célèbres d\'Asie.' }, ingredients: ['Ginkgo Biloba', 'Tongkat Ali'], sizes: ['30 capsules', '100 capsules'] },
+  { name: { en: 'Tongkat Ali Capsules', fr: 'Gélules de Tongkat Ali' }, category: 'herbal-traditional-medicine', image: 'Product-4822.png', description: { en: 'Pure Tongkat Ali in capsule form. Native to Malaysia, traditionally valued as a tonic for energy, stamina, and overall vitality.', fr: 'Tongkat Ali pur en gélules. Originaire de Malaisie, traditionnellement valorisé comme tonique pour l\'énergie et la vitalité.' }, ingredients: ['Tongkat Ali'], sizes: ['30 capsules', '100 capsules'] },
+  { name: { en: 'Milk Thistle Tablets', fr: 'Comprimés de chardon-Marie' }, category: 'herbal-traditional-medicine', image: 'Product-4817.png', description: { en: 'Tablets containing Milk Thistle extract, standardised for silymarin. One of the most well-studied herbs for liver-related traditional use, valued for over 2,000 years.', fr: 'Comprimés d\'extrait de chardon-Marie, standardisé en silymarine. L\'une des plantes les plus étudiées pour l\'usage hépatique traditionnel.' }, ingredients: ['Milk Thistle (Silymarin)'], sizes: ['30 tablets', '120 tablets'] },
+  { name: { en: 'Green Tea Extract Capsules', fr: 'Gélules d\'extrait de thé vert' }, category: 'herbal-traditional-medicine', image: 'Product-3812.png', description: { en: 'Capsules containing concentrated Green Tea extract, rich in catechins and L-theanine. Green tea has been consumed for nearly 5,000 years.', fr: 'Gélules d\'extrait de thé vert concentré, riche en catéchines et L-théanine. Le thé vert est consommé depuis près de 5 000 ans.' }, ingredients: ['Green Tea Extract'], sizes: ['30 capsules', '60 capsules'] },
+  { name: { en: 'Dyna Serenoa Tablets (Saw Palmetto)', fr: 'Comprimés Dyna Serenoa (Palmier nain)' }, category: 'herbal-traditional-medicine', image: 'Product-9919.png', description: { en: 'Tablets featuring Saw Palmetto extract, one of the most commonly used herbal preparations for men\'s wellness in traditional practice.', fr: 'Comprimés d\'extrait de palmier nain, l\'une des préparations à base de plantes les plus courantes pour le bien-être masculin.' }, ingredients: ['Saw Palmetto'], sizes: ['30 tablets', '100 tablets'] },
+  { name: { en: 'Dyna RH Joint Capsules', fr: 'Gélules articulaires Dyna RH' }, category: 'herbal-traditional-medicine', image: 'Product-6803.png', description: { en: 'Capsules formulated for joint wellness, containing compounds naturally present in healthy joint cartilage and synovial fluid.', fr: 'Gélules formulées pour le bien-être articulaire, contenant des composés naturellement présents dans le cartilage sain.' }, ingredients: ['Glucosamine', 'Chondroitin'], sizes: ['100 capsules'] },
+  { name: { en: 'Eye-Max Tablets', fr: 'Comprimés Eye-Max' }, category: 'herbal-traditional-medicine', image: 'Product-9923.png', description: { en: 'A herbal supplement formulated with ingredients traditionally associated with eye health and visual comfort.', fr: 'Un complément à base de plantes formulé avec des ingrédients traditionnellement associés à la santé oculaire.' }, ingredients: ['Herbal Eye Formula'], sizes: ['5 x 10 tablets'] },
+  { name: { en: 'Yee Yang Yen Tablets (Grape Seed OPC)', fr: 'Comprimés Yee Yang Yen (OPC de pépins de raisin)' }, category: 'herbal-traditional-medicine', image: 'Product-3809.png', description: { en: 'Tablets containing 95% OPC extracted from Italian grape seeds. OPCs are powerful naturally occurring polyphenolic compounds valued in European traditional wellness.', fr: 'Comprimés contenant 95% d\'OPC extraits de pépins de raisin italiens. Les OPC sont de puissants composés polyphénoliques naturels.' }, ingredients: ['Italian Grape Seed Extract (OPC)'], sizes: ['30 tablets', '90 tablets'] },
+
+  // ── IMMUNE & VITALITY BOOSTERS ──
+  { name: { en: 'Liquid Chlorophyll Plus Guarana', fr: 'Chlorophylle liquide plus Guarana' }, category: 'immune-vitality-boosters', image: 'Product-1801.png', description: { en: 'A vibrant green liquid supplement combining Chlorophyll and Guarana. Chlorophyll is structurally similar to haemoglobin, while Guarana has been used by indigenous Amazonian peoples for centuries.', fr: 'Un complément liquide vert vibrant combinant Chlorophylle et Guarana. La Chlorophylle est structurellement similaire à l\'hémoglobine.' }, ingredients: ['Chlorophyll', 'Guarana'], sizes: ['150ml'] },
+  { name: { en: 'Alfalfa Plus Guarana', fr: 'Alfalfa plus Guarana' }, category: 'immune-vitality-boosters', image: 'Product-1802A.png', description: { en: 'A liquid supplement combining Alfalfa extract with Guarana. Alfalfa — meaning "father of all foods" in Arabic — paired with Amazonian Guarana.', fr: 'Un complément liquide combinant l\'extrait d\'Alfalfa et le Guarana. L\'Alfalfa — signifiant « père de tous les aliments » en arabe.' }, ingredients: ['Alfalfa', 'Guarana'], sizes: ['150ml'] },
+  { name: { en: 'Noni Juice', fr: 'Jus de Noni' }, category: 'immune-vitality-boosters', image: 'Product-5802a.png', description: { en: 'Pure Noni juice from an evergreen shrub used by Polynesian peoples for over 2,000 years. Contains over 160 identified phytochemical compounds.', fr: 'Jus de Noni pur d\'un arbuste à feuilles persistantes utilisé par les peuples polynésiens depuis plus de 2 000 ans.' }, ingredients: ['Noni (Morinda citrifolia)'], sizes: ['500ml', '1 litre'] },
+  { name: { en: 'Dyna Tonic (15-Herb Formula)', fr: 'Dyna Tonic (Formule aux 15 plantes)' }, category: 'immune-vitality-boosters', image: 'Product-3804a.png', description: { en: 'Dynapharm\'s signature herbal tonic formulated from 15 traditional herbs rooted in Traditional Chinese Medicine principles. A masterfully balanced herbal blend.', fr: 'Le tonique signature de Dynapharm formulé à partir de 15 plantes traditionnelles enracinées dans les principes de la médecine traditionnelle chinoise.' }, ingredients: ['Radix Codonopsis', 'Astragalus', 'Fo-Ti', 'Cistanche', 'Poria', 'Liquorice Root', 'Chinese Yam', 'Eucommia Bark', 'Sour Jujube Seed', 'Oyster Shell', 'Dodder Seed', 'Polygala Root', 'Alisma', 'Amomum Fruit', 'Dioscorea'], sizes: ['150ml', '780ml'] },
+  { name: { en: 'Dyna C Vitamin C Tablets', fr: 'Comprimés de Vitamine C Dyna C' }, category: 'immune-vitality-boosters', image: 'Product-3805.png', description: { en: 'Chewable Vitamin C tablets available in two strengths. Vitamin C is one of the most essential water-soluble vitamins for daily wellbeing.', fr: 'Comprimés de Vitamine C à croquer disponibles en deux dosages. La Vitamine C est l\'une des vitamines hydrosolubles les plus essentielles.' }, ingredients: ['Vitamin C'], sizes: ['C-100: 150 tablets', 'C-250: 90 tablets'] },
+  { name: { en: 'Ginseng Capsules', fr: 'Gélules de Ginseng' }, category: 'immune-vitality-boosters', image: 'Product-4805.png', description: { en: 'Capsules containing Panax Ginseng — one of the most valued herbs in Traditional Chinese Medicine. Classified as an adaptogen, traditionally valued for resilience.', fr: 'Gélules de Panax Ginseng — l\'une des plantes les plus valorisées de la médecine traditionnelle chinoise. Classé comme adaptogène.' }, ingredients: ['Ginseng (Panax ginseng)'], sizes: ['9 x 10 capsules'] },
+  { name: { en: 'Sea Cucumber Jelly', fr: 'Gelée de concombre de mer' }, category: 'immune-vitality-boosters', image: 'Product-4808.png', description: { en: 'A unique jelly preparation made from Sea Cucumber, exceptionally high in protein and containing unique bioactive compounds. Prized in Asian and Middle Eastern traditional medicine.', fr: 'Une préparation de gelée unique à base de concombre de mer, exceptionnellement riche en protéines.' }, ingredients: ['Sea Cucumber'], sizes: ['250ml', '500ml'] },
+  { name: { en: 'Mangosteen Plus Mixed Fruit Drink', fr: 'Boisson au Mangoustan et fruits mélangés' }, category: 'immune-vitality-boosters', image: 'Product-5810.png', description: { en: 'A delicious fruit drink featuring Mangosteen — the "Queen of Fruits" — with its rich xanthone profile. A refreshing mixed fruit beverage.', fr: 'Une délicieuse boisson aux fruits à base de Mangoustan — la « Reine des Fruits » — avec son riche profil de xanthones.' }, ingredients: ['Mangosteen', 'Mixed Fruits'], sizes: ['30 sachets x 30ml', '1 litre'] },
+  { name: { en: 'Noni Plus Tea', fr: 'Thé Noni Plus' }, category: 'immune-vitality-boosters', image: 'Product-5803.png', description: { en: 'A herbal tea blend featuring Noni, the sacred plant of Polynesian tradition, in a light, easy-to-brew tea format.', fr: 'Un mélange de thé aux plantes à base de Noni, la plante sacrée de la tradition polynésienne, dans un format léger et facile à infuser.' }, ingredients: ['Noni', 'Tea'], sizes: ['30 sachets x 3g'] },
+  { name: { en: 'Dyna Inhaler', fr: 'Inhalateur Dyna' }, category: 'immune-vitality-boosters', image: 'Product-6801.png', description: { en: 'A compact nasal inhaler containing a blend of essential oils traditionally used for respiratory comfort. Small enough to carry anywhere.', fr: 'Un inhalateur nasal compact contenant un mélange d\'huiles essentielles traditionnellement utilisées pour le confort respiratoire.' }, ingredients: ['Essential Oils'], sizes: ['2ml'] },
+  { name: { en: 'Nutmeg Ointment', fr: 'Pommade à la noix de muscade' }, category: 'immune-vitality-boosters', image: 'Product-6802.png', description: { en: 'A topical ointment formulated with nutmeg oil, traditionally used for its natural warming and soothing properties.', fr: 'Une pommade topique formulée à l\'huile de noix de muscade, traditionnellement utilisée pour ses propriétés réchauffantes et apaisantes.' }, ingredients: ['Nutmeg Oil'], sizes: ['2 x 20g'] },
+  { name: { en: 'Sea Cucumber Plus Cough Syrup', fr: 'Sirop au concombre de mer' }, category: 'immune-vitality-boosters', image: 'Product-4819.png', description: { en: 'A syrup combining Sea Cucumber extract with traditional herbal ingredients formulated for respiratory comfort.', fr: 'Un sirop combinant l\'extrait de concombre de mer avec des ingrédients à base de plantes pour le confort respiratoire.' }, ingredients: ['Sea Cucumber', 'Herbal Cough Formula'], sizes: ['250ml'] },
+
+  // ── PERSONAL CARE ──
+  { name: { en: 'Tea Tree Oil Lotion', fr: 'Lotion à l\'huile d\'arbre à thé' }, category: 'personal-care', image: 'Product-7813.png', description: { en: 'A body lotion formulated with Tea Tree Oil, an essential oil used by Aboriginal Australians for centuries. Provides daily skin care with a fresh, natural scent.', fr: 'Une lotion corporelle formulée à l\'huile d\'arbre à thé, une huile essentielle utilisée depuis des siècles par les Aborigènes australiens.' }, ingredients: ['Tea Tree Oil'], sizes: ['250ml'] },
+  { name: { en: 'Tea Tree Oil Feminine Wash', fr: 'Gel intime à l\'huile d\'arbre à thé' }, category: 'personal-care', image: 'Product-7835.png', description: { en: 'A gentle feminine wash formulated with Tea Tree Oil and a blend of traditional herbs — sage, rosemary, thyme, and lavender. pH-balanced for daily use.', fr: 'Un gel intime doux formulé à l\'huile d\'arbre à thé et un mélange de plantes traditionnelles. Équilibré en pH pour un usage quotidien.' }, ingredients: ['Tea Tree Oil', 'Sage', 'Rosemary', 'Thyme', 'Lavender'], sizes: ['250ml'] },
+  { name: { en: 'Tea Tree Oil Toothpaste', fr: 'Dentifrice à l\'huile d\'arbre à thé' }, category: 'personal-care', image: 'Product-7837.png', description: { en: 'A fluoride-free toothpaste formulated with Tea Tree Oil, offering a natural approach to daily oral care with a fresh taste.', fr: 'Un dentifrice sans fluor formulé à l\'huile d\'arbre à thé, offrant une approche naturelle des soins bucco-dentaires quotidiens.' }, ingredients: ['Tea Tree Oil'], sizes: ['175g'] },
+  { name: { en: 'Ganoderma Lotion', fr: 'Lotion au Ganoderma' }, category: 'personal-care', image: 'Product-7916.png', description: { en: 'A skincare lotion enriched with Ganoderma extract. A natural approach to skin nourishment inspired by traditional Asian beauty practices.', fr: 'Une lotion de soin enrichie à l\'extrait de Ganoderma. Une approche naturelle de la nutrition cutanée inspirée des pratiques de beauté asiatiques.' }, ingredients: ['Ganoderma'], sizes: ['150ml'] },
+  { name: { en: 'Ganoderma Shower Gel', fr: 'Gel douche au Ganoderma' }, category: 'personal-care', image: 'Product-7920.png', description: { en: 'A body wash enriched with Ganoderma extract, Portulaca extract, Vitamin Pro-B5, and Vitamin E. A multi-ingredient cleansing experience.', fr: 'Un gel douche enrichi à l\'extrait de Ganoderma, de Portulaca, Vitamine Pro-B5 et Vitamine E.' }, ingredients: ['Ganoderma', 'Portulaca Extract', 'Vitamin Pro-B5', 'Vitamin E'], sizes: ['150ml'] },
+  { name: { en: 'E-Vita Cream', fr: 'Crème E-Vita' }, category: 'personal-care', image: 'Product-7816.png', description: { en: 'A premium face and body cream combining six active botanical ingredients: Dioscorea, Grape Seed, Aloe Vera, Vitamin E, Ginkgo Biloba, and Soybean oil.', fr: 'Une crème premium pour le visage et le corps combinant six ingrédients botaniques actifs.' }, ingredients: ['Dioscorea Extract', 'Grape Seed Extract', 'Aloe Vera', 'Vitamin E', 'Ginkgo Biloba', 'Soybean Oil'], sizes: ['50g'] },
+  { name: { en: 'Snail Aqua Sleep Cream', fr: 'Crème de nuit Snail Aqua' }, category: 'personal-care', image: 'Product-7928.png', description: { en: 'A night cream formulated with snail mucin — an ingredient recognised in Korean and Asian beauty for its natural skin-nourishing properties.', fr: 'Une crème de nuit formulée avec de la mucine d\'escargot — un ingrédient reconnu dans la beauté coréenne et asiatique.' }, ingredients: ['Snail Mucin'], sizes: ['30ml'] },
+  { name: { en: 'Ganoderma Toothpaste', fr: 'Dentifrice au Ganoderma' }, category: 'personal-care', image: 'Product-7919.png', description: { en: 'A fluoride-free toothpaste infused with Ganoderma extract. A distinctive toothpaste for those who appreciate natural oral hygiene.', fr: 'Un dentifrice sans fluor infusé à l\'extrait de Ganoderma. Un dentifrice distinctif pour ceux qui apprécient l\'hygiène bucco-dentaire naturelle.' }, ingredients: ['Ganoderma'], sizes: ['150g'] },
+
+  // ── WELLNESS FOODS ──
+  { name: { en: 'Instant Cereal with Spirulina, Soybean & Noni', fr: 'Céréales instantanées à la Spiruline, Soja et Noni' }, category: 'wellness-foods', image: 'Product-5801a.png', description: { en: 'A nourishing instant cereal bringing together Spirulina, Soybean, and Noni — ingredients from three continents for a wholesome breakfast.', fr: 'Des céréales instantanées nourrissantes réunissant Spiruline, Soja et Noni — des ingrédients de trois continents pour un petit-déjeuner complet.' }, ingredients: ['Spirulina', 'Soybean', 'Noni'], sizes: ['15 sachets x 32g', '30 sachets x 32g'] },
+  { name: { en: 'Instant Wheatgrass with Chlorophyll', fr: 'Herbe de blé instantanée à la Chlorophylle' }, category: 'wellness-foods', image: 'Product-1813.png', description: { en: 'An instant drink combining Wheatgrass and Chlorophyll — two of nature\'s greenest superfoods. A concentrated source of plant-based nutrition.', fr: 'Une boisson instantanée combinant Herbe de blé et Chlorophylle — deux des superaliments les plus verts de la nature.' }, ingredients: ['Wheatgrass', 'Chlorophyll'], sizes: ['20 sachets x 10g'] },
+  { name: { en: 'High Fibre Nutrition Food', fr: 'Aliment nutritionnel riche en fibres' }, category: 'wellness-foods', image: 'Product-5807N.png', description: { en: 'A high-fibre nutrition powder designed as a wholesome meal supplement. Rich in natural dietary fibre from multiple grain sources.', fr: 'Une poudre nutritionnelle riche en fibres conçue comme un complément de repas complet.' }, ingredients: ['Dietary Fibre', 'Grains'], sizes: ['30 sachets x 25g'] },
+  { name: { en: 'Instant Ginseng Honey Ginger', fr: 'Ginseng, miel et gingembre instantané' }, category: 'wellness-foods', image: 'Product-4803.png', description: { en: 'A warming blend of Ginseng, natural Honey, and Ginger — three traditional ingredients beloved across cultures. A comforting drink for cooler seasons.', fr: 'Un mélange réchauffant de Ginseng, miel naturel et Gingembre — trois ingrédients traditionnels appréciés dans toutes les cultures.' }, ingredients: ['Ginseng', 'Honey', 'Ginger'], sizes: ['20 sachets x 20g', '500g jar'] },
+
+  // ── AGRICULTURE ──
+  { name: { en: 'D.I. Grow Bio-Fertiliser (Red & Green)', fr: 'Bio-fertilisant D.I. Grow (Rouge et Vert)' }, category: 'agriculture', image: 'Product-9829.png', description: { en: 'Liquid bio-fertiliser formulated for plant growth. Red variant supports flowering and fruiting; Green variant enhances vegetative growth. Non-toxic and suitable for organic farming.', fr: 'Bio-fertilisant liquide formulé pour la croissance des plantes. La variante Rouge favorise la floraison et la fructification ; la variante Verte améliore la croissance végétative.' }, ingredients: ['Bio-Fertiliser Formulation'], sizes: ['250ml', '1 litre', '4 litres'] },
+
+  // ── HOME & LIFESTYLE ──
+  { name: { en: 'Mineral Pot (Water Filtration System)', fr: 'Pot minéral (Système de filtration d\'eau)' }, category: 'home-lifestyle', image: 'Product-8805.png', description: { en: 'A mineral water filtration pot that purifies and mineralises your drinking water. No electricity required — gravity-powered. An economical, eco-friendly alternative to bottled water.', fr: 'Un pot de filtration d\'eau minérale qui purifie et minéralise votre eau potable. Aucune électricité requise.' }, ingredients: ['Mineral Filtration System'], sizes: ['1 unit'] },
+  { name: { en: 'Dyna Toothbrush Set', fr: 'Set de brosses à dents Dyna' }, category: 'home-lifestyle', image: 'Product-7833.png', description: { en: 'A set of three quality toothbrushes designed for effective daily oral care. Pair with Dynapharm\'s natural toothpaste range for a complete routine.', fr: 'Un ensemble de trois brosses à dents de qualité conçues pour des soins bucco-dentaires quotidiens efficaces.' }, ingredients: [], sizes: ['Set of 3'] },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Category icon SVGs                                                 */
+/* ------------------------------------------------------------------ */
+
+const categoryIcons: Record<string, string> = {
+  coffee: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>',
+  pill: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>',
+  leaf: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 19 2c1 2 2 4.5 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>',
+  zap: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+  sparkles: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>',
+  wheat: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/></svg>',
+  sprout: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8Z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2Z"/></svg>',
+  home: '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+};
+
+/* Count products per category */
+const categoryCounts: Record<string, number> = {};
+products.forEach((p) => {
+  categoryCounts[p.category] = (categoryCounts[p.category] || 0) + 1;
+});
+
+/* ------------------------------------------------------------------ */
+/*  Product images (dynamic import)                                    */
+/* ------------------------------------------------------------------ */
+
+const productImages = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/products/*.png',
+  { eager: true }
+);
+
+/* Helper: resolve product image */
+function getProductImage(filename: string): ImageMetadata | null {
+  const key = `/src/assets/images/products/${filename}`;
+  if (productImages[key]) return productImages[key].default;
+  /* Try case-insensitive fallback */
+  const lower = filename.toLowerCase();
+  for (const [k, v] of Object.entries(productImages)) {
+    if (k.toLowerCase().endsWith(lower)) return v.default;
+  }
+  return null;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Serialise product data for Alpine.js (no images - just indices)    */
+/* ------------------------------------------------------------------ */
+
+const productsForAlpine = products.map((p, i) => ({
+  idx: i,
+  name: p.name[lang],
+  category: p.category,
+  description: p.description[lang],
+  ingredients: p.ingredients,
+  sizes: p.sizes,
+}));
+---
+
+<BaseLayout title={t.title} description={t.description} lang={lang}>
+
+  <!-- Hero / Page Header -->
+  <section class="relative overflow-hidden bg-charcoal text-white">
+    <div class="absolute inset-0">
+      <Image
+        src={heroImg}
+        alt=""
+        class="w-full h-full object-cover opacity-30"
+        widths={[640, 1024, 1600]}
+        sizes="100vw"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/50 to-charcoal"></div>
+    </div>
+    <div class="relative section-container section-padding text-center">
+      <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-gold-300 mb-4">
+        {lang === 'en' ? 'Dynapharm Product Range' : 'Gamme de Produits Dynapharm'}
+      </span>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+        {t.heading}
+      </h1>
+      <p class="text-lg md:text-xl text-grey-light max-w-3xl mx-auto font-body leading-relaxed">
+        {t.subtitle}
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 mt-8">
+        <span class="badge bg-dynared-500/20 text-dynared-200 border border-dynared-400/30 px-4 py-1.5 text-sm">
+          {products.length}+ {lang === 'en' ? 'Products' : 'Produits'}
+        </span>
+        <span class="badge bg-gold-500/20 text-gold-200 border border-gold-400/30 px-4 py-1.5 text-sm">
+          8 {lang === 'en' ? 'Categories' : 'Catégories'}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Products Section with Alpine.js -->
+  <section
+    class="section-padding bg-cream"
+    x-data={`{
+      activeCategory: 'all',
+      showModal: false,
+      selectedProduct: null,
+      products: ${JSON.stringify(productsForAlpine)},
+      get filteredProducts() {
+        if (this.activeCategory === 'all') return this.products;
+        return this.products.filter(p => p.category === this.activeCategory);
+      },
+      openModal(product) {
+        this.selectedProduct = product;
+        this.showModal = true;
+        document.body.style.overflow = 'hidden';
+      },
+      closeModal() {
+        this.showModal = false;
+        this.selectedProduct = null;
+        document.body.style.overflow = '';
+      }
+    }`}
+    x-on:keydown.escape.window="closeModal()"
+  >
+    <div class="section-container">
+      <!-- Category Filter Bar -->
+      <div class="mb-10" role="navigation" aria-label={t.filterLabel}>
+        <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+          <!-- All Products Tab -->
+          <button
+            type="button"
+            class="filter-pill font-accent text-sm font-medium px-4 py-2.5 rounded-full border-2 transition-all duration-200 focus:outline-2 focus:outline-dynared focus:outline-offset-2"
+            x-bind:class="activeCategory === 'all' ? 'bg-dynared text-white border-dynared shadow-md' : 'bg-white text-charcoal border-grey-light hover:border-dynared-300 hover:text-dynared'"
+            x-on:click="activeCategory = 'all'"
+          >
+            {t.allProducts}
+            <span class="ml-1.5 text-xs opacity-80">({products.length})</span>
+          </button>
+
+          {categories.map((cat) => (
+            <button
+              type="button"
+              class="filter-pill font-accent text-sm font-medium px-4 py-2.5 rounded-full border-2 transition-all duration-200 focus:outline-2 focus:outline-dynared focus:outline-offset-2 flex items-center gap-1.5"
+              x-bind:class={`activeCategory === '${cat.id}' ? 'bg-dynared text-white border-dynared shadow-md' : 'bg-white text-charcoal border-grey-light hover:border-dynared-300 hover:text-dynared'`}
+              x-on:click={`activeCategory = '${cat.id}'`}
+            >
+              <span class="hidden sm:inline" set:html={categoryIcons[cat.icon]} />
+              {cat.name[lang]}
+              <span class="ml-1 text-xs opacity-80">({categoryCounts[cat.id] || 0})</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        {products.map((product, index) => {
+          const img = getProductImage(product.image);
+          const catObj = categories.find(c => c.id === product.category);
+          return (
+            <div
+              class="group cursor-pointer"
+              x-show={`activeCategory === 'all' || activeCategory === '${product.category}'`}
+              x-transition:enter="transition ease-out duration-200"
+              x-transition:enter-start="opacity-0 scale-95"
+              x-transition:enter-end="opacity-100 scale-100"
+              x-on:click={`openModal(products[${index}])`}
+              role="button"
+              tabindex="0"
+              x-on:keydown.enter={`openModal(products[${index}])`}
+              aria-label={`${t.viewDetails}: ${product.name[lang]}`}
+            >
+              <div class="card overflow-hidden">
+                <!-- Product Image -->
+                <div class="relative aspect-square bg-white p-4 flex items-center justify-center overflow-hidden">
+                  {img ? (
+                    <Image
+                      src={img}
+                      alt={product.name[lang]}
+                      class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                      widths={[200, 300, 400]}
+                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="w-full h-full bg-gradient-to-br from-dynared-50 to-gold-50 flex items-center justify-center rounded-lg">
+                      <span class="text-grey text-sm font-accent">{lang === 'en' ? 'Image coming soon' : 'Image bientôt disponible'}</span>
+                    </div>
+                  )}
+                  <!-- Category badge overlay -->
+                  <span class="absolute top-3 left-3 badge bg-white/90 backdrop-blur-sm text-charcoal text-[0.65rem] shadow-sm">
+                    {catObj?.name[lang]}
+                  </span>
+                </div>
+                <!-- Product Info -->
+                <div class="p-3 md:p-4">
+                  <h3 class="font-heading text-sm md:text-base font-semibold text-charcoal leading-snug line-clamp-2 group-hover:text-dynared transition-colors duration-200">
+                    {product.name[lang]}
+                  </h3>
+                  <p class="mt-2 text-xs text-grey font-accent flex items-center gap-1 group-hover:text-dynared transition-colors duration-200">
+                    {t.viewDetails}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- No products message -->
+      <div
+        x-show="filteredProducts.length === 0"
+        class="text-center py-16"
+        x-cloak
+      >
+        <p class="text-grey font-accent text-lg">{t.noProducts}</p>
+      </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div
+      x-show="showModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4"
+      x-cloak
+      role="dialog"
+      aria-modal="true"
+      x-bind:aria-label="selectedProduct ? selectedProduct.name : ''"
+    >
+      <!-- Backdrop -->
+      <div
+        class="absolute inset-0 bg-charcoal/70 backdrop-blur-sm"
+        x-show="showModal"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        x-on:click="closeModal()"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Modal Panel -->
+      <div
+        class="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        x-show="showModal"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-95"
+      >
+        <!-- Close button -->
+        <button
+          type="button"
+          class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-charcoal/10 hover:bg-charcoal/20 flex items-center justify-center transition-colors duration-200 focus:outline-2 focus:outline-dynared focus:outline-offset-2"
+          x-on:click="closeModal()"
+          aria-label={t.close}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <!-- Modal Content -->
+        <template x-if="selectedProduct">
+          <div>
+            <!-- Product Image (uses product index to match Astro rendered images) -->
+            <div class="bg-gradient-to-br from-cream to-white p-6 md:p-8 flex items-center justify-center">
+              <div class="w-64 h-64 md:w-80 md:h-80 flex items-center justify-center">
+                {products.map((product, index) => {
+                  const img = getProductImage(product.image);
+                  return img ? (
+                    <div x-show={`selectedProduct && selectedProduct.idx === ${index}`} class="w-full h-full flex items-center justify-center">
+                      <Image
+                        src={img}
+                        alt={product.name[lang]}
+                        class="max-w-full max-h-full object-contain"
+                        widths={[300, 500]}
+                        sizes="320px"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : null;
+                })}
+              </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="p-6 md:p-8">
+              <!-- Category Badge -->
+              <span class="badge bg-dynared-50 text-dynared-600 text-xs mb-3" x-text={`products.find(p => p.category === selectedProduct.category) ? '${categories.map(c => c.name[lang]).join("|||")}' .split('|||')[${JSON.stringify(categories.map(c => c.id))}.indexOf(selectedProduct.category)] : ''`}></span>
+
+              <!-- Product Name -->
+              <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4" x-text="selectedProduct.name"></h2>
+
+              <!-- Description -->
+              <p class="font-body text-charcoal-light leading-relaxed mb-6" x-text="selectedProduct.description"></p>
+
+              <!-- Ingredients -->
+              <template x-if="selectedProduct.ingredients && selectedProduct.ingredients.length > 0">
+                <div class="mb-6">
+                  <h3 class="font-heading text-sm font-semibold uppercase tracking-wider text-charcoal mb-3 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 19 2c1 2 2 4.5 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                    {t.ingredients}
+                  </h3>
+                  <div class="flex flex-wrap gap-2">
+                    <template x-for="ingredient in selectedProduct.ingredients" x-bind:key="ingredient">
+                      <span class="inline-block bg-green-50 text-green-700 text-xs font-accent font-medium px-3 py-1.5 rounded-full border border-green-200" x-text="ingredient"></span>
+                    </template>
+                  </div>
+                </div>
+              </template>
+
+              <!-- Sizes -->
+              <template x-if="selectedProduct.sizes && selectedProduct.sizes.length > 0">
+                <div class="mb-8">
+                  <h3 class="font-heading text-sm font-semibold uppercase tracking-wider text-charcoal mb-3 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                    {t.availableSizes}
+                  </h3>
+                  <div class="flex flex-wrap gap-2">
+                    <template x-for="size in selectedProduct.sizes" x-bind:key="size">
+                      <span class="inline-block bg-gold-50 text-gold-700 text-xs font-accent font-medium px-3 py-1.5 rounded-full border border-gold-200" x-text="size"></span>
+                    </template>
+                  </div>
+                </div>
+              </template>
+
+              <!-- CTA -->
+              <a
+                href={`/${lang}/contact`}
+                class="btn-primary w-full text-center text-base gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                {t.contactDistributor}
+              </a>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products CTA -->
+  <section class="section-padding bg-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-50"></div>
+    <div class="relative section-container text-center">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">{t.ctaHeading}</h2>
+      <p class="text-grey-light font-body text-lg max-w-2xl mx-auto mb-8">{t.ctaText}</p>
+      <a href={`/${lang}/contact`} class="btn-primary text-lg px-8 py-4">
+        {t.ctaButton}
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
