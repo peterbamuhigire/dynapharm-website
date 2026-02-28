@@ -1,86 +1,74 @@
-# Contact Information
+# Contact
 
-This file provides detailed contact and location information for your Contact page, footer, and structured data (Google search results).
-
----
-
-## Business Hours
-
-**Monday**: {e.g., 8:00 AM - 5:00 PM}
-**Tuesday**: {e.g., 8:00 AM - 5:00 PM}
-**Wednesday**: {e.g., 8:00 AM - 5:00 PM}
-**Thursday**: {e.g., 8:00 AM - 5:00 PM}
-**Friday**: {e.g., 8:00 AM - 5:00 PM}
-**Saturday**: {e.g., 9:00 AM - 1:00 PM or Closed}
-**Sunday**: {e.g., Closed}
-
-**Public Holidays**: {e.g., "Closed on all Ugandan public holidays" or "Open with reduced hours"}
+Contact page content — simple, professional, email-only.
 
 ---
 
-## Primary Location
+## Page Title
 
-**Office / Branch Name**: {e.g., "Head Office" or "Main Branch"}
+Get in Touch
 
-**Street / Plot**: {e.g., Plot 24, Kampala Road}
+## Page Subtitle
 
-**Building / Floor**: {e.g., 3rd Floor, Rwenzori Towers — or N/A}
-
-**City**: {e.g., Kampala}
-
-**Region**: {e.g., Central Region}
-
-**Country**: {e.g., Uganda}
-
-**Landmark / Directions**: {e.g., "Opposite Nakasero Market, next to Stanbic Bank" — helps visitors find you}
-
-**Google Maps Coordinates** (optional):
-- Latitude: {e.g., 0.3136}
-- Longitude: {e.g., 32.5811}
-- {Find yours: right-click your location on Google Maps and copy the coordinates}
-
-**Photo of Location**: {e.g., office-building.jpg — or N/A}
+We would love to hear from you. Whether you are interested in our products, the business opportunity, or have a general enquiry, please do not hesitate to reach out.
 
 ---
-
-<!-- ADDITIONAL LOCATIONS
-If you have more than one office or branch, copy the block above and fill it in.
-
-## {Second Location Name}
-
-**Street / Plot**: {address}
-**Building / Floor**: {details}
-**City**: {city}
-**Region**: {region}
-**Country**: {country}
-**Landmark / Directions**: {how to find it}
-**Photo of Location**: {filename.jpg}
-
----
-
--->
 
 ## Contact Form
 
-**What should happen when someone submits the contact form?**
-{e.g., "Send an email to info@yourcompany.com" or "Send to info@yourcompany.com and sales@yourcompany.com"}
+### Fields
 
-**What fields should the form have?** (check all that apply)
-- [x] Name
-- [x] Email
-- [x] Phone number
-- [x] Message
-- [ ] Company name
-- [ ] Service interested in (dropdown)
-- [ ] Preferred contact method (phone / email / WhatsApp)
-- [ ] {Other: specify}
+- **Full Name** (required, text)
+- **Email Address** (required, email)
+- **Subject** (required, dropdown):
+  - Product Enquiry
+  - Business Opportunity
+  - Distributor Support
+  - General Enquiry
+  - Other
+- **Message** (required, textarea)
+
+### Submit Button Text
+
+Send Your Message
+
+### Form Destination
+
+info@dynapharmafrica.com
+
+### Success Message
+
+Thank you for your message. We shall respond within 2-3 working days.
+
+### Error Message
+
+We were unable to send your message. Please try again or email us directly at info@dynapharmafrica.com.
 
 ---
 
-## Emergency / After-Hours Contact (Optional)
+## Section: Interested in Becoming a Distributor?
 
-**After-hours phone**: {e.g., +256 700 999999 — or N/A}
+Starting your own wellness business with Dynapharm is straightforward. As a distributor, you gain access to over 90 premium natural health products, comprehensive training, mentorship from experienced leaders, and a clear path to building a sustainable business.
 
-**After-hours email**: {e.g., urgent@yourcompany.com — or N/A}
+**What you need to get started:**
+- A genuine interest in health and wellness
+- A willingness to learn and grow
+- The Distributor Registration Kit (available through your local DPC)
 
-**Note**: {e.g., "For medical emergencies, call our 24-hour line" — or delete this section}
+Ready to take the first step? Send us a message using the form above, selecting "Business Opportunity" as your subject, and a member of our team will be in touch.
+
+---
+
+## Section: Already a Distributor?
+
+If you are an existing Dynapharm distributor, please contact your upline leader or visit your local Distribution Point Centre (DPC) for product orders, training, and business support. Your DPC team is your first point of contact for day-to-day queries.
+
+For matters that require head office attention, you are welcome to email us at info@dynapharmafrica.com.
+
+---
+
+## Contact Details
+
+**Email**: info@dynapharmafrica.com
+
+This is the sole contact method for Dynapharm Africa. For local product availability and distributor registration, please enquire via the contact form above.

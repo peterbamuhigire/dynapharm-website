@@ -1,172 +1,127 @@
----
-site_url: "https://client-domain.com"
-schema_type: "LocalBusiness"
-google_site_verification: ""
-default_og_image: "/og-image.png"
----
-
 # SEO Configuration
 
-Copy this file to `docs/seo.md` and fill in all sections. The SEO skill reads this during build to generate meta tags, structured data, and sitemaps.
+Search engine optimisation settings for all pages.
 
 ---
 
-## Site Configuration
+## Site Information
 
-**Site URL** (required):
-Replace `https://client-domain.com` with the actual domain.
+**Site URL**: https://dynapharmafrica.com
+**Site Name**: Dynapharm Africa
+**Site Description**: Discover over 90 premium natural health products and a proven business opportunity with Dynapharm Africa. Health beverages, nutritional supplements, herbal formulations, personal care, and agricultural solutions — operating in 40+ countries.
 
-**Schema Type** (recommended):
-Choose the most specific type for your business:
-- `LocalBusiness` (generic fallback)
-- `LegalService` (law firm)
-- `MedicalBusiness` (healthcare)
-- `FinancialService` (accounting, banking)
-- `AutomotiveBusiness` (auto repair, dealership)
-- `Restaurant` (food service)
-- `RetailStore` (e-commerce)
-- `ProfessionalService` (consulting, real estate)
-- `EducationalOrganization` (school, university)
-- `RealEstateAgent` (property/rental)
-- `AccountingService` (CPA, bookkeeping)
-- `GeneralContractor` (construction)
+## Schema Types
 
-If unsure, use `LocalBusiness` or `ProfessionalService`.
+- **Organisation** — applied site-wide
+- **Product** — applied to individual product entries on the Products page
+- **FAQPage** — applied to the FAQ page
+- **BreadcrumbList** — applied to all inner pages
 
-**Google Site Verification Code** (optional):
-If you've already verified ownership in Google Search Console, paste the verification code here. This is added to the `<head>` automatically.
+## Organisation Schema
 
----
-
-## Per-Page Meta Tags
-
-Every page needs:
-1. **Unique title tag** (50-60 characters)
-2. **Unique meta description** (150-160 characters)
-
-Format: `title: "Page Title | Brand Name"`
-
-Rules:
-- Front-load primary keyword in title
-- Include brand name at the end
-- For homepage, include location if relevant: "Best Lawyers in Kampala | FirmName"
-- Use natural language, not keyword stuffing
-- Never copy meta from another page
-
-### Homepage
-
-**Title**: (50-60 chars)
-```
-Premier Legal Services in Kampala | CompanyName
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dynapharm Africa",
+  "url": "https://dynapharmafrica.com",
+  "logo": "https://dynapharmafrica.com/assets/images/branding/Logo-Full-Color.png",
+  "description": "International health and wellness company offering 90+ natural products and a proven business opportunity across 40+ countries in Africa and beyond.",
+  "email": "info@dynapharmafrica.com",
+  "sameAs": []
+}
 ```
 
-**Description**: (150-160 chars)
+## Per-Page SEO
+
+### Home (/)
+**Title**: Dynapharm Africa — Natural Health Products & Business Opportunity
+**Description**: Discover 90+ premium natural health products — Spirulina, Ganoderma coffee, Chlorophyll, Noni, and more. Join thousands of distributors building healthier, wealthier communities across Africa. Health, Wealth, Freedom — The Dynapharm Way.
+**Keywords**: Dynapharm Africa, natural health products Africa, wellness supplements, Ganoderma coffee, Spirulina tablets, network marketing Africa, MLM business opportunity, health and wellness Africa
+
+### Products (/products)
+**Title**: Our Products — 90+ Natural Health & Wellness Products | Dynapharm Africa
+**Description**: Browse Dynapharm's complete product catalogue — health beverages with Ganoderma and Ginseng, Spirulina supplements, Chlorophyll drinks, Tea Tree Oil personal care, D.I. Grow bio-fertiliser, and more. Natural ingredients, international quality.
+**Keywords**: Dynapharm products, natural health supplements Africa, Ganoderma coffee Africa, Spirulina supplements, Chlorophyll drink, D.I. Grow bio fertiliser, Bee Pollen capsules, Tongkat Ali, Noni juice, natural wellness products
+
+### Business Opportunity (/business-opportunity)
+**Title**: Business Opportunity — Build Your Wellness Business | Dynapharm Africa
+**Description**: Start your own health and wellness business with Dynapharm Africa. Low investment, comprehensive training, 7 achievement ranks from Distributor to Crown Diamond Manager. Join distributors across 40+ countries. No experience required.
+**Keywords**: become a distributor Dynapharm, MLM business opportunity Africa, network marketing health products, Dynapharm distributor registration, wellness business Africa, earn with Dynapharm, Crown Diamond Manager
+
+### Wellness Guide (/wellness-guide)
+**Title**: Wellness Guide — Natural Health Solutions by Category | Dynapharm Africa
+**Description**: Explore Dynapharm's 11 wellness categories — cardiovascular health, immune support, energy and vitality, digestive health, and more. Find natural products that support your wellbeing. Educational wellness content.
+**Keywords**: natural wellness solutions, health supplements by category, immune support supplements, energy vitality supplements, digestive health products, natural health guide Africa, Chlorophyll drink benefits, Spirulina health benefits
+
+### About (/about)
+**Title**: About Dynapharm Africa — Our Story, Mission & Values
+**Description**: Learn about Dynapharm Africa — over 20 years of natural health products, operating in 40+ countries, empowering communities through wellness and entrepreneurship. Health, Wealth, Freedom.
+**Keywords**: about Dynapharm Africa, Dynapharm history, natural health company Africa, wellness company, Dynapharm mission values, health wealth freedom, Dynapharm story
+
+### Contact (/contact)
+**Title**: Contact Dynapharm Africa — Get in Touch
+**Description**: Contact Dynapharm Africa for product enquiries, distributor registration, or general questions. Email us at info@dynapharmafrica.com. Interested in becoming a distributor? Start your journey today.
+**Keywords**: contact Dynapharm Africa, Dynapharm enquiry, become a Dynapharm distributor, Dynapharm email, distributor registration Dynapharm
+
+### FAQ (/faq)
+**Title**: FAQ — Frequently Asked Questions | Dynapharm Africa
+**Description**: Answers to common questions about Dynapharm products, the business opportunity, distributor ranks, Business Volume (BV), D.I. Grow fertiliser, Ganoderma, Spirulina, and more.
+**Keywords**: Dynapharm FAQ, what is Dynapharm, Dynapharm products questions, how to become a distributor, what is BV Business Volume, Dynapharm ranks, D.I. Grow FAQ, Ganoderma FAQ
+
+## Sitemap Configuration
+
+Generate XML sitemap at `/sitemap.xml` with all pages in both languages:
+
 ```
-Expert legal counsel in corporate law, litigation, and real estate. Trusted by 500+ clients across Uganda since 2010. Free initial consultation available.
+https://dynapharmafrica.com/en/
+https://dynapharmafrica.com/en/products
+https://dynapharmafrica.com/en/business-opportunity
+https://dynapharmafrica.com/en/wellness-guide
+https://dynapharmafrica.com/en/about
+https://dynapharmafrica.com/en/contact
+https://dynapharmafrica.com/en/faq
+https://dynapharmafrica.com/fr/
+https://dynapharmafrica.com/fr/products
+https://dynapharmafrica.com/fr/business-opportunity
+https://dynapharmafrica.com/fr/wellness-guide
+https://dynapharmafrica.com/fr/about
+https://dynapharmafrica.com/fr/contact
+https://dynapharmafrica.com/fr/faq
 ```
 
-### About
+## Hreflang Tags
 
-**Title**: (50-60 chars)
-```
-About CompanyName | 15 Years of Legal Excellence
-```
+Every page must include hreflang tags for both languages:
 
-**Description**: (150-160 chars)
-```
-Learn about our team of experienced attorneys and our commitment to justice. Serving clients across East Africa from our Kampala office since 2010.
+```html
+<link rel="alternate" hreflang="en" href="https://dynapharmafrica.com/en/{page}" />
+<link rel="alternate" hreflang="fr" href="https://dynapharmafrica.com/fr/{page}" />
+<link rel="alternate" hreflang="x-default" href="https://dynapharmafrica.com/en/{page}" />
 ```
 
-### Services
+## Open Graph / Social Media
 
-**Title**: (50-60 chars)
-```
-Our Legal Services | Corporate, Litigation & Real Estate Law
-```
+**og:site_name**: Dynapharm Africa
+**og:type**: website
+**og:image**: /assets/images/branding/Logo-Full-Color.png (or a dedicated OG image if created)
+**twitter:card**: summary_large_image
 
-**Description**: (150-160 chars)
-```
-Comprehensive legal services including corporate advisory, civil litigation, real estate transactions, regulatory compliance, and contract drafting for individuals and businesses.
-```
+Per-page og:title and og:description should match the SEO title and description above.
 
-### Contact
+## Robots.txt
 
-**Title**: (50-60 chars)
 ```
-Contact CompanyName | Get Legal Help Today
+User-agent: *
+Allow: /
+Sitemap: https://dynapharmafrica.com/sitemap.xml
 ```
 
-**Description**: (150-160 chars)
-```
-Reach our Kampala office for expert legal consultation. Call +256 700 000000 or visit us at Plot 12, Kampala Road. Available Mon-Fri, 8am-5pm.
-```
+## Additional SEO Notes
 
-### [Add Additional Pages]
-
-For each page on the site, add:
-
-**Title**: [unique title, 50-60 chars]
-**Description**: [unique description, 150-160 chars]
-
----
-
-## Geo-Coordinates (Optional but Recommended)
-
-If you want your business to appear in Google Maps and local search:
-
-**Latitude**: 0.3136 (example: Kampala)
-**Longitude**: 32.5811 (example: Kampala)
-
-Find your coordinates:
-1. Go to Google Maps
-2. Right-click on your office location
-3. Select the coordinates to copy them
-4. Paste here (latitude first, then longitude)
-
----
-
-## Key Points to Remember
-
-✅ **Unique titles/descriptions on every page** — Google penalizes duplicates
-✅ **Front-load keywords naturally** — "Best Lawyers in Kampala" not "Lawyers Best Kampala"
-✅ **Think like a customer** — Your title/description appear in search results; write for humans, not robots
-✅ **Character limits matter** — Google truncates titles at ~60 chars, descriptions at ~160 chars
-✅ **Brand consistency** — Include company name in every title (helps brand recognition)
-✅ **Call-to-action optional** — "Free consultation" or "Get help today" can increase clicks, but keep it natural
-
----
-
-## Testing Your Work
-
-Before delivery:
-
-1. **Google Search Central:** https://search.google.com/test/rich-results
-   - Paste your homepage URL
-   - Should show Organization, WebSite, and WebPage structured data
-
-2. **Title/Description char count:**
-   - Titles: 50-60 (no more than 60)
-   - Descriptions: 150-160 (no more than 160)
-
-3. **Uniqueness:**
-   - No two pages should have identical titles or descriptions
-
----
-
-## FAQ
-
-**Q: Do I need keywords in the title?**
-A: Yes, but naturally. "Best Corporate Lawyers in Kampala" is good. "Corporate Lawyers Kampala Best Legal Services Law Firm" is keyword stuffing and will hurt you.
-
-**Q: Can I use special characters?**
-A: Avoid them. Stick to letters, numbers, spaces, and hyphens. Google may not display special characters correctly.
-
-**Q: What if my business operates nationwide?**
-A: Remove the location from homepage title. Use "Premier Legal Services in Uganda | CompanyName" instead of city-specific.
-
-**Q: How often should I update these?**
-A: Only when your business changes (new services, new location, new phone number). Don't change just for the sake of it — Google rewards consistency.
-
----
-
-**Done?** Save this as `docs/seo.md` and run the SEO skill. It will generate meta tags, structured data, and an audit report automatically.
+- All images must have descriptive alt text
+- Use semantic HTML headings (one h1 per page, sequential h2-h6)
+- Internal linking between pages (products → wellness guide, business opportunity → contact)
+- Page load speed target: under 500KB first load (excluding lazy images)
+- Mobile-first responsive design
+- Structured data for FAQ page using FAQPage schema

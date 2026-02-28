@@ -1,59 +1,81 @@
 # Style Brief
 
-Tell us how you want your website to look and feel. There are no wrong answers — this helps us match the design to your brand personality.
+The visual direction for this website — read by the design-system skill to generate your colour palette, typography, and layout tokens.
 
 ---
 
-## Overall Mood
+## Mood / Personality
 
-**How should visitors feel when they land on your site?**
-Choose one or two: Professional / Friendly / Bold / Elegant / Playful / Warm / Modern / Traditional / Luxurious / Simple / Energetic / Calm / Trustworthy / Creative
+Natural, vibrant, aspirational. A bold wellness brand that radiates energy and vitality. The mood should balance warmth and confidence — inviting yet authoritative. Think of the feeling when you hold a fresh, natural product in your hands: trust, quality, vitality.
 
-Your choice: {e.g., "Professional and Warm"}
-
----
+The overall feel should be modern and sleek — distinctive, not generic. Clean lines with organic warmth. Spacious layouts that breathe. Every element should feel intentional and considered.
 
 ## Colour Preferences
 
-**Do you have specific brand colours?**
-{e.g., "Yes — our brand colours are dark green (#2D5A4F) and gold (#E8B84A)" or "No — please choose colours that suit our industry"}
+**Primary — Dynapharm Red**: The brand's signature colour. A bold, warm red that conveys vitality, energy, and passion for wellness. Not aggressive or alarming — more like the rich red of ripe fruit or the warmth of a sunset. Use for primary CTAs, brand accents, and key highlights.
 
-**Any colours you dislike or want to avoid?**
-{e.g., "No bright pink or neon colours" or "None — we are open to anything"}
+**Secondary — Natural Gold/Amber**: Warm gold representing wealth, achievement, and premium quality. Use for rank badges, achievement highlights, and luxury accents. The colour of success and aspiration.
 
----
+**Tertiary — Deep Forest Green**: The colour of chlorophyll, nature, and growth. Representing the health pillar. Use for wellness-related sections, product category badges, and nature-inspired accents.
 
-## Websites You Admire
+**Neutrals**: Warm cream/ivory backgrounds (not stark white), rich charcoal for body text (not pure black), soft greys for secondary elements. The warmth prevents a clinical feel.
 
-List 1-3 websites whose design you like. They don't need to be in your industry. For each one, say what you like about it.
+**Accent — Earth Brown**: Grounding, natural, African earth. Use sparingly for borders, dividers, and subtle background textures.
 
-**Website 1**: {URL}
-**What you like**: {e.g., "Clean layout, nice use of white space, professional photography"}
+Avoid: Cold corporate blues, generic MLM purples, sterile whites, neon or fluorescent tones.
 
-**Website 2**: {URL}
-**What you like**: {e.g., "Bold colours, modern feel, good on mobile"}
+## Dark Mode
 
-**Website 3**: {URL}
-**What you like**: {e.g., "Simple navigation, easy to find information"}
+Light mode is primary — health and wellness sites feel better with light, airy layouts. Dark mode is optional and secondary. If implemented, use deep charcoal backgrounds with warm-tinted neutrals, keeping the red and gold accents vibrant.
 
----
+## Typography
 
-## Design Preferences
+**Headings**: A confident, modern sans-serif with character. Bold and impactful. Consider fonts with slightly geometric or humanist qualities — distinctive but highly legible. No Inter, Roboto, Arial, or system fonts.
 
-**Photography style**: {e.g., "Use our actual photos" / "Mix of our photos and professional stock" / "We only have a logo, no photos"}
+**Body**: A warm, readable serif or humanist sans-serif that pairs well with the heading font. Comfortable for long-form reading. Generous line-height (1.6-1.75).
 
-**Animations**: {e.g., "Subtle — gentle fade-ins as you scroll" / "Bold — eye-catching animations" / "Minimal — keep it simple and fast"}
+**Accents**: A subtle display or condensed font for category labels, badges, and small caps — adding typographic variety without clutter.
 
-**Layout density**: {e.g., "Spacious with lots of white space" / "Content-rich — show a lot of information" / "Balanced"}
+## Hero Style
 
----
+Full-width hero sections with bold typography and layered imagery. Diagonal cuts or organic flowing shapes separating sections — not straight horizontal lines. Background treatments: subtle gradient overlays on images, nature-inspired textures, or mesh gradient backgrounds in brand colours.
 
-## Specific Requests (Optional)
+Photography direction: authentic African contexts — families, communities, markets, farms, healthy living. NOT stock photos of models. Dynapharm products in natural, real-world settings.
 
-{Anything else about the design — e.g., "We want a full-screen hero image on the homepage", "We prefer rounded buttons over sharp corners", "Our competitor's site looks like X — we want to look different." Delete if nothing to add.}
+## Layout Style
 
----
+- **Clean and spacious**: Generous whitespace between sections. Content that breathes.
+- **Asymmetric touches**: Not everything perfectly centred. Offset images, diagonal section dividers, overlapping elements that create visual interest.
+- **Card-based product display**: Polished product cards with subtle hover effects — lift, shadow, border glow.
+- **Section variety**: Alternate between full-width sections, contained content, and feature panels to maintain visual rhythm.
+- **Scroll-triggered animations**: Subtle GSAP animations — elements that fade and slide into view. Staggered reveals for card grids. Parallax on hero images. Not excessive — elegant and purposeful.
+
+## Photography Direction
+
+- Real African contexts: communities, families, homes, farms, local markets
+- Dynapharm products in natural settings — held, used, displayed in real environments
+- Vibrant colours that complement the red-gold-green palette
+- Avoid: sterile white-background product shots, generic stock photos, MLM clichés (luxury cars, mansions, cash)
+- Hero images: lifestyle shots that convey health, community, and opportunity
 
 ## What to Avoid
 
-{e.g., "Don't make it look like a generic template", "Avoid stock photos of people in suits", "No flashy animations — our clients are conservative." Delete if nothing to add.}
+- MLM clichés: luxury cars, mansions, "freedom" stock photos with beaches and laptops
+- Clinical/pharmaceutical aesthetics — this is wellness, not medicine
+- Cluttered product grids — each product deserves space to breathe
+- Aggressive sales pop-ups, countdown timers, or urgency tactics
+- Generic SaaS card layouts or purple-gradient-on-white templates
+- Inter, Roboto, Arial, or system fonts as primary typefaces
+- Cookie-cutter Bootstrap default styling
+
+## References
+
+Wellness and supplement brands with distinctive visual identity — but adapted with authentically African aesthetics. Think premium organic product brands combined with community-focused African design sensibility. The site should feel like it belongs to Africa whilst meeting international design standards.
+
+## Special Considerations
+
+- **Product catalogue**: The centrepiece of the site. Cards must be polished, filterable, and feel like a premium e-commerce experience (without prices).
+- **Rank progression**: Visual journey from DI to CDM — should feel like climbing a mountain or following a path. Achievement badges in gold.
+- **Wellness categories**: Soft, colour-coded category badges — each of the 11 categories could have its own subtle colour within the main palette.
+- **Mobile-first**: Touch targets minimum 44x44px. Product grid adapts gracefully from 2 to 4 columns.
+- **Text expansion**: French is 20-40% longer than English. All layouts must accommodate this without breaking.

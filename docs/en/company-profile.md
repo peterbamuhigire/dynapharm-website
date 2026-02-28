@@ -1,103 +1,121 @@
 # Company Profile
 
-Fill in every section below. This is the most important document — almost every part of your website draws from it. Leave nothing blank; if something doesn't apply, write "N/A".
-
----
-
 ## Company Name
 
-{Your full registered company name}
+Dynapharm Africa
 
 ## Tagline
 
-{A short phrase that captures what you do — e.g., "Building East Africa's Future, One Project at a Time"}
+Health, Wealth, Freedom — The Dynapharm Way
 
 ## What We Do
 
-{2-3 sentences describing your core business. Be specific — not "we offer solutions", but "we design and build residential homes in Kampala and Wakiso districts."}
+Dynapharm Africa is a health and wellness company that manufactures and distributes over 90 premium natural health products across the African continent and beyond. Rooted in traditional herbal wisdom and backed by modern manufacturing standards, we empower communities through quality natural supplements, beverages, personal care products, and agricultural solutions. We also offer a proven business opportunity through our network marketing model, enabling individuals to build sustainable businesses whilst promoting wellness in their communities.
 
 ## Who We Serve
 
-{Describe your ideal customer. Be specific — e.g., "Middle-income families looking to build their first home" or "SMEs in Uganda needing reliable accounting services."}
+Health-conscious individuals and families seeking natural alternatives to support their wellbeing. Aspiring entrepreneurs looking for a low-barrier business opportunity with comprehensive training and support. Existing distributors building their wellness networks across Africa and beyond.
 
 ## What Makes Us Different
 
-{Your unique selling point. What do you do that competitors don't? Why should someone choose you over the alternatives? Be honest and specific — e.g., "We are the only firm in Kampala that offers a 12-month structural guarantee on every build."}
+Dynapharm bridges traditional herbal wisdom with modern science. Our product range — from Ganoderma-enriched coffees to Spirulina supplements and D.I. Grow bio-fertiliser — spans wellness, nutrition, personal care, and agriculture. We are not merely a product company; we are a community of entrepreneurs. Every distributor receives training, mentorship, and a clear path from Distributor to Crown Diamond Manager. With a presence in over 40 countries and local Distribution Point Centres (DPCs) serving communities directly, Dynapharm combines global scale with genuinely local presence.
 
 ## Industry / Sector
 
-{e.g., Construction, Legal Services, Healthcare, Education, Tourism, Agriculture, Technology, Retail, etc.}
+Health & Wellness / Network Marketing / Natural Supplements / Agriculture
 
 ## Founded
 
-{Year — e.g., 2015}
+1981 — Penang, Malaysia. Founded by Mr. Oi Ho Chooi.
 
 ---
 
 ## Contact Information
 
-**Phone**: {e.g., +256 700 123456}
-
-**Alternative Phone**: {e.g., +256 312 123456 — or N/A}
-
-**Email**: {e.g., info@yourcompany.com}
-
-**Website**: {e.g., www.yourcompany.com — or "new site" if this is the first website}
+**Email**: info@dynapharmafrica.com
 
 ---
 
 ## Physical Address
 
-**Street / Plot**: {e.g., Plot 24, Kampala Road}
-
-**Building / Floor**: {e.g., 3rd Floor, Rwenzori Towers — or N/A}
-
-**City**: {e.g., Kampala}
-
-**Region / District**: {e.g., Central Region}
-
-**Country**: {e.g., Uganda}
+N/A — Dynapharm Africa operates across 40+ countries through local Distribution Point Centres (DPCs). For enquiries, please contact us via email.
 
 ---
 
 ## Social Media
 
-Fill in the ones you have. Delete or leave blank the ones you don't use.
-
-**Facebook**: {full URL — e.g., https://facebook.com/yourcompany}
-
-**Instagram**: {full URL}
-
-**Twitter / X**: {full URL}
-
-**LinkedIn**: {full URL}
-
-**YouTube**: {full URL}
-
-**TikTok**: {full URL}
-
-**WhatsApp Business**: {phone number — e.g., +256 700 123456}
+N/A
 
 ---
 
 ## Logo Files
 
-Place your logo files in the `photo-bank/` folder. List the filenames here:
+**Main Logo**: Logo-Full-Color.png
 
-**Main Logo**: {e.g., logo-full-color.png}
+**Logo for Dark Backgrounds**: Logo-Dark-Mode.png
 
-**Logo for Dark Backgrounds**: {e.g., logo-white.png — or N/A}
-
-**Square Logo / Icon**: {e.g., logo-icon.png — or N/A}
+**Square Logo / Icon**: N/A
 
 ---
 
-## Certifications, Awards & Memberships (Optional)
+## Brand Pillars
 
-{List any professional memberships, certifications, awards, or recognitions — e.g., "Member of Uganda Law Society", "ISO 9001:2015 Certified", "Best New Business Award 2023". Delete this section if none.}
+### Health
+Premium natural products — scientifically formulated using ingredients like Spirulina, Ganoderma, Tongkat Ali, Chlorophyll, Bee Pollen, and Noni. Manufactured to international quality standards.
+
+### Wealth
+A proven business opportunity through network marketing. Multiple income streams through personal sales and team building. Seven achievement ranks from Distributor to Crown Diamond Manager.
+
+### Freedom
+Financial independence and flexibility. Build a business on your own terms, at your own pace, with full training and support.
+
+---
+
+## Key Numbers
+
+- **90+** natural health and wellness products
+- **40+** countries of operation across Africa and beyond
+- **11** wellness categories
+- **7** achievement ranks (DI, M, SM, RM, PM, DM, CDM)
+- **8** product categories: Health Beverages, Nutritional Supplements, Herbal & Traditional Medicine, Immune & Vitality Boosters, Personal Care, Wellness Foods, Agriculture, Home & Lifestyle
+
+---
+
+## Mission
+
+Empowering people with natural health products and entrepreneurial opportunity — building healthier, wealthier communities across Africa and beyond.
+
+## Vision
+
+A world where natural health and financial independence are within everyone's reach.
+
+## Values
+
+- **Quality First** — every product meets international manufacturing standards
+- **Natural Always** — sourced from nature, backed by science
+- **People Before Profit** — distributors are partners, not salespeople
+- **Community Impact** — healthy people build healthy communities
+- **Integrity** — honest business practices and transparent communication
+
+---
+
+## Certifications, Awards & Memberships
+
+Dynapharm operates from a GMP-certified manufacturing facility and has received multiple industry awards and certifications over its four decades of operation:
+
+- National Product Quality Excellence Awards
+- Philippine Marketing Excellence Awards
+- 2005 National Shopper's Choice Awards
+- Asian Star Brands Awards
+- Agore Institute for Marketing Excellence
+- Philippine Quality Awards for Business Excellence
+- Asia Pacific International Honesty Enterprise Keris Award
+
+**Photo**: records-of-acievement.jpg
+**Photo**: DYNAPHARM-AWARDS-CERTIFICATES.jpg
 
 ---
 
 ## Anything Else
 
-{Anything important about your company that doesn't fit above — e.g., "We operate in 3 countries", "We are a family-owned business now in our second generation", "We serve over 2,000 clients per year." Delete if nothing to add.}
+Dynapharm was founded in 1981 in Penang, Malaysia by Mr. Oi Ho Chooi, driven by a vision to improve quality of life through natural health products. The company moved to its current GMP-certified manufacturing premises in 1990 and entered the world of network marketing in 1995. In 2005, Ms Esther Ampumuza brought Dynapharm to Africa, establishing what would become the company's strongest growth market. Today, Dynapharm operates through independent franchises in each country, supported by local Distribution Point Centres (DPCs) that serve as community wellness hubs. The product range includes signature ingredients such as Ganoderma (Lingzhi mushroom), Spirulina, Chlorophyll, Tongkat Ali, and Bee Pollen — ingredients valued in traditional wellness practices for centuries.
