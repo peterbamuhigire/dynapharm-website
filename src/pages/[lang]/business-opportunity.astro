@@ -36,7 +36,8 @@ const content = {
       { title: 'Earn', description: 'Generate income through personal sales margins and team performance bonuses. Your effort determines your reward.', icon: 'star' },
     ],
     rankTitle: 'Rank Progression',
-    rankSubtitle: 'Advance through 7 achievement ranks — each milestone reflecting your growth, dedication, and leadership.',
+    rankSubtitle: 'Advance through 7 achievement ranks — each milestone reflecting your growth, your team\'s product sales, and your leadership.',
+    rankNote: 'Each qualifying manager leg must maintain the monthly minimum product sales volume for you to access the full range of bonuses at your rank. This ensures that every level of the business is built on genuine product movement to real customers.',
     whatYouEarnTitle: 'What You Earn',
     whatYouEarnSubtitle: 'Your earnings depend on your effort, your team, and your commitment.',
     earnDisclaimer: 'Income levels vary and depend on individual effort, market conditions, and team performance. No specific income is guaranteed.',
@@ -87,7 +88,8 @@ const content = {
       { title: 'Gagner', description: 'Générez des revenus grâce aux marges de vente personnelles et aux bonus de performance d\'équipe. Votre effort détermine votre récompense.', icon: 'star' },
     ],
     rankTitle: 'Progression des Rangs',
-    rankSubtitle: 'Progressez à travers 7 rangs de réussite — chaque étape reflétant votre croissance, votre dévouement et votre leadership.',
+    rankSubtitle: 'Progressez à travers 7 rangs de réussite — chaque étape reflétant votre croissance, les ventes de produits de votre équipe et votre leadership.',
+    rankNote: 'Chaque branche qualifiée au niveau Manager doit maintenir le volume minimum mensuel de ventes de produits pour que vous puissiez accéder à la gamme complète de bonus à votre rang. Cela garantit que chaque niveau de l\'activité repose sur un véritable mouvement de produits vers de vrais clients.',
     whatYouEarnTitle: 'Ce Que Vous Gagnez',
     whatYouEarnSubtitle: 'Vos revenus dépendent de votre effort, de votre équipe et de votre engagement.',
     earnDisclaimer: 'Les niveaux de revenus varient et dépendent de l\'effort individuel, des conditions du marché et de la performance de l\'équipe. Aucun revenu spécifique n\'est garanti.',
@@ -131,13 +133,13 @@ const t = content[lang];
 /* ------------------------------------------------------------------ */
 
 const ranks = [
-  { abbr: 'DI', name: 'Distributor', nameFr: 'Distributeur', bv: 0, description: { en: 'Your starting point. Begin your journey with Dynapharm and start sharing products with your community.', fr: 'Votre point de départ. Commencez votre parcours avec Dynapharm et partagez les produits avec votre communauté.' }, color: 'bg-grey-light', textColor: 'text-charcoal' },
-  { abbr: 'M', name: 'Manager', nameFr: 'Manager', bv: 500, description: { en: 'Your first leadership milestone. You have built a foundation and are growing your network.', fr: 'Votre première étape de leadership. Vous avez construit une base et développez votre réseau.' }, color: 'bg-green-100', textColor: 'text-green-700' },
-  { abbr: 'SM', name: 'Senior Manager', nameFr: 'Senior Manager', bv: 1000, description: { en: 'Demonstrating consistent effort and growing influence within your distribution network.', fr: 'Démontrant un effort constant et une influence croissante au sein de votre réseau de distribution.' }, color: 'bg-green-200', textColor: 'text-green-800' },
-  { abbr: 'RM', name: 'Ruby Manager', nameFr: 'Ruby Manager', bv: 2500, description: { en: 'A significant achievement. Your team and sales volume reflect real dedication and business acumen.', fr: 'Une réalisation significative. Votre équipe et votre volume de ventes reflètent un vrai dévouement.' }, color: 'bg-dynared-100', textColor: 'text-dynared-700' },
-  { abbr: 'PM', name: 'Pearl Manager', nameFr: 'Pearl Manager', bv: 5000, description: { en: 'An established leader with a strong team. Your influence extends across your community.', fr: 'Un leader établi avec une équipe solide. Votre influence s\'étend à travers votre communauté.' }, color: 'bg-cream-dark', textColor: 'text-charcoal' },
-  { abbr: 'DM', name: 'Diamond Manager', nameFr: 'Diamond Manager', bv: 10000, description: { en: 'Elite leadership status. You are among Dynapharm\'s most accomplished business builders.', fr: 'Statut de leadership d\'élite. Vous êtes parmi les bâtisseurs d\'activité les plus accomplis de Dynapharm.' }, color: 'bg-gold-100', textColor: 'text-gold-700' },
-  { abbr: 'CDM', name: 'Crown Diamond Manager', nameFr: 'Crown Diamond Manager', bv: 20000, description: { en: 'The pinnacle of achievement. A Crown Diamond Manager represents the very best in Dynapharm leadership.', fr: 'Le sommet de la réussite. Un Crown Diamond Manager représente le meilleur du leadership Dynapharm.' }, color: 'bg-gold-200', textColor: 'text-gold-800' },
+  { abbr: 'DI', name: 'Distributor', nameFr: 'Distributeur', qualifier: { en: 'Starting rank', fr: 'Rang de départ' }, description: { en: 'Your starting point. Register, receive your product kit, and begin sharing Dynapharm\'s natural health products with your community. Your earnings start with direct product sales to customers.', fr: 'Votre point de départ. Inscrivez-vous, recevez votre kit de produits et commencez à partager les produits de santé naturels Dynapharm avec votre communauté. Vos revenus commencent par les ventes directes de produits aux clients.' }, color: 'bg-grey-light', textColor: 'text-charcoal' },
+  { abbr: 'M', name: 'Manager', nameFr: 'Manager', qualifier: { en: 'Personal product sales milestone', fr: 'Objectif de ventes personnelles atteint' }, description: { en: 'Your first leadership milestone. You have built a consistent customer base and demonstrated that you can sell real products to real people. You are now eligible to build and mentor your own team.', fr: 'Votre première étape de leadership. Vous avez constitué une base de clients régulière et démontré votre capacité à vendre de vrais produits à de vrais clients. Vous pouvez désormais constituer et accompagner votre propre équipe.' }, color: 'bg-green-100', textColor: 'text-green-700' },
+  { abbr: 'SM', name: 'Senior Manager', nameFr: 'Senior Manager', qualifier: { en: '1 Manager-level leg', fr: '1 branche au niveau Manager' }, description: { en: 'You have developed at least one downline team member who has themselves reached Manager level — meaning they too are selling products and building their own customer base. This is your first proof of leadership through mentorship.', fr: 'Vous avez développé au moins un membre de votre équipe qui a lui-même atteint le niveau Manager — ce qui signifie qu\'il vend également des produits et construit sa propre base de clients. C\'est votre première preuve de leadership par le mentorat.' }, color: 'bg-green-200', textColor: 'text-green-800' },
+  { abbr: 'RM', name: 'Ruby Manager', nameFr: 'Ruby Manager', qualifier: { en: '3 Manager-level legs', fr: '3 branches au niveau Manager' }, description: { en: 'A significant achievement. You have three separate downline legs, each led by a Manager who maintains their own product sales volume. Your network is generating real product movement across multiple teams.', fr: 'Une réalisation significative. Vous avez trois branches distinctes, chacune dirigée par un Manager qui maintient son propre volume de ventes de produits. Votre réseau génère un véritable mouvement de produits à travers plusieurs équipes.' }, color: 'bg-dynared-100', textColor: 'text-dynared-700' },
+  { abbr: 'PM', name: 'Pearl Manager', nameFr: 'Pearl Manager', qualifier: { en: '5 Manager-level legs', fr: '5 branches au niveau Manager' }, description: { en: 'An established leader with five active Manager-level legs. Each leg represents a functioning product distribution team serving customers in their community. Your influence now extends across a broad, product-driven network.', fr: 'Un leader établi avec cinq branches actives au niveau Manager. Chaque branche représente une équipe de distribution de produits fonctionnelle au service des clients de sa communauté. Votre influence s\'étend désormais à un vaste réseau axé sur les produits.' }, color: 'bg-cream-dark', textColor: 'text-charcoal' },
+  { abbr: 'DM', name: 'Diamond Manager', nameFr: 'Diamond Manager', qualifier: { en: '7 Manager-level legs', fr: '7 branches au niveau Manager' }, description: { en: 'Elite leadership. Seven Manager-level legs, each maintaining monthly product sales volume. At this level, you have built a substantial organisation of teams who are genuinely serving customers with quality health products across their communities.', fr: 'Leadership d\'élite. Sept branches au niveau Manager, chacune maintenant un volume mensuel de ventes de produits. À ce niveau, vous avez bâti une organisation substantielle d\'équipes qui servent véritablement les clients avec des produits de santé de qualité dans leurs communautés.' }, color: 'bg-gold-100', textColor: 'text-gold-700' },
+  { abbr: 'CDM', name: 'Crown Diamond Manager', nameFr: 'Crown Diamond Manager', qualifier: { en: '9 Manager-level legs', fr: '9 branches au niveau Manager' }, description: { en: 'The pinnacle of achievement. Nine Manager-level legs, each an active product distribution team. A Crown Diamond Manager has built a wide, deep organisation where products flow consistently to customers — the hallmark of a sustainable, product-centred business.', fr: 'Le sommet de la réussite. Neuf branches au niveau Manager, chacune étant une équipe active de distribution de produits. Un Crown Diamond Manager a bâti une organisation large et profonde où les produits arrivent régulièrement aux clients — la marque d\'une activité durable centrée sur les produits.' }, color: 'bg-gold-200', textColor: 'text-gold-800' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -267,7 +269,7 @@ const earnIcons: Record<string, string> = {
                   {lang === 'en' ? rank.name : rank.nameFr}
                 </h3>
                 <span class={`badge text-xs ${index === ranks.length - 1 ? 'bg-gold-100 text-gold-700 border border-gold-300' : 'bg-white text-charcoal-light border border-grey-light'}`}>
-                  {rank.bv.toLocaleString()} BV
+                  {rank.qualifier[lang]}
                 </span>
               </div>
               <p class="text-sm text-charcoal-light font-body leading-relaxed">
@@ -276,6 +278,18 @@ const earnIcons: Record<string, string> = {
             </div>
           </div>
         ))}
+      </div>
+
+      <!-- Monthly sales volume note -->
+      <div class="max-w-3xl mx-auto mt-10 p-5 md:p-6 rounded-xl bg-green-50 border border-green/20">
+        <div class="flex gap-3">
+          <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-green-100 text-green flex items-center justify-center mt-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <p class="text-sm text-charcoal font-body leading-relaxed">
+            {t.rankNote}
+          </p>
+        </div>
       </div>
     </div>
   </section>

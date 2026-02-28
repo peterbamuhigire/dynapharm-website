@@ -725,8 +725,8 @@ const timelineColors = ['bg-green', 'bg-gold', 'bg-dynared', 'bg-green', 'bg-gol
 
       <!-- Justus Muhangi — Featured Africa Leader -->
       <div class="max-w-3xl mx-auto mb-12">
-        <div class="card overflow-hidden md:flex md:items-center">
-          <div class="md:w-2/5 aspect-[4/5] md:aspect-auto md:h-full overflow-hidden bg-grey-light/30 flex-shrink-0">
+        <div class="card overflow-hidden md:flex md:items-stretch">
+          <div class="md:w-2/5 overflow-hidden bg-grey-light/30 flex-shrink-0">
             <Image
               src={photoJustus}
               alt={c.community.justus.name}
@@ -736,7 +736,7 @@ const timelineColors = ['bg-green', 'bg-gold', 'bg-dynared', 'bg-green', 'bg-gol
               loading="lazy"
             />
           </div>
-          <div class="p-6 md:p-8">
+          <div class="p-6 md:p-8 flex flex-col justify-center">
             <span class="badge bg-gold-50 text-gold-dark mb-3">{c.community.justus.title}</span>
             <h3 class="font-heading text-xl font-bold text-charcoal mt-2">{c.community.justus.name}</h3>
             <p class="font-body text-sm text-charcoal-light mt-3 leading-relaxed">{c.community.justus.bio}</p>
