@@ -411,7 +411,7 @@ const productsForAlpine = products.map((p, i) => ({
     <!-- Product Detail Modal -->
     <div
       x-show="showModal"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4"
+      class="fixed inset-0 z-[100] overflow-y-auto"
       x-cloak
       role="dialog"
       aria-modal="true"
@@ -419,7 +419,7 @@ const productsForAlpine = products.map((p, i) => ({
     >
       <!-- Backdrop -->
       <div
-        class="absolute inset-0 bg-charcoal/70 backdrop-blur-sm"
+        class="fixed inset-0 bg-charcoal/70 backdrop-blur-sm"
         x-show="showModal"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0"
@@ -430,6 +430,9 @@ const productsForAlpine = products.map((p, i) => ({
         x-on:click="closeModal()"
         aria-hidden="true"
       ></div>
+
+      <!-- Modal Centering Wrapper -->
+      <div class="flex min-h-full items-center justify-center p-4">
 
       <!-- Modal Panel -->
       <div
@@ -531,6 +534,7 @@ const productsForAlpine = products.map((p, i) => ({
           </div>
         </template>
       </div>
+      </div><!-- end centering wrapper -->
     </div>
   </section>
 

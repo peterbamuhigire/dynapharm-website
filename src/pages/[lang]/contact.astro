@@ -3,6 +3,8 @@ import type { GetStaticPaths } from 'astro';
 import { SUPPORTED_LANGS } from '@utils/i18n';
 import type { Lang } from '@utils/i18n';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import heroImg from '@assets/images/hero/HEALTH-GENERIC-02.jpg';
 
 export const getStaticPaths = (() => {
   return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
@@ -134,19 +136,28 @@ const c = content[lang];
 <BaseLayout title={c.meta.title} description={c.meta.description} lang={lang}>
 
   <!-- ═══════════════════════════════════════════
-       HERO — Contact page header
+       HERO — Contact page header with image
        ═══════════════════════════════════════════ -->
-  <section class="relative bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 py-20 md:py-28 overflow-hidden grain-overlay">
-    <!-- Decorative circles -->
-    <div class="absolute top-10 right-10 w-72 h-72 rounded-full bg-dynared/5 blur-3xl" aria-hidden="true"></div>
-    <div class="absolute bottom-0 left-10 w-56 h-56 rounded-full bg-gold/5 blur-3xl" aria-hidden="true"></div>
+  <section class="relative min-h-[50vh] md:min-h-[55vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <Image
+        src={heroImg}
+        alt={lang === 'en' ? 'Natural health and wellness' : 'Santé et bien-être naturels'}
+        class="w-full h-full object-cover"
+        widths={[640, 1024, 1600]}
+        sizes="100vw"
+        loading="eager"
+        quality={80}
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/75 to-charcoal/50"></div>
+    </div>
 
-    <div class="section-container relative z-10">
+    <div class="relative section-container py-20 md:py-28">
       <div class="max-w-2xl">
         <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
           {c.hero.heading}
         </h1>
-        <p class="mt-4 text-lg md:text-xl text-cream/80 font-body max-w-xl leading-relaxed">
+        <p class="mt-4 text-lg md:text-xl text-cream/85 font-body max-w-xl leading-relaxed">
           {c.hero.subtitle}
         </p>
       </div>
@@ -381,14 +392,14 @@ const c = content[lang];
       </svg>
     </div>
 
-    <div class="bg-gradient-to-br from-green-dark via-green to-green-light py-28 md:py-36 grain-overlay">
+    <div class="bg-gradient-to-br from-dynared to-dynared-dark py-28 md:py-36 grain-overlay">
       <div class="section-container relative z-10">
         <div class="max-w-3xl mx-auto text-center">
           <span class="badge bg-white/20 text-white mb-6">{c.distributor.sectionTag}</span>
           <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
             {c.distributor.heading}
           </h2>
-          <p class="text-lg text-green-100 font-body mb-8 leading-relaxed">
+          <p class="text-lg text-white/80 font-body mb-8 leading-relaxed">
             {c.distributor.description}
           </p>
 
@@ -407,7 +418,7 @@ const c = content[lang];
             </ul>
           </div>
 
-          <a href={`/${lang}/business-opportunity`} class="btn-primary bg-white text-green hover:bg-cream hover:text-green-dark text-base px-8 py-4 font-bold">
+          <a href={`/${lang}/business-opportunity`} class="inline-flex items-center justify-center px-8 py-4 bg-white text-dynared font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-xl transition-all duration-300 text-base font-bold">
             {c.distributor.cta}
           </a>
         </div>
