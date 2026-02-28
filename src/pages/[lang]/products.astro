@@ -5,6 +5,13 @@ import type { Lang } from '@utils/i18n';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import heroImg from '@assets/images/hero/HEALTH-GENERIC-02.jpg';
+import imgDiGrowFertilizer from '@assets/images/gallery/REAL-PIC-DI-GROW-FERTILIZER.jpg';
+import imgDiGrow from '@assets/images/gallery/REAL-PIC-DI-GROW.png';
+import imgLadiesProducts from '@assets/images/gallery/REAL-PIC-LADIES-PRODUCTS.jpg';
+import imgKacipCoffee from '@assets/images/gallery/REAL-PIC-PRODUCT-1203-KACIP-FATIMAH-COFFEE.jpg';
+import imgTongkatCoffee from '@assets/images/gallery/REAL-PIC-PRODUCT-4810-TONGKAT-ALI-COFFEE.jpg';
+import imgFeminineWash from '@assets/images/gallery/REAL-PIC-PRODUCTS-FEMINIME-WASH-RANGE.jpg';
+import imgHealthPackage from '@assets/images/gallery/REAL-PIC-TOTAL-HEALTH-PACKAGE-SPIRULINA-CHLOROPHYL-YEEYANGYEN.jpg';
 
 export const getStaticPaths = (() => {
   return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
@@ -247,6 +254,16 @@ const productsForAlpine = products.map((p, i) => ({
   ingredients: p.ingredients,
   sizes: p.sizes,
 }));
+
+const galleryItems = [
+  { src: imgHealthPackage, alt: { en: 'Dynapharm Total Health Package — Spirulina, Chlorophyll, and Yee Yang Yen', fr: 'Coffret Santé Totale Dynapharm — Spiruline, Chlorophylle et Yee Yang Yen' } },
+  { src: imgTongkatCoffee, alt: { en: 'Dynapharm Tongkat Ali Coffee — premium herbal coffee blend', fr: 'Café Tongkat Ali Dynapharm — mélange de café aux plantes premium' } },
+  { src: imgKacipCoffee, alt: { en: 'Dynapharm Kacip Fatimah Coffee — specially formulated for women', fr: 'Café Kacip Fatimah Dynapharm — spécialement formulé pour les femmes' } },
+  { src: imgLadiesProducts, alt: { en: 'Dynapharm ladies product range', fr: 'Gamme de produits Dynapharm pour femmes' } },
+  { src: imgFeminineWash, alt: { en: 'Dynapharm Feminine Wash range — natural personal care', fr: 'Gamme Feminine Wash Dynapharm — soins personnels naturels' } },
+  { src: imgDiGrowFertilizer, alt: { en: 'D.I. Grow bio-fertiliser in use — agricultural solutions', fr: 'Bio-fertilisant D.I. Grow en utilisation — solutions agricoles' } },
+  { src: imgDiGrow, alt: { en: 'D.I. Grow bio-fertiliser product', fr: 'Produit bio-fertilisant D.I. Grow' } },
+];
 ---
 
 <BaseLayout title={t.title} description={t.description} lang={lang}>
@@ -535,6 +552,35 @@ const productsForAlpine = products.map((p, i) => ({
         </template>
       </div>
       </div><!-- end centering wrapper -->
+    </div>
+  </section>
+
+  <!-- Products in Action Gallery -->
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="text-center mb-10 md:mb-14">
+        <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-green mb-3">
+          {lang === 'en' ? 'Products in Action' : 'Nos Produits en Action'}
+        </span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-charcoal">
+          {lang === 'en' ? 'See Our Products Up Close' : 'Découvrez Nos Produits de Plus Près'}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {galleryItems.map((item) => (
+          <div class="rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+            <Image
+              src={item.src}
+              alt={item.alt[lang]}
+              class="w-full h-auto object-cover"
+              widths={[250, 400]}
+              sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 

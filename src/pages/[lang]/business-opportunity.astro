@@ -7,6 +7,7 @@ import { Image } from 'astro:assets';
 import heroImg from '@assets/images/hero/DISTRIBUTORS-05.jpg';
 import distributorsImg from '@assets/images/about/DISTRIBUTORS-06.jpg';
 import distributorsImg2 from '@assets/images/about/DISTRIBUTORS-08.jpg';
+import imgProductDelivery from '@assets/images/gallery/REAL-PIC-DYNAPHARM-PRODUCT-DELIVERY.jpg';
 
 export const getStaticPaths = (() => {
   return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
@@ -386,11 +387,21 @@ const earnIcons: Record<string, string> = {
         </div>
 
         <!-- Right: Image -->
-        <div class="order-1 lg:order-2">
+        <div class="order-1 lg:order-2 space-y-4">
           <div class="rounded-2xl overflow-hidden shadow-xl">
             <Image
               src={distributorsImg2}
               alt={lang === 'en' ? 'Dynapharm Distribution Point Centre' : 'Centre de Distribution Dynapharm'}
+              class="w-full h-auto object-cover"
+              widths={[400, 600, 800]}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              loading="lazy"
+            />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-xl">
+            <Image
+              src={imgProductDelivery}
+              alt={lang === 'en' ? 'Dynapharm product delivery in action' : 'Livraison de produits Dynapharm en action'}
               class="w-full h-auto object-cover"
               widths={[400, 600, 800]}
               sizes="(min-width: 1024px) 50vw, 100vw"
