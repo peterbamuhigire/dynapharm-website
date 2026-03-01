@@ -22,7 +22,8 @@ const { lang } = Astro.params as { lang: Lang };
 const content = {
   en: {
     title: 'Business Opportunity — Build Your Wellness Business | Dynapharm Africa',
-    description: 'Start your own health and wellness business with Dynapharm. Low investment, full training, 7 achievement ranks. Join thousands of distributors across 40+ countries in Africa.',
+    description: 'Start your own health and wellness business with Dynapharm Africa. Low investment, comprehensive training, 7 achievement ranks from Distributor to Crown Diamond Manager. Join distributors across 40+ African countries.',
+    keywords: 'become a distributor Dynapharm, MLM business opportunity Africa, network marketing health products, Dynapharm distributor registration, wellness business Africa, earn with Dynapharm, Crown Diamond Manager, Dynapharm business, join Dynapharm, home business Africa',
     heroTitle: 'Your Business, Your Way',
     heroSubtitle: 'Join a community of entrepreneurs building healthier, wealthier lives through natural wellness products.',
     heroCta: 'Start Your Journey',
@@ -74,7 +75,8 @@ const content = {
   },
   fr: {
     title: 'Opportunité d\'Affaires — Créez votre activité bien-être | Dynapharm Africa',
-    description: 'Lancez votre propre activité de santé et bien-être avec Dynapharm. Faible investissement, formation complète, 7 rangs de réussite. Rejoignez des milliers de distributeurs dans plus de 40 pays en Afrique.',
+    description: 'Lancez votre activité santé et bien-être avec Dynapharm Africa. Faible investissement, formation complète, 7 rangs. Rejoignez des distributeurs dans 40+ pays africains.',
+    keywords: 'devenir distributeur Dynapharm, opportunité d\'affaires Afrique, marketing de réseau santé, inscription distributeur Dynapharm, activité bien-être Afrique, gagner avec Dynapharm, Crown Diamond Manager, rejoindre Dynapharm, travail à domicile Afrique',
     heroTitle: 'Votre Activité, à Votre Image',
     heroSubtitle: 'Rejoignez une communauté d\'entrepreneurs qui construisent des vies plus saines et plus prospères grâce aux produits de bien-être naturels.',
     heroCta: 'Commencer Maintenant',
@@ -162,7 +164,7 @@ const earnIcons: Record<string, string> = {
 };
 ---
 
-<BaseLayout title={t.title} description={t.description} lang={lang}>
+<BaseLayout title={t.title} description={t.description} keywords={t.keywords} lang={lang}>
 
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-charcoal text-white min-h-[60vh] flex items-center">

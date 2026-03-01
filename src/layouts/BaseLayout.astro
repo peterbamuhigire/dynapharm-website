@@ -10,6 +10,8 @@ interface Props {
   description: string;
   lang?: Lang;
   ogImage?: string;
+  keywords?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -17,15 +19,79 @@ const {
   description,
   lang = 'en' as Lang,
   ogImage,
+  keywords,
+  structuredData,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : undefined;
+const siteUrl = Astro.site?.href || 'https://dynapharmafrica.com';
+const ogImageUrl = ogImage
+  ? new URL(ogImage, Astro.site).href
+  : `${siteUrl}assets/images/branding/Logo-Full-Color.png`;
 
 const localeMap: Record<string, string> = {
   en: 'en_GB',
   fr: 'fr_FR',
 };
+
+// Organization schema — site-wide
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Dynapharm Africa',
+  url: siteUrl,
+  logo: `${siteUrl}assets/images/branding/Logo-Full-Color.png`,
+  description: lang === 'fr'
+    ? 'Entreprise internationale de santé et bien-être proposant plus de 90 produits naturels et une opportunité d\'affaires éprouvée dans plus de 40 pays en Afrique.'
+    : 'International health and wellness company offering 90+ natural products and a proven business opportunity across 40+ countries in Africa and beyond.',
+  email: 'info@dynapharmafrica.com',
+  foundingDate: '1981',
+  knowsLanguage: ['en', 'fr'],
+  areaServed: [
+    { '@type': 'Continent', name: 'Africa' },
+    'Uganda', 'Kenya', 'Nigeria', 'Senegal', 'Ghana', 'Tanzania',
+    'Cameroon', 'Gabon', 'Zambia', 'Mozambique', 'Lesotho',
+    'Sierra Leone', 'Rwanda', 'Burundi', 'DR Congo', 'Republic of the Congo',
+    "Côte d'Ivoire", 'Mali', 'Burkina Faso', 'Niger', 'Togo', 'Benin',
+    'Guinea', 'Madagascar', 'Malawi', 'Zimbabwe', 'Botswana',
+    'Namibia', 'South Africa', 'Ethiopia', 'Sudan', 'South Sudan',
+    'Angola', 'Eswatini', 'Liberia', 'Gambia', 'Chad',
+  ],
+  sameAs: [],
+};
+
+// BreadcrumbList schema for inner pages
+const pathSegments = Astro.url.pathname.replace(/^\//, '').replace(/\/$/, '').split('/');
+const isHomePage = pathSegments.length <= 1 || (pathSegments.length === 2 && pathSegments[1] === '');
+const breadcrumbSchema = !isHomePage ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: lang === 'fr' ? 'Accueil' : 'Home',
+      item: `${siteUrl}${lang}/`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: title.split('—')[0].split('|')[0].trim(),
+      item: canonicalUrl.href,
+    },
+  ],
+} : null;
+
+// Collect all schemas
+const allSchemas: Record<string, unknown>[] = [organizationSchema];
+if (breadcrumbSchema) allSchemas.push(breadcrumbSchema);
+if (structuredData) {
+  if (Array.isArray(structuredData)) {
+    allSchemas.push(...structuredData);
+  } else {
+    allSchemas.push(structuredData);
+  }
+}
 ---
 
 <!DOCTYPE html>
@@ -37,6 +103,12 @@ const localeMap: Record<string, string> = {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+
+    <!-- Geo targeting — Africa -->
+    <meta name="geo.region" content="002" />
+    <meta name="geo.placename" content="Africa" />
+    <meta name="content-language" content={lang} />
 
     <!-- Canonical -->
     <link rel="canonical" href={canonicalUrl.href} />
@@ -57,17 +129,31 @@ const localeMap: Record<string, string> = {
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dynapharm Africa" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl.href} />
     <meta property="og:locale" content={localeMap[lang] || 'en_GB'} />
-    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Preload critical fonts -->
     <link rel="preconnect" href="/" crossorigin />
+
+    <!-- Structured Data -->
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
   </head>
   <body class="min-h-screen flex flex-col bg-cream text-charcoal font-body antialiased">
     <!-- Skip to content (accessibility) -->

@@ -26,8 +26,9 @@ const { lang } = Astro.params as { lang: Lang };
 const content = {
   en: {
     meta: {
-      title: 'Dynapharm Africa \u2014 Health, Wealth, Freedom',
-      description: 'Discover 90+ premium natural health products and a proven business opportunity. Join thousands of distributors building healthier, wealthier communities across Africa.',
+      title: 'Dynapharm Africa — Natural Health Products & Business Opportunity in Africa',
+      description: 'Discover 90+ premium natural health products — Spirulina, Ganoderma coffee, Chlorophyll, Noni, D.I. Grow and more. Join thousands of distributors across 40+ African countries. Health, Wealth, Freedom.',
+      keywords: 'Dynapharm Africa, natural health products Africa, Spirulina supplements, Ganoderma coffee, Chlorophyll drink, Noni juice, D.I. Grow fertiliser, network marketing Africa, MLM business opportunity, wellness supplements Africa, Dynapharm distributor, Dynapharm Uganda, Dynapharm Kenya, Dynapharm Nigeria, Dynapharm Senegal, Dynapharm Ghana, Dynapharm Tanzania, Dynapharm Cameroon, Dynapharm Zambia, Dynapharm Mozambique',
     },
     hero: {
       headline: 'Empowering Africa Through Health, Wealth & Freedom',
@@ -117,8 +118,9 @@ const content = {
   },
   fr: {
     meta: {
-      title: 'Dynapharm Africa \u2014 Sant\u00e9, Richesse, Libert\u00e9',
-      description: 'D\u00e9couvrez plus de 90 produits naturels de sant\u00e9 haut de gamme et une opportunit\u00e9 d\u2019affaires \u00e9prouv\u00e9e. Rejoignez des milliers de distributeurs qui b\u00e2tissent des communaut\u00e9s plus saines et plus prosp\u00e8res \u00e0 travers l\u2019Afrique.',
+      title: 'Dynapharm Africa — Produits naturels de santé et opportunité d\'affaires en Afrique',
+      description: 'Plus de 90 produits naturels — Spiruline, café Ganoderma, Chlorophylle, Noni, engrais D.I. Grow. Rejoignez des milliers de distributeurs dans 40+ pays africains.',
+      keywords: 'Dynapharm Africa, produits naturels Afrique, Spiruline Dynapharm, café Ganoderma, Chlorophylle, jus de Noni, engrais D.I. Grow, marketing de réseau Afrique, distributeur Dynapharm, Dynapharm Sénégal, Dynapharm Cameroun, Dynapharm Gabon, Dynapharm Côte d\'Ivoire, Dynapharm Congo, Dynapharm Mali, Dynapharm Burkina Faso, Dynapharm Guinée, Dynapharm Togo, Dynapharm Bénin, Dynapharm Niger',
     },
     hero: {
       headline: 'Donner \u00e0 l\u2019Afrique les moyens d\u2019agir gr\u00e2ce \u00e0 la Sant\u00e9, la Richesse et la Libert\u00e9',
@@ -219,7 +221,7 @@ const pillarColors = [
 ];
 ---
 
-<BaseLayout title={c.meta.title} description={c.meta.description} lang={lang}>
+<BaseLayout title={c.meta.title} description={c.meta.description} keywords={c.meta.keywords} lang={lang}>
 
   <!-- ═══════════════════════════════════════════
        HERO — Full viewport, dramatic, diagonal edge

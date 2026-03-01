@@ -26,7 +26,8 @@ const { lang } = Astro.params as { lang: Lang };
 const content = {
   en: {
     title: 'Our Products — 90+ Natural Health & Wellness Products | Dynapharm Africa',
-    description: 'Browse Dynapharm\'s complete product catalogue — health beverages, nutritional supplements, herbal medicine, personal care, wellness foods, and agriculture.',
+    description: 'Browse Dynapharm\'s complete product catalogue — Ganoderma coffee, Spirulina supplements, Chlorophyll drinks, D.I. Grow bio-fertiliser, Tea Tree Oil, Tongkat Ali, Noni juice and more. Available across Africa.',
+    keywords: 'Dynapharm products, natural health supplements Africa, Ganoderma coffee Africa, Spirulina supplements, Chlorophyll drink, D.I. Grow bio fertiliser, Bee Pollen capsules, Tongkat Ali, Noni juice, Tea Tree Oil, natural wellness products, Dynapharm catalogue, health beverages Africa',
     heading: 'Our Products',
     subtitle: 'Over 90 premium natural products across 8 categories — crafted from nature\'s finest ingredients.',
     allProducts: 'All Products',
@@ -43,8 +44,9 @@ const content = {
     productCount: 'products',
   },
   fr: {
-    title: 'Nos produits — Plus de 90 produits naturels | Dynapharm Africa',
-    description: 'Parcourez le catalogue complet Dynapharm — boissons de santé, compléments alimentaires, médecine traditionnelle, soins personnels, aliments bien-être et agriculture.',
+    title: 'Nos Produits — Plus de 90 produits naturels | Dynapharm Africa',
+    description: 'Catalogue complet Dynapharm — café Ganoderma, Spiruline, Chlorophylle, engrais D.I. Grow, Tea Tree Oil, Tongkat Ali, jus de Noni et plus. Disponible partout en Afrique.',
+    keywords: 'produits Dynapharm, compléments naturels Afrique, café Ganoderma, Spiruline, Chlorophylle, engrais D.I. Grow, Tea Tree Oil, Tongkat Ali, jus de Noni, Pollen d\'abeille, catalogue Dynapharm, boissons santé Afrique',
     heading: 'Nos Produits',
     subtitle: 'Plus de 90 produits naturels de qualité supérieure répartis en 8 catégories — élaborés à partir des meilleurs ingrédients de la nature.',
     allProducts: 'Tous les Produits',
@@ -266,7 +268,7 @@ const galleryItems = [
 ];
 ---
 
-<BaseLayout title={t.title} description={t.description} lang={lang}>
+<BaseLayout title={t.title} description={t.description} keywords={t.keywords} lang={lang}>
 
   <!-- Hero / Page Header -->
   <section class="relative overflow-hidden bg-charcoal text-white">

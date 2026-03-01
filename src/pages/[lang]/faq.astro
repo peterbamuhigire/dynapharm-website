@@ -22,8 +22,9 @@ interface FaqSection {
 
 const content = {
   en: {
-    title: 'Frequently Asked Questions — Dynapharm Africa',
-    description: 'Answers to common questions about Dynapharm Africa, our products, and the business opportunity.',
+    title: 'FAQ — Frequently Asked Questions | Dynapharm Africa',
+    description: 'Answers to common questions about Dynapharm products, the business opportunity, distributor ranks, Business Volume (BV), D.I. Grow, Ganoderma, Spirulina, and how to join across Africa.',
+    keywords: 'Dynapharm FAQ, what is Dynapharm, Dynapharm products questions, how to become a distributor, what is BV Business Volume, Dynapharm ranks, D.I. Grow FAQ, Ganoderma FAQ, Spirulina FAQ, Dynapharm Africa questions',
     heading: 'Frequently Asked Questions',
     subtitle: 'Find answers to the most common questions about Dynapharm, our products, the business opportunity, and how to get started.',
     sections: [
@@ -108,8 +109,9 @@ const content = {
     ctaButton: 'Get in Touch',
   },
   fr: {
-    title: 'Foire aux questions — Dynapharm Africa',
-    description: 'Réponses aux questions fréquentes sur Dynapharm Africa, nos produits et l\'opportunité d\'affaires.',
+    title: 'FAQ — Foire aux questions | Dynapharm Africa',
+    description: 'Réponses aux questions sur les produits Dynapharm, l\'opportunité d\'affaires, les rangs, le Volume d\'Affaires, D.I. Grow, Ganoderma, Spiruline et comment devenir distributeur en Afrique.',
+    keywords: 'Dynapharm FAQ, qu\'est-ce que Dynapharm, questions produits Dynapharm, comment devenir distributeur, Volume d\'Affaires, rangs Dynapharm, D.I. Grow, Ganoderma, Spiruline, distributeur Dynapharm Afrique',
     heading: 'Foire aux questions',
     subtitle: 'Trouvez les réponses aux questions les plus fréquentes sur Dynapharm, nos produits, l\'opportunité d\'affaires et comment démarrer.',
     sections: [
@@ -196,9 +198,27 @@ const content = {
 };
 
 const c = content[lang as keyof typeof content];
+
+// FAQPage structured data — generates rich results in Google SERPs
+const allFaqItems = c.sections.flatMap((section: FaqSection) =>
+  section.items.map((item: FaqItem) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  }))
+);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: allFaqItems,
+};
 ---
 
-<BaseLayout title={c.title} description={c.description} lang={lang}>
+<BaseLayout title={c.title} description={c.description} keywords={c.keywords} lang={lang} structuredData={faqSchema}>
   <!-- Hero -->
   <section class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 text-white relative overflow-hidden">
     <div class="absolute inset-0 grain-overlay opacity-30"></div>

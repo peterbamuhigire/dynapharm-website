@@ -46,8 +46,9 @@ const { lang } = Astro.params as { lang: Lang };
 const content = {
   en: {
     meta: {
-      title: 'About Dynapharm Africa \u2014 Our Story, Mission & Values',
-      description: 'Learn about Dynapharm Africa \u2014 over 20 years of natural health products, operating in 40+ countries, empowering communities through wellness and entrepreneurship.',
+      title: 'About Dynapharm Africa — Our Story, Mission & Values',
+      description: 'Learn about Dynapharm Africa — founded 1981, GMP-certified, operating in 40+ African countries. Spirulina, Ganoderma, Chlorophyll and 90+ natural products empowering communities.',
+      keywords: 'about Dynapharm Africa, Dynapharm history, Dynapharm mission values, natural health company Africa, wellness company, health wealth freedom, Dynapharm story, GMP certified supplements, Oi Ho Chooi founder, Esther Ampumuza Africa',
     },
     hero: {
       heading: 'Our Story',
@@ -171,8 +172,9 @@ const content = {
   },
   fr: {
     meta: {
-      title: '\u00c0 propos de Dynapharm Africa \u2014 Notre histoire, notre mission et nos valeurs',
-      description: 'D\u00e9couvrez Dynapharm Africa \u2014 plus de 20 ans de produits naturels de sant\u00e9, pr\u00e9sent dans plus de 40 pays, au service des communaut\u00e9s \u00e0 travers le bien-\u00eatre et l\u2019entrepreneuriat.',
+      title: 'À propos de Dynapharm Africa — Notre histoire et nos valeurs',
+      description: 'Découvrez Dynapharm Africa — fondée en 1981, certifiée GMP, présente dans 40+ pays africains. Spiruline, Ganoderma, Chlorophylle et 90+ produits naturels.',
+      keywords: 'à propos Dynapharm Africa, histoire Dynapharm, mission valeurs Dynapharm, entreprise santé naturelle Afrique, bien-être, santé richesse liberté, fondateur Oi Ho Chooi, Esther Ampumuza Afrique',
     },
     hero: {
       heading: 'Notre Histoire',
@@ -310,7 +312,7 @@ const pillarColors = [
 const timelineColors = ['bg-green', 'bg-gold', 'bg-dynared', 'bg-green', 'bg-gold', 'bg-dynared'];
 ---
 
-<BaseLayout title={c.meta.title} description={c.meta.description} lang={lang}>
+<BaseLayout title={c.meta.title} description={c.meta.description} keywords={c.meta.keywords} lang={lang}>
 
   <!-- ═══════════════════════════════════════════
        HERO — About page hero

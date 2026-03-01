@@ -18,8 +18,9 @@ const { lang } = Astro.params as { lang: Lang };
 const content = {
   en: {
     meta: {
-      title: 'Contact Dynapharm Africa \u2014 Get in Touch',
-      description: 'Contact Dynapharm Africa for product enquiries, distributor registration, or general questions. Email us at info@dynapharmafrica.com.',
+      title: 'Contact Dynapharm Africa — Get in Touch',
+      description: 'Contact Dynapharm Africa for product enquiries, distributor registration, or questions. Email info@dynapharmafrica.com. Become a distributor in Uganda, Kenya, Nigeria, Senegal, Ghana and 40+ African countries.',
+      keywords: 'contact Dynapharm Africa, Dynapharm enquiry, become a Dynapharm distributor, Dynapharm email, distributor registration Dynapharm, Dynapharm Africa contact, join Dynapharm Africa',
     },
     hero: {
       heading: 'Get in Touch',
@@ -74,8 +75,9 @@ const content = {
   },
   fr: {
     meta: {
-      title: 'Contactez Dynapharm Africa \u2014 Nous Contacter',
-      description: 'Contactez Dynapharm Africa pour des demandes sur les produits, l\u2019inscription en tant que distributeur ou des questions g\u00e9n\u00e9rales. \u00c9crivez-nous \u00e0 info@dynapharmafrica.com.',
+      title: 'Contactez Dynapharm Africa — Nous Contacter',
+      description: 'Contactez Dynapharm Africa pour produits, inscription distributeur ou questions. Email info@dynapharmafrica.com. Devenez distributeur au Sénégal, Cameroun, Gabon et 40+ pays.',
+      keywords: 'contacter Dynapharm Africa, demande Dynapharm, devenir distributeur Dynapharm, email Dynapharm, inscription distributeur, Dynapharm contact Afrique, rejoindre Dynapharm',
     },
     hero: {
       heading: 'Nous Contacter',
@@ -133,7 +135,7 @@ const content = {
 const c = content[lang];
 ---
 
-<BaseLayout title={c.meta.title} description={c.meta.description} lang={lang}>
+<BaseLayout title={c.meta.title} description={c.meta.description} keywords={c.meta.keywords} lang={lang}>
 
   <!-- ═══════════════════════════════════════════
        HERO — Contact page header with image

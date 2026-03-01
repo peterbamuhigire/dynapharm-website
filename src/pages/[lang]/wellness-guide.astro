@@ -19,7 +19,8 @@ const { lang } = Astro.params as { lang: Lang };
 const content = {
   en: {
     title: 'Wellness Guide — Natural Health Solutions by Category | Dynapharm Africa',
-    description: 'Explore Dynapharm\'s 11 wellness categories — from cardiovascular health to weight management. Discover natural products that support your wellbeing.',
+    description: 'Explore Dynapharm\'s 11 wellness categories — cardiovascular, immune support, energy, digestive health, weight management. Spirulina, Ganoderma, Chlorophyll and natural products for Africa.',
+    keywords: 'natural wellness solutions, health supplements by category, immune support supplements, energy vitality supplements, digestive health products, natural health guide Africa, Chlorophyll drink benefits, Spirulina health benefits, Ganoderma benefits, weight management natural, cardiovascular health supplements',
     heading: 'Your Wellness Guide',
     subtitle: 'Explore our natural health products by wellness category. Speak with a trained Dynapharm distributor for personalised recommendations.',
     disclaimer: 'Our products are food supplements, not medicines. Always consult a healthcare professional for medical concerns.',
@@ -37,8 +38,9 @@ const content = {
     collapseAll: 'Collapse All',
   },
   fr: {
-    title: 'Guide Bien-\u00CAtre — Solutions de sant\u00E9 naturelles par cat\u00E9gorie | Dynapharm Africa',
-    description: 'Explorez les 11 cat\u00E9gories de bien-\u00EAtre Dynapharm — de la sant\u00E9 cardiovasculaire \u00E0 la gestion du poids. D\u00E9couvrez les produits naturels qui soutiennent votre bien-\u00EAtre.',
+    title: 'Guide Bien-Être — Solutions de santé naturelles | Dynapharm Africa',
+    description: 'Explorez 11 catégories bien-être Dynapharm — cardiovasculaire, immunité, énergie, digestion, poids. Spiruline, Ganoderma, Chlorophylle et produits naturels pour l\'Afrique.',
+    keywords: 'solutions bien-être naturelles, compléments santé par catégorie, soutien immunitaire, énergie vitalité, santé digestive, guide santé Afrique, bienfaits Chlorophylle, bienfaits Spiruline, bienfaits Ganoderma, gestion du poids naturel',
     heading: 'Votre Guide Bien-\u00CAtre',
     subtitle: 'Explorez nos produits de sant\u00E9 naturels par cat\u00E9gorie de bien-\u00EAtre. Parlez \u00E0 un distributeur Dynapharm form\u00E9 pour des recommandations personnalis\u00E9es.',
     disclaimer: 'Nos produits sont des compl\u00E9ments alimentaires, pas des m\u00E9dicaments. Consultez toujours un professionnel de sant\u00E9 pour les pr\u00E9occupations m\u00E9dicales.',
@@ -280,7 +282,7 @@ const categoryIcons: Record<string, string> = {
 };
 ---
 
-<BaseLayout title={t.title} description={t.description} lang={lang}>
+<BaseLayout title={t.title} description={t.description} keywords={t.keywords} lang={lang}>
 
   <!-- Hero / Page Header -->
   <section class="relative overflow-hidden bg-green-dark text-white">
