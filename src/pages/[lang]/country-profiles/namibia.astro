@@ -1,0 +1,289 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+import namibiaImg from '@assets/images/gallery/Dynapharm-Namibia.jpeg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+interface Outlet {
+  town: string;
+  name: string;
+  address: string[];
+  phone: string;
+}
+
+const outlets: Outlet[] = [
+  { town: 'Windhoek', name: 'Windhoek CBD Shop', address: ['269 Independence Avenue', 'Shop No 1', 'Continental Building'], phone: '+264 81 749 9757' },
+  { town: 'Windhoek', name: 'Hochlandpark', address: ['21 Robin Road, Tauben Glen', 'Next to OK Minimarkt Store'], phone: '+264 81 320 7195' },
+  { town: 'Windhoek', name: 'Khomasdal', address: ['Shop No 2', 'Khomasdal Funky Town Mall'], phone: '+264 81 468 2991' },
+  { town: 'Tsumeb', name: 'Tsumeb', address: ['Shop No 35B Erf 35', 'Maria Nehoya Street'], phone: '+264 81 475 7074' },
+  { town: 'Gobabis', name: 'Gobabis', address: ['Shop No 8, Erf 939', 'Woermann Brock Complex', 'Church Street'], phone: '+264 81 468 5905' },
+  { town: 'Swakopmund', name: 'Swakopmund', address: ['153 Kuruseb Rd, Mondesa', 'Opposite Mondesa Usave'], phone: '+264 81 468 6806' },
+  { town: 'Outapi', name: 'Outapi', address: ['Okasikili Location', 'Next to Lamek Garage', 'Main Road from and to Oshakati'], phone: '+264 81 468 5886' },
+  { town: 'Okahao', name: 'Okahao', address: ['Erf 331 Taapopi Complex', 'Tsandi Main Road'], phone: '+264 81 468 3963' },
+  { town: 'Oshakati', name: 'Oshakati', address: ['Shop No 15 Fantasy Complex', 'Behind Bank Windhoek', 'Oshakati Main Road'], phone: '+264 81 475 7055' },
+  { town: 'Otjiwarongo', name: 'Otjiwarongo', address: ['Shop No 13, Erindi Complex', 'Albertina Amadhila Street'], phone: '+264 81 468 1997' },
+  { town: 'Eenhana', name: 'Eenhana', address: ['Shop No. 3, Tangi Complex', 'Dimo Amaambi Street'], phone: '+264 81 468 2049' },
+  { town: 'Ondangwa', name: 'Ondangwa', address: ['Shop No 3, Oluno Road', 'Woermann Brock Mall', 'Opposite Fresco'], phone: '+264 81 468 5882' },
+  { town: 'Rundu', name: 'Rundu', address: ['Shop No 6, Erf 1736', 'Markus Siwarongo Street', 'Nkarapamwe'], phone: '+264 81 468 4968' },
+  { town: 'Walvis Bay', name: 'Walvis Bay', address: ['Shop No. 6', 'Pelican Mall'], phone: '+264 81 468 5894' },
+  { town: 'Katima Mulilo', name: 'Katima Mulilo', address: ['Shop No. 1, Hospital Road', 'Opposite Open Market', 'Next to the former MVA Fund'], phone: '+264 81 468 2978' },
+];
+
+const content = {
+  en: {
+    meta: {
+      title: 'Dynapharm Namibia — 15 Outlets Nationwide | Country Profile',
+      description: 'Dynapharm Namibia operates 15 outlets across the country — Windhoek, Swakopmund, Walvis Bay, Oshakati, Rundu, Katima Mulilo and more. Find your nearest outlet, addresses and phone numbers.',
+      keywords: 'Dynapharm Namibia, Dynapharm Windhoek, Dynapharm Swakopmund, Dynapharm Oshakati, Dynapharm Walvis Bay, Dynapharm Rundu, Dynapharm Katima Mulilo, natural health products Namibia, Namibia outlets directory',
+    },
+    breadcrumbCountries: 'Country Profiles',
+    breadcrumbThis: 'Namibia',
+    hero: {
+      eyebrow: 'Country Profile',
+      heading: 'Dynapharm Namibia',
+      subtitle: 'Fifteen outlets, one shared mission — bringing natural wellness to communities from Windhoek to the Caprivi.',
+      heroAlt: 'Dynapharm Namibia Outlets 2025 directory poster',
+    },
+    overview: {
+      heading: 'About Dynapharm Namibia',
+      p1: 'Dynapharm Namibia is the local franchise of Dynapharm International, serving Namibian families and entrepreneurs with a comprehensive range of natural health products — Spirulina, Ganoderma coffees, Chlorophyll, herbal supplements, personal care and more.',
+      p2: 'With fifteen outlets spread across the country, Dynapharm Namibia combines global product quality with deeply local presence. Whether you are in the capital, on the coast, or up in the far north, there is a Dynapharm shop within reach.',
+      stats: [
+        { value: '15', label: 'Outlets' },
+        { value: '14', label: 'Towns Covered' },
+        { value: '90+', label: 'Products Available' },
+      ],
+    },
+    outlets: {
+      heading: 'Our Outlets Across Namibia',
+      subtitle: 'Visit any of our 15 shops to explore products, meet our team and join the Dynapharm family.',
+      callLabel: 'Call',
+    },
+    cta: {
+      heading: 'Want to Become a Distributor in Namibia?',
+      body: 'Visit your nearest outlet or get in touch with us. Our team will guide you through the registration process, training and the products that best suit your goals.',
+      primary: 'Get in Touch',
+      secondary: 'Explore Our Products',
+    },
+    backLink: 'Back to Country Profiles',
+  },
+  fr: {
+    meta: {
+      title: 'Dynapharm Namibie — 15 points de vente à travers le pays | Profil Pays',
+      description: 'Dynapharm Namibie exploite 15 points de vente à travers le pays — Windhoek, Swakopmund, Walvis Bay, Oshakati, Rundu, Katima Mulilo et plus encore. Trouvez le point de vente le plus proche, les adresses et les numéros de téléphone.',
+      keywords: 'Dynapharm Namibie, Dynapharm Windhoek, Dynapharm Swakopmund, Dynapharm Oshakati, Dynapharm Walvis Bay, Dynapharm Rundu, produits naturels Namibie, points de vente Namibie',
+    },
+    breadcrumbCountries: 'Profils des Pays',
+    breadcrumbThis: 'Namibie',
+    hero: {
+      eyebrow: 'Profil Pays',
+      heading: 'Dynapharm Namibie',
+      subtitle: 'Quinze points de vente, une même mission — apporter le bien-être naturel aux communautés, de Windhoek jusqu’au Caprivi.',
+      heroAlt: 'Affiche de l’annuaire des points de vente Dynapharm Namibie 2025',
+    },
+    overview: {
+      heading: 'À Propos de Dynapharm Namibie',
+      p1: 'Dynapharm Namibie est la franchise locale de Dynapharm International. Elle propose aux familles et aux entrepreneurs namibiens une gamme complète de produits naturels — Spiruline, cafés au Ganoderma, Chlorophylle, compléments à base de plantes, soins personnels et bien plus.',
+      p2: 'Avec quinze points de vente répartis à travers le pays, Dynapharm Namibie allie la qualité mondiale de ses produits à une présence profondément locale. Que vous soyez dans la capitale, sur la côte ou dans le grand nord, un magasin Dynapharm est à votre portée.',
+      stats: [
+        { value: '15', label: 'Points de Vente' },
+        { value: '14', label: 'Villes Couvertes' },
+        { value: '90+', label: 'Produits Disponibles' },
+      ],
+    },
+    outlets: {
+      heading: 'Nos Points de Vente en Namibie',
+      subtitle: 'Visitez l’un de nos 15 magasins pour découvrir les produits, rencontrer notre équipe et rejoindre la famille Dynapharm.',
+      callLabel: 'Appeler',
+    },
+    cta: {
+      heading: 'Souhaitez-vous Devenir Distributeur en Namibie ?',
+      body: 'Rendez-vous dans le point de vente le plus proche ou contactez-nous. Notre équipe vous guidera à travers le processus d’inscription, la formation et les produits les mieux adaptés à vos objectifs.',
+      primary: 'Nous Contacter',
+      secondary: 'Explorer Nos Produits',
+    },
+    backLink: 'Retour aux Profils des Pays',
+  },
+};
+
+const c = content[lang];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: c.breadcrumbCountries, item: `${Astro.site}${lang}/country-profiles` },
+    { '@type': 'ListItem', position: 2, name: c.breadcrumbThis },
+  ],
+};
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Dynapharm Namibia',
+  parentOrganization: { '@type': 'Organization', name: 'Dynapharm International' },
+  areaServed: { '@type': 'Country', name: 'Namibia' },
+  location: outlets.map((o) => ({
+    '@type': 'Place',
+    name: `Dynapharm ${o.name}`,
+    address: { '@type': 'PostalAddress', streetAddress: o.address.join(', '), addressLocality: o.town, addressCountry: 'NA' },
+    telephone: o.phone,
+  })),
+};
+---
+
+<BaseLayout
+  title={c.meta.title}
+  description={c.meta.description}
+  keywords={c.meta.keywords}
+  lang={lang}
+  structuredData={[breadcrumbSchema, orgSchema]}
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-30"></div>
+    <div class="section-container relative z-10 py-16 md:py-24">
+      <nav class="mb-6 text-sm font-accent text-grey-light" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href={`/${lang}/country-profiles`} class="hover:text-white transition-colors">{c.breadcrumbCountries}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white" aria-current="page">{c.breadcrumbThis}</li>
+        </ol>
+      </nav>
+      <p class="font-accent text-sm uppercase tracking-widest text-dynared-100 mb-3">
+        {c.hero.eyebrow}
+      </p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        {c.hero.heading}
+      </h1>
+      <p class="font-body text-lg md:text-xl text-grey-light max-w-2xl">
+        {c.hero.subtitle}
+      </p>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-8 md:h-12">
+        <polygon fill="var(--color-cream)" points="0,60 1200,60 1200,0"></polygon>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
+            <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+            {c.overview.heading}
+          </h2>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">
+            {c.overview.p1}
+          </p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-8">
+            {c.overview.p2}
+          </p>
+          <dl class="grid grid-cols-3 gap-4">
+            {c.overview.stats.map((s) => (
+              <div class="bg-white rounded-xl border border-grey-light/40 p-4 text-center shadow-sm">
+                <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light mb-1">{s.label}</dt>
+                <dd class="font-heading text-2xl md:text-3xl font-bold text-dynared">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div class="relative">
+          <div class="rounded-2xl overflow-hidden shadow-xl border border-grey-light/30">
+            <Image
+              src={namibiaImg}
+              alt={c.hero.heroAlt}
+              class="w-full h-auto"
+              widths={[600, 1080]}
+              sizes="(min-width: 1024px) 540px, 90vw"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outlets -->
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="mb-10 max-w-2xl">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-3 flex items-center gap-3">
+          <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+          {c.outlets.heading}
+        </h2>
+        <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed">
+          {c.outlets.subtitle}
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {outlets.map((o) => (
+          <article class="bg-cream rounded-2xl border border-grey-light/40 p-6 shadow-sm hover:shadow-md hover:border-dynared/40 transition-all duration-200">
+            <div class="flex items-start gap-3 mb-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-dynared/10 text-dynared flex items-center justify-center" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-heading text-lg font-bold text-charcoal leading-tight">{o.name}</h3>
+                <p class="font-accent text-xs uppercase tracking-wider text-dynared mt-1">{o.town}</p>
+              </div>
+            </div>
+            <address class="font-body not-italic text-sm text-charcoal-light leading-relaxed mb-4">
+              {o.address.map((line) => (<span class="block">{line}</span>))}
+            </address>
+            <a
+              href={`tel:${o.phone.replace(/\s+/g, '')}`}
+              class="inline-flex items-center gap-2 font-accent text-sm font-semibold text-dynared hover:text-dynared-700 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.21l-2.13 1.06a11 11 0 005.52 5.52l1.06-2.13a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.69.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z" />
+              </svg>
+              <span>{c.outlets.callLabel}: {o.phone}</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-20"></div>
+    <div class="section-container relative z-10 max-w-3xl text-center">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">
+        {c.cta.heading}
+      </h2>
+      <p class="font-body text-base md:text-lg text-grey-light leading-relaxed mb-8">
+        {c.cta.body}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`/${lang}/contact`} class="btn-primary">{c.cta.primary}</a>
+        <a href={`/${lang}/products`} class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-accent font-semibold border-2 border-white/40 hover:border-white hover:bg-white/10 transition-colors">
+          {c.cta.secondary}
+        </a>
+      </div>
+      <div class="mt-10">
+        <a href={`/${lang}/country-profiles`} class="inline-flex items-center gap-2 font-accent text-sm text-grey-light hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          {c.backLink}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

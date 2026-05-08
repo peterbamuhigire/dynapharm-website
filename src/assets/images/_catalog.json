@@ -1,6 +1,17 @@
 {
   "images": [
     {
+      "path": "gallery/Dynapharm-Namibia.jpeg",
+      "source": "photo-bank/Dynapharm-Namibia.jpeg",
+      "category": "gallery",
+      "dimensions": "1080x774",
+      "description": "Dynapharm Namibia outlets directory poster (2025) listing 15 nationwide shops",
+      "usedIn": [
+        "Country Profile - Namibia"
+      ],
+      "notes": "Branded poster image, ideal as hero/feature image on the Namibia country profile page"
+    },
+    {
       "path": "branding/Logo-Dark-Mode.png",
       "source": "photo-bank/branding/Logo-Dark-Mode.png",
       "category": "branding",

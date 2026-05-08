@@ -1,0 +1,173 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+import namibiaImg from '@assets/images/gallery/Dynapharm-Namibia.jpeg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+const content = {
+  en: {
+    meta: {
+      title: 'Country Profiles — Dynapharm Africa Franchises',
+      description: 'Discover Dynapharm franchises across Africa. Explore country-by-country profiles with outlets, contact details, and local presence — starting with Dynapharm Namibia.',
+      keywords: 'Dynapharm country profiles, Dynapharm Namibia, Dynapharm Africa franchises, Dynapharm outlets, Dynapharm distributors Africa',
+    },
+    hero: {
+      heading: 'Country Profiles',
+      subtitle: 'Global reach, local presence. Explore the Dynapharm franchises that serve communities across Africa.',
+    },
+    intro: {
+      heading: 'A Continent of Wellness',
+      body: 'Dynapharm operates across more than 40 countries, with each franchise rooted in its own community. Our country profiles bring you closer to the people, outlets, and stories that make Dynapharm Africa what it is. We will continue adding profiles as franchises share their information with us.',
+    },
+    featuredTag: 'Featured Country',
+    countries: [
+      {
+        name: 'Namibia',
+        slug: 'namibia',
+        tagline: '15 outlets nationwide — from Windhoek to Katima Mulilo',
+        description: 'Dynapharm Namibia operates 15 outlets across the country, bringing natural wellness to communities from the capital to the Caprivi Strip.',
+        cta: 'View Namibia Profile',
+        image: namibiaImg,
+        imageAlt: 'Dynapharm Namibia Outlets 2025 directory',
+        available: true,
+      },
+    ],
+    comingSoonHeading: 'More Profiles Coming Soon',
+    comingSoonBody: 'We are gathering profiles from franchises across the continent — Uganda, Kenya, Tanzania, Nigeria, Senegal, Ghana, Cameroon, Zambia, Mozambique and more. If you represent a Dynapharm franchise and would like to be featured, please get in touch.',
+    contactCta: 'Contact Us to Be Featured',
+  },
+  fr: {
+    meta: {
+      title: 'Profils des Pays — Franchises Dynapharm en Afrique',
+      description: 'Découvrez les franchises Dynapharm à travers l’Afrique. Explorez les profils pays par pays avec les points de vente, les coordonnées et la présence locale — en commençant par Dynapharm Namibie.',
+      keywords: 'profils pays Dynapharm, Dynapharm Namibie, franchises Dynapharm Afrique, points de vente Dynapharm, distributeurs Dynapharm Afrique',
+    },
+    hero: {
+      heading: 'Profils des Pays',
+      subtitle: 'Présence mondiale, ancrage local. Explorez les franchises Dynapharm qui servent les communautés à travers l’Afrique.',
+    },
+    intro: {
+      heading: 'Un Continent de Bien-Être',
+      body: 'Dynapharm opère dans plus de 40 pays, chaque franchise étant enracinée dans sa propre communauté. Nos profils pays vous rapprochent des personnes, des points de vente et des histoires qui font de Dynapharm Africa ce qu’elle est. Nous continuerons d’ajouter des profils au fur et à mesure que les franchises partageront leurs informations.',
+    },
+    featuredTag: 'Pays à l’Honneur',
+    countries: [
+      {
+        name: 'Namibie',
+        slug: 'namibia',
+        tagline: '15 points de vente à travers le pays — de Windhoek à Katima Mulilo',
+        description: 'Dynapharm Namibie exploite 15 points de vente à travers le pays, apportant le bien-être naturel aux communautés, de la capitale jusqu’à la bande de Caprivi.',
+        cta: 'Voir le Profil de la Namibie',
+        image: namibiaImg,
+        imageAlt: 'Annuaire des points de vente Dynapharm Namibie 2025',
+        available: true,
+      },
+    ],
+    comingSoonHeading: 'D’Autres Profils à Venir',
+    comingSoonBody: 'Nous rassemblons les profils des franchises à travers le continent — Ouganda, Kenya, Tanzanie, Nigeria, Sénégal, Ghana, Cameroun, Zambie, Mozambique et bien d’autres. Si vous représentez une franchise Dynapharm et souhaitez être mis en avant, veuillez nous contacter.',
+    contactCta: 'Contactez-nous pour Apparaître ici',
+  },
+};
+
+const c = content[lang];
+---
+
+<BaseLayout title={c.meta.title} description={c.meta.description} keywords={c.meta.keywords} lang={lang}>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-30"></div>
+    <div class="section-container relative z-10 py-16 md:py-24">
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        {c.hero.heading}
+      </h1>
+      <p class="font-body text-lg md:text-xl text-grey-light max-w-2xl">
+        {c.hero.subtitle}
+      </p>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-8 md:h-12">
+        <polygon fill="var(--color-cream)" points="0,60 1200,60 1200,0"></polygon>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="section-padding bg-cream">
+    <div class="section-container max-w-4xl">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
+        <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+        {c.intro.heading}
+      </h2>
+      <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed">
+        {c.intro.body}
+      </p>
+    </div>
+  </section>
+
+  <!-- Country Cards -->
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {c.countries.map((country) => (
+          <a
+            href={`/${lang}/country-profiles/${country.slug}`}
+            class="group block bg-cream rounded-2xl overflow-hidden border border-grey-light/40 hover:border-dynared/50 hover:shadow-xl transition-all duration-300"
+          >
+            <div class="relative aspect-[4/3] overflow-hidden bg-grey-light/30">
+              <Image
+                src={country.image}
+                alt={country.imageAlt}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                widths={[400, 800]}
+                sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
+                loading="lazy"
+              />
+              <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full bg-dynared text-white text-xs font-accent font-semibold uppercase tracking-wider">
+                {c.featuredTag}
+              </span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-heading text-2xl font-bold text-charcoal mb-2 group-hover:text-dynared transition-colors duration-200">
+                {country.name}
+              </h3>
+              <p class="font-accent text-sm text-dynared font-semibold mb-3">
+                {country.tagline}
+              </p>
+              <p class="font-body text-base text-charcoal-light leading-relaxed mb-4">
+                {country.description}
+              </p>
+              <span class="inline-flex items-center gap-2 font-accent text-sm font-semibold text-dynared">
+                {country.cta}
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7-7 7M5 12h16" /></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Coming Soon CTA -->
+  <section class="section-padding bg-cream">
+    <div class="section-container max-w-3xl text-center">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4">
+        {c.comingSoonHeading}
+      </h2>
+      <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-8">
+        {c.comingSoonBody}
+      </p>
+      <a href={`/${lang}/contact`} class="btn-primary">
+        {c.contactCta}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

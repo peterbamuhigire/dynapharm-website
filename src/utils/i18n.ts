@@ -47,6 +47,7 @@ const translations = {
       products: 'Products',
       business: 'Business Opportunity',
       wellness: 'Wellness Guide',
+      countries: 'Country Profiles',
       about: 'About',
       contact: 'Contact',
       cta: 'Start Your Journey',
@@ -80,6 +81,7 @@ const translations = {
       products: 'Produits',
       business: "Opportunit\u00e9 d\u2019Affaires",
       wellness: 'Guide Bien-\u00CAtre',
+      countries: 'Profils des Pays',
       about: '\u00C0 Propos',
       contact: 'Contact',
       cta: 'Commencer Maintenant',
@@ -159,6 +161,7 @@ export function getNavItems(lang: Lang): NavItem[] {
     { label: t(lang, 'nav', 'products'), href: `/${lang}/products` },
     { label: t(lang, 'nav', 'business'), href: `/${lang}/business-opportunity` },
     { label: t(lang, 'nav', 'wellness'), href: `/${lang}/wellness-guide` },
+    { label: t(lang, 'nav', 'countries'), href: `/${lang}/country-profiles` },
     { label: t(lang, 'nav', 'about'), href: `/${lang}/about` },
     { label: t(lang, 'nav', 'contact'), href: `/${lang}/contact` },
   ];
