@@ -6,10 +6,62 @@
       "category": "gallery",
       "dimensions": "1080x774",
       "description": "Dynapharm Namibia outlets directory poster (2025) listing 15 nationwide shops",
-      "usedIn": [
-        "Country Profile - Namibia"
-      ],
-      "notes": "Branded poster image, ideal as hero/feature image on the Namibia country profile page"
+      "usedIn": ["Country Profile - Namibia"],
+      "notes": "Branded poster image"
+    },
+    {
+      "path": "gallery/namibia-flag.jpg",
+      "source": "photo-bank/namibia-flag-flying-wind.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1155",
+      "description": "Namibian flag waving in the wind",
+      "usedIn": ["Country Profile - Namibia (hero background)"],
+      "notes": "Use as full-bleed hero background with dark overlay for text readability"
+    },
+    {
+      "path": "gallery/namibia-flag-banner.jpg",
+      "source": "photo-bank/namibian-flag-isolated-blue-sky-horizontal-banner.jpg",
+      "category": "gallery",
+      "dimensions": "2222x828",
+      "description": "Namibian flag horizontal banner against blue sky",
+      "usedIn": ["Country Profile - Namibia"],
+      "notes": "Wide aspect ratio (2.68:1) ideal for thin banners or section dividers"
+    },
+    {
+      "path": "gallery/namibia-map-flag.jpg",
+      "source": "photo-bank/namibia-map-flag-shaded-relief-color-height-map-white-background-3d-illustration.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1799",
+      "description": "3D shaded-relief map of Namibia filled with the national flag",
+      "usedIn": ["Country Profile - Namibia (overview)", "Country Profiles index card"],
+      "notes": "White background — works well on cream/light sections"
+    },
+    {
+      "path": "gallery/guinea-flag.jpg",
+      "source": "photo-bank/guinea-cloth-flag-satin-flag-waving-fabric-texture-flag.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1482",
+      "description": "Republic of Guinea cloth flag with satin/waving texture (red, yellow, green)",
+      "usedIn": ["Country Profile - Guinea (hero background)"],
+      "notes": "Use as full-bleed hero background with dark overlay for text readability"
+    },
+    {
+      "path": "gallery/guinea-flag-closeup.jpg",
+      "source": "photo-bank/3d-illustration-closeup-flag-guinea.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "3D close-up illustration of the Guinean flag",
+      "usedIn": ["Country Profile - Guinea"],
+      "notes": "Alternate flag treatment for secondary sections"
+    },
+    {
+      "path": "gallery/guinea-map-flag.jpg",
+      "source": "photo-bank/guinea-map-flag-shaded-relief-color-height-map-white-background-3d-illustration.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1507",
+      "description": "3D shaded-relief map of Guinea filled with the national flag",
+      "usedIn": ["Country Profile - Guinea (overview)", "Country Profiles index card"],
+      "notes": "White background — works well on cream/light sections"
     },
     {
       "path": "branding/Logo-Dark-Mode.png",

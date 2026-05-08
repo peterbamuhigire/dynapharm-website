@@ -1,11 +1,13 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { SUPPORTED_LANGS } from '@utils/i18n';
 import type { Lang } from '@utils/i18n';
 import BaseLayout from '@layouts/BaseLayout.astro';
 
-import namibiaImg from '@assets/images/gallery/Dynapharm-Namibia.jpeg';
+import namibiaPoster from '@assets/images/gallery/Dynapharm-Namibia.jpeg';
+import namibiaFlag from '@assets/images/gallery/namibia-flag.jpg';
+import namibiaMapFlag from '@assets/images/gallery/namibia-map-flag.jpg';
 
 export const getStaticPaths = (() => {
   return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
@@ -13,115 +15,177 @@ export const getStaticPaths = (() => {
 
 const { lang } = Astro.params as { lang: Lang };
 
+// Pre-generate optimised hero background (used as CSS background-image)
+const heroBg = await getImage({ src: namibiaFlag, format: 'webp', width: 2000, quality: 75 });
+
 interface Outlet {
   town: string;
+  region: string;
   name: string;
   address: string[];
   phone: string;
 }
 
 const outlets: Outlet[] = [
-  { town: 'Windhoek', name: 'Windhoek CBD Shop', address: ['269 Independence Avenue', 'Shop No 1', 'Continental Building'], phone: '+264 81 749 9757' },
-  { town: 'Windhoek', name: 'Hochlandpark', address: ['21 Robin Road, Tauben Glen', 'Next to OK Minimarkt Store'], phone: '+264 81 320 7195' },
-  { town: 'Windhoek', name: 'Khomasdal', address: ['Shop No 2', 'Khomasdal Funky Town Mall'], phone: '+264 81 468 2991' },
-  { town: 'Tsumeb', name: 'Tsumeb', address: ['Shop No 35B Erf 35', 'Maria Nehoya Street'], phone: '+264 81 475 7074' },
-  { town: 'Gobabis', name: 'Gobabis', address: ['Shop No 8, Erf 939', 'Woermann Brock Complex', 'Church Street'], phone: '+264 81 468 5905' },
-  { town: 'Swakopmund', name: 'Swakopmund', address: ['153 Kuruseb Rd, Mondesa', 'Opposite Mondesa Usave'], phone: '+264 81 468 6806' },
-  { town: 'Outapi', name: 'Outapi', address: ['Okasikili Location', 'Next to Lamek Garage', 'Main Road from and to Oshakati'], phone: '+264 81 468 5886' },
-  { town: 'Okahao', name: 'Okahao', address: ['Erf 331 Taapopi Complex', 'Tsandi Main Road'], phone: '+264 81 468 3963' },
-  { town: 'Oshakati', name: 'Oshakati', address: ['Shop No 15 Fantasy Complex', 'Behind Bank Windhoek', 'Oshakati Main Road'], phone: '+264 81 475 7055' },
-  { town: 'Otjiwarongo', name: 'Otjiwarongo', address: ['Shop No 13, Erindi Complex', 'Albertina Amadhila Street'], phone: '+264 81 468 1997' },
-  { town: 'Eenhana', name: 'Eenhana', address: ['Shop No. 3, Tangi Complex', 'Dimo Amaambi Street'], phone: '+264 81 468 2049' },
-  { town: 'Ondangwa', name: 'Ondangwa', address: ['Shop No 3, Oluno Road', 'Woermann Brock Mall', 'Opposite Fresco'], phone: '+264 81 468 5882' },
-  { town: 'Rundu', name: 'Rundu', address: ['Shop No 6, Erf 1736', 'Markus Siwarongo Street', 'Nkarapamwe'], phone: '+264 81 468 4968' },
-  { town: 'Walvis Bay', name: 'Walvis Bay', address: ['Shop No. 6', 'Pelican Mall'], phone: '+264 81 468 5894' },
-  { town: 'Katima Mulilo', name: 'Katima Mulilo', address: ['Shop No. 1, Hospital Road', 'Opposite Open Market', 'Next to the former MVA Fund'], phone: '+264 81 468 2978' },
+  { town: 'Windhoek', region: 'Khomas Region', name: 'Windhoek CBD Shop', address: ['269 Independence Avenue', 'Shop No 1', 'Continental Building'], phone: '+264 81 749 9757' },
+  { town: 'Windhoek', region: 'Khomas Region', name: 'Hochlandpark', address: ['21 Robin Road, Tauben Glen', 'Next to OK Minimarkt Store'], phone: '+264 81 320 7195' },
+  { town: 'Windhoek', region: 'Khomas Region', name: 'Khomasdal', address: ['Shop No 2', 'Khomasdal Funky Town Mall'], phone: '+264 81 468 2991' },
+  { town: 'Tsumeb', region: 'Oshikoto Region', name: 'Tsumeb', address: ['Shop No 35B Erf 35', 'Maria Nehoya Street'], phone: '+264 81 475 7074' },
+  { town: 'Gobabis', region: 'Omaheke Region', name: 'Gobabis', address: ['Shop No 8, Erf 939', 'Woermann Brock Complex', 'Church Street'], phone: '+264 81 468 5905' },
+  { town: 'Swakopmund', region: 'Erongo Region', name: 'Swakopmund', address: ['153 Kuruseb Rd, Mondesa', 'Opposite Mondesa Usave'], phone: '+264 81 468 6806' },
+  { town: 'Outapi', region: 'Omusati Region', name: 'Outapi', address: ['Okasikili Location', 'Next to Lamek Garage', 'Main Road from and to Oshakati'], phone: '+264 81 468 5886' },
+  { town: 'Okahao', region: 'Omusati Region', name: 'Okahao', address: ['Erf 331 Taapopi Complex', 'Tsandi Main Road'], phone: '+264 81 468 3963' },
+  { town: 'Oshakati', region: 'Oshana Region', name: 'Oshakati', address: ['Shop No 15 Fantasy Complex', 'Behind Bank Windhoek', 'Oshakati Main Road'], phone: '+264 81 475 7055' },
+  { town: 'Otjiwarongo', region: 'Otjozondjupa Region', name: 'Otjiwarongo', address: ['Shop No 13, Erindi Complex', 'Albertina Amadhila Street'], phone: '+264 81 468 1997' },
+  { town: 'Eenhana', region: 'Ohangwena Region', name: 'Eenhana', address: ['Shop No. 3, Tangi Complex', 'Dimo Amaambi Street'], phone: '+264 81 468 2049' },
+  { town: 'Ondangwa', region: 'Oshana Region', name: 'Ondangwa', address: ['Shop No 3, Oluno Road', 'Woermann Brock Mall', 'Opposite Fresco'], phone: '+264 81 468 5882' },
+  { town: 'Rundu', region: 'Kavango East Region', name: 'Rundu', address: ['Shop No 6, Erf 1736', 'Markus Siwarongo Street', 'Nkarapamwe'], phone: '+264 81 468 4968' },
+  { town: 'Walvis Bay', region: 'Erongo Region', name: 'Walvis Bay', address: ['Shop No. 6', 'Pelican Mall'], phone: '+264 81 468 5894' },
+  { town: 'Katima Mulilo', region: 'Zambezi Region', name: 'Katima Mulilo', address: ['Shop No. 1, Hospital Road', 'Opposite Open Market', 'Next to the former MVA Fund'], phone: '+264 81 468 2978' },
 ];
 
 const content = {
   en: {
     meta: {
-      title: 'Dynapharm Namibia — 15 Outlets Nationwide | Country Profile',
-      description: 'Dynapharm Namibia operates 15 outlets across the country — Windhoek, Swakopmund, Walvis Bay, Oshakati, Rundu, Katima Mulilo and more. Find your nearest outlet, addresses and phone numbers.',
-      keywords: 'Dynapharm Namibia, Dynapharm Windhoek, Dynapharm Swakopmund, Dynapharm Oshakati, Dynapharm Walvis Bay, Dynapharm Rundu, Dynapharm Katima Mulilo, natural health products Namibia, Namibia outlets directory',
+      title: 'Dynapharm Namibia — 15 Outlets in Windhoek, Swakopmund, Oshakati & Beyond',
+      description: 'Official Dynapharm Namibia country profile. Find 15 outlets nationwide in Windhoek, Hochlandpark, Khomasdal, Tsumeb, Gobabis, Swakopmund, Outapi, Okahao, Oshakati, Otjiwarongo, Eenhana, Ondangwa, Rundu, Walvis Bay and Katima Mulilo. Spirulina, Ganoderma coffee, Chlorophyll, herbal supplements and the Dynapharm business opportunity in Namibia.',
+      keywords: 'Dynapharm Namibia, Dynapharm Windhoek, Dynapharm Swakopmund, Dynapharm Walvis Bay, Dynapharm Oshakati, Dynapharm Ondangwa, Dynapharm Rundu, Dynapharm Katima Mulilo, Dynapharm Otjiwarongo, Dynapharm Tsumeb, Dynapharm Gobabis, Dynapharm Outapi, Dynapharm Okahao, Dynapharm Eenhana, Dynapharm Khomasdal, Dynapharm Hochlandpark, natural health products Namibia, Spirulina Namibia, Ganoderma coffee Namibia, Chlorophyll Namibia, herbal supplements Namibia, network marketing Namibia, MLM Namibia, Dynapharm distributor Namibia, Dynapharm shops Namibia, Dynapharm outlets Namibia',
     },
     breadcrumbCountries: 'Country Profiles',
     breadcrumbThis: 'Namibia',
     hero: {
-      eyebrow: 'Country Profile',
+      eyebrow: 'Country Profile · Republic of Namibia',
       heading: 'Dynapharm Namibia',
-      subtitle: 'Fifteen outlets, one shared mission — bringing natural wellness to communities from Windhoek to the Caprivi.',
-      heroAlt: 'Dynapharm Namibia Outlets 2025 directory poster',
+      subtitle: 'Fifteen outlets, one shared mission — bringing natural wellness to Namibian communities from Windhoek to the Zambezi.',
+      flagAlt: 'National flag of the Republic of Namibia',
     },
     overview: {
       heading: 'About Dynapharm Namibia',
-      p1: 'Dynapharm Namibia is the local franchise of Dynapharm International, serving Namibian families and entrepreneurs with a comprehensive range of natural health products — Spirulina, Ganoderma coffees, Chlorophyll, herbal supplements, personal care and more.',
-      p2: 'With fifteen outlets spread across the country, Dynapharm Namibia combines global product quality with deeply local presence. Whether you are in the capital, on the coast, or up in the far north, there is a Dynapharm shop within reach.',
+      p1: 'Dynapharm Namibia is the official Namibian franchise of Dynapharm International, the Malaysian-founded health and wellness company established in 1981. Operating fifteen retail outlets across the Republic of Namibia, Dynapharm Namibia serves customers and distributors in Windhoek, Swakopmund, Walvis Bay, Oshakati, Ondangwa, Rundu, Katima Mulilo, Otjiwarongo, Tsumeb, Gobabis, Outapi, Okahao, Eenhana, Khomasdal and Hochlandpark.',
+      p2: 'Our shops stock Dynapharm’s complete catalogue of more than 90 natural health products — including Spirulina tablets, Ganoderma (Reishi/Lingzhi) coffees, Liquid Chlorophyll, Bee Pollen capsules, Tongkat Ali, Noni juice, Tea Tree Oil personal care, and D.I. Grow agricultural bio-fertiliser. Every product is manufactured to GMP-certified international quality standards.',
+      p3: 'Beyond products, Dynapharm Namibia offers a genuine network marketing business opportunity. Whether you are a customer searching for trusted natural supplements or an entrepreneur looking to build your own wellness business, our nearest outlet is ready to welcome you.',
       stats: [
         { value: '15', label: 'Outlets' },
         { value: '14', label: 'Towns Covered' },
-        { value: '90+', label: 'Products Available' },
+        { value: '8', label: 'Regions Served' },
+        { value: '90+', label: 'Products' },
       ],
+      mapAlt: 'Map of Namibia coloured with the national flag',
     },
     outlets: {
-      heading: 'Our Outlets Across Namibia',
-      subtitle: 'Visit any of our 15 shops to explore products, meet our team and join the Dynapharm family.',
+      heading: 'All 15 Dynapharm Namibia Outlets',
+      subtitle: 'Find addresses and phone numbers for every Dynapharm shop in Namibia. Tap any number to call directly.',
       callLabel: 'Call',
+      regionLabel: 'Region',
     },
+    faqHeading: 'Frequently Asked Questions — Dynapharm Namibia',
+    faq: [
+      { q: 'How many Dynapharm outlets are there in Namibia?', a: 'Dynapharm Namibia operates 15 outlets nationwide, located in Windhoek (CBD, Hochlandpark and Khomasdal), Tsumeb, Gobabis, Swakopmund, Outapi, Okahao, Oshakati, Otjiwarongo, Eenhana, Ondangwa, Rundu, Walvis Bay and Katima Mulilo.' },
+      { q: 'Where is the Dynapharm head shop in Windhoek?', a: 'The Dynapharm Windhoek CBD Shop is located at 269 Independence Avenue, Shop No 1, Continental Building, in the central business district of Windhoek. Phone: +264 81 749 9757.' },
+      { q: 'Are Dynapharm products available at the coast?', a: 'Yes. Dynapharm Namibia operates two coastal outlets in the Erongo Region — Swakopmund (153 Kuruseb Road, Mondesa) and Walvis Bay (Shop No. 6, Pelican Mall).' },
+      { q: 'Is there a Dynapharm shop in northern Namibia?', a: 'Yes. Dynapharm has a strong northern presence with outlets in Oshakati, Ondangwa, Outapi, Okahao, Eenhana, Tsumeb and Otjiwarongo, plus Rundu in Kavango East and Katima Mulilo in the Zambezi Region.' },
+      { q: 'How do I become a Dynapharm distributor in Namibia?', a: 'Visit any Dynapharm Namibia outlet and ask to register as a distributor. You will be guided through the registration process and provided with product training. No formal qualifications or prior business experience are required.' },
+      { q: 'What products does Dynapharm Namibia sell?', a: 'Our outlets stock the full Dynapharm catalogue of 90+ products: health beverages (Ganoderma coffee, Ginseng coffee, Tongkat Ali coffee), nutritional supplements (Spirulina, Bee Pollen, Goat\'s Milk), herbal medicines (Yeegano, Yeegarlic), immune boosters (Liquid Chlorophyll, Noni juice, Dyna Tonic), personal care (Tea Tree Oil range, Ganoderma soap and toothpaste), wellness foods, and D.I. Grow bio-fertiliser for agriculture.' },
+    ],
     cta: {
-      heading: 'Want to Become a Distributor in Namibia?',
-      body: 'Visit your nearest outlet or get in touch with us. Our team will guide you through the registration process, training and the products that best suit your goals.',
+      heading: 'Visit Your Nearest Dynapharm Namibia Outlet',
+      body: 'Walk into any of our 15 shops to explore products, meet our distributors and start your wellness or business journey today.',
       primary: 'Get in Touch',
       secondary: 'Explore Our Products',
     },
     backLink: 'Back to Country Profiles',
+    aboutCountry: 'About the country',
+    countryFacts: {
+      capital: 'Windhoek',
+      population: 'approximately 2.6 million',
+      languages: 'English (official), Afrikaans, Oshiwambo, Otjiherero, Damara/Nama, Rukwangali, Silozi',
+      currency: 'Namibian Dollar (NAD)',
+      callingCode: '+264',
+    },
+    factLabels: {
+      capital: 'Capital',
+      population: 'Population',
+      languages: 'Languages',
+      currency: 'Currency',
+      callingCode: 'Calling code',
+    },
   },
   fr: {
     meta: {
-      title: 'Dynapharm Namibie — 15 points de vente à travers le pays | Profil Pays',
-      description: 'Dynapharm Namibie exploite 15 points de vente à travers le pays — Windhoek, Swakopmund, Walvis Bay, Oshakati, Rundu, Katima Mulilo et plus encore. Trouvez le point de vente le plus proche, les adresses et les numéros de téléphone.',
-      keywords: 'Dynapharm Namibie, Dynapharm Windhoek, Dynapharm Swakopmund, Dynapharm Oshakati, Dynapharm Walvis Bay, Dynapharm Rundu, produits naturels Namibie, points de vente Namibie',
+      title: 'Dynapharm Namibie — 15 points de vente à Windhoek, Swakopmund, Oshakati et plus',
+      description: 'Profil pays officiel de Dynapharm Namibie. Trouvez 15 points de vente à travers le pays — Windhoek, Hochlandpark, Khomasdal, Tsumeb, Gobabis, Swakopmund, Outapi, Okahao, Oshakati, Otjiwarongo, Eenhana, Ondangwa, Rundu, Walvis Bay et Katima Mulilo. Spiruline, café au Ganoderma, Chlorophylle, compléments à base de plantes et l’opportunité d’affaires Dynapharm en Namibie.',
+      keywords: 'Dynapharm Namibie, Dynapharm Windhoek, Dynapharm Swakopmund, Dynapharm Walvis Bay, Dynapharm Oshakati, Dynapharm Ondangwa, Dynapharm Rundu, Dynapharm Katima Mulilo, produits naturels Namibie, Spiruline Namibie, Ganoderma Namibie, Chlorophylle Namibie, distributeur Dynapharm Namibie, points de vente Dynapharm Namibie',
     },
     breadcrumbCountries: 'Profils des Pays',
     breadcrumbThis: 'Namibie',
     hero: {
-      eyebrow: 'Profil Pays',
+      eyebrow: 'Profil Pays · République de Namibie',
       heading: 'Dynapharm Namibie',
-      subtitle: 'Quinze points de vente, une même mission — apporter le bien-être naturel aux communautés, de Windhoek jusqu’au Caprivi.',
-      heroAlt: 'Affiche de l’annuaire des points de vente Dynapharm Namibie 2025',
+      subtitle: 'Quinze points de vente, une même mission — apporter le bien-être naturel aux communautés namibiennes, de Windhoek jusqu’au Zambèze.',
+      flagAlt: 'Drapeau national de la République de Namibie',
     },
     overview: {
       heading: 'À Propos de Dynapharm Namibie',
-      p1: 'Dynapharm Namibie est la franchise locale de Dynapharm International. Elle propose aux familles et aux entrepreneurs namibiens une gamme complète de produits naturels — Spiruline, cafés au Ganoderma, Chlorophylle, compléments à base de plantes, soins personnels et bien plus.',
-      p2: 'Avec quinze points de vente répartis à travers le pays, Dynapharm Namibie allie la qualité mondiale de ses produits à une présence profondément locale. Que vous soyez dans la capitale, sur la côte ou dans le grand nord, un magasin Dynapharm est à votre portée.',
+      p1: 'Dynapharm Namibie est la franchise officielle namibienne de Dynapharm International, la société malaisienne de santé et de bien-être fondée en 1981. Avec quinze points de vente à travers la République de Namibie, Dynapharm Namibie sert des clients et des distributeurs à Windhoek, Swakopmund, Walvis Bay, Oshakati, Ondangwa, Rundu, Katima Mulilo, Otjiwarongo, Tsumeb, Gobabis, Outapi, Okahao, Eenhana, Khomasdal et Hochlandpark.',
+      p2: 'Nos magasins proposent l’ensemble du catalogue Dynapharm de plus de 90 produits naturels — Spiruline, cafés au Ganoderma (Reishi/Lingzhi), Chlorophylle liquide, capsules de pollen d’abeille, Tongkat Ali, jus de Noni, soins à l’huile de Tea Tree et bio-fertilisant agricole D.I. Grow. Chaque produit est fabriqué selon les normes internationales de qualité GMP.',
+      p3: 'Au-delà des produits, Dynapharm Namibie offre une véritable opportunité d’affaires en marketing de réseau. Que vous soyez un client à la recherche de compléments naturels de confiance ou un entrepreneur souhaitant bâtir votre propre activité de bien-être, notre point de vente le plus proche est prêt à vous accueillir.',
       stats: [
         { value: '15', label: 'Points de Vente' },
         { value: '14', label: 'Villes Couvertes' },
-        { value: '90+', label: 'Produits Disponibles' },
+        { value: '8', label: 'Régions Desservies' },
+        { value: '90+', label: 'Produits' },
       ],
+      mapAlt: 'Carte de la Namibie aux couleurs du drapeau national',
     },
     outlets: {
-      heading: 'Nos Points de Vente en Namibie',
-      subtitle: 'Visitez l’un de nos 15 magasins pour découvrir les produits, rencontrer notre équipe et rejoindre la famille Dynapharm.',
+      heading: 'Les 15 Points de Vente Dynapharm Namibie',
+      subtitle: 'Trouvez l’adresse et le numéro de téléphone de chaque magasin Dynapharm en Namibie. Cliquez sur un numéro pour appeler directement.',
       callLabel: 'Appeler',
+      regionLabel: 'Région',
     },
+    faqHeading: 'Foire aux questions — Dynapharm Namibie',
+    faq: [
+      { q: 'Combien de points de vente Dynapharm y a-t-il en Namibie ?', a: 'Dynapharm Namibie exploite 15 points de vente à travers le pays — à Windhoek (CBD, Hochlandpark et Khomasdal), Tsumeb, Gobabis, Swakopmund, Outapi, Okahao, Oshakati, Otjiwarongo, Eenhana, Ondangwa, Rundu, Walvis Bay et Katima Mulilo.' },
+      { q: 'Où se trouve le magasin Dynapharm principal à Windhoek ?', a: 'Le magasin Dynapharm Windhoek CBD se trouve au 269 Independence Avenue, Shop No 1, Continental Building, dans le quartier central des affaires de Windhoek. Téléphone : +264 81 749 9757.' },
+      { q: 'Les produits Dynapharm sont-ils disponibles sur la côte ?', a: 'Oui. Dynapharm Namibie dispose de deux points de vente côtiers dans la région d’Erongo — Swakopmund (153 Kuruseb Road, Mondesa) et Walvis Bay (Shop No. 6, Pelican Mall).' },
+      { q: 'Y a-t-il un magasin Dynapharm dans le nord de la Namibie ?', a: 'Oui. Dynapharm a une forte présence dans le nord avec des points de vente à Oshakati, Ondangwa, Outapi, Okahao, Eenhana, Tsumeb et Otjiwarongo, ainsi qu’à Rundu dans le Kavango Est et à Katima Mulilo dans la région de Zambezi.' },
+      { q: 'Comment devenir distributeur Dynapharm en Namibie ?', a: 'Rendez-vous dans n’importe quel point de vente Dynapharm Namibie et demandez à vous inscrire comme distributeur. Vous serez guidé(e) tout au long du processus d’inscription et recevrez une formation sur les produits. Aucune qualification formelle ni expérience préalable n’est requise.' },
+      { q: 'Quels produits Dynapharm Namibie vend-elle ?', a: 'Nos points de vente proposent l’ensemble du catalogue Dynapharm de plus de 90 produits — boissons santé (cafés au Ganoderma, au Ginseng, au Tongkat Ali), compléments alimentaires (Spiruline, pollen d’abeille, lait de chèvre), plantes médicinales, boosters d’immunité (Chlorophylle liquide, Noni, Dyna Tonic), soins personnels (gamme Tea Tree, savon et dentifrice au Ganoderma) et bio-fertilisant D.I. Grow.' },
+    ],
     cta: {
-      heading: 'Souhaitez-vous Devenir Distributeur en Namibie ?',
-      body: 'Rendez-vous dans le point de vente le plus proche ou contactez-nous. Notre équipe vous guidera à travers le processus d’inscription, la formation et les produits les mieux adaptés à vos objectifs.',
+      heading: 'Visitez le Point de Vente Dynapharm Namibie le Plus Proche',
+      body: 'Entrez dans l’un de nos 15 magasins pour découvrir les produits, rencontrer nos distributeurs et démarrer votre parcours bien-être ou affaires dès aujourd’hui.',
       primary: 'Nous Contacter',
       secondary: 'Explorer Nos Produits',
     },
     backLink: 'Retour aux Profils des Pays',
+    aboutCountry: 'À propos du pays',
+    countryFacts: {
+      capital: 'Windhoek',
+      population: 'environ 2,6 millions',
+      languages: 'anglais (officiel), afrikaans, oshiwambo, otjiherero, damara/nama, rukwangali, silozi',
+      currency: 'Dollar namibien (NAD)',
+      callingCode: '+264',
+    },
+    factLabels: {
+      capital: 'Capitale',
+      population: 'Population',
+      languages: 'Langues',
+      currency: 'Monnaie',
+      callingCode: 'Indicatif',
+    },
   },
 };
 
 const c = content[lang];
+const factEntries = Object.entries(c.factLabels) as [keyof typeof c.factLabels, string][];
+const siteHref = (Astro.site?.href || 'https://dynapharmafrica.com/').replace(/\/$/, '');
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: c.breadcrumbCountries, item: `${Astro.site}${lang}/country-profiles` },
+    { '@type': 'ListItem', position: 1, name: c.breadcrumbCountries, item: `${siteHref}/${lang}/country-profiles` },
     { '@type': 'ListItem', position: 2, name: c.breadcrumbThis },
   ],
 };
@@ -130,13 +194,36 @@ const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Dynapharm Namibia',
-  parentOrganization: { '@type': 'Organization', name: 'Dynapharm International' },
+  url: `${siteHref}/${lang}/country-profiles/namibia`,
+  parentOrganization: { '@type': 'Organization', name: 'Dynapharm International', url: 'https://www.dynapharm.com.my/' },
   areaServed: { '@type': 'Country', name: 'Namibia' },
+  numberOfEmployees: { '@type': 'QuantitativeValue', value: '15+' },
+  description: lang === 'en'
+    ? 'Dynapharm Namibia is the official franchise operating 15 outlets across Namibia, supplying natural health products and the Dynapharm business opportunity nationwide.'
+    : 'Dynapharm Namibie est la franchise officielle qui exploite 15 points de vente à travers la Namibie, proposant des produits naturels et l’opportunité d’affaires Dynapharm.',
   location: outlets.map((o) => ({
-    '@type': 'Place',
+    '@type': 'LocalBusiness',
+    '@id': `${siteHref}/${lang}/country-profiles/namibia#${o.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
     name: `Dynapharm ${o.name}`,
-    address: { '@type': 'PostalAddress', streetAddress: o.address.join(', '), addressLocality: o.town, addressCountry: 'NA' },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: o.address.join(', '),
+      addressLocality: o.town,
+      addressRegion: o.region,
+      addressCountry: 'NA',
+    },
     telephone: o.phone,
+    areaServed: o.town,
+  })),
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: c.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
 ---
@@ -146,26 +233,33 @@ const orgSchema = {
   description={c.meta.description}
   keywords={c.meta.keywords}
   lang={lang}
-  structuredData={[breadcrumbSchema, orgSchema]}
+  ogImage="/_assets/namibia-flag.jpg"
+  structuredData={[breadcrumbSchema, orgSchema, faqSchema]}
 >
-  <!-- Hero -->
-  <section class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 text-white relative overflow-hidden">
-    <div class="absolute inset-0 grain-overlay opacity-30"></div>
-    <div class="section-container relative z-10 py-16 md:py-24">
-      <nav class="mb-6 text-sm font-accent text-grey-light" aria-label="Breadcrumb">
+  <!-- Hero with flag background -->
+  <section
+    class="relative overflow-hidden text-white"
+    style={`background-image: linear-gradient(rgba(20,20,20,0.55), rgba(20,20,20,0.75)), url('${heroBg.src}'); background-size: cover; background-position: center;`}
+    aria-label={c.hero.flagAlt}
+  >
+    <div class="absolute inset-0 grain-overlay opacity-25"></div>
+    <div class="section-container relative z-10 py-20 md:py-28 lg:py-32">
+      <nav class="mb-6 text-sm font-accent text-grey-light/90" aria-label="Breadcrumb">
         <ol class="flex flex-wrap items-center gap-2">
+          <li><a href={`/${lang}`} class="hover:text-white transition-colors">{lang === 'fr' ? 'Accueil' : 'Home'}</a></li>
+          <li aria-hidden="true">/</li>
           <li><a href={`/${lang}/country-profiles`} class="hover:text-white transition-colors">{c.breadcrumbCountries}</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white" aria-current="page">{c.breadcrumbThis}</li>
         </ol>
       </nav>
-      <p class="font-accent text-sm uppercase tracking-widest text-dynared-100 mb-3">
+      <p class="font-accent text-sm uppercase tracking-widest text-white/80 mb-3">
         {c.hero.eyebrow}
       </p>
-      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-5 drop-shadow-lg">
         {c.hero.heading}
       </h1>
-      <p class="font-body text-lg md:text-xl text-grey-light max-w-2xl">
+      <p class="font-body text-lg md:text-xl text-white/90 max-w-2xl drop-shadow">
         {c.hero.subtitle}
       </p>
     </div>
@@ -179,19 +273,16 @@ const orgSchema = {
   <!-- Overview -->
   <section class="section-padding bg-cream">
     <div class="section-container">
-      <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
-        <div>
+      <div class="grid gap-12 lg:grid-cols-5 lg:items-center">
+        <div class="lg:col-span-3">
           <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
             <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
             {c.overview.heading}
           </h2>
-          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">
-            {c.overview.p1}
-          </p>
-          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-8">
-            {c.overview.p2}
-          </p>
-          <dl class="grid grid-cols-3 gap-4">
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p1}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p2}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-8">{c.overview.p3}</p>
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {c.overview.stats.map((s) => (
               <div class="bg-white rounded-xl border border-grey-light/40 p-4 text-center shadow-sm">
                 <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light mb-1">{s.label}</dt>
@@ -200,23 +291,33 @@ const orgSchema = {
             ))}
           </dl>
         </div>
-        <div class="relative">
-          <div class="rounded-2xl overflow-hidden shadow-xl border border-grey-light/30">
+        <div class="lg:col-span-2">
+          <div class="rounded-2xl overflow-hidden bg-white p-4 border border-grey-light/40 shadow-sm">
             <Image
-              src={namibiaImg}
-              alt={c.hero.heroAlt}
+              src={namibiaMapFlag}
+              alt={c.overview.mapAlt}
               class="w-full h-auto"
-              widths={[600, 1080]}
-              sizes="(min-width: 1024px) 540px, 90vw"
-              loading="eager"
+              widths={[400, 800]}
+              sizes="(min-width: 1024px) 400px, 80vw"
+              loading="lazy"
             />
           </div>
+          <!-- Country facts card -->
+          <dl class="mt-4 bg-white rounded-2xl border border-grey-light/40 p-5 shadow-sm">
+            <p class="font-accent text-xs uppercase tracking-wider text-dynared font-semibold mb-3">{c.aboutCountry}</p>
+            {factEntries.map(([key, label]) => (
+              <div class="flex justify-between gap-4 py-2 border-b border-grey-light/30 last:border-0">
+                <dt class="font-accent text-sm text-charcoal-light">{label}</dt>
+                <dd class="font-body text-sm text-charcoal text-right">{c.countryFacts[key]}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Outlets -->
+  <!-- Outlets directory poster -->
   <section class="section-padding bg-white">
     <div class="section-container">
       <div class="mb-10 max-w-2xl">
@@ -229,9 +330,21 @@ const orgSchema = {
         </p>
       </div>
 
+      <div class="mb-10 rounded-2xl overflow-hidden border border-grey-light/40 shadow-sm">
+        <Image
+          src={namibiaPoster}
+          alt={lang === 'fr' ? 'Annuaire des points de vente Dynapharm Namibie 2025' : 'Dynapharm Namibia Outlets 2025 directory poster'}
+          class="w-full h-auto"
+          widths={[800, 1080]}
+          sizes="(min-width: 1024px) 1000px, 100vw"
+          loading="lazy"
+        />
+      </div>
+
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {outlets.map((o) => (
-          <article class="bg-cream rounded-2xl border border-grey-light/40 p-6 shadow-sm hover:shadow-md hover:border-dynared/40 transition-all duration-200">
+          <article class="bg-cream rounded-2xl border border-grey-light/40 p-6 shadow-sm hover:shadow-md hover:border-dynared/40 transition-all duration-200" itemscope itemtype="https://schema.org/LocalBusiness">
+            <meta itemprop="name" content={`Dynapharm ${o.name}`} />
             <div class="flex items-start gap-3 mb-4">
               <span class="flex-shrink-0 w-10 h-10 rounded-full bg-dynared/10 text-dynared flex items-center justify-center" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -240,16 +353,21 @@ const orgSchema = {
                 </svg>
               </span>
               <div>
-                <h3 class="font-heading text-lg font-bold text-charcoal leading-tight">{o.name}</h3>
-                <p class="font-accent text-xs uppercase tracking-wider text-dynared mt-1">{o.town}</p>
+                <h3 class="font-heading text-lg font-bold text-charcoal leading-tight" itemprop="branchOf">{o.name}</h3>
+                <p class="font-accent text-xs uppercase tracking-wider text-dynared mt-1" itemprop="addressLocality">{o.town}</p>
+                <p class="font-accent text-xs text-charcoal-light mt-0.5">{o.region}</p>
               </div>
             </div>
-            <address class="font-body not-italic text-sm text-charcoal-light leading-relaxed mb-4">
-              {o.address.map((line) => (<span class="block">{line}</span>))}
+            <address class="font-body not-italic text-sm text-charcoal-light leading-relaxed mb-4" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <span itemprop="streetAddress">
+                {o.address.map((line) => (<span class="block">{line}</span>))}
+              </span>
+              <meta itemprop="addressCountry" content="NA" />
             </address>
             <a
               href={`tel:${o.phone.replace(/\s+/g, '')}`}
               class="inline-flex items-center gap-2 font-accent text-sm font-semibold text-dynared hover:text-dynared-700 transition-colors"
+              itemprop="telephone"
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.21l-2.13 1.06a11 11 0 005.52 5.52l1.06-2.13a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.69.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z" />
@@ -262,16 +380,37 @@ const orgSchema = {
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section-padding bg-cream">
+    <div class="section-container max-w-4xl">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-8 flex items-center gap-3">
+        <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+        {c.faqHeading}
+      </h2>
+      <div class="space-y-4">
+        {c.faq.map((item) => (
+          <details class="group bg-white rounded-xl border border-grey-light/40 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-heading text-base md:text-lg font-semibold text-charcoal flex items-start justify-between gap-4 hover:bg-dynared-50/40 transition-colors">
+              <span>{item.q}</span>
+              <span class="flex-shrink-0 text-dynared transition-transform group-open:rotate-180" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-1 border-t border-grey-light/30">
+              <p class="font-body text-base text-charcoal-light leading-relaxed">{item.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="section-padding bg-charcoal text-white relative overflow-hidden">
     <div class="absolute inset-0 grain-overlay opacity-20"></div>
     <div class="section-container relative z-10 max-w-3xl text-center">
-      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">
-        {c.cta.heading}
-      </h2>
-      <p class="font-body text-base md:text-lg text-grey-light leading-relaxed mb-8">
-        {c.cta.body}
-      </p>
+      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">{c.cta.heading}</h2>
+      <p class="font-body text-base md:text-lg text-grey-light leading-relaxed mb-8">{c.cta.body}</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href={`/${lang}/contact`} class="btn-primary">{c.cta.primary}</a>
         <a href={`/${lang}/products`} class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-accent font-semibold border-2 border-white/40 hover:border-white hover:bg-white/10 transition-colors">

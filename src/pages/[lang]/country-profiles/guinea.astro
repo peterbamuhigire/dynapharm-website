@@ -1,0 +1,446 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image, getImage } from 'astro:assets';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+import guineaFlag from '@assets/images/gallery/guinea-flag.jpg';
+import guineaMapFlag from '@assets/images/gallery/guinea-map-flag.jpg';
+import guineaFlagCloseup from '@assets/images/gallery/guinea-flag-closeup.jpg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+const heroBg = await getImage({ src: guineaFlag, format: 'webp', width: 2000, quality: 75 });
+
+interface Outlet {
+  name: string;
+  city: string;
+  region: string;
+  area: string;
+  description_en: string;
+  description_fr: string;
+}
+
+const outlets: Outlet[] = [
+  {
+    name: 'Dixinn',
+    city: 'Conakry',
+    region: 'Conakry Region',
+    area: 'Lower Guinea',
+    description_en: 'Dixinn is one of the five urban communes of Conakry, the capital of Guinea. Located on the Kaloum peninsula, it is home to government ministries, the University of Conakry and major commercial activity.',
+    description_fr: 'Dixinn est l’une des cinq communes urbaines de Conakry, la capitale de la Guinée. Située sur la presqu’île de Kaloum, elle abrite des ministères, l’Université de Conakry et une importante activité commerciale.',
+  },
+  {
+    name: 'Sangoyah',
+    city: 'Conakry (Matoto)',
+    region: 'Conakry Region',
+    area: 'Lower Guinea',
+    description_en: 'Sangoyah is a busy neighbourhood in the Matoto commune in eastern Conakry, well known for the Sangoyah Marché — one of the largest markets in the capital.',
+    description_fr: 'Sangoyah est un quartier animé de la commune de Matoto, dans l’est de Conakry, célèbre pour le Marché de Sangoyah — l’un des plus grands marchés de la capitale.',
+  },
+  {
+    name: 'Boké',
+    city: 'Boké',
+    region: 'Boké Region',
+    area: 'Lower Guinea',
+    description_en: 'Boké is the capital of the Boké Region and Boké Prefecture in Lower Guinea (Basse-Guinée), in the north-west of the country. The region is known for bauxite mining and the Rio Nuñez estuary.',
+    description_fr: 'Boké est la capitale de la région et de la préfecture de Boké, en Basse-Guinée, dans le nord-ouest du pays. La région est réputée pour l’exploitation de la bauxite et l’estuaire du Rio Nuñez.',
+  },
+  {
+    name: 'Labé',
+    city: 'Labé',
+    region: 'Labé Region',
+    area: 'Middle Guinea (Fouta Djallon)',
+    description_en: 'Labé is the capital of the Labé Region and the largest city in Middle Guinea (Moyenne-Guinée), set in the Fouta Djallon highlands. It is a major commercial hub for the Fula (Peul) cultural heartland.',
+    description_fr: 'Labé est la capitale de la région de Labé et la plus grande ville de Moyenne-Guinée, située dans les hauts plateaux du Fouta Djallon. C’est un important centre commercial du cœur culturel peul.',
+  },
+  {
+    name: 'Faranah',
+    city: 'Faranah',
+    region: 'Faranah Region',
+    area: 'Upper Guinea (Haute-Guinée)',
+    description_en: 'Faranah is the capital of the Faranah Region in Upper Guinea (Haute-Guinée), near the source of the Niger River. It is an important administrative and educational centre.',
+    description_fr: 'Faranah est la capitale de la région de Faranah, en Haute-Guinée, près de la source du fleuve Niger. C’est un centre administratif et éducatif important.',
+  },
+  {
+    name: 'Siguiri',
+    city: 'Siguiri',
+    region: 'Kankan Region',
+    area: 'Upper Guinea (Haute-Guinée)',
+    description_en: 'Siguiri is a town in the Kankan Region in north-eastern Upper Guinea, on the Niger River near the Mali border. It is the centre of one of West Africa’s most important gold-mining areas.',
+    description_fr: 'Siguiri est une ville de la région de Kankan, dans le nord-est de la Haute-Guinée, sur le fleuve Niger, près de la frontière malienne. C’est le centre de l’une des principales zones aurifères d’Afrique de l’Ouest.',
+  },
+];
+
+const content = {
+  en: {
+    meta: {
+      title: 'Dynapharm Guinea — Outlets in Conakry, Boké, Labé, Faranah, Siguiri',
+      description: 'Official Dynapharm Guinea (Guinée) country profile. Dynapharm operates outlets in Dixinn and Sangoyah (Conakry), Boké, Labé, Faranah and Siguiri — covering Lower, Middle and Upper Guinea. Spirulina, Ganoderma coffee, Chlorophyll, herbal supplements and the Dynapharm business opportunity in the Republic of Guinea.',
+      keywords: 'Dynapharm Guinea, Dynapharm Guinée, Dynapharm Conakry, Dynapharm Dixinn, Dynapharm Sangoyah, Dynapharm Matoto, Dynapharm Boké, Dynapharm Boke, Dynapharm Labé, Dynapharm Labe, Dynapharm Faranah, Dynapharm Siguiri, Dynapharm Kankan, Dynapharm Fouta Djallon, natural health products Guinea, Spiruline Guinée, Ganoderma Guinée, Chlorophylle Guinée, distributeur Dynapharm Guinée, Dynapharm Afrique de l\'Ouest, Dynapharm West Africa',
+    },
+    breadcrumbCountries: 'Country Profiles',
+    breadcrumbThis: 'Guinea',
+    hero: {
+      eyebrow: 'Country Profile · Republic of Guinea',
+      heading: 'Dynapharm Guinea',
+      subtitle: 'From Conakry on the Atlantic to Siguiri on the Niger — Dynapharm Guinée brings natural wellness across Lower, Middle and Upper Guinea.',
+      flagAlt: 'National flag of the Republic of Guinea (red, yellow, green)',
+    },
+    overview: {
+      heading: 'About Dynapharm Guinea',
+      p1: 'Dynapharm Guinea (Dynapharm Guinée) is the official Guinean franchise of Dynapharm International, the Malaysian-founded health and wellness company established in 1981. With six confirmed outlets, Dynapharm Guinea serves customers and distributors across the Republic of Guinea — from the capital Conakry to the regional hubs of Boké, Labé, Faranah and Siguiri.',
+      p2: 'Our outlets stock Dynapharm’s catalogue of more than 90 natural health products — Spirulina, Ganoderma (Reishi/Lingzhi) coffees, Liquid Chlorophyll, Bee Pollen, Tongkat Ali, Noni juice, Tea Tree Oil personal care, and the D.I. Grow agricultural bio-fertiliser — all manufactured to GMP-certified international quality standards.',
+      p3: 'Detailed contact information for each Guinea outlet is being finalised. In the meantime, this profile lists every confirmed location with its city, region and natural region (Lower, Middle or Upper Guinea). For immediate enquiries please contact Dynapharm Africa directly.',
+      stats: [
+        { value: '6', label: 'Outlets' },
+        { value: '5', label: 'Regions Served' },
+        { value: '3', label: 'Natural Regions' },
+        { value: '90+', label: 'Products' },
+      ],
+      mapAlt: 'Map of the Republic of Guinea coloured with the national flag',
+      pendingNote: 'Phone numbers and street addresses for Guinea outlets will be added as soon as they are confirmed.',
+    },
+    outlets: {
+      heading: 'Confirmed Dynapharm Guinea Outlets',
+      subtitle: 'Each Dynapharm Guinea outlet, with its city, administrative region and natural region. Detailed contact information will follow.',
+      regionLabel: 'Region',
+      areaLabel: 'Natural region',
+    },
+    faqHeading: 'Frequently Asked Questions — Dynapharm Guinea',
+    faq: [
+      { q: 'Where are Dynapharm outlets located in Guinea?', a: 'Dynapharm Guinea has confirmed outlets in Dixinn (Conakry), Sangoyah (Conakry, Matoto commune), Boké (Boké Region, Lower Guinea), Labé (Labé Region, Middle Guinea / Fouta Djallon), Faranah (Faranah Region, Upper Guinea) and Siguiri (Kankan Region, Upper Guinea).' },
+      { q: 'Is Dynapharm available in Conakry?', a: 'Yes. Dynapharm has two outlets in Conakry — one in Dixinn (one of the five urban communes of the capital) and one in the Sangoyah area of the Matoto commune in eastern Conakry.' },
+      { q: 'Does Dynapharm operate outside Conakry?', a: 'Yes. Dynapharm Guinea operates outlets in four other regions — Boké (Lower Guinea / Basse-Guinée), Labé (Middle Guinea / Fouta Djallon), Faranah (Upper Guinea) and Siguiri in Kankan Region (Upper Guinea).' },
+      { q: 'How can I contact Dynapharm Guinea?', a: 'Detailed phone numbers and addresses for each Guinea outlet are being collected from the franchise and will be published on this page as soon as they are confirmed. In the meantime, please use the Dynapharm Africa contact form.' },
+      { q: 'What products does Dynapharm Guinea sell?', a: 'Dynapharm Guinea outlets stock the full Dynapharm catalogue of 90+ products: Ganoderma coffee, Spirulina tablets, Liquid Chlorophyll, Bee Pollen capsules, Tongkat Ali, Noni juice, Tea Tree Oil personal care, Yeegano, Yeegarlic, and the D.I. Grow bio-fertiliser for agriculture.' },
+      { q: 'Can I become a Dynapharm distributor in Guinea?', a: 'Yes. The Dynapharm business opportunity is open to anyone in Guinea — no formal qualifications or prior business experience required. Visit your nearest outlet (Dixinn, Sangoyah, Boké, Labé, Faranah or Siguiri) or contact Dynapharm Africa to register.' },
+    ],
+    cta: {
+      heading: 'Want to Be a Dynapharm Distributor in Guinea?',
+      body: 'Contact Dynapharm Africa to be connected with the nearest outlet — Conakry, Boké, Labé, Faranah or Siguiri. We will guide you through registration, training and the products best suited to your goals.',
+      primary: 'Get in Touch',
+      secondary: 'Explore Our Products',
+    },
+    backLink: 'Back to Country Profiles',
+    aboutCountry: 'About the country',
+    countryFacts: {
+      capital: 'Conakry',
+      population: 'approximately 14 million',
+      languages: 'French (official), Pular (Fula), Maninka, Susu and other national languages',
+      currency: 'Guinean Franc (GNF)',
+      callingCode: '+224',
+    },
+    factLabels: {
+      capital: 'Capital',
+      population: 'Population',
+      languages: 'Languages',
+      currency: 'Currency',
+      callingCode: 'Calling code',
+    },
+  },
+  fr: {
+    meta: {
+      title: 'Dynapharm Guinée — Points de vente à Conakry, Boké, Labé, Faranah, Siguiri',
+      description: 'Profil pays officiel de Dynapharm Guinée. Dynapharm dispose de points de vente à Dixinn et Sangoyah (Conakry), Boké, Labé, Faranah et Siguiri — couvrant la Basse, la Moyenne et la Haute-Guinée. Spiruline, café au Ganoderma, Chlorophylle, compléments à base de plantes et opportunité d’affaires Dynapharm en République de Guinée.',
+      keywords: 'Dynapharm Guinée, Dynapharm Guinea, Dynapharm Conakry, Dynapharm Dixinn, Dynapharm Sangoyah, Dynapharm Matoto, Dynapharm Boké, Dynapharm Labé, Dynapharm Faranah, Dynapharm Siguiri, Dynapharm Kankan, Dynapharm Fouta Djallon, produits naturels Guinée, Spiruline Guinée, Ganoderma Guinée, Chlorophylle Guinée, distributeur Dynapharm Guinée, Dynapharm Afrique de l\'Ouest',
+    },
+    breadcrumbCountries: 'Profils des Pays',
+    breadcrumbThis: 'Guinée',
+    hero: {
+      eyebrow: 'Profil Pays · République de Guinée',
+      heading: 'Dynapharm Guinée',
+      subtitle: 'De Conakry sur l’Atlantique à Siguiri sur le Niger — Dynapharm Guinée apporte le bien-être naturel à travers la Basse, la Moyenne et la Haute-Guinée.',
+      flagAlt: 'Drapeau national de la République de Guinée (rouge, jaune, vert)',
+    },
+    overview: {
+      heading: 'À Propos de Dynapharm Guinée',
+      p1: 'Dynapharm Guinée est la franchise officielle guinéenne de Dynapharm International, la société malaisienne de santé et de bien-être fondée en 1981. Avec six points de vente confirmés, Dynapharm Guinée sert clients et distributeurs à travers la République de Guinée — de la capitale Conakry aux pôles régionaux de Boké, Labé, Faranah et Siguiri.',
+      p2: 'Nos magasins proposent le catalogue Dynapharm de plus de 90 produits naturels — Spiruline, cafés au Ganoderma (Reishi/Lingzhi), Chlorophylle liquide, pollen d’abeille, Tongkat Ali, jus de Noni, soins à l’huile de Tea Tree, et bio-fertilisant agricole D.I. Grow — fabriqués selon les normes internationales de qualité GMP.',
+      p3: 'Les coordonnées détaillées de chaque point de vente sont en cours de finalisation. En attendant, ce profil répertorie chaque emplacement confirmé avec sa ville, sa région et sa région naturelle (Basse, Moyenne ou Haute-Guinée). Pour toute demande immédiate, veuillez contacter Dynapharm Africa directement.',
+      stats: [
+        { value: '6', label: 'Points de Vente' },
+        { value: '5', label: 'Régions Desservies' },
+        { value: '3', label: 'Régions Naturelles' },
+        { value: '90+', label: 'Produits' },
+      ],
+      mapAlt: 'Carte de la République de Guinée aux couleurs du drapeau national',
+      pendingNote: 'Les numéros de téléphone et adresses détaillées des points de vente seront ajoutés dès qu’ils seront confirmés.',
+    },
+    outlets: {
+      heading: 'Points de Vente Dynapharm Guinée Confirmés',
+      subtitle: 'Chaque point de vente Dynapharm Guinée, avec sa ville, sa région administrative et sa région naturelle. Les coordonnées détaillées suivront.',
+      regionLabel: 'Région',
+      areaLabel: 'Région naturelle',
+    },
+    faqHeading: 'Foire aux questions — Dynapharm Guinée',
+    faq: [
+      { q: 'Où se trouvent les points de vente Dynapharm en Guinée ?', a: 'Dynapharm Guinée a des points de vente confirmés à Dixinn (Conakry), Sangoyah (Conakry, commune de Matoto), Boké (région de Boké, Basse-Guinée), Labé (région de Labé, Moyenne-Guinée / Fouta Djallon), Faranah (région de Faranah, Haute-Guinée) et Siguiri (région de Kankan, Haute-Guinée).' },
+      { q: 'Dynapharm est-il disponible à Conakry ?', a: 'Oui. Dynapharm a deux points de vente à Conakry — un à Dixinn (l’une des cinq communes urbaines de la capitale) et un dans le quartier de Sangoyah, dans la commune de Matoto à l’est de Conakry.' },
+      { q: 'Dynapharm est-il présent en dehors de Conakry ?', a: 'Oui. Dynapharm Guinée exploite des points de vente dans quatre autres régions — Boké (Basse-Guinée), Labé (Moyenne-Guinée / Fouta Djallon), Faranah (Haute-Guinée) et Siguiri dans la région de Kankan (Haute-Guinée).' },
+      { q: 'Comment contacter Dynapharm Guinée ?', a: 'Les numéros de téléphone et adresses détaillées de chaque point de vente sont en cours de collecte auprès de la franchise et seront publiés sur cette page dès leur confirmation. En attendant, veuillez utiliser le formulaire de contact Dynapharm Africa.' },
+      { q: 'Quels produits Dynapharm Guinée vend-elle ?', a: 'Les points de vente proposent le catalogue Dynapharm complet de plus de 90 produits — café au Ganoderma, Spiruline, Chlorophylle liquide, pollen d’abeille, Tongkat Ali, jus de Noni, soins à l’huile de Tea Tree, Yeegano, Yeegarlic et bio-fertilisant D.I. Grow.' },
+      { q: 'Puis-je devenir distributeur Dynapharm en Guinée ?', a: 'Oui. L’opportunité d’affaires Dynapharm est ouverte à toute personne en Guinée — aucune qualification formelle ni expérience commerciale préalable n’est requise. Rendez-vous au point de vente le plus proche (Dixinn, Sangoyah, Boké, Labé, Faranah ou Siguiri) ou contactez Dynapharm Africa pour vous inscrire.' },
+    ],
+    cta: {
+      heading: 'Souhaitez-vous Devenir Distributeur Dynapharm en Guinée ?',
+      body: 'Contactez Dynapharm Africa pour être mis en relation avec le point de vente le plus proche — Conakry, Boké, Labé, Faranah ou Siguiri. Nous vous guiderons à travers l’inscription, la formation et les produits les mieux adaptés à vos objectifs.',
+      primary: 'Nous Contacter',
+      secondary: 'Explorer Nos Produits',
+    },
+    backLink: 'Retour aux Profils des Pays',
+    aboutCountry: 'À propos du pays',
+    countryFacts: {
+      capital: 'Conakry',
+      population: 'environ 14 millions',
+      languages: 'français (officiel), pular (peul), maninka, soussou et autres langues nationales',
+      currency: 'Franc guinéen (GNF)',
+      callingCode: '+224',
+    },
+    factLabels: {
+      capital: 'Capitale',
+      population: 'Population',
+      languages: 'Langues',
+      currency: 'Monnaie',
+      callingCode: 'Indicatif',
+    },
+  },
+};
+
+const c = content[lang];
+const factEntries = Object.entries(c.factLabels) as [keyof typeof c.factLabels, string][];
+const siteHref = (Astro.site?.href || 'https://dynapharmafrica.com/').replace(/\/$/, '');
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: c.breadcrumbCountries, item: `${siteHref}/${lang}/country-profiles` },
+    { '@type': 'ListItem', position: 2, name: c.breadcrumbThis },
+  ],
+};
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: lang === 'fr' ? 'Dynapharm Guinée' : 'Dynapharm Guinea',
+  url: `${siteHref}/${lang}/country-profiles/guinea`,
+  parentOrganization: { '@type': 'Organization', name: 'Dynapharm International', url: 'https://www.dynapharm.com.my/' },
+  areaServed: { '@type': 'Country', name: 'Guinea' },
+  description: lang === 'fr'
+    ? 'Dynapharm Guinée est la franchise officielle qui exploite des points de vente à Conakry (Dixinn, Sangoyah), Boké, Labé, Faranah et Siguiri, proposant des produits naturels et l’opportunité d’affaires Dynapharm.'
+    : 'Dynapharm Guinea is the official franchise operating outlets in Conakry (Dixinn, Sangoyah), Boké, Labé, Faranah and Siguiri, supplying natural health products and the Dynapharm business opportunity.',
+  location: outlets.map((o) => ({
+    '@type': 'LocalBusiness',
+    '@id': `${siteHref}/${lang}/country-profiles/guinea#${o.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+    name: `Dynapharm ${o.name}`,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: o.city,
+      addressRegion: o.region,
+      addressCountry: 'GN',
+    },
+    areaServed: o.city,
+  })),
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: c.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title={c.meta.title}
+  description={c.meta.description}
+  keywords={c.meta.keywords}
+  lang={lang}
+  ogImage="/_assets/guinea-flag.jpg"
+  structuredData={[breadcrumbSchema, orgSchema, faqSchema]}
+>
+  <!-- Hero with flag background -->
+  <section
+    class="relative overflow-hidden text-white"
+    style={`background-image: linear-gradient(rgba(20,20,20,0.55), rgba(20,20,20,0.75)), url('${heroBg.src}'); background-size: cover; background-position: center;`}
+    aria-label={c.hero.flagAlt}
+  >
+    <div class="absolute inset-0 grain-overlay opacity-25"></div>
+    <div class="section-container relative z-10 py-20 md:py-28 lg:py-32">
+      <nav class="mb-6 text-sm font-accent text-grey-light/90" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href={`/${lang}`} class="hover:text-white transition-colors">{lang === 'fr' ? 'Accueil' : 'Home'}</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href={`/${lang}/country-profiles`} class="hover:text-white transition-colors">{c.breadcrumbCountries}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white" aria-current="page">{c.breadcrumbThis}</li>
+        </ol>
+      </nav>
+      <p class="font-accent text-sm uppercase tracking-widest text-white/80 mb-3">
+        {c.hero.eyebrow}
+      </p>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-5 drop-shadow-lg">
+        {c.hero.heading}
+      </h1>
+      <p class="font-body text-lg md:text-xl text-white/90 max-w-2xl drop-shadow">
+        {c.hero.subtitle}
+      </p>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-8 md:h-12">
+        <polygon fill="var(--color-cream)" points="0,60 1200,60 1200,0"></polygon>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="grid gap-12 lg:grid-cols-5 lg:items-center">
+        <div class="lg:col-span-3">
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
+            <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+            {c.overview.heading}
+          </h2>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p1}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p2}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-6">{c.overview.p3}</p>
+          <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-xl px-4 py-3 mb-8 text-sm font-body">
+            <span class="font-semibold">📞 </span>{c.overview.pendingNote}
+          </div>
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {c.overview.stats.map((s) => (
+              <div class="bg-white rounded-xl border border-grey-light/40 p-4 text-center shadow-sm">
+                <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light mb-1">{s.label}</dt>
+                <dd class="font-heading text-2xl md:text-3xl font-bold text-dynared">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div class="lg:col-span-2">
+          <div class="rounded-2xl overflow-hidden bg-white p-4 border border-grey-light/40 shadow-sm">
+            <Image
+              src={guineaMapFlag}
+              alt={c.overview.mapAlt}
+              class="w-full h-auto"
+              widths={[400, 800]}
+              sizes="(min-width: 1024px) 400px, 80vw"
+              loading="lazy"
+            />
+          </div>
+          <dl class="mt-4 bg-white rounded-2xl border border-grey-light/40 p-5 shadow-sm">
+            <p class="font-accent text-xs uppercase tracking-wider text-dynared font-semibold mb-3">{c.aboutCountry}</p>
+            {factEntries.map(([key, label]) => (
+              <div class="flex justify-between gap-4 py-2 border-b border-grey-light/30 last:border-0">
+                <dt class="font-accent text-sm text-charcoal-light">{label}</dt>
+                <dd class="font-body text-sm text-charcoal text-right">{c.countryFacts[key]}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outlets -->
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="mb-10 max-w-2xl">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-3 flex items-center gap-3">
+          <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+          {c.outlets.heading}
+        </h2>
+        <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed">
+          {c.outlets.subtitle}
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {outlets.map((o) => (
+          <article class="bg-cream rounded-2xl border border-grey-light/40 p-6 shadow-sm hover:shadow-md hover:border-dynared/40 transition-all duration-200">
+            <div class="flex items-start gap-3 mb-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-dynared/10 text-dynared flex items-center justify-center" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-heading text-xl font-bold text-charcoal leading-tight">Dynapharm {o.name}</h3>
+                <p class="font-accent text-xs uppercase tracking-wider text-dynared mt-1">{o.city}</p>
+              </div>
+            </div>
+            <dl class="text-sm mb-3 space-y-1">
+              <div class="flex gap-2">
+                <dt class="font-accent text-charcoal-light">{c.outlets.regionLabel}:</dt>
+                <dd class="font-body text-charcoal">{o.region}</dd>
+              </div>
+              <div class="flex gap-2">
+                <dt class="font-accent text-charcoal-light">{c.outlets.areaLabel}:</dt>
+                <dd class="font-body text-charcoal">{o.area}</dd>
+              </div>
+            </dl>
+            <p class="font-body text-sm text-charcoal-light leading-relaxed">
+              {lang === 'fr' ? o.description_fr : o.description_en}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-padding bg-cream">
+    <div class="section-container max-w-4xl">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-8 flex items-center gap-3">
+        <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+        {c.faqHeading}
+      </h2>
+      <div class="space-y-4">
+        {c.faq.map((item) => (
+          <details class="group bg-white rounded-xl border border-grey-light/40 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-heading text-base md:text-lg font-semibold text-charcoal flex items-start justify-between gap-4 hover:bg-dynared-50/40 transition-colors">
+              <span>{item.q}</span>
+              <span class="flex-shrink-0 text-dynared transition-transform group-open:rotate-180" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-1 border-t border-grey-light/30">
+              <p class="font-body text-base text-charcoal-light leading-relaxed">{item.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-20"></div>
+    <div class="section-container relative z-10 max-w-3xl text-center">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">{c.cta.heading}</h2>
+      <p class="font-body text-base md:text-lg text-grey-light leading-relaxed mb-8">{c.cta.body}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`/${lang}/contact`} class="btn-primary">{c.cta.primary}</a>
+        <a href={`/${lang}/products`} class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-accent font-semibold border-2 border-white/40 hover:border-white hover:bg-white/10 transition-colors">
+          {c.cta.secondary}
+        </a>
+      </div>
+      <div class="mt-10">
+        <a href={`/${lang}/country-profiles`} class="inline-flex items-center gap-2 font-accent text-sm text-grey-light hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          {c.backLink}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -5,7 +5,8 @@ import { SUPPORTED_LANGS } from '@utils/i18n';
 import type { Lang } from '@utils/i18n';
 import BaseLayout from '@layouts/BaseLayout.astro';
 
-import namibiaImg from '@assets/images/gallery/Dynapharm-Namibia.jpeg';
+import namibiaMap from '@assets/images/gallery/namibia-map-flag.jpg';
+import guineaMap from '@assets/images/gallery/guinea-map-flag.jpg';
 
 export const getStaticPaths = (() => {
   return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
@@ -16,72 +17,120 @@ const { lang } = Astro.params as { lang: Lang };
 const content = {
   en: {
     meta: {
-      title: 'Country Profiles — Dynapharm Africa Franchises',
-      description: 'Discover Dynapharm franchises across Africa. Explore country-by-country profiles with outlets, contact details, and local presence — starting with Dynapharm Namibia.',
-      keywords: 'Dynapharm country profiles, Dynapharm Namibia, Dynapharm Africa franchises, Dynapharm outlets, Dynapharm distributors Africa',
+      title: 'Country Profiles — Dynapharm Africa Franchises by Country',
+      description: 'Browse Dynapharm country profiles by country: Namibia (15 outlets), Guinea (6 outlets) and more. Find addresses, phone numbers and the Dynapharm business opportunity in your country across Africa and beyond.',
+      keywords: 'Dynapharm country profiles, Dynapharm Namibia, Dynapharm Guinea, Dynapharm Guinée, Dynapharm Africa franchises, Dynapharm outlets directory, Dynapharm distributors Africa, where to buy Dynapharm Africa',
     },
     hero: {
       heading: 'Country Profiles',
-      subtitle: 'Global reach, local presence. Explore the Dynapharm franchises that serve communities across Africa.',
+      subtitle: 'Global reach, local presence. Explore the Dynapharm franchises that serve communities across Africa and beyond — country by country.',
     },
     intro: {
       heading: 'A Continent of Wellness',
-      body: 'Dynapharm operates across more than 40 countries, with each franchise rooted in its own community. Our country profiles bring you closer to the people, outlets, and stories that make Dynapharm Africa what it is. We will continue adding profiles as franchises share their information with us.',
+      body: 'Dynapharm operates in more than 40 countries, with each franchise rooted in its own community. Our country profiles bring you closer to the people, outlets and stories that make Dynapharm Africa what it is. We continue adding profiles as franchises share their information.',
     },
-    featuredTag: 'Featured Country',
+    featuredTag: 'Country',
     countries: [
       {
         name: 'Namibia',
         slug: 'namibia',
-        tagline: '15 outlets nationwide — from Windhoek to Katima Mulilo',
-        description: 'Dynapharm Namibia operates 15 outlets across the country, bringing natural wellness to communities from the capital to the Caprivi Strip.',
+        tagline: '15 outlets nationwide — Windhoek to Katima Mulilo',
+        description: 'Dynapharm Namibia operates 15 outlets across 8 regions, from the capital Windhoek and the coastal cities of Swakopmund and Walvis Bay to northern hubs like Oshakati, Ondangwa and Katima Mulilo.',
         cta: 'View Namibia Profile',
-        image: namibiaImg,
-        imageAlt: 'Dynapharm Namibia Outlets 2025 directory',
-        available: true,
+        image: namibiaMap,
+        imageAlt: 'Map of Namibia in the colours of the Namibian flag',
+        outletsCount: 15,
+        regions: 8,
+      },
+      {
+        name: 'Guinea',
+        slug: 'guinea',
+        tagline: '6 outlets — Conakry, Boké, Labé, Faranah, Siguiri',
+        description: 'Dynapharm Guinea (Guinée) operates outlets in Conakry (Dixinn and Sangoyah), plus Boké, Labé, Faranah and Siguiri — covering Lower, Middle and Upper Guinea.',
+        cta: 'View Guinea Profile',
+        image: guineaMap,
+        imageAlt: 'Map of the Republic of Guinea in the colours of the Guinean flag',
+        outletsCount: 6,
+        regions: 5,
       },
     ],
-    comingSoonHeading: 'More Profiles Coming Soon',
-    comingSoonBody: 'We are gathering profiles from franchises across the continent — Uganda, Kenya, Tanzania, Nigeria, Senegal, Ghana, Cameroon, Zambia, Mozambique and more. If you represent a Dynapharm franchise and would like to be featured, please get in touch.',
+    outletsLabel: 'outlets',
+    regionsLabel: 'regions',
+    comingSoonHeading: 'More Country Profiles Coming Soon',
+    comingSoonBody: 'We are gathering profiles from franchises across the continent — Uganda, Kenya, Tanzania, Nigeria, Senegal, Ghana, Cameroon, Zambia, Mozambique, South Africa, Côte d’Ivoire, Burkina Faso, Mali, Togo, Benin, Rwanda, Burundi, DRC and more. If you represent a Dynapharm franchise and would like to be featured, please get in touch.',
     contactCta: 'Contact Us to Be Featured',
   },
   fr: {
     meta: {
-      title: 'Profils des Pays — Franchises Dynapharm en Afrique',
-      description: 'Découvrez les franchises Dynapharm à travers l’Afrique. Explorez les profils pays par pays avec les points de vente, les coordonnées et la présence locale — en commençant par Dynapharm Namibie.',
-      keywords: 'profils pays Dynapharm, Dynapharm Namibie, franchises Dynapharm Afrique, points de vente Dynapharm, distributeurs Dynapharm Afrique',
+      title: 'Profils des Pays — Franchises Dynapharm Africa par Pays',
+      description: 'Parcourez les profils pays Dynapharm : Namibie (15 points de vente), Guinée (6 points de vente) et plus. Trouvez les adresses, numéros de téléphone et l’opportunité d’affaires Dynapharm dans votre pays à travers l’Afrique et au-delà.',
+      keywords: 'profils pays Dynapharm, Dynapharm Namibie, Dynapharm Guinée, franchises Dynapharm Afrique, annuaire points de vente Dynapharm, distributeurs Dynapharm Afrique, où acheter Dynapharm Afrique',
     },
     hero: {
       heading: 'Profils des Pays',
-      subtitle: 'Présence mondiale, ancrage local. Explorez les franchises Dynapharm qui servent les communautés à travers l’Afrique.',
+      subtitle: 'Présence mondiale, ancrage local. Explorez les franchises Dynapharm qui servent les communautés à travers l’Afrique et au-delà — pays par pays.',
     },
     intro: {
       heading: 'Un Continent de Bien-Être',
-      body: 'Dynapharm opère dans plus de 40 pays, chaque franchise étant enracinée dans sa propre communauté. Nos profils pays vous rapprochent des personnes, des points de vente et des histoires qui font de Dynapharm Africa ce qu’elle est. Nous continuerons d’ajouter des profils au fur et à mesure que les franchises partageront leurs informations.',
+      body: 'Dynapharm opère dans plus de 40 pays, chaque franchise étant ancrée dans sa propre communauté. Nos profils pays vous rapprochent des personnes, des points de vente et des histoires qui font de Dynapharm Africa ce qu’elle est. Nous continuons d’ajouter des profils au fur et à mesure que les franchises partagent leurs informations.',
     },
-    featuredTag: 'Pays à l’Honneur',
+    featuredTag: 'Pays',
     countries: [
       {
         name: 'Namibie',
         slug: 'namibia',
-        tagline: '15 points de vente à travers le pays — de Windhoek à Katima Mulilo',
-        description: 'Dynapharm Namibie exploite 15 points de vente à travers le pays, apportant le bien-être naturel aux communautés, de la capitale jusqu’à la bande de Caprivi.',
+        tagline: '15 points de vente — de Windhoek à Katima Mulilo',
+        description: 'Dynapharm Namibie exploite 15 points de vente dans 8 régions, de la capitale Windhoek aux villes côtières de Swakopmund et Walvis Bay, jusqu’aux pôles du nord comme Oshakati, Ondangwa et Katima Mulilo.',
         cta: 'Voir le Profil de la Namibie',
-        image: namibiaImg,
-        imageAlt: 'Annuaire des points de vente Dynapharm Namibie 2025',
-        available: true,
+        image: namibiaMap,
+        imageAlt: 'Carte de la Namibie aux couleurs du drapeau namibien',
+        outletsCount: 15,
+        regions: 8,
+      },
+      {
+        name: 'Guinée',
+        slug: 'guinea',
+        tagline: '6 points de vente — Conakry, Boké, Labé, Faranah, Siguiri',
+        description: 'Dynapharm Guinée exploite des points de vente à Conakry (Dixinn et Sangoyah), ainsi qu’à Boké, Labé, Faranah et Siguiri — couvrant la Basse, la Moyenne et la Haute-Guinée.',
+        cta: 'Voir le Profil de la Guinée',
+        image: guineaMap,
+        imageAlt: 'Carte de la République de Guinée aux couleurs du drapeau guinéen',
+        outletsCount: 6,
+        regions: 5,
       },
     ],
-    comingSoonHeading: 'D’Autres Profils à Venir',
-    comingSoonBody: 'Nous rassemblons les profils des franchises à travers le continent — Ouganda, Kenya, Tanzanie, Nigeria, Sénégal, Ghana, Cameroun, Zambie, Mozambique et bien d’autres. Si vous représentez une franchise Dynapharm et souhaitez être mis en avant, veuillez nous contacter.',
+    outletsLabel: 'points de vente',
+    regionsLabel: 'régions',
+    comingSoonHeading: 'D’Autres Profils Pays à Venir',
+    comingSoonBody: 'Nous rassemblons les profils des franchises à travers le continent — Ouganda, Kenya, Tanzanie, Nigeria, Sénégal, Ghana, Cameroun, Zambie, Mozambique, Afrique du Sud, Côte d’Ivoire, Burkina Faso, Mali, Togo, Bénin, Rwanda, Burundi, RDC et bien d’autres. Si vous représentez une franchise Dynapharm et souhaitez être mis en avant, veuillez nous contacter.',
     contactCta: 'Contactez-nous pour Apparaître ici',
   },
 };
 
 const c = content[lang];
+const siteHref = (Astro.site?.href || 'https://dynapharmafrica.com/').replace(/\/$/, '');
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: c.hero.heading,
+  itemListElement: c.countries.map((country, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: `Dynapharm ${country.name}`,
+    url: `${siteHref}/${lang}/country-profiles/${country.slug}`,
+    description: country.description,
+  })),
+};
 ---
 
-<BaseLayout title={c.meta.title} description={c.meta.description} keywords={c.meta.keywords} lang={lang}>
+<BaseLayout
+  title={c.meta.title}
+  description={c.meta.description}
+  keywords={c.meta.keywords}
+  lang={lang}
+  structuredData={itemListSchema}
+>
   <!-- Hero -->
   <section class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 text-white relative overflow-hidden">
     <div class="absolute inset-0 grain-overlay opacity-30"></div>
@@ -122,11 +171,11 @@ const c = content[lang];
             href={`/${lang}/country-profiles/${country.slug}`}
             class="group block bg-cream rounded-2xl overflow-hidden border border-grey-light/40 hover:border-dynared/50 hover:shadow-xl transition-all duration-300"
           >
-            <div class="relative aspect-[4/3] overflow-hidden bg-grey-light/30">
+            <div class="relative aspect-[4/3] overflow-hidden bg-white flex items-center justify-center p-4">
               <Image
                 src={country.image}
                 alt={country.imageAlt}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 widths={[400, 800]}
                 sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
                 loading="lazy"
@@ -145,6 +194,10 @@ const c = content[lang];
               <p class="font-body text-base text-charcoal-light leading-relaxed mb-4">
                 {country.description}
               </p>
+              <div class="flex gap-4 mb-4 text-xs font-accent text-charcoal-light">
+                <span><strong class="text-dynared">{country.outletsCount}</strong> {c.outletsLabel}</span>
+                <span><strong class="text-dynared">{country.regions}</strong> {c.regionsLabel}</span>
+              </div>
               <span class="inline-flex items-center gap-2 font-accent text-sm font-semibold text-dynared">
                 {country.cta}
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7-7 7M5 12h16" /></svg>
