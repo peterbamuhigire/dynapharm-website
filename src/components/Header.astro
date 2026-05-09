@@ -7,9 +7,10 @@ import logo from '@assets/images/branding/Logo-Full-Color.png';
 
 interface Props {
   lang: Lang;
+  altPath?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, altPath } = Astro.props;
 const navItems = getNavItems(lang);
 const ctaLabel = getCtaLabel(lang);
 const menuOpenLabel = t(lang, 'common', 'menuOpen');
@@ -59,7 +60,7 @@ const currentPath = Astro.url.pathname;
 
       <!-- Desktop Right Section: Language Switcher + CTA -->
       <div class="hidden lg:flex items-center gap-4">
-        <LanguageSwitcher lang={lang} />
+        <LanguageSwitcher lang={lang} altPath={altPath} />
         <a href={`/${lang}/contact`} class="btn-primary text-sm">
           {ctaLabel}
         </a>
@@ -162,7 +163,7 @@ const currentPath = Astro.url.pathname;
 
         <!-- Language Switcher -->
         <div class="px-4 py-2">
-          <LanguageSwitcher lang={lang} />
+          <LanguageSwitcher lang={lang} altPath={altPath} />
         </div>
 
         <!-- CTA Button -->

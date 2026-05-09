@@ -7,9 +7,10 @@ import logoDark from '@assets/images/branding/Logo-Dark-Mode.png';
 
 interface Props {
   lang: Lang;
+  altPath?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, altPath } = Astro.props;
 const footer = tSection(lang, 'footer');
 const nav = tSection(lang, 'nav');
 
@@ -43,7 +44,7 @@ const footerNavItems = [
         <p class="font-body text-sm text-grey-light leading-relaxed mb-6">
           {footer.tagline}
         </p>
-        <LanguageSwitcher lang={lang} />
+        <LanguageSwitcher lang={lang} altPath={altPath} />
       </div>
 
       <!-- Column 2: Quick Links -->

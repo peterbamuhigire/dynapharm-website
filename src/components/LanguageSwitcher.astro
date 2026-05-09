@@ -4,11 +4,14 @@ import type { Lang } from '@utils/i18n';
 
 interface Props {
   lang: Lang;
+  /** Optional explicit URL for the alternate language. Used by pages
+   * whose slug differs across languages (e.g. blog posts). */
+  altPath?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, altPath: altPathOverride } = Astro.props;
 const altLang = getAlternateLang(lang);
-const altPath = getLocalizedPath(Astro.url.pathname, altLang);
+const altPath = altPathOverride ?? getLocalizedPath(Astro.url.pathname, altLang);
 const currentLangData = LANGUAGES[lang];
 const altLangData = LANGUAGES[altLang];
 const ariaLabel = t(lang, 'common', 'languageSwitcher');

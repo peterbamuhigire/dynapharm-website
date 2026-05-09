@@ -23,6 +23,10 @@ export default defineConfig({
           'fr/blog/bienfaits-du-ginkgo-biloba': 'en/blog/ginkgo-biloba-benefits',
           'en/blog/ginseng-benefits': 'fr/blog/bienfaits-du-ginseng',
           'fr/blog/bienfaits-du-ginseng': 'en/blog/ginseng-benefits',
+          'en/blog/ganoderma-benefits': 'fr/blog/bienfaits-du-ganoderma',
+          'fr/blog/bienfaits-du-ganoderma': 'en/blog/ganoderma-benefits',
+          'en/blog/green-tea-benefits': 'fr/blog/bienfaits-du-the-vert',
+          'fr/blog/bienfaits-du-the-vert': 'en/blog/green-tea-benefits',
         };
         const url = new URL(item.url);
         const path = url.pathname.replace(/^\/+|\/+$/g, '');

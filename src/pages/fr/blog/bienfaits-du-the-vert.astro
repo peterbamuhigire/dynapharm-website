@@ -1,0 +1,281 @@
+---
+import { Image } from 'astro:assets';
+import BlogPostLayout from '@layouts/BlogPostLayout.astro';
+import { getPost } from '@data/blog';
+import greenTeaCoffeeImg from '@assets/images/products/Product-1202.png';
+import greenTeaCapsulesImg from '@assets/images/products/Product-3812.png';
+import kacipImg from '@assets/images/products/Product-1203.png';
+import redCoffeeImg from '@assets/images/products/Product-3810.png';
+import inlineImg1 from '@assets/images/blog/cup-green-tea-with-leaves-floating-it.jpg';
+import inlineImg2 from '@assets/images/blog/instant-matcha-green-tea-wood-bowl-with-leaf-white.jpg';
+
+const post = getPost('green-tea-benefits')!;
+const lang = 'fr' as const;
+
+const faq = [
+  {
+    q: 'À quoi sert le thé vert ?',
+    a: 'Le thé vert est surtout connu pour ses puissantes catéchines antioxydantes — notamment l\'EGCG — qui soutiennent la santé cardiovasculaire, la gestion saine du poids, la concentration mentale et le bien-être de la peau. C\'est l\'une des boissons les plus étudiées au monde.',
+  },
+  {
+    q: 'Combien de thé vert faut-il boire par jour ?',
+    a: 'Pour la plupart des adultes en bonne santé, 2 à 4 tasses de thé vert infusé par jour constituent une fourchette sûre et bénéfique. Pour les compléments à base d\'extrait de thé vert, suivez l\'étiquette du produit — les apports quotidiens typiques sont de 250 à 500 mg d\'extrait standardisé.',
+  },
+  {
+    q: 'Le thé vert aide-t-il à perdre du poids ?',
+    a: 'Les catéchines du thé vert (notamment l\'EGCG), associées à sa modeste teneur naturelle en caféine, peuvent légèrement augmenter la dépense calorique et soutenir un métabolisme sain des graisses. L\'effet est modeste et fonctionne mieux avec une alimentation saine et une activité régulière — il ne s\'agit pas d\'une solution autonome.',
+  },
+  {
+    q: 'Quel est le meilleur moment pour boire du thé vert ?',
+    a: 'La plupart des personnes apprécient le thé vert le matin ou en début d\'après-midi pour sa douce caféine naturelle. Évitez d\'en boire juste avant le sommeil, à jeun si vous avez l\'estomac sensible, ou avec des repas riches en fer (cela peut réduire l\'absorption du fer non héminique).',
+  },
+  {
+    q: 'Le thé vert est-il bon pour le cœur ?',
+    a: 'Plusieurs grandes études relient une consommation régulière de thé vert à des taux de cholestérol sains et à de bons marqueurs cardiovasculaires. Le thé vert s\'intègre largement aux régimes alimentaires favorables au cœur, aux côtés des légumes, céréales complètes et bonnes graisses.',
+  },
+  {
+    q: 'Les gélules de thé vert sont-elles aussi efficaces que le thé vert infusé ?',
+    a: 'Les gélules d\'extrait de thé vert apportent des catéchines concentrées — utiles si vous souhaitez une dose élevée d\'antioxydants sans la caféine de plusieurs tasses. Le thé vert infusé a un autre attrait : hydratation, rituel et un éventail plus large de composés. Beaucoup utilisent les deux, avec modération.',
+  },
+  {
+    q: 'Le thé vert a-t-il des effets secondaires ?',
+    a: 'Le thé vert est bien toléré. Boire de très grandes quantités ou prendre des extraits à forte dose à jeun peut provoquer nausées, maux de tête, agitation ou, rarement, une irritation hépatique. Restez dans les quantités recommandées et prenez l\'extrait de thé vert avec un repas.',
+  },
+  {
+    q: 'Qui doit éviter le thé vert ?',
+    a: 'Les personnes sensibles à la caféine, les femmes enceintes ou allaitantes (à limiter à 1–2 tasses), celles souffrant d\'anémie ferriprive ou prenant des anticoagulants ou des stimulants devraient consulter un professionnel de santé avant un usage régulier de compléments à base d\'extrait de thé vert.',
+  },
+];
+
+const references = [
+  { label: 'Memorial Sloan Kettering Cancer Center — About Herbs : Thé Vert', url: 'https://www.mskcc.org/cancer-care/integrative-medicine/herbs/green-tea' },
+  { label: 'Mayo Clinic — Thé vert', url: 'https://www.mayoclinic.org/drugs-supplements-green-tea/art-20364199' },
+  { label: 'PubMed — revues systématiques sur l\'EGCG et le thé vert', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=green+tea+EGCG+systematic+review' },
+  { label: 'Harvard T.H. Chan School of Public Health — Thé', url: 'https://www.hsph.harvard.edu/nutritionsource/food-features/tea/' },
+  { label: 'Autorité européenne de sécurité des aliments (EFSA) — Catéchines du thé vert', url: 'https://www.efsa.europa.eu/en/efsajournal/pub/5239' },
+];
+---
+
+<BlogPostLayout post={post} lang={lang} faq={faq} references={references}>
+
+  <p class="lead">
+    Le <strong>thé vert</strong> est la boisson de prédilection à travers l\'Asie de l\'Est depuis plus de mille ans — et c\'est aujourd\'hui l\'une des boissons les plus étudiées au monde. Sa discrète superpuissance est une famille d\'antioxydants appelés <strong>catéchines</strong>, dont la célèbre <strong>EGCG</strong>. Riche en saveur et en tradition, le thé vert est associé à la <strong>santé cardiaque, au poids sain, à la concentration mentale, au bien-être de la peau et au vieillissement gracieux</strong>. Ce guide explique la science, les meilleures façons d\'en profiter et comment l\'utiliser en toute sécurité.
+  </p>
+
+  <div class="takeaways" role="region" aria-label="Points clés">
+    <h2>Points clés à retenir</h2>
+    <ul>
+      <li>Le thé vert provient de la plante <em>Camellia sinensis</em> — la même plante que le thé noir, mais oxydée au minimum, ce qui préserve ses antioxydants.</li>
+      <li>Ses composés vedettes sont les <strong>catéchines</strong>, en particulier l\'<strong>EGCG</strong> (épigallocatéchine-3-gallate).</li>
+      <li>Bienfaits les mieux étudiés : <strong>santé cardiovasculaire, poids sain, équilibre glycémique, concentration mentale, bien-être de la peau, défense antioxydante</strong>.</li>
+      <li>Apport typique chez l\'adulte en bonne santé : <strong>2 à 4 tasses infusées/jour</strong>, ou <strong>250 à 500 mg/jour</strong> d\'extrait standardisé.</li>
+      <li>Doux en caféine : environ la moitié de la caféine du café par tasse, avec l\'acide aminé apaisant <strong>L-théanine</strong>.</li>
+      <li>À éviter avec les repas riches en fer ; consultez un professionnel de santé en cas de prise de médicaments ou de grossesse.</li>
+      <li>Dynapharm propose le thé vert dans le <strong>Café au Thé Vert</strong>, les <strong>Gélules d\'extrait de Thé Vert</strong>, le <strong>Café Kacip Fatimah</strong> et le <strong>Café Rouge au Ginseng</strong>.</li>
+    </ul>
+  </div>
+
+  <h2 id="qu-est-ce-que">Qu\'est-ce que le thé vert ?</h2>
+  <p>
+    Le thé vert est élaboré à partir des <strong>feuilles fraîches de <em>Camellia sinensis</em></strong>, cueillies jeunes et traitées rapidement pour empêcher l\'oxydation. C\'est la différence clé avec le thé noir — le thé noir est entièrement oxydé, ce qui lui donne sa couleur sombre et sa saveur plus corsée mais réduit une partie de la teneur en antioxydants. Le thé vert conserve une teneur bien plus élevée en <strong>catéchines</strong>, les antioxydants à l\'origine de la majeure partie de sa réputation santé.
+  </p>
+  <p>
+    Au sein de la famille du thé vert, on trouve le <strong>sencha</strong>, le <strong>gyokuro</strong>, le <strong>matcha</strong> (en poudre), le <strong>longjing</strong> (puits du dragon chinois) et bien d\'autres. Les différences tiennent aux conditions de culture, à l\'ombrage et à la transformation — et non à l\'espèce.
+  </p>
+
+  <figure>
+    <Image src={inlineImg1} alt="Une tasse claire de thé vert infusé avec des feuilles flottantes — le classique frais et végétal de la culture du thé en Asie de l\'Est" widths={[640, 1024, 1280]} sizes="(min-width: 768px) 720px, 100vw" loading="lazy" />
+    <figcaption>Le thé vert infusé conserve les catéchines comme l\'EGCG qui lui confèrent l\'essentiel de ses bienfaits.</figcaption>
+  </figure>
+
+  <h2 id="histoire">Une brève histoire du thé vert</h2>
+  <p>
+    Le thé vert est tissé dans l\'histoire de la Chine et du Japon. En Chine, il est cultivé depuis plus de <strong>3 000 ans</strong> et est rapidement devenu une boisson quotidienne et un élément de la médecine, de la philosophie et de l\'art. De là, le thé est arrivé au Japon, où il a inspiré toute la tradition de la <strong>cérémonie du thé</strong>, construite autour du matcha — un thé vert en poudre bu pour la clarté, le calme et la connexion.
+  </p>
+  <p>
+    À l\'époque moderne, le thé vert a été examiné par des centaines d\'équipes de recherche dans le monde, l\'intérêt le plus vif portant sur l\'<strong>EGCG</strong>, la catéchine la plus abondante. Le résultat est l\'un des plus vastes corpus de recherche pour une seule boisson.
+  </p>
+
+  <h2 id="composes-actifs">Que contient le thé vert ? Les composés actifs</h2>
+  <ul>
+    <li><strong>Catéchines (EGCG, EGC, ECG, EC)</strong> — puissants antioxydants végétaux. L\'EGCG est la plus étudiée.</li>
+    <li><strong>L-théanine</strong> — un acide aminé unique qui favorise une concentration calme et équilibre les effets de la caféine.</li>
+    <li><strong>Caféine</strong> — présente à environ la moitié du niveau du café par tasse, apportant une énergie douce.</li>
+    <li><strong>Polyphénols, vitamines et minéraux</strong> — qui complètent son profil antioxydant global.</li>
+  </ul>
+
+  <h2 id="bienfaits">Bienfaits santé du thé vert</h2>
+
+  <h3>1. Puissante défense antioxydante</h3>
+  <p>
+    Les catéchines du thé vert figurent parmi les antioxydants alimentaires les plus puissants. Elles aident à neutraliser les radicaux libres — ces molécules instables impliquées dans le vieillissement cellulaire quotidien. <strong>Une tasse de thé vert contient environ l\'équivalent antioxydant d\'une portion de légumes.</strong>
+  </p>
+
+  <h3>2. Peut soutenir le bien-être cardiovasculaire</h3>
+  <p>
+    De grandes études d\'observation en Asie associent une <strong>consommation régulière de thé vert à des marqueurs cardiovasculaires plus sains</strong> — y compris un meilleur équilibre du cholestérol et une tension artérielle dans des plages saines. La catéchine EGCG, aux côtés des flavonoïdes du thé vert, semble soutenir une fonction saine des vaisseaux sanguins.
+  </p>
+
+  <h3>3. Peut soutenir un poids et un métabolisme sains</h3>
+  <p>
+    Les catéchines du thé vert, combinées à la caféine, peuvent légèrement augmenter la combustion calorique du corps et soutenir un métabolisme sain des graisses. L\'effet est modeste mais réel — et fonctionne mieux dans le cadre d\'un mode d\'alimentation et d\'exercice global. Les extraits concentrés de thé vert ont été utilisés dans de nombreuses études de gestion du poids.
+  </p>
+
+  <h3>4. Peut aider à la concentration sans nervosité</h3>
+  <p>
+    L\'association <strong>caféine + L-théanine</strong> du thé vert est unique — la caféine vous éveille, tandis que la L-théanine en lisse les bords, favorisant une <strong>concentration calme</strong>. De nombreux étudiants, écrivains et créatifs préfèrent le thé vert au café pour le travail mental soutenu.
+  </p>
+
+  <h3>5. Peut soutenir l\'équilibre glycémique</h3>
+  <p>
+    Plusieurs études chez l\'humain suggèrent qu\'une consommation régulière de thé vert peut aider à maintenir une glycémie à jeun saine et une bonne réponse glycémique après les repas. Comme pour tout complément, les personnes sous traitement contre le diabète doivent consulter un professionnel de santé avant d\'ajouter un extrait de thé vert.
+  </p>
+
+  <h3>6. Peut soutenir le bien-être de la peau</h3>
+  <p>
+    Les polyphénols du thé vert, appliqués localement ou consommés quotidiennement, sont largement utilisés en cosmétique pour leurs effets antioxydants et apaisants. L\'EGCG a été étudiée pour son soutien de la photo-protection cutanée et d\'un teint sain et éclatant.
+  </p>
+
+  <h3>7. Peut soutenir un vieillissement en bonne santé</h3>
+  <p>
+    Par ses effets combinés antioxydants, anti-inflammatoires et métaboliques, le thé vert est depuis longtemps associé à un <strong>vieillissement gracieux</strong> et à la longévité dans les cultures où il fait partie de la vie quotidienne.
+  </p>
+
+  <h2 id="tableau-preuves">En un coup d\'œil : niveau de preuves du thé vert</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Usage</th>
+        <th>Niveau de preuves</th>
+        <th>Dose typique dans les études</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Soutien antioxydant</td>
+        <td>Solide</td>
+        <td>2–4 tasses/jour ou 250–500 mg d\'extrait</td>
+      </tr>
+      <tr>
+        <td>Bien-être cardiovasculaire</td>
+        <td>Modéré à solide (grandes études d\'observation)</td>
+        <td>≥3 tasses/jour, usage régulier</td>
+      </tr>
+      <tr>
+        <td>Métabolisme et poids sains</td>
+        <td>Modéré</td>
+        <td>250–800 mg de catéchines/jour</td>
+      </tr>
+      <tr>
+        <td>Concentration calme / cognition</td>
+        <td>Modéré (caféine + L-théanine)</td>
+        <td>1–3 tasses/jour</td>
+      </tr>
+      <tr>
+        <td>Équilibre glycémique</td>
+        <td>Mitigé / prometteur</td>
+        <td>500 mg d\'extrait/jour</td>
+      </tr>
+      <tr>
+        <td>Photo-protection cutanée</td>
+        <td>Mitigé</td>
+        <td>Apport quotidien ou usage topique</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="utilisation">Comment utiliser le thé vert</h2>
+  <h3>Astuces d\'infusion pour la meilleure tasse</h3>
+  <ul>
+    <li>Utilisez de l\'eau à <strong>70–80 °C</strong>, et non bouillante — une eau trop chaude rend le thé vert amer.</li>
+    <li>Laissez infuser <strong>1 à 3 minutes</strong>, selon le style et votre goût.</li>
+    <li>Buvez-le nature ou avec une rondelle de citron — la vitamine C peut aider à préserver les catéchines.</li>
+    <li>Évitez d\'associer le thé vert aux repas riches en fer si vous avez un faible taux de fer.</li>
+  </ul>
+  <h3>Apport quotidien recommandé</h3>
+  <p>
+    Pour le thé vert infusé : <strong>2 à 4 tasses par jour</strong> est une fourchette saine pour la plupart des adultes. Pour les compléments à base d\'extrait standardisé : <strong>250 à 500 mg par jour</strong>, à prendre avec un repas.
+  </p>
+  <h3>Comment choisir un bon thé vert</h3>
+  <ul>
+    <li>Pour le thé en vrac : choisissez des feuilles vertes fraîches et vives, idéalement d\'une origine réputée.</li>
+    <li>Pour les extraits : recherchez une <strong>teneur en EGCG</strong> clairement indiquée et une standardisation totale en catéchines.</li>
+    <li>Pour les boissons prêtes : préférez les produits qui mentionnent du véritable thé vert ou un extrait sur l\'étiquette.</li>
+  </ul>
+
+  <figure>
+    <Image src={inlineImg2} alt="Thé vert matcha en poudre dans un bol en bois avec une feuille de thé fraîche — une forme concentrée de thé vert utilisée dans la cérémonie japonaise du thé" widths={[640, 1024, 1280]} sizes="(min-width: 768px) 720px, 100vw" loading="lazy" />
+    <figcaption>Le matcha — feuilles de thé vert finement moulues — est une façon plus concentrée d\'apprécier les catéchines du thé vert.</figcaption>
+  </figure>
+
+  <h2 id="securite">Sécurité, effets secondaires et interactions</h2>
+  <p>
+    Le thé vert compte parmi les boissons les plus sûres au monde lorsqu\'il est consommé en quantités normales. Les problèmes sont généralement associés à une <strong>consommation excessive</strong> ou à des <strong>compléments d\'extrait à forte dose pris à jeun</strong>.
+  </p>
+  <h3>À considérer</h3>
+  <ul>
+    <li><strong>Sensibilité à la caféine</strong> — le thé vert contient de la caféine ; choisissez une version décaféinée ou limitez la consommation tardive.</li>
+    <li><strong>Absorption du fer</strong> — les polyphénols du thé vert peuvent réduire l\'absorption du fer non héminique ; buvez-le entre les repas si votre taux de fer est bas.</li>
+    <li><strong>Grossesse et allaitement</strong> — limitez à 1–2 tasses/jour et évitez les extraits à forte dose.</li>
+    <li><strong>Santé hépatique</strong> — de très fortes doses d\'extrait à jeun ont été rarement associées à une irritation hépatique ; prenez-les avec un repas et respectez les doses recommandées.</li>
+    <li><strong>Interactions médicamenteuses</strong> — discutez avec un professionnel de santé si vous prenez des anticoagulants, des stimulants ou une chimiothérapie.</li>
+  </ul>
+
+  <h2 id="produits-dynapharm">Produits Dynapharm contenant du thé vert</h2>
+  <p>
+    Dynapharm propose le thé vert sous quatre formats pratiques — cafés, gélules et un mélange à base de plantes axé sur les femmes — pour profiter de ses bienfaits selon votre routine.
+  </p>
+
+  <a href="/fr/products" class="product-card">
+    <Image src={greenTeaCoffeeImg} alt="Café instantané Dynapharm au Ganoderma et au Thé Vert" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Café Instantané au Ganoderma &amp; Thé Vert</h4>
+      <p>Un mélange de café instantané onctueux qui associe les catéchines du thé vert à l\'héritage du Ganoderma — une tasse quotidienne équilibrée au caractère antioxydant.</p>
+      <span class="product-cta">Voir sur la page Produits →</span>
+    </div>
+  </a>
+
+  <a href="/fr/products" class="product-card">
+    <Image src={greenTeaCapsulesImg} alt="Gélules d\'extrait de thé vert Dynapharm" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Gélules d\'Extrait de Thé Vert</h4>
+      <p>Extrait concentré de thé vert en gélules pratiques — pour un soutien antioxydant quotidien sans caféine supplémentaire, idéal aux côtés d\'un mode de vie actif.</p>
+      <span class="product-cta">Voir sur la page Produits →</span>
+    </div>
+  </a>
+
+  <a href="/fr/products" class="product-card">
+    <Image src={kacipImg} alt="Café instantané Dynapharm au Kacip Fatimah, Thé Vert et Ganoderma — formulé pour les femmes" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Café Instantané au Kacip Fatimah, Thé Vert &amp; Ganoderma</h4>
+      <p>Un mélange de café à base de plantes axé sur les femmes, associant le Kacip Fatimah — un tonique féminin célébré en Asie du Sud-Est — au thé vert et au Ganoderma.</p>
+      <span class="product-cta">Voir sur la page Produits →</span>
+    </div>
+  </a>
+
+  <a href="/fr/products" class="product-card">
+    <Image src={redCoffeeImg} alt="Café Rouge Dynapharm — mélange de café instantané au Ginseng, Betterave et Thé Vert" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Café Rouge au Ginseng, Betterave &amp; Thé Vert</h4>
+      <p>Un mélange de café rouge plus corsé qui associe Ginseng, Betterave, Thé Vert et Cacao — riche en antioxydants et naturellement énergisant.</p>
+      <span class="product-cta">Voir sur la page Produits →</span>
+    </div>
+  </a>
+
+  <h2 id="faq">Questions fréquentes sur le thé vert</h2>
+  {faq.map((item) => (
+    <div class="faq-item">
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </div>
+  ))}
+
+  <h2 id="conclusion">En conclusion</h2>
+  <p>
+    Le thé vert est l\'un des ajouts les plus simples, savoureux et les mieux documentés à une routine quotidienne saine. Que vous le siroter infusé, le preniez en extrait concentré ou en profitiez à travers un mélange de café soigneusement formulé, vous prenez part à une tradition <strong>vieille de plusieurs millénaires</strong> — soutenue par certaines des recherches nutritionnelles les plus vastes de notre époque.
+  </p>
+  <p>
+    Pour découvrir la gamme thé vert de Dynapharm, visitez notre <a href="/fr/products">page Produits</a>, ou échangez avec un distributeur Dynapharm formé pour des conseils personnalisés.
+  </p>
+
+</BlogPostLayout>

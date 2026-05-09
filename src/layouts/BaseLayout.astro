@@ -1,5 +1,5 @@
 ---
-import { getLocalizedPath, SUPPORTED_LANGS, t } from '@utils/i18n';
+import { getAlternateLang, getLocalizedPath, SUPPORTED_LANGS, t } from '@utils/i18n';
 import type { Lang } from '@utils/i18n';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
@@ -87,6 +87,11 @@ const breadcrumbSchema = !isHomePage ? {
   ],
 } : null;
 
+// Resolve the path for the alternate language so the language
+// switcher links to the correct localized URL even when slugs differ.
+const altLang = getAlternateLang(lang);
+const altPath = alternates?.[altLang] ?? getLocalizedPath(Astro.url.pathname, altLang);
+
 // Collect all schemas
 const allSchemas: Record<string, unknown>[] = [organizationSchema];
 if (breadcrumbSchema) allSchemas.push(breadcrumbSchema);
@@ -166,13 +171,13 @@ if (structuredData) {
       {lang === 'en' ? 'Skip to content' : 'Aller au contenu'}
     </a>
 
-    <Header lang={lang} />
+    <Header lang={lang} altPath={altPath} />
 
     <main id="main-content" class="flex-1">
       <slot />
     </main>
 
-    <Footer lang={lang} />
+    <Footer lang={lang} altPath={altPath} />
 
     <!-- Back to top button -->
     <button

@@ -1,0 +1,284 @@
+---
+import { Image } from 'astro:assets';
+import BlogPostLayout from '@layouts/BlogPostLayout.astro';
+import { getPost } from '@data/blog';
+import yeeganoImg from '@assets/images/products/Product-1810.png';
+import ganoCoffeeImg from '@assets/images/products/Product-1804.png';
+import ganoChocolateImg from '@assets/images/products/Product-1806.png';
+import presidentsImg from '@assets/images/products/Product-1817.png';
+import inlineImg1 from '@assets/images/blog/dried-lingzhi-mushroom-before-make-drug.jpg';
+import inlineImg2 from '@assets/images/blog/lingzhi-reishi-mushroom-with-capsules-organic-natural-healthy-food.jpg';
+
+const post = getPost('ganoderma-benefits')!;
+const lang = 'en' as const;
+
+const faq = [
+  {
+    q: 'What is Ganoderma good for?',
+    a: 'Ganoderma lucidum (Reishi or Lingzhi mushroom) is most often used to support the immune system, promote calm and better sleep, balance daily stress, and provide antioxidant protection. It is also studied for liver support, cardiovascular wellness and healthy ageing. In traditional Chinese medicine it is classified as a "shen" (spirit-calming) tonic.',
+  },
+  {
+    q: 'How long does Ganoderma take to work?',
+    a: 'Most people take Ganoderma daily for 4 to 8 weeks before they notice clearer benefits for sleep, stress and immunity. It is a "tonic" herb in the traditional sense — its effects build with consistent use rather than appearing on the first day.',
+  },
+  {
+    q: 'Is Ganoderma safe to take every day?',
+    a: 'For most healthy adults, Ganoderma extract or beverages are well tolerated when taken at recommended doses. Mild side effects can include digestive upset, dry mouth or, occasionally, mild dizziness. Long-term continuous use should be discussed with a healthcare professional, especially if you take medication.',
+  },
+  {
+    q: 'Who should not take Ganoderma?',
+    a: 'Avoid Ganoderma if you are taking blood-thinning medication, blood-pressure medication or immunosuppressants, if you have a bleeding disorder, are pregnant or breastfeeding, or are scheduled for surgery within 2 weeks. Always consult your doctor first if you have any chronic condition.',
+  },
+  {
+    q: 'Does Ganoderma help with sleep?',
+    a: 'Reishi has a long traditional reputation for calming the mind and supporting deeper, more restful sleep. Some clinical studies suggest standardised extracts may modestly reduce stress-related sleep difficulties. Effects are usually gentle rather than sedating.',
+  },
+  {
+    q: 'Can I drink Ganoderma coffee at night?',
+    a: 'Ganoderma coffee still contains caffeine from the coffee component, so the same general rule applies — avoid it close to bedtime if you are sensitive to caffeine. Caffeine-free options like Ganoderma chocolate or capsules are better for evening use.',
+  },
+  {
+    q: 'What\'s the difference between Reishi, Lingzhi and Ganoderma?',
+    a: 'They are all the same mushroom — Ganoderma lucidum. "Lingzhi" is the Chinese name, "Reishi" is the Japanese name, and "Ganoderma" (specifically G. lucidum) is the Latin scientific name. Some products specifically use red Reishi, the most studied variety.',
+  },
+  {
+    q: 'Can Ganoderma boost the immune system?',
+    a: 'Ganoderma\'s polysaccharides — especially beta-glucans — have demonstrated immune-modulating activity in laboratory and clinical studies. Rather than overstimulating immunity, Ganoderma is thought to help "balance" immune responses, which is why it is so widely used as a daily tonic.',
+  },
+];
+
+const references = [
+  { label: 'Memorial Sloan Kettering Cancer Center — About Herbs: Reishi Mushroom', url: 'https://www.mskcc.org/cancer-care/integrative-medicine/herbs/reishi-mushroom' },
+  { label: 'National Center for Complementary and Integrative Health (NCCIH) — Mushrooms', url: 'https://www.nccih.nih.gov/health/herbsataglance' },
+  { label: 'PubMed — Ganoderma lucidum systematic reviews', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=ganoderma+lucidum+systematic+review' },
+  { label: 'Mount Sinai — Reishi mushroom', url: 'https://www.mountsinai.org/health-library/herb/reishi-mushroom' },
+  { label: 'Cochrane Database — Ganoderma lucidum review', url: 'https://www.cochrane.org/CD007731' },
+];
+---
+
+<BlogPostLayout post={post} lang={lang} faq={faq} references={references}>
+
+  <p class="lead">
+    Long before modern science was interested in medicinal mushrooms, <strong>Ganoderma lucidum</strong> already had a 2,000-year reputation in Asia as the <em>"mushroom of immortality."</em> Known as <strong>Lingzhi</strong> in Chinese and <strong>Reishi</strong> in Japanese, this beautiful red-lacquered mushroom was once so prized that emperors restricted its use. Today, it is one of the most studied medicinal mushrooms in the world — valued for <strong>immune support, calm focus, restful sleep, and antioxidant defence</strong>. This guide explains what Ganoderma is, what the evidence shows, and how to use it safely.
+  </p>
+
+  <div class="takeaways" role="region" aria-label="Key takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>Ganoderma lucidum is also called <strong>Reishi</strong> (Japanese) or <strong>Lingzhi</strong> (Chinese) — the same mushroom.</li>
+      <li>Its active compounds — <strong>beta-glucan polysaccharides</strong> and <strong>triterpenes</strong> — give Ganoderma its immune-modulating and antioxidant character.</li>
+      <li>Most studied uses: <strong>immune support, stress and sleep, antioxidant defence, liver and cardiovascular wellness, healthy ageing</strong>.</li>
+      <li>It is a <strong>tonic herb</strong> — taken daily over weeks, not as a quick remedy.</li>
+      <li>Typical adult dose: <strong>1.5–9 g/day</strong> of dried mushroom equivalent, or as labelled for extracts and beverages.</li>
+      <li>Avoid Ganoderma if you take blood thinners, immunosuppressants, blood-pressure medication, are pregnant or breastfeeding, or are due for surgery.</li>
+      <li>Dynapharm offers Ganoderma in <strong>Yeegano Capsules</strong>, <strong>Gano Coffee</strong>, <strong>Gano Chocolate</strong>, and <strong>President\'s Choice 4-in-1 Coffee &amp; Chocolate</strong>.</li>
+    </ul>
+  </div>
+
+  <h2 id="what-is-ganoderma">What is Ganoderma?</h2>
+  <p>
+    <strong>Ganoderma lucidum</strong> is a glossy, hard, fan-shaped mushroom that grows wild on hardwood trees across temperate Asia and beyond. Its surface looks lacquered — almost varnished — which is reflected in its botanical name (<em>lucidum</em> = "shining"). The mushroom is typically too tough to be eaten directly; instead, it is dried and processed into <strong>powders, extracts, teas, capsules and beverages</strong>.
+  </p>
+  <p>
+    Several Ganoderma species are used commercially, but <strong>red Reishi</strong> (Ganoderma lucidum proper) is the most widely studied and the form most often referenced in traditional Chinese medicine.
+  </p>
+
+  <figure>
+    <Image src={inlineImg1} alt="Sliced and dried Lingzhi (Ganoderma lucidum) mushroom — the form used to prepare traditional decoctions and modern extracts" widths={[640, 1024, 1280]} sizes="(min-width: 768px) 720px, 100vw" loading="lazy" />
+    <figcaption>Sliced, dried Lingzhi — the form traditionally simmered into long, slow decoctions.</figcaption>
+  </figure>
+
+  <h2 id="history">A short history: from emperors to modern wellness</h2>
+  <p>
+    Ganoderma is mentioned in <strong>some of the oldest medical texts on Earth</strong>. The Chinese herbal classic <em>Shennong Bencao Jing</em>, dating back roughly two thousand years, lists Lingzhi among the highest "superior" herbs — those said to nourish life without side effects. Wild Ganoderma was historically so rare that, for centuries, only royalty and senior monks could use it.
+  </p>
+  <p>
+    In the 1970s, Japanese researchers developed a way to <strong>cultivate Ganoderma reliably</strong>, which finally made it widely available. Since then, thousands of studies have explored its compounds, with strongest interest in the <strong>polysaccharides</strong> and <strong>triterpenes</strong> that give the mushroom its immune-modulating and antioxidant character.
+  </p>
+
+  <h2 id="active-compounds">What is in Ganoderma? The active compounds</h2>
+  <p>
+    Ganoderma is <strong>chemically rich</strong>. Its effects are attributed to several families of natural compounds:
+  </p>
+  <ul>
+    <li><strong>Beta-glucan polysaccharides</strong> — the best-known immune-supporting compounds in medicinal mushrooms.</li>
+    <li><strong>Triterpenes (ganoderic acids)</strong> — give Reishi its bitter taste and contribute to its antioxidant and liver-supportive activity.</li>
+    <li><strong>Peptidoglycans, sterols, and adenosine</strong> — also play roles in calming, circulation and overall balance.</li>
+  </ul>
+  <p>
+    Quality matters: a good Ganoderma supplement clearly states its <strong>polysaccharide and triterpene content</strong>, uses fruit-body extracts (not just mycelium grown on grain), and is sourced from a reliable manufacturer.
+  </p>
+
+  <h2 id="benefits">Health benefits of Ganoderma</h2>
+
+  <h3>1. May support and balance the immune system</h3>
+  <p>
+    Ganoderma is best known as an <strong>immune modulator</strong>. Rather than simply stimulating immunity, beta-glucans and other polysaccharides help the body's immune cells communicate more effectively. Several human studies in older adults and people under stress have reported improvements in immune cell activity after several weeks of daily Ganoderma extract.
+  </p>
+
+  <h3>2. May ease stress and support restful sleep</h3>
+  <p>
+    Reishi is called a <strong>"shen tonic"</strong> in traditional Chinese medicine — meaning it is associated with calming the mind. Modern research has explored Ganoderma for fatigue, mild anxiety symptoms, and stress-related sleep difficulties, with several small studies reporting modest improvements after consistent daily use.
+  </p>
+
+  <h3>3. Strong antioxidant activity</h3>
+  <p>
+    Ganoderma's triterpenes and polysaccharides act as <strong>antioxidants</strong>, helping neutralise the free radicals produced by stress, pollution and normal metabolism. This is part of why the mushroom is so closely associated with longevity and graceful ageing in tradition.
+  </p>
+
+  <h3>4. May support liver and detoxification health</h3>
+  <p>
+    Several preclinical and small clinical studies suggest Ganoderma extracts may support healthy liver enzyme levels and help the liver cope with everyday stress on its detoxification function. It is sometimes paired with Milk Thistle in modern wellness programmes.
+  </p>
+
+  <h3>5. May support cardiovascular wellness</h3>
+  <p>
+    Ganoderma has been studied for healthy cholesterol and blood-pressure ranges. Evidence is preliminary but consistent enough that it is widely used as part of cardiovascular-friendly wellness routines, alongside healthy diet and exercise.
+  </p>
+
+  <h3>6. May support energy that comes <em>from</em> rest</h3>
+  <p>
+    Unlike caffeine, Ganoderma doesn't push you up and then drop you. Many people report a feeling of <strong>steady, calm energy</strong> after several weeks of use — likely because the herb supports better sleep, reduced stress, and balanced immune function rather than acting as a stimulant.
+  </p>
+
+  <h3>7. May support healthy ageing</h3>
+  <p>
+    Through its combined antioxidant, immune-modulating and stress-balancing actions, Ganoderma is one of the most-recommended <strong>longevity tonics</strong> in Asian wellness traditions. Modern interest in "healthspan" continues to put Reishi back in the spotlight.
+  </p>
+
+  <h2 id="evidence-table">At a glance: Ganoderma evidence summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Use</th>
+        <th>Strength of evidence</th>
+        <th>Typical dose used in studies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Immune-modulating support</td>
+        <td>Moderate</td>
+        <td>1.5–3 g/day extract for 8–12 weeks</td>
+      </tr>
+      <tr>
+        <td>Stress and mild fatigue</td>
+        <td>Mixed / promising</td>
+        <td>1.4–5 g/day for 8 weeks</td>
+      </tr>
+      <tr>
+        <td>Sleep quality</td>
+        <td>Mixed</td>
+        <td>1.5–3 g/day extract</td>
+      </tr>
+      <tr>
+        <td>Antioxidant support</td>
+        <td>Plausible (in vitro &amp; clinical)</td>
+        <td>1.5 g/day</td>
+      </tr>
+      <tr>
+        <td>Liver enzyme support</td>
+        <td>Preliminary</td>
+        <td>1.5–3 g/day</td>
+      </tr>
+      <tr>
+        <td>Cholesterol balance</td>
+        <td>Preliminary</td>
+        <td>1.4–5 g/day</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="how-to-use">How to use Ganoderma</h2>
+  <h3>Recommended daily dose</h3>
+  <p>
+    For dried mushroom or whole-fruit extract, traditional and clinical references use <strong>1.5 to 9 grams per day</strong> in adults, depending on whether you are using a concentrated extract or whole powder. For capsules, follow the product label — typical daily intakes are 1–3 g of standardised extract.
+  </p>
+  <p>
+    For Ganoderma beverages (coffee, chocolate, capsules), simply follow the directions on the package. <strong>Consistency is key</strong> — most benefits build up over 4 to 12 weeks of daily use.
+  </p>
+  <h3>How to choose a good Ganoderma product</h3>
+  <ul>
+    <li>Look for <strong>fruit-body extract</strong>, ideally with stated polysaccharide and triterpene percentages.</li>
+    <li>Choose a <strong>reputable manufacturer</strong> with documented quality controls.</li>
+    <li>Pick a format that suits your routine — capsules for convenience, coffee or chocolate for daily enjoyment.</li>
+    <li>For evening use, prefer caffeine-free formats (capsules or chocolate).</li>
+  </ul>
+
+  <figure>
+    <Image src={inlineImg2} alt="Whole and sliced Lingzhi (Ganoderma lucidum) mushrooms next to capsules — modern Reishi supplements alongside their traditional source" widths={[640, 1024, 1280]} sizes="(min-width: 768px) 720px, 100vw" loading="lazy" />
+    <figcaption>Modern Reishi capsules are simply concentrated forms of the same mushroom traditionally simmered into tea.</figcaption>
+  </figure>
+
+  <h2 id="safety">Safety, side effects and interactions</h2>
+  <p>
+    For most healthy adults, Ganoderma is well tolerated. When side effects occur they are typically mild — digestive upset, dry mouth, mild dizziness, or itching — and usually resolve when the dose is reduced or the product is stopped.
+  </p>
+  <h3>When to avoid Ganoderma</h3>
+  <ul>
+    <li>If you take <strong>blood thinners</strong> (warfarin, aspirin, clopidogrel) — Ganoderma may affect clotting.</li>
+    <li>If you take <strong>blood-pressure medication</strong> — Ganoderma may further lower blood pressure.</li>
+    <li>If you take <strong>immunosuppressants</strong> — Ganoderma can interact with these medications.</li>
+    <li>If you have a <strong>bleeding disorder</strong> or are scheduled for surgery within 2 weeks.</li>
+    <li>If you are <strong>pregnant or breastfeeding</strong> — safety has not been established.</li>
+    <li>If you are <strong>allergic</strong> to mushrooms.</li>
+  </ul>
+
+  <h2 id="dynapharm-products">Dynapharm products containing Ganoderma</h2>
+  <p>
+    Dynapharm offers Ganoderma in four convenient formats — pure capsules, a smooth instant coffee, a rich chocolate drink, and a classic 4-in-1 coffee &amp; chocolate blend.
+  </p>
+
+  <a href="/en/products" class="product-card">
+    <Image src={yeeganoImg} alt="Yeegano Ganoderma Capsules from Dynapharm" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Yeegano (Ganoderma) Capsules</h4>
+      <p>Concentrated Ganoderma lucidum (Reishi / Lingzhi) in convenient capsules — for daily support of immunity, calm, and antioxidant defence.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <a href="/en/products" class="product-card">
+    <Image src={ganoCoffeeImg} alt="Dynapharm Instant Coffee with Ganoderma" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Instant Coffee with Ganoderma</h4>
+      <p>The classic Dynapharm coffee — a smooth instant blend featuring Ganoderma. An everyday way to enjoy this celebrated mushroom.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <a href="/en/products" class="product-card">
+    <Image src={ganoChocolateImg} alt="Dynapharm Instant Chocolate with Ganoderma" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Instant Chocolate with Ganoderma</h4>
+      <p>A rich, indulgent chocolate drink enriched with Ganoderma — caffeine-free and perfect for evenings or for those who prefer a non-coffee option.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <a href="/en/products" class="product-card">
+    <Image src={presidentsImg} alt="Dynapharm President\'s Choice 4-in-1 Coffee and Chocolate with Ganoderma" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>President's Choice 4-in-1 Coffee &amp; Chocolate</h4>
+      <p>A signature 4-in-1 blend combining coffee, chocolate and Ganoderma in a single sachet — depth of coffee, richness of cocoa, heritage of Reishi.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <h2 id="faq">Frequently asked questions about Ganoderma</h2>
+  {faq.map((item) => (
+    <div class="faq-item">
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </div>
+  ))}
+
+  <h2 id="bottom-line">The bottom line</h2>
+  <p>
+    Ganoderma is one of the most respected herbal traditions in Asia, with thousands of years of use and a growing modern body of research. While it is not a quick fix, evidence supports its careful daily use as a <strong>tonic for immunity, stress, sleep and overall balance</strong>. As with any supplement, choose quality, take it consistently, and discuss long-term use with a qualified healthcare professional — especially if you take medication.
+  </p>
+  <p>
+    To explore Dynapharm's Ganoderma range, visit our <a href="/en/products">Products page</a>, or speak to a trained Dynapharm distributor for personalised guidance.
+  </p>
+
+</BlogPostLayout>

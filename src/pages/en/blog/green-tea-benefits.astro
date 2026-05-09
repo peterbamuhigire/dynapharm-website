@@ -1,0 +1,281 @@
+---
+import { Image } from 'astro:assets';
+import BlogPostLayout from '@layouts/BlogPostLayout.astro';
+import { getPost } from '@data/blog';
+import greenTeaCoffeeImg from '@assets/images/products/Product-1202.png';
+import greenTeaCapsulesImg from '@assets/images/products/Product-3812.png';
+import kacipImg from '@assets/images/products/Product-1203.png';
+import redCoffeeImg from '@assets/images/products/Product-3810.png';
+import inlineImg1 from '@assets/images/blog/cup-green-tea-with-leaves-floating-it.jpg';
+import inlineImg2 from '@assets/images/blog/instant-matcha-green-tea-wood-bowl-with-leaf-white.jpg';
+
+const post = getPost('green-tea-benefits')!;
+const lang = 'en' as const;
+
+const faq = [
+  {
+    q: 'What is green tea good for?',
+    a: 'Green tea is best known for its powerful antioxidant catechins — especially EGCG — which support cardiovascular health, healthy weight management, mental focus and skin wellness. It is one of the most studied beverages in the world.',
+  },
+  {
+    q: 'How much green tea should I drink per day?',
+    a: 'For most healthy adults, 2 to 4 cups of brewed green tea per day is a safe and beneficial range. For green tea extract supplements, follow the product label — typical daily intakes are 250–500 mg of standardised extract.',
+  },
+  {
+    q: 'Does green tea help with weight loss?',
+    a: 'Green tea catechins (especially EGCG), combined with its modest natural caffeine content, may slightly increase calorie burn and support healthy fat metabolism. The effect is small and works best alongside healthy eating and regular movement — not as a stand-alone solution.',
+  },
+  {
+    q: 'When is the best time to drink green tea?',
+    a: 'Most people enjoy green tea in the morning or early afternoon for its gentle natural caffeine. Avoid drinking it right before sleep, on an empty stomach if you have a sensitive stomach, or alongside iron-rich meals (it can reduce non-haem iron absorption).',
+  },
+  {
+    q: 'Is green tea good for the heart?',
+    a: 'Several large studies link regular green tea consumption with healthy cholesterol levels and good cardiovascular markers. Green tea is widely included in heart-friendly dietary patterns alongside vegetables, whole grains and healthy fats.',
+  },
+  {
+    q: 'Are green tea capsules as good as drinking green tea?',
+    a: 'Green tea extract capsules deliver concentrated catechins — useful when you want a high antioxidant dose without the caffeine of multiple cups. Brewed green tea has a different appeal: hydration, ritual, and a wider range of compounds. Many people use both, in moderation.',
+  },
+  {
+    q: 'Are there any side effects of green tea?',
+    a: 'Green tea is well tolerated. Drinking very large amounts or taking high-dose extracts on an empty stomach may cause nausea, headache, restlessness or, rarely, liver irritation. Stick to recommended amounts and take green tea extract with food.',
+  },
+  {
+    q: 'Who should avoid green tea?',
+    a: 'People sensitive to caffeine, pregnant or breastfeeding women (limit to 1–2 cups), those with iron-deficiency anaemia, or anyone on blood thinners or stimulants should consult a healthcare professional before regular use of green tea extract supplements.',
+  },
+];
+
+const references = [
+  { label: 'Memorial Sloan Kettering Cancer Center — About Herbs: Green Tea', url: 'https://www.mskcc.org/cancer-care/integrative-medicine/herbs/green-tea' },
+  { label: 'Mayo Clinic — Green tea', url: 'https://www.mayoclinic.org/drugs-supplements-green-tea/art-20364199' },
+  { label: 'PubMed — EGCG and green tea systematic reviews', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=green+tea+EGCG+systematic+review' },
+  { label: 'Harvard T.H. Chan School of Public Health — Tea', url: 'https://www.hsph.harvard.edu/nutritionsource/food-features/tea/' },
+  { label: 'European Food Safety Authority (EFSA) — Green tea catechins', url: 'https://www.efsa.europa.eu/en/efsajournal/pub/5239' },
+];
+---
+
+<BlogPostLayout post={post} lang={lang} faq={faq} references={references}>
+
+  <p class="lead">
+    <strong>Green tea</strong> has been the everyday drink of choice across East Asia for more than a thousand years — and is now one of the most studied beverages in the world. Its quiet superpower is a family of antioxidants called <strong>catechins</strong>, including the famous <strong>EGCG</strong>. Rich in flavour and tradition, green tea is associated with <strong>heart health, healthy weight, mental focus, skin wellness and graceful ageing</strong>. This guide explains the science, the best ways to enjoy it, and how to use it safely.
+  </p>
+
+  <div class="takeaways" role="region" aria-label="Key takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li>Green tea comes from the <em>Camellia sinensis</em> plant — the same plant as black tea, but minimally oxidised, which preserves its antioxidants.</li>
+      <li>Its star compounds are <strong>catechins</strong>, especially <strong>EGCG</strong> (epigallocatechin-3-gallate).</li>
+      <li>Best-studied benefits: <strong>cardiovascular health, healthy weight, blood-sugar balance, mental focus, skin wellness, antioxidant defence</strong>.</li>
+      <li>Typical healthy adult intake: <strong>2–4 cups brewed/day</strong>, or <strong>250–500 mg/day</strong> of standardised extract.</li>
+      <li>Easy on caffeine: roughly half the caffeine of coffee per cup, with the calming amino acid <strong>L-theanine</strong>.</li>
+      <li>Avoid with iron-rich meals; consult a healthcare professional if you take medication or are pregnant.</li>
+      <li>Dynapharm offers green tea in <strong>Green Tea Coffee</strong>, <strong>Green Tea Extract Capsules</strong>, <strong>Kacip Fatimah Coffee</strong> and <strong>Red Coffee with Ginseng</strong>.</li>
+    </ul>
+  </div>
+
+  <h2 id="what-is-green-tea">What is green tea?</h2>
+  <p>
+    Green tea is made from the <strong>fresh leaves of <em>Camellia sinensis</em></strong>, picked young and processed quickly to prevent oxidation. This is the key difference between green tea and black tea — black tea is fully oxidised, which gives it its dark colour and bolder flavour but lowers some of the antioxidant content. Green tea retains a much higher amount of <strong>catechins</strong>, the antioxidants behind most of its health reputation.
+  </p>
+  <p>
+    Within the green tea family, you will find <strong>sencha</strong>, <strong>gyokuro</strong>, <strong>matcha</strong> (powdered), and <strong>longjing</strong> (Chinese dragon well), among many others. The differences come down to growing conditions, shading, and processing — not species.
+  </p>
+
+  <figure>
+    <Image src={inlineImg1} alt="A clear cup of brewed green tea with floating leaves — the fresh, vegetal classic of East Asian tea culture" widths={[640, 1024, 1280]} sizes="(min-width: 768px) 720px, 100vw" loading="lazy" />
+    <figcaption>Brewed green tea preserves catechins like EGCG that give it most of its health benefits.</figcaption>
+  </figure>
+
+  <h2 id="history">A short history of green tea</h2>
+  <p>
+    Green tea is woven into the history of China and Japan. In China, it was first cultivated more than <strong>3,000 years ago</strong>, and quickly became a daily drink and a part of medicine, philosophy and art. From there, tea travelled to Japan, where it inspired the entire <strong>tea ceremony tradition</strong> built around matcha — a powdered green tea drunk for clarity, calm and connection.
+  </p>
+  <p>
+    In modern times, green tea has been examined by hundreds of research teams worldwide, with strongest interest in <strong>EGCG</strong>, the most abundant catechin. The result is one of the largest bodies of research for any single beverage.
+  </p>
+
+  <h2 id="active-compounds">What is in green tea? The active compounds</h2>
+  <ul>
+    <li><strong>Catechins (EGCG, EGC, ECG, EC)</strong> — powerful plant antioxidants. EGCG is the most studied.</li>
+    <li><strong>L-theanine</strong> — a unique amino acid that promotes calm focus and balances the effects of caffeine.</li>
+    <li><strong>Caffeine</strong> — present at roughly half the level of coffee per cup, providing gentle energy.</li>
+    <li><strong>Polyphenols, vitamins and minerals</strong> — adding to its overall antioxidant profile.</li>
+  </ul>
+
+  <h2 id="benefits">Health benefits of green tea</h2>
+
+  <h3>1. Powerful antioxidant defence</h3>
+  <p>
+    Green tea catechins are among the most potent dietary antioxidants. They help neutralise free radicals — the unstable molecules involved in everyday cellular ageing. <strong>One cup of green tea contains roughly the antioxidant equivalent of a serving of vegetables.</strong>
+  </p>
+
+  <h3>2. May support cardiovascular wellness</h3>
+  <p>
+    Large observational studies in Asia link <strong>regular green tea consumption with healthier cardiovascular markers</strong> — including healthier cholesterol balance and blood pressure within healthy ranges. The catechin EGCG, alongside green tea's flavonoids, appears to support healthy blood vessel function.
+  </p>
+
+  <h3>3. May support healthy weight and metabolism</h3>
+  <p>
+    Green tea catechins, in combination with caffeine, may modestly increase the body's calorie burn and support healthy fat metabolism. The effect is small but real — and works best as part of an overall healthy eating and exercise pattern. Concentrated green tea extracts have been used in many weight-management studies.
+  </p>
+
+  <h3>4. May help mental focus without the jitters</h3>
+  <p>
+    The combination of <strong>caffeine + L-theanine</strong> in green tea is unique — caffeine wakes you up, while L-theanine smooths the edges, supporting <strong>calm focus</strong>. Many students, writers and creatives prefer green tea over coffee for sustained mental work.
+  </p>
+
+  <h3>5. May support healthy blood-sugar balance</h3>
+  <p>
+    Several human studies suggest that regular green tea consumption may help support healthy fasting blood sugar levels and after-meal sugar response. As with any supplement, people on diabetes medication should consult a healthcare professional before adding green tea extract.
+  </p>
+
+  <h3>6. May support skin wellness</h3>
+  <p>
+    Green tea polyphenols, applied topically or consumed daily, are widely used in skincare for their antioxidant and soothing effects. EGCG has been studied for its support of skin photo-protection and a healthy clear complexion.
+  </p>
+
+  <h3>7. May support healthy ageing</h3>
+  <p>
+    Through its combined antioxidant, anti-inflammatory and metabolic effects, green tea has long been associated with <strong>graceful ageing</strong> and longevity in cultures where it is part of daily life.
+  </p>
+
+  <h2 id="evidence-table">At a glance: green tea evidence summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Use</th>
+        <th>Strength of evidence</th>
+        <th>Typical dose used in studies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Antioxidant support</td>
+        <td>Strong</td>
+        <td>2–4 cups/day or 250–500 mg extract</td>
+      </tr>
+      <tr>
+        <td>Cardiovascular wellness</td>
+        <td>Moderate to strong (large observational)</td>
+        <td>≥3 cups/day, regular use</td>
+      </tr>
+      <tr>
+        <td>Healthy weight metabolism</td>
+        <td>Moderate</td>
+        <td>250–800 mg catechins/day</td>
+      </tr>
+      <tr>
+        <td>Calm focus / cognition</td>
+        <td>Moderate (caffeine + L-theanine)</td>
+        <td>1–3 cups/day</td>
+      </tr>
+      <tr>
+        <td>Blood-sugar balance</td>
+        <td>Mixed / promising</td>
+        <td>500 mg extract/day</td>
+      </tr>
+      <tr>
+        <td>Skin photo-protection</td>
+        <td>Mixed</td>
+        <td>Daily intake or topical use</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="how-to-use">How to use green tea</h2>
+  <h3>Brewing tips for the best cup</h3>
+  <ul>
+    <li>Use water at <strong>70–80 °C</strong>, not boiling — too-hot water turns green tea bitter.</li>
+    <li>Steep for <strong>1 to 3 minutes</strong>, depending on the style and your taste.</li>
+    <li>Drink it plain, or with a slice of lemon — vitamin C may even help preserve catechins.</li>
+    <li>Avoid combining green tea with iron-rich meals if you have low iron.</li>
+  </ul>
+  <h3>Recommended daily intake</h3>
+  <p>
+    For brewed green tea: <strong>2 to 4 cups per day</strong> is a healthy range for most adults. For standardised green tea extract supplements: <strong>250–500 mg per day</strong>, taken with food.
+  </p>
+  <h3>How to choose a good green tea product</h3>
+  <ul>
+    <li>For loose tea: pick fresh, vibrant green leaves, ideally from a reputable origin.</li>
+    <li>For extracts: look for clearly stated <strong>EGCG content</strong> and total catechin standardisation.</li>
+    <li>For ready beverages: prefer products that list real green tea or extract on the label.</li>
+  </ul>
+
+  <figure>
+    <Image src={inlineImg2} alt="Powdered matcha green tea in a wooden bowl with a fresh tea leaf — a concentrated form of green tea used in Japanese tea ceremony" widths={[640, 1024, 1280]} sizes="(min-width: 768px) 720px, 100vw" loading="lazy" />
+    <figcaption>Matcha — finely ground green tea leaves — is a more concentrated way to enjoy green tea catechins.</figcaption>
+  </figure>
+
+  <h2 id="safety">Safety, side effects and interactions</h2>
+  <p>
+    Green tea is among the safest beverages in the world when consumed in normal amounts. Issues are usually associated with <strong>excessive consumption</strong> or <strong>high-dose extract supplements taken on an empty stomach</strong>.
+  </p>
+  <h3>Considerations</h3>
+  <ul>
+    <li><strong>Caffeine sensitivity</strong> — green tea contains caffeine; choose decaffeinated or limit late-day intake.</li>
+    <li><strong>Iron absorption</strong> — green tea polyphenols can reduce non-haem iron absorption; drink it between meals if you have low iron.</li>
+    <li><strong>Pregnancy and breastfeeding</strong> — limit to 1–2 cups/day and avoid high-dose extracts.</li>
+    <li><strong>Liver health</strong> — very high doses of green tea extract on an empty stomach have rarely been linked to liver irritation; take with food and stick to recommended doses.</li>
+    <li><strong>Medication interactions</strong> — discuss with a healthcare professional if you take blood thinners, stimulants, or chemotherapy.</li>
+  </ul>
+
+  <h2 id="dynapharm-products">Dynapharm products containing green tea</h2>
+  <p>
+    Dynapharm offers green tea in four convenient formats — coffees, capsules and a women-focused herbal blend — so you can enjoy its benefits whatever your routine.
+  </p>
+
+  <a href="/en/products" class="product-card">
+    <Image src={greenTeaCoffeeImg} alt="Dynapharm Instant Coffee with Ganoderma and Green Tea" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Instant Coffee with Ganoderma &amp; Green Tea</h4>
+      <p>A smooth instant coffee blend that combines green tea catechins with the heritage of Ganoderma — a balanced everyday cup with antioxidant character.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <a href="/en/products" class="product-card">
+    <Image src={greenTeaCapsulesImg} alt="Dynapharm Green Tea Extract Capsules" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Green Tea Extract Capsules</h4>
+      <p>Concentrated green tea extract in convenient capsules — for daily antioxidant support without extra caffeine, ideal alongside an active lifestyle.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <a href="/en/products" class="product-card">
+    <Image src={kacipImg} alt="Dynapharm Instant Coffee with Kacip Fatimah, Green Tea and Ganoderma — formulated for women" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Instant Coffee with Kacip Fatimah, Green Tea &amp; Ganoderma</h4>
+      <p>A women-focused herbal coffee blend pairing Kacip Fatimah — a celebrated Southeast Asian women\'s tonic — with green tea and Ganoderma.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <a href="/en/products" class="product-card">
+    <Image src={redCoffeeImg} alt="Dynapharm Red Coffee — instant coffee blend with Ginseng, Beetroot and Green Tea" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Red Coffee with Ginseng, Beetroot &amp; Green Tea</h4>
+      <p>A bolder red coffee blend that pairs Ginseng with Beetroot, Green Tea and Cocoa — antioxidant-rich and naturally energising.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <h2 id="faq">Frequently asked questions about green tea</h2>
+  {faq.map((item) => (
+    <div class="faq-item">
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </div>
+  ))}
+
+  <h2 id="bottom-line">The bottom line</h2>
+  <p>
+    Green tea is one of the easiest, tastiest and best-documented additions to a healthy daily routine. Whether you sip it brewed, take it as a concentrated extract, or enjoy it through a thoughtfully formulated coffee blend, you are taking part in a tradition <strong>thousands of years old</strong> — backed by some of the most extensive nutritional research of our time.
+  </p>
+  <p>
+    To explore Dynapharm's green tea range, visit our <a href="/en/products">Products page</a>, or speak to a trained Dynapharm distributor for personalised guidance.
+  </p>
+
+</BlogPostLayout>

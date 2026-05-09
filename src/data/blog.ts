@@ -26,6 +26,66 @@ export interface BlogPostSummary {
 /** All published blog posts. Ordered newest-first for the listing page. */
 export const POSTS: BlogPostSummary[] = [
   {
+    id: 'ganoderma-benefits',
+    slug: {
+      en: 'ganoderma-benefits',
+      fr: 'bienfaits-du-ganoderma',
+    },
+    title: {
+      en: 'Ganoderma (Reishi): Benefits, Uses & How To Take It',
+      fr: 'Ganoderma (Reishi) : bienfaits, utilisations et mode d\'emploi',
+    },
+    description: {
+      en: 'Discover the science and tradition behind Ganoderma lucidum (Reishi / Lingzhi) — the "mushroom of immortality." Learn its benefits for immunity, energy, sleep and stress, and how to take it safely.',
+      fr: 'Découvrez la science et la tradition du Ganoderma lucidum (Reishi / Lingzhi) — le « champignon de l\'immortalité ». Apprenez ses bienfaits pour l\'immunité, l\'énergie, le sommeil et le stress, et comment le consommer en toute sécurité.',
+    },
+    heroImage: 'lingzhi-reishi-mushrooms-medicinal-fungi-white-background.jpg',
+    heroAlt: {
+      en: 'Whole dried Lingzhi (Ganoderma lucidum) mushrooms — the legendary "mushroom of immortality" of traditional Chinese medicine',
+      fr: 'Champignons Lingzhi (Ganoderma lucidum) entiers et séchés — le légendaire « champignon de l\'immortalité » de la médecine traditionnelle chinoise',
+    },
+    datePublished: '2026-05-09',
+    readingTime: 13,
+    category: {
+      en: 'Herbal Wellness',
+      fr: 'Bien-être à base de plantes',
+    },
+    keywords: {
+      en: 'ganoderma benefits, reishi mushroom, lingzhi benefits, ganoderma lucidum, ganoderma immune support, ganoderma sleep, beta-glucans, triterpenes, adaptogen mushroom, Yeegano, Gano coffee, Gano chocolate, Presidents Choice coffee, traditional Chinese medicine',
+      fr: 'bienfaits ganoderma, reishi, lingzhi, ganoderma lucidum, ganoderma immunité, ganoderma sommeil, bêta-glucanes, triterpènes, champignon adaptogène, Yeegano, Café Gano, Chocolat Gano, café President\'s Choice, médecine traditionnelle chinoise',
+    },
+  },
+  {
+    id: 'green-tea-benefits',
+    slug: {
+      en: 'green-tea-benefits',
+      fr: 'bienfaits-du-the-vert',
+    },
+    title: {
+      en: 'Green Tea: Health Benefits, Catechins & Daily Use',
+      fr: 'Thé Vert : bienfaits santé, catéchines et usage quotidien',
+    },
+    description: {
+      en: 'Explore the science-backed benefits of green tea — antioxidant catechins, EGCG, healthy weight, heart, brain and skin. Plus how to brew it, dose it, and combine it with other natural ingredients.',
+      fr: 'Découvrez les bienfaits du thé vert soutenus par la science — catéchines antioxydantes, EGCG, poids, cœur, cerveau et peau. Ainsi que comment le préparer, le doser et l\'associer à d\'autres ingrédients naturels.',
+    },
+    heroImage: 'lush-green-tea-plantation-fresh-leaves-morning-light-scenic-farmland-asia.jpg',
+    heroAlt: {
+      en: 'A lush green tea plantation in morning light — the source of the antioxidant catechins that make green tea one of the world\'s healthiest drinks',
+      fr: 'Une plantation luxuriante de thé vert sous la lumière du matin — la source des catéchines antioxydantes qui font du thé vert l\'une des boissons les plus saines au monde',
+    },
+    datePublished: '2026-05-09',
+    readingTime: 12,
+    category: {
+      en: 'Herbal Wellness',
+      fr: 'Bien-être à base de plantes',
+    },
+    keywords: {
+      en: 'green tea benefits, EGCG, catechins, green tea extract, green tea for weight loss, green tea heart health, green tea antioxidant, matcha benefits, Green Tea Coffee, Green Tea Capsules, Kacip Fatimah Coffee, Red Coffee with Ginseng',
+      fr: 'bienfaits thé vert, EGCG, catéchines, extrait de thé vert, thé vert perte de poids, thé vert cœur, thé vert antioxydant, bienfaits matcha, Café au Thé Vert, Gélules de Thé Vert, Café Kacip Fatimah, Café Rouge au Ginseng',
+    },
+  },
+  {
     id: 'ginkgo-biloba-benefits',
     slug: {
       en: 'ginkgo-biloba-benefits',
