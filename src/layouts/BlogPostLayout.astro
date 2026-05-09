@@ -1,0 +1,603 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import type { Lang } from '@utils/i18n';
+import { POSTS, postPath, postAlternates, type BlogPostSummary } from '@data/blog';
+
+interface FAQItem {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  post: BlogPostSummary;
+  lang: Lang;
+  faq?: FAQItem[];
+  /** Optional list of authoritative source URLs cited at the bottom. */
+  references?: { label: string; url: string }[];
+}
+
+const { post, lang, faq = [], references = [] } = Astro.props;
+
+// Eager-glob all blog hero images so we can resolve by filename at build time.
+const blogImages = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/blog/*.{jpg,jpeg,png,webp}',
+  { eager: true }
+);
+const heroEntry = Object.entries(blogImages).find(([path]) =>
+  path.endsWith(`/${post.heroImage}`)
+);
+const heroImage = heroEntry ? heroEntry[1].default : null;
+
+const siteUrl = Astro.site?.href || 'https://dynapharmafrica.com/';
+const canonicalHref = new URL(postPath(post, lang), siteUrl).href;
+const ogImagePath = `assets/images/blog/${post.heroImage}`;
+
+const alternates = postAlternates(post);
+
+// Format date in a locale-appropriate way
+const dateFmt = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+const formattedDate = dateFmt.format(new Date(post.datePublished));
+
+// Localized strings
+const ui = {
+  en: {
+    publishedOn: 'Published on',
+    minRead: 'min read',
+    by: 'By',
+    author: 'Dynapharm Wellness Team',
+    backToBlog: 'Back to all articles',
+    onThisPage: 'On this page',
+    references: 'References & further reading',
+    disclaimerTitle: 'Important health disclaimer',
+    disclaimerBody:
+      'This article is provided for informational and educational purposes only. It is not medical advice and is not intended to diagnose, treat, cure, or prevent any disease. Always consult a qualified healthcare professional before starting any new supplement, especially if you are pregnant or breastfeeding, taking prescription medication, or managing a chronic condition. Dynapharm products are food supplements, not medicines.',
+    relatedReading: 'Related reading',
+    shareTitle: 'Share this article',
+    breadcrumbHome: 'Home',
+    breadcrumbBlog: 'Blog',
+  },
+  fr: {
+    publishedOn: 'Publié le',
+    minRead: 'min de lecture',
+    by: 'Par',
+    author: 'Équipe Bien-Être Dynapharm',
+    backToBlog: 'Retour à tous les articles',
+    onThisPage: 'Sur cette page',
+    references: 'Références et lectures complémentaires',
+    disclaimerTitle: 'Avertissement de santé important',
+    disclaimerBody:
+      'Cet article est fourni à titre d\'information et d\'éducation uniquement. Il ne constitue pas un avis médical et n\'est pas destiné à diagnostiquer, traiter, guérir ou prévenir une maladie. Consultez toujours un professionnel de santé qualifié avant de commencer tout nouveau complément alimentaire, en particulier si vous êtes enceinte ou allaitez, prenez des médicaments sur ordonnance ou gérez une affection chronique. Les produits Dynapharm sont des compléments alimentaires, non des médicaments.',
+    relatedReading: 'À lire également',
+    shareTitle: 'Partager cet article',
+    breadcrumbHome: 'Accueil',
+    breadcrumbBlog: 'Blog',
+  },
+}[lang];
+
+// Other posts for "related reading" (everything except the current one)
+const relatedPosts = POSTS.filter((p) => p.id !== post.id);
+
+// JSON-LD: BlogPosting
+const blogPostingSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  '@id': canonicalHref + '#article',
+  headline: post.title[lang],
+  description: post.description[lang],
+  image: new URL(ogImagePath, siteUrl).href,
+  datePublished: post.datePublished,
+  dateModified: post.datePublished,
+  inLanguage: lang === 'fr' ? 'fr-FR' : 'en-GB',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalHref,
+  },
+  author: {
+    '@type': 'Organization',
+    name: ui.author,
+    url: `${siteUrl}${lang}/about`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Dynapharm Africa',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}assets/images/branding/Logo-Full-Color.png`,
+    },
+  },
+  articleSection: post.category[lang],
+  keywords: post.keywords[lang],
+};
+
+// JSON-LD: BreadcrumbList — overrides the auto one for richer trail
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: ui.breadcrumbHome, item: `${siteUrl}${lang}/` },
+    { '@type': 'ListItem', position: 2, name: ui.breadcrumbBlog, item: `${siteUrl}${lang}/blog` },
+    { '@type': 'ListItem', position: 3, name: post.title[lang], item: canonicalHref },
+  ],
+};
+
+// JSON-LD: FAQPage (only when faq items provided)
+const faqSchema =
+  faq.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faq.map((item) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.a },
+        })),
+      }
+    : null;
+
+const allSchemas: Record<string, unknown>[] = [blogPostingSchema, breadcrumbSchema];
+if (faqSchema) allSchemas.push(faqSchema);
+---
+
+<BaseLayout
+  title={post.title[lang]}
+  description={post.description[lang]}
+  lang={lang}
+  keywords={post.keywords[lang]}
+  ogImage={ogImagePath}
+  alternates={alternates}
+  structuredData={allSchemas}
+>
+  <!-- Hero -->
+  <article class="relative">
+    <header class="relative overflow-hidden bg-green-dark text-white">
+      {heroImage && (
+        <div class="absolute inset-0">
+          <Image
+            src={heroImage}
+            alt=""
+            class="w-full h-full object-cover opacity-30"
+            widths={[640, 1024, 1600]}
+            sizes="100vw"
+            loading="eager"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-green-900/80 via-green-900/70 to-green-900/95"></div>
+        </div>
+      )}
+      <div class="relative section-container py-16 md:py-24 max-w-4xl">
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="mb-6">
+          <ol class="flex flex-wrap items-center gap-2 font-accent text-sm text-green-100/80">
+            <li>
+              <a href={`/${lang}`} class="hover:text-white transition-colors">{ui.breadcrumbHome}</a>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <a href={`/${lang}/blog`} class="hover:text-white transition-colors">{ui.breadcrumbBlog}</a>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li class="text-white/60 truncate max-w-xs" aria-current="page">{post.title[lang]}</li>
+          </ol>
+        </nav>
+
+        <span class="inline-block font-accent text-xs font-semibold uppercase tracking-widest text-gold bg-gold/15 border border-gold/40 rounded-full px-3 py-1 mb-5">
+          {post.category[lang]}
+        </span>
+
+        <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-5 leading-tight">
+          {post.title[lang]}
+        </h1>
+
+        <p class="text-lg md:text-xl text-green-100/90 font-body leading-relaxed mb-7 max-w-3xl">
+          {post.description[lang]}
+        </p>
+
+        <!-- Meta -->
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-accent text-green-100/80">
+          <span class="inline-flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            {post.readingTime} {ui.minRead}
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <time datetime={post.datePublished}>{ui.publishedOn} {formattedDate}</time>
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            {ui.by} {ui.author}
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article body -->
+    <div class="bg-cream">
+      <div class="section-container max-w-3xl py-12 md:py-16">
+        <div class="prose-blog">
+          <slot />
+        </div>
+
+        {references.length > 0 && (
+          <section class="mt-14 pt-10 border-t border-grey-light/60" aria-labelledby="references-heading">
+            <h2 id="references-heading" class="font-heading text-2xl font-bold text-charcoal mb-5">
+              {ui.references}
+            </h2>
+            <ol class="list-decimal list-outside ml-5 space-y-2 text-sm text-charcoal-light font-body">
+              {references.map((ref) => (
+                <li>
+                  <a href={ref.url} target="_blank" rel="noopener nofollow" class="text-green underline underline-offset-2 hover:text-green-dark break-words">
+                    {ref.label}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        <!-- Disclaimer -->
+        <aside class="mt-14 rounded-2xl bg-green-50 border border-green-100 p-6 md:p-7" aria-labelledby="disclaimer-heading">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 text-green flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+            </div>
+            <div>
+              <h2 id="disclaimer-heading" class="font-heading text-lg font-bold text-charcoal mb-2">
+                {ui.disclaimerTitle}
+              </h2>
+              <p class="font-body text-sm text-charcoal-light leading-relaxed">{ui.disclaimerBody}</p>
+            </div>
+          </div>
+        </aside>
+
+        <div class="mt-10 flex justify-between items-center">
+          <a href={`/${lang}/blog`} class="inline-flex items-center gap-2 font-accent text-sm font-medium text-green hover:text-green-dark transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+            {ui.backToBlog}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related posts -->
+    {relatedPosts.length > 0 && (
+      <section class="bg-white section-padding border-t border-grey-light/40" aria-labelledby="related-heading">
+        <div class="section-container max-w-5xl">
+          <h2 id="related-heading" class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-8">
+            {ui.relatedReading}
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {relatedPosts.map((related) => {
+              const relImgEntry = Object.entries(blogImages).find(([path]) =>
+                path.endsWith(`/${related.heroImage}`)
+              );
+              const relImage = relImgEntry ? relImgEntry[1].default : null;
+              return (
+                <a href={postPath(related, lang)} class="card group block">
+                  {relImage && (
+                    <div class="aspect-[16/9] overflow-hidden">
+                      <Image
+                        src={relImage}
+                        alt={related.heroAlt[lang]}
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        widths={[400, 800]}
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div class="p-6">
+                    <span class="badge bg-green-50 text-green mb-3">{related.category[lang]}</span>
+                    <h3 class="font-heading text-lg font-bold text-charcoal mb-2 group-hover:text-green transition-colors">
+                      {related.title[lang]}
+                    </h3>
+                    <p class="font-body text-sm text-charcoal-light leading-relaxed line-clamp-3">
+                      {related.description[lang]}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<style is:global>
+  /* Article prose styling — scoped to blog content */
+  .prose-blog {
+    font-family: var(--font-body);
+    color: var(--color-charcoal-light);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .prose-blog > * + * {
+    margin-top: 1.25em;
+  }
+
+  .prose-blog p {
+    color: var(--color-charcoal-light);
+  }
+
+  .prose-blog p strong {
+    color: var(--color-charcoal);
+    font-weight: 600;
+  }
+
+  .prose-blog h2 {
+    font-family: var(--font-heading);
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    margin-top: 2.25em;
+    margin-bottom: 0.6em;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    scroll-margin-top: 6rem;
+  }
+
+  .prose-blog h3 {
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    margin-top: 1.75em;
+    margin-bottom: 0.5em;
+    line-height: 1.3;
+  }
+
+  .prose-blog h4 {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-charcoal);
+    margin-top: 1.5em;
+    margin-bottom: 0.4em;
+  }
+
+  .prose-blog ul, .prose-blog ol {
+    margin-left: 1.5rem;
+    color: var(--color-charcoal-light);
+  }
+
+  .prose-blog ul {
+    list-style-type: disc;
+  }
+
+  .prose-blog ol {
+    list-style-type: decimal;
+  }
+
+  .prose-blog li {
+    margin-top: 0.4em;
+    padding-left: 0.25rem;
+  }
+
+  .prose-blog li::marker {
+    color: var(--color-green);
+  }
+
+  .prose-blog a {
+    color: var(--color-green);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+  }
+
+  .prose-blog a:hover {
+    color: var(--color-green-dark);
+  }
+
+  .prose-blog blockquote {
+    border-left: 4px solid var(--color-gold);
+    padding: 0.5rem 1.25rem;
+    margin: 1.75em 0;
+    font-style: italic;
+    color: var(--color-charcoal);
+    background-color: var(--color-gold-50);
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+
+  .prose-blog table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.75em 0;
+    font-size: 0.95rem;
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .prose-blog thead {
+    background-color: var(--color-green-50);
+  }
+
+  .prose-blog th {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-charcoal);
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--color-green-100);
+  }
+
+  .prose-blog td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-grey-light);
+    vertical-align: top;
+  }
+
+  .prose-blog tr:last-child td {
+    border-bottom: none;
+  }
+
+  .prose-blog .lead {
+    font-size: 1.1875rem;
+    color: var(--color-charcoal);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .prose-blog .takeaways {
+    background: linear-gradient(135deg, var(--color-cream-dark) 0%, var(--color-gold-50) 100%);
+    border: 1px solid var(--color-gold-200);
+    border-radius: 1rem;
+    padding: 1.5rem 1.75rem;
+    margin: 2em 0;
+  }
+
+  .prose-blog .takeaways h2,
+  .prose-blog .takeaways h3 {
+    font-size: 1.0625rem;
+    color: var(--color-gold-700);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    margin: 0 0 0.85em;
+    font-family: var(--font-accent);
+  }
+
+  .prose-blog .takeaways ul {
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .prose-blog .takeaways li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-top: 0.6em;
+    color: var(--color-charcoal);
+  }
+
+  .prose-blog .takeaways li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-green);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .prose-blog .takeaways li::marker {
+    content: none;
+  }
+
+  .prose-blog .product-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.25rem;
+    align-items: center;
+    background: white;
+    border: 1px solid var(--color-grey-light);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin: 1.25em 0;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .prose-blog .product-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--color-green-200);
+    transform: translateY(-2px);
+  }
+
+  .prose-blog .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    background-color: var(--color-cream);
+  }
+
+  .prose-blog .product-card h4 {
+    margin-top: 0;
+    margin-bottom: 0.35em;
+    font-size: 1.0625rem;
+    color: var(--color-charcoal);
+  }
+
+  .prose-blog .product-card p {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--color-charcoal-light);
+  }
+
+  .prose-blog .product-card .product-cta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--color-dynared);
+    font-family: var(--font-accent);
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  .prose-blog .faq-item {
+    border-bottom: 1px solid var(--color-grey-light);
+    padding: 1.25rem 0;
+  }
+
+  .prose-blog .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .prose-blog .faq-item h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-size: 1.125rem;
+    color: var(--color-charcoal);
+  }
+
+  .prose-blog .faq-item p {
+    margin: 0;
+  }
+
+  .prose-blog figure {
+    margin: 2em 0;
+  }
+
+  .prose-blog figure img {
+    border-radius: 1rem;
+    width: 100%;
+    height: auto;
+  }
+
+  .prose-blog figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-grey);
+    text-align: center;
+    font-style: italic;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 640px) {
+    .prose-blog .product-card {
+      grid-template-columns: 90px 1fr;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .prose-blog h2 {
+      font-size: 1.625rem;
+    }
+    .prose-blog h3 {
+      font-size: 1.25rem;
+    }
+  }
+</style>

@@ -12,6 +12,10 @@ interface Props {
   ogImage?: string;
   keywords?: string;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  /** Optional override for cross-language URLs — used by pages whose
+   * slug differs per language (e.g. blog posts). Keys are language codes,
+   * values are pathnames such as `/fr/blog/bienfaits-du-ginkgo-biloba`. */
+  alternates?: Partial<Record<Lang, string>>;
 }
 
 const {
@@ -21,6 +25,7 @@ const {
   ogImage,
   keywords,
   structuredData,
+  alternates,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -118,13 +123,13 @@ if (structuredData) {
       <link
         rel="alternate"
         hreflang={l}
-        href={new URL(getLocalizedPath(Astro.url.pathname, l), Astro.site).href}
+        href={new URL(alternates?.[l] ?? getLocalizedPath(Astro.url.pathname, l), Astro.site).href}
       />
     ))}
     <link
       rel="alternate"
       hreflang="x-default"
-      href={new URL(getLocalizedPath(Astro.url.pathname, 'en'), Astro.site).href}
+      href={new URL(alternates?.en ?? getLocalizedPath(Astro.url.pathname, 'en'), Astro.site).href}
     />
 
     <!-- Open Graph -->

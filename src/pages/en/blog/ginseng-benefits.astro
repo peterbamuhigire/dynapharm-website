@@ -1,0 +1,280 @@
+---
+import { Image } from 'astro:assets';
+import BlogPostLayout from '@layouts/BlogPostLayout.astro';
+import { getPost } from '@data/blog';
+import panaxImg from '@assets/images/products/Product-4805.png';
+import honeyGingerImg from '@assets/images/products/Product-4803.png';
+import ginkgoCoffeeImg from '@assets/images/products/Product-3810.png';
+import inlineImg1 from '@assets/images/blog/HERBS-GINSENG-01.jpg';
+import inlineImg2 from '@assets/images/blog/ginseng-wolfberry-jujube-are-wooden-plate.jpg';
+
+const post = getPost('ginseng-benefits')!;
+const lang = 'en' as const;
+
+const faq = [
+  {
+    q: 'What is Ginseng good for?',
+    a: 'Ginseng — particularly Panax ginseng — is best known for supporting natural energy, stamina, immune function, mental performance under stress, and healthy blood sugar levels. It has been used in East Asian medicine for over 2,000 years as a "tonic" herb to restore balance and vitality.',
+  },
+  {
+    q: 'How long does Ginseng take to work?',
+    a: 'Some people feel an energy or focus benefit within a week, but the most reliable effects on stamina and stress resilience usually appear after 4 to 8 weeks of daily, consistent use. Many traditional practitioners recommend cycles of 8–12 weeks on, followed by a short break.',
+  },
+  {
+    q: 'Is it safe to take Ginseng every day?',
+    a: 'For most healthy adults, standardised Panax ginseng extract is considered safe at doses of 200–400 mg per day for up to 3 months. Long-term continuous use should be discussed with a healthcare professional, and most traditions recommend periodic breaks.',
+  },
+  {
+    q: 'What is the difference between Korean ginseng and Panax ginseng?',
+    a: '"Panax ginseng" is the scientific name; "Korean ginseng" and "Asian ginseng" are common names for the same species. American ginseng (Panax quinquefolius) is a different species with a milder, more "cooling" profile in traditional medicine. Siberian ginseng (Eleutherococcus) is not a true ginseng at all.',
+  },
+  {
+    q: 'Does Ginseng give you energy?',
+    a: 'Yes — Ginseng has a long traditional reputation as an energy and stamina tonic, and several modern studies support its role in reducing fatigue, particularly in people who feel chronically tired or under sustained stress. Unlike caffeine, it works gradually and does not cause an energy "crash."',
+  },
+  {
+    q: 'Who should not take Ginseng?',
+    a: 'Ginseng is not recommended for pregnant or breastfeeding women, people with uncontrolled high blood pressure, those with hormone-sensitive conditions, anyone taking blood thinners or diabetes medication, and people scheduled for surgery within two weeks. Always consult a healthcare professional first if you have any chronic condition.',
+  },
+  {
+    q: 'Can I take Ginseng with coffee?',
+    a: 'Yes — many traditional and modern formulations combine Ginseng with coffee, including Dynapharm\'s Ginkgo Ginseng Coffee. The two work well together, but if you are sensitive to caffeine, consider taking Ginseng earlier in the day so it does not affect your sleep.',
+  },
+  {
+    q: 'Does Ginseng help with stress?',
+    a: 'Ginseng is classified as an "adaptogen" — a herb thought to help the body adapt to physical and mental stress. Several human studies suggest standardised extracts may modestly reduce mental fatigue and improve mood and concentration during demanding periods.',
+  },
+];
+
+const references = [
+  { label: 'National Center for Complementary and Integrative Health (NCCIH) — Asian Ginseng', url: 'https://www.nccih.nih.gov/health/asian-ginseng' },
+  { label: 'Mayo Clinic — Ginseng (Asian)', url: 'https://www.mayoclinic.org/drugs-supplements-ginseng-asian/art-20362012' },
+  { label: 'PubMed — Panax ginseng systematic reviews', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=panax+ginseng+systematic+review' },
+  { label: 'Memorial Sloan Kettering Cancer Center — About Herbs: Asian Ginseng', url: 'https://www.mskcc.org/cancer-care/integrative-medicine/herbs/asian-ginseng' },
+  { label: 'World Health Organization — Radix Ginseng monograph', url: 'https://apps.who.int/iris/handle/10665/41986' },
+];
+---
+
+<BlogPostLayout post={post} lang={lang} faq={faq} references={references}>
+
+  <p class="lead">
+    Few herbs are as iconic as <strong>Ginseng</strong>. The name comes from the Chinese <em>rénshēn</em> — literally "man-root" — and the plant has been treasured across East Asia for over <strong>2,000 years</strong> as a tonic for energy, longevity and balance. Today, Panax ginseng is one of the world's most studied adaptogens, with research backing its traditional reputation for <strong>stamina, immune support, stress resilience and mental performance</strong>. This guide explains the different types, the science, and how to use Ginseng safely.
+  </p>
+
+  <div class="takeaways" role="region" aria-label="Key takeaways">
+    <h2>Key takeaways</h2>
+    <ul>
+      <li><strong>Panax ginseng</strong> (Korean/Asian ginseng) is the most studied true ginseng — used for over 2,000 years.</li>
+      <li>Its active compounds — called <strong>ginsenosides</strong> — are unique to the Ginseng family and account for most of its effects.</li>
+      <li>Ginseng is classified as an <strong>adaptogen</strong>: it helps the body adapt to physical, mental and environmental stress.</li>
+      <li>Strongest traditional and clinical uses: <strong>fatigue, stamina, immune support, mental focus, stress resilience, blood-sugar balance, and sexual vitality</strong>.</li>
+      <li>Typical adult dose: <strong>200–400 mg/day</strong> of standardised root extract, often in 8–12 week cycles.</li>
+      <li>Avoid Ginseng if you are pregnant or breastfeeding, have uncontrolled high blood pressure, take blood thinners, or are about to have surgery.</li>
+      <li>Dynapharm offers Ginseng in <strong>Panax Ginseng Capsules</strong>, <strong>Instant Ginseng Honey Ginger</strong>, and <strong>Ginkgo Ginseng Coffee</strong>.</li>
+    </ul>
+  </div>
+
+  <h2 id="what-is-ginseng">What is Ginseng?</h2>
+  <p>
+    "Ginseng" is the common name for several plants in the <em>Panax</em> genus — and only true Panax species count as real ginseng. The most important are:
+  </p>
+  <ul>
+    <li><strong>Panax ginseng</strong> — Asian ginseng, also called Korean ginseng. The most studied; traditionally considered "warming" and energising.</li>
+    <li><strong>Panax quinquefolius</strong> — American ginseng. Traditionally considered "cooling" and calming.</li>
+    <li><strong>Panax notoginseng</strong> — used in Chinese medicine, especially for circulation.</li>
+  </ul>
+  <p>
+    What is sometimes sold as "Siberian ginseng" (<em>Eleutherococcus senticosus</em>) is <strong>not actually ginseng</strong> — it is a different plant family with different active compounds. Throughout this article, "Ginseng" refers specifically to <strong>Panax ginseng</strong>, unless otherwise noted.
+  </p>
+
+  <figure>
+    <Image src={inlineImg1} alt="Fresh whole Panax ginseng roots arranged on a natural surface — a traditional Asian medicinal herb" widths={[640, 1024, 1280]} sizes="(min-width: 768px) 720px, 100vw" loading="lazy" />
+    <figcaption>The root of Panax ginseng — the source of the active compounds called ginsenosides — is the part used in nearly all supplements.</figcaption>
+  </figure>
+
+  <h2 id="history">A short history of Ginseng</h2>
+  <p>
+    Ginseng appears in some of the oldest medical texts in the world. The Chinese <em>Shennong Bencao Jing</em>, a herbal classic dating back roughly two thousand years, describes Panax ginseng as a tonic that <strong>"calms the spirit, brightens the eyes, and prolongs life."</strong> Wild ginseng was once so prized that it was harvested for emperors only, and is still considered the most valuable form today.
+  </p>
+  <p>
+    Modern interest in Ginseng's pharmacology began in the mid-20th century, when Russian and Korean researchers introduced the concept of <strong>adaptogens</strong> — natural substances that help organisms adapt to stress without disrupting normal physiology. Panax ginseng quickly became the prototype adaptogen.
+  </p>
+
+  <h2 id="active-compounds">What is in Ginseng? The active compounds</h2>
+  <p>
+    Ginseng's effects are attributed mainly to a family of compounds called <strong>ginsenosides</strong> (or panaxosides) — natural saponins found almost exclusively in the Panax genus. Over <strong>40 different ginsenosides</strong> have been identified, and different types are thought to produce different effects:
+  </p>
+  <ul>
+    <li><strong>Rg1, Rb1 and Rg3</strong> — among the most studied; linked to mental performance, immune support and antioxidant activity.</li>
+    <li>Other compounds in Ginseng include polysaccharides, peptides, essential oils and trace minerals — all of which contribute to its overall profile.</li>
+  </ul>
+  <p>
+    Quality matters: a good Ginseng supplement specifies its <strong>ginsenoside content</strong> (often 3–8% standardised) and uses roots aged at least 4–6 years, when ginsenoside levels peak.
+  </p>
+
+  <h2 id="benefits">Health benefits of Ginseng</h2>
+
+  <h3>1. May help reduce fatigue and support natural energy</h3>
+  <p>
+    The most consistent finding in modern Ginseng research is its potential to <strong>reduce fatigue</strong>, especially mental and stress-related fatigue. Several controlled studies have shown standardised extracts can improve subjective energy, motivation and stamina compared to placebo, particularly in people who feel chronically tired.
+  </p>
+
+  <h3>2. May support immune function</h3>
+  <p>
+    Ginseng has a long traditional reputation for "strengthening" the immune system, especially during the cold season. Modern research suggests certain ginsenosides and polysaccharides may help support healthy immune cell activity, although clinical evidence is still evolving.
+  </p>
+
+  <h3>3. May enhance mental performance and focus</h3>
+  <p>
+    Several human trials suggest Panax ginseng may modestly improve <strong>working memory, calmness and mental arithmetic</strong> performance, particularly in stressful or cognitively demanding situations. Combined with <strong>Ginkgo Biloba</strong>, the effect on alertness can be more pronounced — which is one reason the two herbs are so often paired.
+  </p>
+
+  <h3>4. May help the body adapt to stress</h3>
+  <p>
+    As an adaptogen, Ginseng is thought to help <strong>balance the body's stress response</strong>, particularly the activity of the hypothalamic–pituitary–adrenal (HPA) axis. People taking it regularly often report a calmer, steadier feeling under pressure.
+  </p>
+
+  <h3>5. May support healthy blood-sugar balance</h3>
+  <p>
+    Ginseng has been studied for its potential to support healthy blood-sugar levels in adults, with several small trials suggesting modest improvements after meals. <strong>People with diabetes should not self-prescribe</strong> Ginseng — it can interact with medication and should only be added under medical guidance.
+  </p>
+
+  <h3>6. Antioxidant and cellular support</h3>
+  <p>
+    Ginsenosides have demonstrated <strong>antioxidant activity</strong> in laboratory studies, helping neutralise free radicals that contribute to cellular ageing. This is part of why Ginseng has been associated with longevity in traditional medicine.
+  </p>
+
+  <h3>7. May support male sexual vitality</h3>
+  <p>
+    Panax ginseng has traditional and modern reputations as a tonic for male vitality. Several clinical trials report improvements in erectile function and libido in men taking standardised Ginseng extract for several weeks. Effects are usually modest but consistent across studies.
+  </p>
+
+  <h2 id="evidence-table">At a glance: Ginseng evidence summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Use</th>
+        <th>Strength of evidence</th>
+        <th>Typical dose used in studies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Reducing fatigue</td>
+        <td>Moderate</td>
+        <td>200–400 mg/day for 4–8 weeks</td>
+      </tr>
+      <tr>
+        <td>Mental performance under stress</td>
+        <td>Moderate</td>
+        <td>200 mg/day for 8–12 weeks</td>
+      </tr>
+      <tr>
+        <td>Immune support</td>
+        <td>Mixed / promising</td>
+        <td>100–200 mg/day</td>
+      </tr>
+      <tr>
+        <td>Blood-sugar balance (adults)</td>
+        <td>Mixed</td>
+        <td>3 g extract before meals (under supervision)</td>
+      </tr>
+      <tr>
+        <td>Male sexual vitality</td>
+        <td>Moderate</td>
+        <td>900–1,000 mg up to 3×/day for 8 weeks</td>
+      </tr>
+      <tr>
+        <td>Adaptogenic / stress resilience</td>
+        <td>Traditional + emerging</td>
+        <td>200–400 mg/day</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="how-to-use">How to use Ginseng</h2>
+  <h3>Recommended daily dose</h3>
+  <p>
+    For standardised Panax ginseng root extract, most clinical studies and traditional references suggest <strong>200 mg to 400 mg per day</strong> for adults, taken with food. Some traditional formulas use higher amounts — always follow the directions on your specific product.
+  </p>
+  <h3>Cycling Ginseng</h3>
+  <p>
+    Many traditional and modern practitioners recommend taking Ginseng in <strong>cycles of 8 to 12 weeks on, followed by 2 to 4 weeks off</strong>. This approach is widely used in herbal medicine for tonics and may help maintain the body's responsiveness to the herb over time.
+  </p>
+  <h3>How to choose a good Ginseng product</h3>
+  <ul>
+    <li>Look for <strong>standardised root extract</strong>, with the percentage of ginsenosides clearly stated.</li>
+    <li>Choose roots aged at least 4–6 years where specified.</li>
+    <li>Pick a format that suits your routine — capsules, instant beverage or coffee blend.</li>
+    <li>Choose a manufacturer with documented quality controls.</li>
+  </ul>
+
+  <figure>
+    <Image src={inlineImg2} alt="Ginseng root, wolfberries (goji) and jujube on a wooden plate — a classic Asian herbal combination" widths={[640, 1024, 1280]} sizes="(min-width: 768px) 720px, 100vw" loading="lazy" />
+    <figcaption>In Asian tradition, Ginseng is often combined with other vitality herbs such as goji berries, jujube and ginger.</figcaption>
+  </figure>
+
+  <h2 id="safety">Safety, side effects and interactions</h2>
+  <p>
+    Ginseng is generally well tolerated by healthy adults. When side effects occur, they are usually mild and may include trouble sleeping (especially if taken in the evening), headaches, restlessness, or digestive discomfort. Reducing the dose or stopping the supplement typically resolves these.
+  </p>
+  <h3>When to avoid Ginseng</h3>
+  <ul>
+    <li><strong>Pregnancy and breastfeeding</strong> — safety has not been established.</li>
+    <li><strong>Uncontrolled high blood pressure</strong> — Ginseng may raise blood pressure in some people.</li>
+    <li><strong>Hormone-sensitive conditions</strong> — Ginseng may have mild oestrogen-like effects.</li>
+    <li><strong>Diabetes medication</strong> — risk of low blood sugar without medical supervision.</li>
+    <li><strong>Blood thinners</strong> (warfarin, aspirin, clopidogrel) — Ginseng may affect clotting.</li>
+    <li><strong>Stimulant medications</strong> or MAO inhibitors — possible interactions.</li>
+    <li>If you are scheduled for <strong>surgery within 2 weeks</strong>.</li>
+  </ul>
+
+  <h2 id="dynapharm-products">Dynapharm products containing Ginseng</h2>
+  <p>
+    Dynapharm offers Ginseng in three convenient formats — pure capsules for daily support, an instant warming beverage, and a Ginkgo-Ginseng coffee for everyday use.
+  </p>
+
+  <a href="/en/products" class="product-card">
+    <Image src={panaxImg} alt="Panax Ginseng Capsules from Dynapharm — standardised Korean ginseng extract" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Panax Ginseng Capsules</h4>
+      <p>Standardised Panax ginseng (Korean ginseng) root extract in convenient capsules — for daily support of energy, stamina and natural vitality.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <a href="/en/products" class="product-card">
+    <Image src={honeyGingerImg} alt="Instant Ginseng Honey Ginger drink from Dynapharm — natural energy beverage" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Instant Ginseng Honey Ginger</h4>
+      <p>A warming beverage that combines Ginseng, real honey and ginger — a soothing, traditional way to enjoy Ginseng any time of day.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <a href="/en/products" class="product-card">
+    <Image src={ginkgoCoffeeImg} alt="Instant Ginkgo Ginseng Coffee Mix from Dynapharm — natural energy coffee" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Instant Coffee Mix with Ginkgo &amp; Ginseng</h4>
+      <p>A smooth instant coffee blend infused with Ginkgo Biloba and Ginseng — a popular way to start the day with herbal support.</p>
+      <span class="product-cta">View on Products →</span>
+    </div>
+  </a>
+
+  <h2 id="faq">Frequently asked questions about Ginseng</h2>
+  {faq.map((item) => (
+    <div class="faq-item">
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </div>
+  ))}
+
+  <h2 id="bottom-line">The bottom line</h2>
+  <p>
+    Panax ginseng has earned its reputation across two thousand years and many cultures. While it is not a quick fix, growing evidence supports its careful use as a <strong>daily wellness ally for energy, stress resilience, immunity, and mental sharpness</strong>. The best results come from <strong>quality-standardised extracts</strong>, sensible cycling, and combining the herb with the basics: good sleep, balanced nutrition, regular movement.
+  </p>
+  <p>
+    To explore Dynapharm's Ginseng range, visit our <a href="/en/products">Products page</a>, or speak to a trained Dynapharm distributor for personalised guidance.
+  </p>
+
+</BlogPostLayout>

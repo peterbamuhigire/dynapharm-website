@@ -17,6 +17,7 @@ const footerNavItems = [
   { label: nav.products, href: `/${lang}/products` },
   { label: nav.business, href: `/${lang}/business-opportunity` },
   { label: nav.wellness, href: `/${lang}/wellness-guide` },
+  { label: nav.blog, href: `/${lang}/blog` },
   { label: nav.about, href: `/${lang}/about` },
   { label: nav.contact, href: `/${lang}/contact` },
   { label: footer.faq, href: `/${lang}/faq` },
@@ -51,7 +52,7 @@ const footerNavItems = [
           {lang === 'en' ? 'Quick Links' : 'Liens Rapides'}
         </h3>
         <ul class="space-y-2.5" role="list">
-          {footerNavItems.slice(0, 3).map((item) => (
+          {footerNavItems.slice(0, 4).map((item) => (
             <li>
               <a
                 href={item.href}
@@ -70,7 +71,7 @@ const footerNavItems = [
           {lang === 'en' ? 'Company' : 'Entreprise'}
         </h3>
         <ul class="space-y-2.5" role="list">
-          {footerNavItems.slice(3).map((item) => (
+          {footerNavItems.slice(4).map((item) => (
             <li>
               <a
                 href={item.href}

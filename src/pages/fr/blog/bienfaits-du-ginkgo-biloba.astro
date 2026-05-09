@@ -1,0 +1,267 @@
+---
+import { Image } from 'astro:assets';
+import BlogPostLayout from '@layouts/BlogPostLayout.astro';
+import { getPost } from '@data/blog';
+import yeeginkgoImg from '@assets/images/products/Product-4815.png';
+import ginaliImg from '@assets/images/products/Product-4811.png';
+import ginkgoCoffeeImg from '@assets/images/products/Product-3810.png';
+import inlineImg1 from '@assets/images/blog/HERBS-GINKGO-01.jpg';
+import inlineImg2 from '@assets/images/blog/ginkgo-02.jpg';
+
+const post = getPost('ginkgo-biloba-benefits')!;
+const lang = 'fr' as const;
+
+const faq = [
+  {
+    q: 'À quoi sert le Ginkgo Biloba ?',
+    a: 'Le Ginkgo Biloba est principalement utilisé pour soutenir la mémoire et la concentration, la circulation sanguine, la clarté mentale chez les personnes âgées et la protection antioxydante. Il a été étudié pour la fonction cognitive, le déclin de la mémoire lié à l\'âge, la circulation périphérique et les acouphènes, avec un usage traditionnel particulièrement solide dans la médecine chinoise.',
+  },
+  {
+    q: 'Combien de temps faut-il pour que le Ginkgo Biloba agisse ?',
+    a: 'La plupart des personnes doivent prendre le Ginkgo Biloba régulièrement pendant 4 à 6 semaines avant de constater des bienfaits sur la mémoire ou la circulation. Certaines études cliniques ayant montré des effets sur la fonction cognitive ont utilisé le complément quotidiennement pendant 3 à 6 mois. Ce n\'est pas un remède à action rapide.',
+  },
+  {
+    q: 'Est-il sans danger de prendre du Ginkgo Biloba tous les jours ?',
+    a: 'Pour la plupart des adultes en bonne santé, l\'extrait standardisé de Ginkgo Biloba est généralement bien toléré aux doses quotidiennes recommandées (généralement 120 à 240 mg par jour) pendant plusieurs mois. Suivez toujours les indications du produit et consultez un professionnel de santé avant un usage quotidien à long terme, surtout si vous prenez des médicaments sur ordonnance.',
+  },
+  {
+    q: 'Qui ne doit pas prendre de Ginkgo Biloba ?',
+    a: 'Le Ginkgo Biloba n\'est pas recommandé aux personnes prenant des anticoagulants (comme la warfarine ou l\'aspirine), à celles souffrant de troubles de la coagulation, à toute personne devant subir une intervention chirurgicale dans les deux semaines, aux femmes enceintes ou allaitantes, aux personnes épileptiques ou allergiques aux plantes de la famille des Ginkgoacées. Consultez votre médecin avant tout usage si vous avez une affection chronique.',
+  },
+  {
+    q: 'Le Ginkgo Biloba peut-il améliorer la mémoire ?',
+    a: 'Les recherches sont mitigées mais encourageantes. Plusieurs essais cliniques ont montré que l\'extrait standardisé de Ginkgo peut soutenir modestement la mémoire, l\'attention et la rapidité cognitive, en particulier chez les adultes plus âgés présentant de légères plaintes mnésiques. Il doit être considéré comme faisant partie d\'un mode de vie sain, et non comme un substitut à un traitement médical.',
+  },
+  {
+    q: 'Quelle est la différence entre les feuilles et les graines de Ginkgo Biloba ?',
+    a: 'Presque tous les compléments de Ginkgo Biloba utilisent un extrait standardisé des feuilles, qui contiennent les flavonoïdes et les lactones terpéniques considérés comme les composés actifs. Les graines crues de Ginkgo (noix) contiennent une toxine appelée ginkgotoxine et ne doivent jamais être consommées crues ou en grandes quantités.',
+  },
+  {
+    q: 'Puis-je prendre le Ginkgo Biloba avec du café ?',
+    a: 'Oui — le Ginkgo Biloba est souvent associé à la caféine pour un coup de pouce mental supplémentaire, comme dans le Café Ginkgo Ginseng de Dynapharm. Les deux ne sont pas connus pour interagir négativement. Cependant, si vous êtes sensible à la caféine, choisissez plutôt des gélules ou des comprimés.',
+  },
+  {
+    q: 'Le Ginkgo Biloba aide-t-il en cas d\'acouphènes ?',
+    a: 'Certaines études suggèrent que le Ginkgo Biloba peut aider à réduire la sévérité des acouphènes chez certaines personnes, notamment lorsque la cause est liée à la circulation. Les preuves sont mitigées et les améliorations sont généralement modestes. Consultez un professionnel de santé qualifié si les acouphènes persistent.',
+  },
+];
+
+const references = [
+  { label: 'National Center for Complementary and Integrative Health (NCCIH) — Ginkgo', url: 'https://www.nccih.nih.gov/health/ginkgo' },
+  { label: 'Mayo Clinic — Ginkgo (Ginkgo biloba)', url: 'https://www.mayoclinic.org/drugs-supplements-ginkgo/art-20362032' },
+  { label: 'Organisation Mondiale de la Santé — Monographie Folium Ginkgo', url: 'https://apps.who.int/iris/handle/10665/42052' },
+  { label: 'PubMed — Ginkgo biloba et fonction cognitive', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=ginkgo+biloba+cognitive' },
+  { label: 'Memorial Sloan Kettering Cancer Center — About Herbs : Ginkgo', url: 'https://www.mskcc.org/cancer-care/integrative-medicine/herbs/ginkgo' },
+];
+---
+
+<BlogPostLayout post={post} lang={lang} faq={faq} references={references}>
+
+  <p class="lead">
+    Peu de plantes au monde portent autant d'histoire vivante que le <strong>Ginkgo Biloba</strong> — une espèce d'arbre qui a survécu plus de 200 millions d'années et que l'on appelle parfois un « fossile vivant ». Aujourd'hui, ses feuilles figurent parmi les remèdes à base de plantes les plus étudiés au monde, particulièrement appréciées pour soutenir <strong>la mémoire, la clarté mentale et la bonne circulation sanguine</strong>. Ce guide explique ce qu'est le Ginkgo Biloba, ce que dit la recherche, comment il est traditionnellement utilisé et comment le consommer en toute sécurité.
+  </p>
+
+  <div class="takeaways" role="region" aria-label="Points clés">
+    <h2>Points clés à retenir</h2>
+    <ul>
+      <li>Le Ginkgo Biloba est l'une des plus anciennes espèces d'arbres au monde — utilisée en médecine traditionnelle chinoise depuis plus de 1 000 ans.</li>
+      <li>Les composés actifs — <strong>flavonoïdes</strong> et <strong>lactones terpéniques</strong> — sont des antioxydants pouvant soutenir la circulation sanguine vers le cerveau et les membres.</li>
+      <li>Il est principalement utilisé pour soutenir <strong>la mémoire, la concentration, la clarté mentale, la circulation périphérique et la défense antioxydante</strong>.</li>
+      <li>Dose adulte typique : <strong>120 à 240 mg par jour</strong> d'extrait standardisé de feuilles, pris régulièrement pendant 4 à 6 semaines avant d'en juger l'effet.</li>
+      <li>Évitez le Ginkgo si vous prenez des anticoagulants, devez subir une intervention chirurgicale, êtes enceinte ou allaitez, ou souffrez de troubles de la coagulation.</li>
+      <li>Dynapharm propose le Ginkgo dans <strong>les comprimés Yeeginkgo</strong>, <strong>les gélules Ginali</strong> et <strong>le Café Ginkgo Ginseng</strong>.</li>
+    </ul>
+  </div>
+
+  <h2 id="qu-est-ce-que">Qu'est-ce que le Ginkgo Biloba ?</h2>
+  <p>
+    Le <strong>Ginkgo Biloba</strong> est un arbre à feuilles caduques originaire de Chine, reconnaissable à ses feuilles caractéristiques en forme d'éventail qui prennent une couleur or éclatante en automne. C'est le seul membre vivant d'une ancienne famille de plantes — toutes les autres espèces apparentées sont éteintes depuis des dizaines de millions d'années. Certains Ginkgos plantés autour de temples en Asie auraient plus de 1 500 ans.
+  </p>
+  <p>
+    Dans le bien-être moderne, le terme « Ginkgo Biloba » fait presque toujours référence à un <strong>extrait standardisé des feuilles séchées</strong> — généralement étiqueté comme contenant 24 % de glycosides de flavones et 6 % de lactones terpéniques (souvent abrégé EGb 761 dans la recherche). C'est la forme que l'on retrouve dans la grande majorité des études cliniques et des compléments réputés.
+  </p>
+
+  <figure>
+    <Image src={inlineImg1} alt="Feuilles vert vif de Ginkgo Biloba en forme d'éventail, photographiées sur un fond de feuillage naturel" widths={[640, 1024, 1280]} sizes="(min-width: 768px) 720px, 100vw" loading="lazy" />
+    <figcaption>Les feuilles en forme d'éventail du Ginkgo Biloba sont la source de l'extrait standardisé utilisé dans la plupart des compléments.</figcaption>
+  </figure>
+
+  <h2 id="histoire">Une brève histoire : de l'Asie ancienne à la médecine moderne</h2>
+  <p>
+    Le Ginkgo Biloba est utilisé en <strong>médecine traditionnelle chinoise depuis plus de 1 000 ans</strong> — les textes anciens mentionnent les feuilles et les graines pour soutenir la santé respiratoire, la circulation et la longévité. L'arbre a été introduit en Europe au XVIIIᵉ siècle, puis en Amérique du Nord peu après, mais son essor en tant que complément à base de plantes grand public n'a commencé que dans les années 1960 et 1970, lorsque des chercheurs européens — notamment en Allemagne — ont commencé à standardiser les extraits de feuilles et à les tester dans des essais cliniques pour la mémoire et la santé circulatoire.
+  </p>
+  <p>
+    Aujourd'hui, le Ginkgo Biloba est l'un des <strong>produits à base de plantes les plus vendus</strong> en Europe et est enregistré comme médicament traditionnel à base de plantes dans plusieurs pays.
+  </p>
+
+  <h2 id="composes-actifs">Que contient le Ginkgo Biloba ? Les composés actifs</h2>
+  <p>
+    Les effets du Ginkgo sont attribués à deux principaux groupes de composés naturels, tous deux concentrés dans les feuilles :
+  </p>
+  <ul>
+    <li><strong>Flavonoïdes (glycosides de flavones)</strong> — antioxydants végétaux qui aident à neutraliser les radicaux libres et peuvent protéger la paroi des vaisseaux sanguins.</li>
+    <li><strong>Lactones terpéniques (ginkgolides et bilobalide)</strong> — uniques au Ginkgo ; supposés soutenir une circulation sanguine saine et protéger les cellules nerveuses du stress oxydatif.</li>
+  </ul>
+  <p>
+    Les extraits standardisés sont conçus pour que chaque dose contienne un <strong>pourcentage constant</strong> de ces composés actifs, ce qui explique pourquoi la standardisation est essentielle à la fois pour la sécurité et pour l'efficacité.
+  </p>
+
+  <h2 id="bienfaits">Bienfaits santé du Ginkgo Biloba</h2>
+  <p>
+    Le Ginkgo Biloba a été étudié pour un large éventail d'usages. Vous trouverez ci-dessous les bienfaits soutenus par la combinaison la plus solide entre <strong>usage traditionnel</strong> et <strong>recherche moderne</strong>.
+  </p>
+
+  <h3>1. Peut soutenir la mémoire, la concentration et la fonction cognitive</h3>
+  <p>
+    La raison la plus fréquente de prise de Ginkgo Biloba est le soutien de la mémoire et de la clarté mentale. Plusieurs essais cliniques chez des adultes plus âgés présentant de légères plaintes mnésiques ont rapporté de petites améliorations significatives de l'attention, du rappel et de la vitesse de traitement après 8 à 24 semaines de prise quotidienne d'extrait standardisé. Les résultats chez les jeunes adultes en bonne santé sont plus mitigés.
+  </p>
+
+  <h3>2. Peut favoriser une bonne circulation sanguine</h3>
+  <p>
+    Les lactones terpéniques du Ginkgo soutiendraient la circulation sanguine, y compris la <strong>microcirculation</strong> dans le cerveau et les membres. Traditionnellement, c'est pourquoi le Ginkgo est associé au soulagement des extrémités froides et à la vivacité d'esprit — le cerveau dépend d'un apport régulier en sang oxygéné.
+  </p>
+
+  <h3>3. Une activité antioxydante puissante</h3>
+  <p>
+    La fraction flavonoïde du Ginkgo est un antioxydant puissant. En aidant à neutraliser les radicaux libres, le Ginkgo peut contribuer à la <strong>protection cellulaire</strong>, en particulier dans les tissus métaboliquement très actifs — notamment le cerveau, le cœur et les yeux.
+  </p>
+
+  <h3>4. Peut atténuer les acouphènes et les vertiges</h3>
+  <p>
+    Certaines études, notamment dans la littérature européenne plus ancienne, suggèrent que le Ginkgo peut aider à réduire la sévérité des acouphènes et de certains types de vertiges, en particulier lorsqu'ils sont causés par une réduction de la circulation de l'oreille interne. Les preuves restent mitigées et les bénéfices modestes, mais certaines personnes en tirent profit.
+  </p>
+
+  <h3>5. Peut soutenir la santé oculaire</h3>
+  <p>
+    Grâce à ses effets antioxydants et de soutien circulatoire, le Ginkgo a été étudié pour la santé maculaire liée à l'âge et le soutien dans le glaucome. La recherche est préliminaire, et le Ginkgo ne doit pas remplacer un traitement prescrit pour une affection oculaire.
+  </p>
+
+  <h3>6. Peut aider face au stress et à l'humeur</h3>
+  <p>
+    Un petit corpus de recherches suggère que le Ginkgo peut aider l'organisme à gérer le stress mental quotidien. Il est parfois associé à des plantes adaptogènes comme le <strong>Ginseng</strong> pour des bienfaits combinés sur la cognition et la résilience au stress.
+  </p>
+
+  <h2 id="tableau-preuves">En un coup d'œil : niveau de preuves du Ginkgo Biloba</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Usage</th>
+        <th>Niveau de preuves</th>
+        <th>Dose typique dans les études</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Soutien de la mémoire liée à l'âge</td>
+        <td>Modéré</td>
+        <td>120–240 mg/jour pendant 8–24 semaines</td>
+      </tr>
+      <tr>
+        <td>Circulation périphérique</td>
+        <td>Modéré</td>
+        <td>120–160 mg/jour</td>
+      </tr>
+      <tr>
+        <td>Acouphènes / vertiges</td>
+        <td>Mitigé</td>
+        <td>120–160 mg/jour</td>
+      </tr>
+      <tr>
+        <td>Soutien antioxydant</td>
+        <td>Plausible</td>
+        <td>120 mg/jour</td>
+      </tr>
+      <tr>
+        <td>Adultes en bonne santé — concentration</td>
+        <td>Mitigé</td>
+        <td>120–240 mg/jour</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="utilisation">Comment utiliser le Ginkgo Biloba</h2>
+  <h3>Dose quotidienne recommandée</h3>
+  <p>
+    Pour l'extrait standardisé de feuilles (24 % de glycosides de flavones / 6 % de lactones terpéniques), la plupart des études cliniques et des références traditionnelles suggèrent <strong>120 à 240 mg par jour</strong> chez l'adulte, généralement répartis en deux ou trois prises avec les repas.
+  </p>
+  <p>
+    Suivez toujours les indications du produit que vous prenez. <strong>La régularité prime sur la dose</strong> — la plupart des bienfaits apparaissent après 4 à 12 semaines d'usage quotidien.
+  </p>
+  <h3>Comment choisir un bon Ginkgo</h3>
+  <ul>
+    <li>Recherchez un <strong>extrait standardisé de feuilles</strong>, et non une simple poudre brute.</li>
+    <li>Vérifiez la standardisation typique 24/6 (glycosides de flavones / lactones terpéniques).</li>
+    <li>Choisissez un fabricant disposant de contrôles qualité documentés.</li>
+    <li>Choisissez un format adapté à votre routine — comprimé, gélule ou boisson.</li>
+  </ul>
+
+  <h2 id="securite">Sécurité, effets secondaires et interactions</h2>
+  <p>
+    L'extrait standardisé de Ginkgo est généralement bien toléré par les adultes en bonne santé. Lorsqu'ils surviennent, les effets secondaires bénins peuvent inclure des maux de tête, un léger trouble digestif ou des étourdissements — ils disparaissent généralement à la baisse de dose ou à l'arrêt du complément.
+  </p>
+  <h3>Quand éviter le Ginkgo Biloba</h3>
+  <ul>
+    <li>Si vous prenez des <strong>anticoagulants</strong> (warfarine, aspirine, clopidogrel) — le Ginkgo peut augmenter le risque de saignement.</li>
+    <li>Si vous souffrez d'un <strong>trouble de la coagulation</strong> ou devez subir une intervention chirurgicale dans les 2 semaines.</li>
+    <li>Si vous êtes <strong>enceinte ou allaitez</strong> — la sécurité n'a pas été établie.</li>
+    <li>Si vous êtes <strong>épileptique</strong> ou avez des antécédents de convulsions — rare, mais possible diminution du seuil épileptogène.</li>
+    <li>Si vous êtes <strong>allergique</strong> au Ginkgo ou aux plantes apparentées.</li>
+  </ul>
+  <p>
+    <strong>Ne consommez jamais de graines crues de Ginkgo</strong> — elles contiennent une toxine naturelle (ginkgotoxine) qui peut être dangereuse en quantités importantes. Les extraits standardisés de feuilles sont traités pour éliminer ou minimiser ce composé.
+  </p>
+
+  <h2 id="produits-dynapharm">Produits Dynapharm contenant du Ginkgo Biloba</h2>
+  <p>
+    Dynapharm propose le Ginkgo Biloba sous trois formats pratiques — comprimés purs d'extrait de feuilles, gélule herbacée synergique et mélange de café quotidien.
+  </p>
+
+  <a href="/fr/products" class="product-card">
+    <Image src={yeeginkgoImg} alt="Comprimés Yeeginkgo — extrait de feuilles de Ginkgo Biloba de Dynapharm" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Comprimés Yeeginkgo</h4>
+      <p>Extrait standardisé pur de feuilles de Ginkgo Biloba. Conçu pour soutenir au quotidien la mémoire, la clarté mentale et la circulation.</p>
+      <span class="product-cta">Voir sur la page Produits →</span>
+    </div>
+  </a>
+
+  <a href="/fr/products" class="product-card">
+    <Image src={ginaliImg} alt="Gélules Ginali — Ginkgo Biloba associé au Tongkat Ali par Dynapharm" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Gélules Ginali</h4>
+      <p>Un mélange synergique de Ginkgo Biloba et de Tongkat Ali (<em>Eurycoma longifolia</em>) — formulé pour la vivacité cognitive et la vitalité globale.</p>
+      <span class="product-cta">Voir sur la page Produits →</span>
+    </div>
+  </a>
+
+  <a href="/fr/products" class="product-card">
+    <Image src={ginkgoCoffeeImg} alt="Mélange de café instantané au Ginkgo et Ginseng de Dynapharm" widths={[160, 240]} sizes="120px" loading="lazy" />
+    <div>
+      <h4>Mélange de café instantané au Ginkgo &amp; Ginseng</h4>
+      <p>Un café quotidien infusé au Ginkgo Biloba et au Ginseng — une façon douce d'intégrer ces plantes traditionnelles à votre routine matinale.</p>
+      <span class="product-cta">Voir sur la page Produits →</span>
+    </div>
+  </a>
+
+  <figure>
+    <Image src={inlineImg2} alt="Gros plan sur des feuilles de Ginkgo Biloba vert vif baignées de la lumière du matin" widths={[640, 1024, 1280]} sizes="(min-width: 768px) 720px, 100vw" loading="lazy" />
+    <figcaption>Le Ginkgo Biloba s'associe naturellement à d'autres traditions herbales — notamment le Ginseng, le Tongkat Ali et le café.</figcaption>
+  </figure>
+
+  <h2 id="faq">Questions fréquentes sur le Ginkgo Biloba</h2>
+  {faq.map((item) => (
+    <div class="faq-item">
+      <h3>{item.q}</h3>
+      <p>{item.a}</p>
+    </div>
+  ))}
+
+  <h2 id="conclusion">En conclusion</h2>
+  <p>
+    Le Ginkgo Biloba est une plante remarquable, riche d'une longue histoire d'usage traditionnel et d'un solide corpus de recherche moderne. Bien qu'il ne s'agisse pas d'un remède miracle, les preuves soutiennent son usage prudent comme <strong>compagnon quotidien de bien-être pour la mémoire, la concentration et la circulation</strong>, en particulier chez les adultes plus âgés. Comme pour tout complément, la régularité, la qualité et la sécurité doivent primer — et toute préoccupation persistante mérite d'être discutée avec un professionnel de santé qualifié.
+  </p>
+  <p>
+    Pour découvrir la gamme Ginkgo Biloba de Dynapharm, visitez notre <a href="/fr/products">page Produits</a>, ou contactez un distributeur Dynapharm formé pour des conseils personnalisés.
+  </p>
+
+</BlogPostLayout>

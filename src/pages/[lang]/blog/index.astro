@@ -1,0 +1,170 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { POSTS, postPath } from '@data/blog';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+const blogImages = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/blog/*.{jpg,jpeg,png,webp}',
+  { eager: true }
+);
+
+const ui = {
+  en: {
+    title: 'Health & Wellness Blog — Natural Health Insights | Dynapharm Africa',
+    description:
+      'Explore evidence-based articles on natural health, herbal wellness, and the science behind ingredients like Ginkgo Biloba, Ginseng, Spirulina and Ganoderma.',
+    keywords:
+      'natural health blog, herbal wellness articles, ginkgo biloba benefits, ginseng benefits, natural supplements, traditional herbal medicine, dynapharm wellness blog, health and wellness Africa',
+    eyebrow: 'Health & Wellness',
+    heading: 'The Dynapharm Wellness Blog',
+    subtitle:
+      'Evidence-based, plain-language articles on natural ingredients, traditional herbal wisdom, and how to live healthier — published by the Dynapharm Wellness Team.',
+    readArticle: 'Read article',
+    minRead: 'min read',
+    publishedOn: 'Published on',
+  },
+  fr: {
+    title: 'Blog Santé & Bien-Être — Articles santé naturelle | Dynapharm Africa',
+    description:
+      'Explorez des articles fondés sur des preuves concernant la santé naturelle, le bien-être à base de plantes et la science des ingrédients comme le Ginkgo Biloba, le Ginseng, la Spiruline et le Ganoderma.',
+    keywords:
+      'blog santé naturelle, articles bien-être à base de plantes, bienfaits ginkgo biloba, bienfaits ginseng, compléments naturels, médecine traditionnelle à base de plantes, blog bien-être Dynapharm, santé et bien-être Afrique',
+    eyebrow: 'Santé & Bien-Être',
+    heading: 'Le Blog Bien-Être Dynapharm',
+    subtitle:
+      'Des articles fondés sur des preuves, en langage clair, sur les ingrédients naturels, la sagesse traditionnelle des plantes et comment vivre en meilleure santé — publiés par l\'Équipe Bien-Être Dynapharm.',
+    readArticle: 'Lire l\'article',
+    minRead: 'min de lecture',
+    publishedOn: 'Publié le',
+  },
+}[lang];
+
+const dateFmt = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const siteUrl = Astro.site?.href || 'https://dynapharmafrica.com/';
+
+// Blog (CollectionPage) JSON-LD
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: ui.heading,
+  description: ui.description,
+  url: `${siteUrl}${lang}/blog`,
+  inLanguage: lang === 'fr' ? 'fr-FR' : 'en-GB',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Dynapharm Africa',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}assets/images/branding/Logo-Full-Color.png`,
+    },
+  },
+  blogPost: POSTS.map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.title[lang],
+    description: p.description[lang],
+    url: new URL(postPath(p, lang), siteUrl).href,
+    datePublished: p.datePublished,
+    image: new URL(`assets/images/blog/${p.heroImage}`, siteUrl).href,
+  })),
+};
+---
+
+<BaseLayout title={ui.title} description={ui.description} keywords={ui.keywords} lang={lang} structuredData={blogSchema}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-green-dark text-white">
+    <div class="absolute inset-0 grain-overlay opacity-30"></div>
+    <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gold/10 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-green-700/40 blur-3xl" aria-hidden="true"></div>
+
+    <div class="relative section-container section-padding text-center">
+      <span class="inline-block font-accent text-sm font-medium uppercase tracking-widest text-gold mb-4">
+        {ui.eyebrow}
+      </span>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+        {ui.heading}
+      </h1>
+      <p class="text-lg md:text-xl text-green-100/85 max-w-3xl mx-auto font-body leading-relaxed">
+        {ui.subtitle}
+      </p>
+    </div>
+  </section>
+
+  <!-- Posts grid -->
+  <section class="section-padding bg-cream">
+    <div class="section-container max-w-6xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        {POSTS.map((post) => {
+          const imgEntry = Object.entries(blogImages).find(([path]) =>
+            path.endsWith(`/${post.heroImage}`)
+          );
+          const img = imgEntry ? imgEntry[1].default : null;
+          const formattedDate = dateFmt.format(new Date(post.datePublished));
+          return (
+            <article class="card group flex flex-col overflow-hidden">
+              <a href={postPath(post, lang)} class="block aspect-[16/10] overflow-hidden">
+                {img && (
+                  <Image
+                    src={img}
+                    alt={post.heroAlt[lang]}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    widths={[480, 800, 1200]}
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    loading="lazy"
+                  />
+                )}
+              </a>
+              <div class="p-6 md:p-7 flex flex-col flex-1">
+                <div class="flex items-center gap-3 mb-3 text-xs font-accent text-grey">
+                  <span class="badge bg-green-50 text-green">{post.category[lang]}</span>
+                  <span class="inline-flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {post.readingTime} {ui.minRead}
+                  </span>
+                </div>
+                <h2 class="font-heading text-xl md:text-2xl font-bold text-charcoal mb-3 leading-snug group-hover:text-green transition-colors">
+                  <a href={postPath(post, lang)}>{post.title[lang]}</a>
+                </h2>
+                <p class="font-body text-charcoal-light leading-relaxed flex-1 line-clamp-3">
+                  {post.description[lang]}
+                </p>
+                <div class="mt-5 flex items-center justify-between text-sm font-accent">
+                  <time class="text-grey" datetime={post.datePublished}>{formattedDate}</time>
+                  <a
+                    href={postPath(post, lang)}
+                    class="inline-flex items-center gap-1.5 text-green font-medium hover:text-green-dark transition-colors"
+                  >
+                    {ui.readArticle}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
