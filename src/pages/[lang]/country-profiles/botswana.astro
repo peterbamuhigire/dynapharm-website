@@ -1,0 +1,487 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image, getImage } from 'astro:assets';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+import botswanaFlag from '@assets/images/gallery/botswana-flag.jpg';
+import botswanaMapFlag from '@assets/images/gallery/botswana-map-flag.jpg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+const heroBg = await getImage({ src: botswanaFlag, format: 'webp', width: 2000, quality: 75 });
+
+interface Dpc {
+  city: string;
+  district: string;
+  name: string;
+  address: string[];
+  landmark?: string;
+  isHeadOffice?: boolean;
+}
+
+const email = 'dynalab_botswana@yahoo.com';
+
+const dpcs: Dpc[] = [
+  {
+    city: 'Francistown',
+    district: 'North-East District',
+    name: 'Francistown DPC',
+    address: ['Nswazwi Mall', 'Suite 3'],
+  },
+  {
+    city: 'Gaborone',
+    district: 'South-East District',
+    name: 'Head Office',
+    address: ['KB Mall', 'Unit 3 & 4'],
+    isHeadOffice: true,
+  },
+  {
+    city: 'Kanye',
+    district: 'Southern District',
+    name: 'Kanye DPC',
+    address: ['Kanye Mall', 'Plot 33', 'Kogae Cafe'],
+  },
+  {
+    city: 'Mahalapye',
+    district: 'Central District',
+    name: 'Mahalapye DPC',
+    address: ['Old Corporate Offices'],
+    landmark: 'Next to Dr Gullapalli',
+  },
+  {
+    city: 'Maun',
+    district: 'North-West District',
+    name: 'Maun DPC',
+    address: ['Old Mall', 'Suite 7', 'Above Mascom'],
+  },
+  {
+    city: 'Molepolole',
+    district: 'Kweneng District',
+    name: 'Molepolole DPC',
+    address: ['Ntloedibe Ward', 'Moarasope Complex', 'Unit 4 & 5'],
+    landmark: 'Opposite Choppies',
+  },
+  {
+    city: 'Serowe',
+    district: 'Central District',
+    name: 'Serowe DPC',
+    address: ['Boswa Complex', 'Shop 4'],
+    landmark: 'Opposite Land Board',
+  },
+];
+
+const content = {
+  en: {
+    meta: {
+      title: 'Dynapharm Botswana - DPCs in Gaborone, Francistown, Maun, Serowe & More',
+      description: 'Official Dynapharm Botswana country profile. Find Dynapharm DPC addresses in Gaborone, Francistown, Serowe, Maun, Kanye, Mahalapye and Molepolole, plus the Botswana contact email for natural health products, Spirulina, Ganoderma coffee, Chlorophyll and the Dynapharm business opportunity.',
+      keywords: 'Dynapharm Botswana, Dynapharm Gaborone, Dynapharm Francistown, Dynapharm Serowe, Dynapharm Maun, Dynapharm Kanye, Dynapharm Mahalapye, Dynapharm Molepolole, Dynalab Botswana, Dynapharm DPC Botswana, Dynapharm Botswana addresses, natural health products Botswana, Spirulina Botswana, Ganoderma coffee Botswana, Chlorophyll Botswana, herbal supplements Botswana, Dynapharm distributor Botswana, network marketing Botswana, wellness business Botswana',
+    },
+    breadcrumbCountries: 'Country Profiles',
+    breadcrumbThis: 'Botswana',
+    hero: {
+      eyebrow: 'Country Profile - Republic of Botswana',
+      heading: 'Dynapharm Botswana',
+      subtitle: 'Seven DPC locations connecting Botswana customers and distributors with Dynapharm natural wellness products and business support.',
+      flagAlt: 'National flag of the Republic of Botswana',
+    },
+    overview: {
+      heading: 'About Dynapharm Botswana',
+      p1: 'Dynapharm Botswana is the Botswana franchise presence for Dynapharm International, serving customers and distributors through Distribution Point Centres (DPCs) across the country. The network includes the Gaborone Head Office at KB Mall and DPC locations in Francistown, Serowe, Maun, Kanye, Mahalapye and Molepolole.',
+      p2: 'Each Botswana DPC helps local communities access Dynapharm natural health products, including Spirulina, Ganoderma coffee, Liquid Chlorophyll, herbal supplements, personal care products and the D.I. Grow agricultural bio-fertiliser. DPCs also support product education, distributor registration and day-to-day business activity.',
+      p3: 'For product availability, distributor registration, training or business enquiries in Botswana, contact Dynapharm Botswana by email or visit the nearest DPC listed below.',
+      stats: [
+        { value: '7', label: 'DPC Locations' },
+        { value: '7', label: 'Towns Covered' },
+        { value: '5', label: 'Districts Served' },
+        { value: '90+', label: 'Products' },
+      ],
+      mapAlt: 'Map of Botswana coloured with the national flag',
+    },
+    dpcs: {
+      heading: 'Dynapharm Botswana DPC Addresses',
+      subtitle: 'DPC locations are listed alphabetically by town for quick local search and easy navigation.',
+      districtLabel: 'District',
+      landmarkLabel: 'Landmark',
+      headOfficeLabel: 'Head Office',
+      emailLabel: 'Email',
+    },
+    faqHeading: 'Frequently Asked Questions - Dynapharm Botswana',
+    faq: [
+      { q: 'Where is Dynapharm Botswana located?', a: 'Dynapharm Botswana has DPC locations in Francistown, Gaborone, Kanye, Mahalapye, Maun, Molepolole and Serowe. The Gaborone Head Office is at KB Mall, Unit 3 & 4.' },
+      { q: 'What is the Dynapharm Botswana email address?', a: `Dynapharm Botswana can be contacted by email at ${email}. Use this address for product availability, DPC enquiries, distributor registration and business support.` },
+      { q: 'Is there a Dynapharm DPC in Gaborone?', a: 'Yes. The Dynapharm Botswana Head Office is in Gaborone at KB Mall, Unit 3 & 4.' },
+      { q: 'Which towns have Dynapharm DPCs in Botswana?', a: 'Dynapharm Botswana DPCs are listed for Francistown, Gaborone, Kanye, Mahalapye, Maun, Molepolole and Serowe.' },
+      { q: 'Can I become a Dynapharm distributor in Botswana?', a: 'Yes. Visit the nearest Botswana DPC or email dynalab_botswana@yahoo.com to ask about distributor registration, product training and the Dynapharm business opportunity.' },
+      { q: 'What products are available through Dynapharm Botswana?', a: 'Botswana DPCs support access to the Dynapharm catalogue of natural health products, including Ganoderma coffee, Spirulina, Liquid Chlorophyll, Bee Pollen, Tongkat Ali, Noni, Tea Tree Oil personal care products and D.I. Grow bio-fertiliser.' },
+    ],
+    cta: {
+      heading: 'Contact Dynapharm Botswana',
+      body: 'Email Dynapharm Botswana or visit your nearest DPC for product enquiries, distributor registration, training and local business support.',
+      primary: 'Email Botswana Office',
+      secondary: 'Explore Our Products',
+    },
+    backLink: 'Back to Country Profiles',
+    aboutCountry: 'About the country',
+    countryFacts: {
+      capital: 'Gaborone',
+      population: 'approximately 2.7 million',
+      languages: 'English (official), Setswana and other local languages',
+      currency: 'Botswana Pula (BWP)',
+      callingCode: '+267',
+    },
+    factLabels: {
+      capital: 'Capital',
+      population: 'Population',
+      languages: 'Languages',
+      currency: 'Currency',
+      callingCode: 'Calling code',
+    },
+  },
+  fr: {
+    meta: {
+      title: 'Dynapharm Botswana - DPC a Gaborone, Francistown, Maun, Serowe et Plus',
+      description: 'Profil pays officiel de Dynapharm Botswana. Retrouvez les adresses des DPC Dynapharm a Gaborone, Francistown, Serowe, Maun, Kanye, Mahalapye et Molepolole, ainsi que l email de contact Botswana pour les produits naturels, la Spiruline, le cafe Ganoderma, la Chlorophylle et l opportunite d affaires Dynapharm.',
+      keywords: 'Dynapharm Botswana, Dynapharm Gaborone, Dynapharm Francistown, Dynapharm Serowe, Dynapharm Maun, Dynapharm Kanye, Dynapharm Mahalapye, Dynapharm Molepolole, Dynalab Botswana, DPC Dynapharm Botswana, adresses Dynapharm Botswana, produits naturels Botswana, Spiruline Botswana, Ganoderma Botswana, Chlorophylle Botswana, distributeur Dynapharm Botswana, marketing de reseau Botswana',
+    },
+    breadcrumbCountries: 'Profils des Pays',
+    breadcrumbThis: 'Botswana',
+    hero: {
+      eyebrow: 'Profil Pays - Republique du Botswana',
+      heading: 'Dynapharm Botswana',
+      subtitle: 'Sept DPC relient les clients et distributeurs du Botswana aux produits de bien-etre naturel Dynapharm et au soutien commercial local.',
+      flagAlt: 'Drapeau national de la Republique du Botswana',
+    },
+    overview: {
+      heading: 'A Propos de Dynapharm Botswana',
+      p1: 'Dynapharm Botswana represente la presence de franchise Dynapharm International au Botswana, au service des clients et distributeurs a travers des Centres de Distribution (DPC) dans le pays. Le reseau comprend le siege de Gaborone a KB Mall et des DPC a Francistown, Serowe, Maun, Kanye, Mahalapye et Molepolole.',
+      p2: 'Chaque DPC du Botswana aide les communautes locales a acceder aux produits naturels Dynapharm, notamment Spiruline, cafe Ganoderma, Chlorophylle liquide, complements a base de plantes, soins personnels et bio-fertilisant agricole D.I. Grow. Les DPC soutiennent aussi l education produit, l inscription des distributeurs et les activites quotidiennes.',
+      p3: 'Pour la disponibilite des produits, l inscription comme distributeur, la formation ou les demandes commerciales au Botswana, contactez Dynapharm Botswana par email ou visitez le DPC le plus proche ci-dessous.',
+      stats: [
+        { value: '7', label: 'DPC' },
+        { value: '7', label: 'Villes Couvertes' },
+        { value: '5', label: 'Districts Desservis' },
+        { value: '90+', label: 'Produits' },
+      ],
+      mapAlt: 'Carte du Botswana aux couleurs du drapeau national',
+    },
+    dpcs: {
+      heading: 'Adresses des DPC Dynapharm Botswana',
+      subtitle: 'Les DPC sont listes par ordre alphabetique de ville pour faciliter la recherche locale et la navigation.',
+      districtLabel: 'District',
+      landmarkLabel: 'Repere',
+      headOfficeLabel: 'Siege',
+      emailLabel: 'Email',
+    },
+    faqHeading: 'Foire aux questions - Dynapharm Botswana',
+    faq: [
+      { q: 'Ou se trouve Dynapharm Botswana ?', a: 'Dynapharm Botswana dispose de DPC a Francistown, Gaborone, Kanye, Mahalapye, Maun, Molepolole et Serowe. Le siege de Gaborone se trouve a KB Mall, Unit 3 & 4.' },
+      { q: 'Quelle est l adresse email de Dynapharm Botswana ?', a: `Dynapharm Botswana peut etre contacte par email a ${email}. Utilisez cette adresse pour les produits, les DPC, l inscription distributeur et le soutien commercial.` },
+      { q: 'Existe-t-il un DPC Dynapharm a Gaborone ?', a: 'Oui. Le siege de Dynapharm Botswana se trouve a Gaborone, KB Mall, Unit 3 & 4.' },
+      { q: 'Quelles villes ont des DPC Dynapharm au Botswana ?', a: 'Les DPC Dynapharm Botswana sont indiques pour Francistown, Gaborone, Kanye, Mahalapye, Maun, Molepolole et Serowe.' },
+      { q: 'Puis-je devenir distributeur Dynapharm au Botswana ?', a: 'Oui. Visitez le DPC le plus proche au Botswana ou envoyez un email a dynalab_botswana@yahoo.com pour demander l inscription distributeur, la formation produit et l opportunite d affaires Dynapharm.' },
+      { q: 'Quels produits sont disponibles via Dynapharm Botswana ?', a: 'Les DPC du Botswana soutiennent l acces au catalogue Dynapharm de produits naturels, notamment cafe Ganoderma, Spiruline, Chlorophylle liquide, pollen d abeille, Tongkat Ali, Noni, soins Tea Tree Oil et bio-fertilisant D.I. Grow.' },
+    ],
+    cta: {
+      heading: 'Contacter Dynapharm Botswana',
+      body: 'Envoyez un email a Dynapharm Botswana ou visitez votre DPC le plus proche pour les produits, l inscription distributeur, la formation et le soutien commercial local.',
+      primary: 'Email du Bureau Botswana',
+      secondary: 'Explorer Nos Produits',
+    },
+    backLink: 'Retour aux Profils des Pays',
+    aboutCountry: 'A propos du pays',
+    countryFacts: {
+      capital: 'Gaborone',
+      population: 'environ 2,7 millions',
+      languages: 'anglais (officiel), setswana et autres langues locales',
+      currency: 'Pula botswanais (BWP)',
+      callingCode: '+267',
+    },
+    factLabels: {
+      capital: 'Capitale',
+      population: 'Population',
+      languages: 'Langues',
+      currency: 'Monnaie',
+      callingCode: 'Indicatif',
+    },
+  },
+};
+
+const c = content[lang];
+const factEntries = Object.entries(c.factLabels) as [keyof typeof c.factLabels, string][];
+const siteHref = (Astro.site?.href || 'https://dynapharmafrica.com/').replace(/\/$/, '');
+const pageUrl = `${siteHref}/${lang}/country-profiles/botswana`;
+const pageImage = `${siteHref}${heroBg.src}`;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: c.breadcrumbCountries, item: `${siteHref}/${lang}/country-profiles` },
+    { '@type': 'ListItem', position: 2, name: c.breadcrumbThis, item: pageUrl },
+  ],
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: c.meta.title,
+  url: pageUrl,
+  description: c.meta.description,
+  inLanguage: lang,
+  image: pageImage,
+  about: [
+    { '@type': 'Organization', name: 'Dynapharm Botswana' },
+    { '@type': 'Country', name: 'Botswana' },
+  ],
+  keywords: c.meta.keywords,
+};
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Dynapharm Botswana',
+  alternateName: ['Dynalab Botswana', 'Dynapharm Botswana DPC'],
+  url: pageUrl,
+  email,
+  parentOrganization: { '@type': 'Organization', name: 'Dynapharm International', url: 'https://www.dynapharm.com.my/' },
+  areaServed: { '@type': 'Country', name: 'Botswana' },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email,
+    contactType: 'customer service',
+    areaServed: 'BW',
+    availableLanguage: ['en', 'tn'],
+  },
+  description: lang === 'fr'
+    ? 'Dynapharm Botswana dessert les clients et distributeurs a travers des DPC a Gaborone, Francistown, Serowe, Maun, Kanye, Mahalapye et Molepolole.'
+    : 'Dynapharm Botswana serves customers and distributors through DPC locations in Gaborone, Francistown, Serowe, Maun, Kanye, Mahalapye and Molepolole.',
+  location: dpcs.map((dpc) => ({
+    '@type': 'HealthAndBeautyBusiness',
+    '@id': `${pageUrl}#${dpc.city.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+    name: dpc.isHeadOffice ? 'Dynapharm Botswana Head Office' : `Dynapharm Botswana ${dpc.city} DPC`,
+    branchOf: { '@type': 'Organization', name: 'Dynapharm Botswana' },
+    email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: [...dpc.address, dpc.landmark].filter(Boolean).join(', '),
+      addressLocality: dpc.city,
+      addressRegion: dpc.district,
+      addressCountry: 'BW',
+    },
+    areaServed: dpc.city,
+  })),
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: c.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title={c.meta.title}
+  description={c.meta.description}
+  keywords={c.meta.keywords}
+  lang={lang}
+  ogImage={heroBg.src}
+  structuredData={[breadcrumbSchema, webPageSchema, orgSchema, faqSchema]}
+>
+  <section
+    class="relative overflow-hidden text-white"
+    style={`background-image: linear-gradient(rgba(20,20,20,0.52), rgba(20,20,20,0.76)), url('${heroBg.src}'); background-size: cover; background-position: center;`}
+    aria-label={c.hero.flagAlt}
+  >
+    <div class="absolute inset-0 grain-overlay opacity-25"></div>
+    <div class="section-container relative z-10 py-20 md:py-28 lg:py-32">
+      <nav class="mb-6 text-sm font-accent text-grey-light/90" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href={`/${lang}`} class="hover:text-white transition-colors">{lang === 'fr' ? 'Accueil' : 'Home'}</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href={`/${lang}/country-profiles`} class="hover:text-white transition-colors">{c.breadcrumbCountries}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white" aria-current="page">{c.breadcrumbThis}</li>
+        </ol>
+      </nav>
+      <p class="font-accent text-sm uppercase tracking-widest text-white/80 mb-3">
+        {c.hero.eyebrow}
+      </p>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-5 drop-shadow-lg">
+        {c.hero.heading}
+      </h1>
+      <p class="font-body text-lg md:text-xl text-white/90 max-w-2xl drop-shadow">
+        {c.hero.subtitle}
+      </p>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-8 md:h-12">
+        <polygon fill="var(--color-cream)" points="0,60 1200,60 1200,0"></polygon>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="grid gap-12 lg:grid-cols-5 lg:items-center">
+        <div class="lg:col-span-3">
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
+            <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+            {c.overview.heading}
+          </h2>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p1}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p2}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-8">{c.overview.p3}</p>
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {c.overview.stats.map((s) => (
+              <div class="bg-white rounded-xl border border-grey-light/40 p-4 text-center shadow-sm">
+                <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light mb-1">{s.label}</dt>
+                <dd class="font-heading text-2xl md:text-3xl font-bold text-dynared">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div class="lg:col-span-2">
+          <div class="rounded-2xl overflow-hidden bg-white p-4 border border-grey-light/40 shadow-sm">
+            <Image
+              src={botswanaMapFlag}
+              alt={c.overview.mapAlt}
+              class="w-full h-auto"
+              widths={[400, 800]}
+              sizes="(min-width: 1024px) 400px, 80vw"
+              loading="lazy"
+            />
+          </div>
+          <dl class="mt-4 bg-white rounded-2xl border border-grey-light/40 p-5 shadow-sm">
+            <p class="font-accent text-xs uppercase tracking-wider text-dynared font-semibold mb-3">{c.aboutCountry}</p>
+            {factEntries.map(([key, label]) => (
+              <div class="flex justify-between gap-4 py-2 border-b border-grey-light/30 last:border-0">
+                <dt class="font-accent text-sm text-charcoal-light">{label}</dt>
+                <dd class="font-body text-sm text-charcoal text-right">{c.countryFacts[key]}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-3 flex items-center gap-3">
+          <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+          {c.dpcs.heading}
+        </h2>
+        <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed">
+          {c.dpcs.subtitle}
+        </p>
+      </div>
+
+      <div class="mb-8 bg-cream rounded-2xl border border-grey-light/40 p-5 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <p class="font-accent text-xs uppercase tracking-wider text-dynared font-semibold mb-1">{c.dpcs.emailLabel}</p>
+          <p class="font-body text-charcoal-light">{email}</p>
+        </div>
+        <a href={`mailto:${email}`} class="btn-primary">{c.cta.primary}</a>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {dpcs.map((dpc) => (
+          <article id={dpc.city.toLowerCase().replace(/[^a-z0-9]+/g, '-')} class="bg-cream rounded-2xl border border-grey-light/40 p-6 shadow-sm hover:shadow-md hover:border-dynared/40 transition-all duration-200" itemscope itemtype="https://schema.org/HealthAndBeautyBusiness">
+            <meta itemprop="name" content={dpc.isHeadOffice ? 'Dynapharm Botswana Head Office' : `Dynapharm Botswana ${dpc.city} DPC`} />
+            <meta itemprop="email" content={email} />
+            <div class="flex items-start gap-3 mb-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-dynared/10 text-dynared flex items-center justify-center" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-heading text-xl font-bold text-charcoal leading-tight">{dpc.city}</h3>
+                <p class="font-accent text-xs uppercase tracking-wider text-dynared mt-1">
+                  {dpc.isHeadOffice ? c.dpcs.headOfficeLabel : dpc.name}
+                </p>
+              </div>
+            </div>
+            <dl class="text-sm mb-4 space-y-1">
+              <div class="flex gap-2">
+                <dt class="font-accent text-charcoal-light">{c.dpcs.districtLabel}:</dt>
+                <dd class="font-body text-charcoal" itemprop="addressRegion">{dpc.district}</dd>
+              </div>
+              {dpc.landmark && (
+                <div class="flex gap-2">
+                  <dt class="font-accent text-charcoal-light">{c.dpcs.landmarkLabel}:</dt>
+                  <dd class="font-body text-charcoal">{dpc.landmark}</dd>
+                </div>
+              )}
+            </dl>
+            <address class="font-body not-italic text-sm text-charcoal-light leading-relaxed" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <span itemprop="streetAddress">
+                {dpc.address.map((line) => (<span class="block">{line}</span>))}
+              </span>
+              {dpc.landmark && <span class="block">{dpc.landmark}</span>}
+              <span class="block" itemprop="addressLocality">{dpc.city}</span>
+              <meta itemprop="addressCountry" content="BW" />
+            </address>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <div class="section-container max-w-4xl">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-8 flex items-center gap-3">
+        <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+        {c.faqHeading}
+      </h2>
+      <div class="space-y-4">
+        {c.faq.map((item) => (
+          <details class="group bg-white rounded-xl border border-grey-light/40 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-heading text-base md:text-lg font-semibold text-charcoal flex items-start justify-between gap-4 hover:bg-dynared-50/40 transition-colors">
+              <span>{item.q}</span>
+              <span class="flex-shrink-0 text-dynared transition-transform group-open:rotate-180" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-1 border-t border-grey-light/30">
+              <p class="font-body text-base text-charcoal-light leading-relaxed">{item.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-20"></div>
+    <div class="section-container relative z-10 max-w-3xl text-center">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">{c.cta.heading}</h2>
+      <p class="font-body text-base md:text-lg text-grey-light leading-relaxed mb-8">{c.cta.body}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`mailto:${email}`} class="btn-primary">{c.cta.primary}</a>
+        <a href={`/${lang}/products`} class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-accent font-semibold border-2 border-white/40 hover:border-white hover:bg-white/10 transition-colors">
+          {c.cta.secondary}
+        </a>
+      </div>
+      <div class="mt-10">
+        <a href={`/${lang}/country-profiles`} class="inline-flex items-center gap-2 font-accent text-sm text-grey-light hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          {c.backLink}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
