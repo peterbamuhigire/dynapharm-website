@@ -1,0 +1,177 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+const c = {
+  title: 'Privacy Policy for Dynapharm Africa Distributors Mobile App',
+  description: 'Privacy policy for the Dynapharm Africa Distributors mobile app, including data collection, use, sharing, security, retention, and deletion requests.',
+  lastUpdated: 'Last updated: May 2026',
+  intro: [
+    'This Privacy Policy explains how the Dynapharm Africa Distributors mobile app handles information for authorized Dynapharm distributors.',
+    'The app is a third-party application developed by Peter Bamuhigire and his software development firm Chwezi Core Systems for participating Dynapharm franchises. It is available only to distributors who are given login credentials by their primary Dynapharm Management Office in their home country.',
+  ],
+  sections: [
+    {
+      heading: 'Who This App Is For',
+      paragraphs: [
+        'The app is intended for authorized Dynapharm distributors in participating franchise countries. It is not a public consumer shopping app and it is not intended for children.',
+        'Access is controlled by the relevant Dynapharm Management Office or franchise that issues distributor login credentials.',
+      ],
+    },
+    {
+      heading: 'Information We Collect',
+      paragraphs: [
+        'Depending on your country, franchise setup, and account permissions, the app may process the following information:',
+      ],
+      list: [
+        'Account and login details such as your distributor ID, name, phone number, email address, country, franchise, branch, role, rank, sponsor, and account status.',
+        'Network information such as downline or team structure, distributor relationships, rank progress, and performance summaries.',
+        'Sales and business information such as sales volume, product orders, commissions or performance indicators, targets, training progress, and related business reports.',
+        'Support and communication information you submit through the app or to your management office.',
+        'Training and product education activity, including materials accessed, completion status, or learning progress where enabled.',
+        'Technical and usage data such as device type, app version, IP address, login timestamps, diagnostics, crash logs, and security audit records.',
+      ],
+    },
+    {
+      heading: 'Health and Product Information',
+      paragraphs: [
+        'The app may provide educational information about diseases, wellness topics, product categories, and recommended Dynapharm products. This content is for distributor education and product knowledge support.',
+        'Dynapharm products are food supplements, personal care, wellness, or agricultural products. They are not medicines and are not intended to diagnose, treat, cure, or prevent disease. The app does not replace advice from a qualified healthcare professional.',
+      ],
+    },
+    {
+      heading: 'How We Use Information',
+      list: [
+        'To authenticate distributor accounts and protect access to the app.',
+        'To display your network, sales, performance, rank, training, and distributor information.',
+        'To provide training materials, product education, disease information, and recommended product guidance.',
+        'To support franchise management, reporting, distributor administration, and operational decision-making.',
+        'To maintain app security, prevent unauthorized access, troubleshoot issues, and improve app performance.',
+        'To comply with applicable legal, tax, accounting, regulatory, or franchise obligations.',
+      ],
+    },
+    {
+      heading: 'How Information Is Shared',
+      paragraphs: [
+        'Distributor information may be shared with the Dynapharm Management Office, franchise, branch, or authorized administrators responsible for your country or account.',
+        'Information may also be processed by Peter Bamuhigire, Chwezi Core Systems, hosting providers, database providers, analytics or diagnostics providers, and other technical service providers needed to operate and secure the app.',
+        'We do not sell distributor personal information. We do not share distributor personal information for third-party advertising.',
+      ],
+    },
+    {
+      heading: 'Security',
+      paragraphs: [
+        'We use reasonable technical and organizational measures to protect app data, including controlled logins, role-based access, encrypted server communication, backups, and administrative access controls.',
+        'No system can be guaranteed to be completely secure. Distributors should keep login credentials confidential and report suspected unauthorized access to their management office or the privacy contact below.',
+      ],
+    },
+    {
+      heading: 'Data Retention and Deletion',
+      paragraphs: [
+        'Distributor account and business records are retained for as long as needed to provide the app, support franchise operations, maintain business records, resolve disputes, comply with legal obligations, and protect the integrity of distributor networks and performance reports.',
+        'If you want to access, correct, deactivate, or request deletion of your app account data, contact your primary Dynapharm Management Office in your home country or use the privacy contact below. Some records may need to be retained where required for legitimate business, legal, accounting, tax, audit, or security reasons.',
+      ],
+    },
+    {
+      heading: 'Your Responsibilities',
+      list: [
+        'Use the app only with the login credentials issued to you.',
+        'Do not share your password or allow another person to use your account.',
+        'Use distributor, customer, and network information only for authorized Dynapharm business purposes.',
+        'Do not copy, export, or share confidential network, sales, training, or management information outside approved Dynapharm channels.',
+      ],
+    },
+    {
+      heading: 'International Processing',
+      paragraphs: [
+        'Because Dynapharm franchises operate in different African countries and the app is supported by third-party technical providers, information may be processed in countries other than your home country. We take reasonable steps to protect information when it is processed by authorized service providers.',
+      ],
+    },
+    {
+      heading: 'Changes to This Policy',
+      paragraphs: [
+        'We may update this Privacy Policy as the app, participating franchises, legal requirements, or data practices change. The updated version will be posted on this page with a revised update date.',
+      ],
+    },
+    {
+      heading: 'Privacy Contact',
+      paragraphs: [
+        'For privacy questions or requests, contact:',
+        'Peter Bamuhigire / Chwezi Core Systems',
+        'Email: info@dynapharmafrica.com',
+        'Website: techguypeter.com and chwezicore.com',
+      ],
+    },
+  ],
+} as const;
+
+const policySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'PrivacyPolicy',
+  name: c.title,
+  description: c.description,
+};
+---
+
+<BaseLayout
+  title={`${c.title} | Dynapharm Africa`}
+  description={c.description}
+  lang={lang}
+  structuredData={policySchema}
+  alternates={{ en: '/en/mobile-app-privacy-policy', fr: '/fr/mobile-app-privacy-policy' }}
+>
+  <section class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-30"></div>
+    <div class="section-container relative z-10 py-16 md:py-24">
+      <p class="font-accent text-sm font-semibold uppercase tracking-wider text-gold mb-4">Mobile App Privacy Policy</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 max-w-4xl">{c.title}</h1>
+      <p class="font-accent text-sm text-grey-light">{c.lastUpdated}</p>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-8 md:h-12" aria-hidden="true">
+        <polygon fill="var(--color-cream)" points="0,60 1200,60 1200,0"></polygon>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <article class="section-container max-w-4xl">
+      <div class="bg-white rounded-2xl border border-grey-light/30 shadow-card p-6 md:p-10">
+        <div class="space-y-4 text-charcoal-light font-body text-base md:text-lg leading-relaxed">
+          {c.intro.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+
+        <div class="mt-10 space-y-10">
+          {c.sections.map((section) => (
+            <section>
+              <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4">{section.heading}</h2>
+              {section.paragraphs && (
+                <div class="space-y-4 text-charcoal-light font-body leading-relaxed">
+                  {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+                </div>
+              )}
+              {section.list && (
+                <ul class="mt-4 space-y-3" role="list">
+                  {section.list.map((item) => (
+                    <li class="flex gap-3 text-charcoal-light font-body leading-relaxed">
+                      <span class="mt-2 h-2 w-2 rounded-full bg-dynared flex-shrink-0" aria-hidden="true"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
+        </div>
+      </div>
+    </article>
+  </section>
+</BaseLayout>

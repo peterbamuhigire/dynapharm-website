@@ -1,0 +1,171 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+const c = {
+  title: 'Website Privacy Policy',
+  description: 'Privacy policy for the Dynapharm Africa website, including contact forms, analytics, cookies, data sharing, security, and privacy requests.',
+  lastUpdated: 'Last updated: May 2026',
+  intro: [
+    'This Website Privacy Policy explains how Dynapharm Africa handles information collected through this website.',
+    'This policy applies to website visitors, people who submit enquiries, and people who contact Dynapharm Africa through forms, email, or other website links.',
+  ],
+  sections: [
+    {
+      heading: 'Information We Collect',
+      list: [
+        'Information you submit through contact forms, including your name, email address, subject, message, and any details you choose to provide.',
+        'Business opportunity or distributor enquiry information if you ask about joining Dynapharm.',
+        'Technical information such as IP address, browser type, device type, pages visited, referral source, and approximate location derived from technical data.',
+        'Basic analytics and performance data used to understand website traffic, fix errors, and improve the website.',
+      ],
+    },
+    {
+      heading: 'How We Use Information',
+      list: [
+        'To respond to enquiries and provide information about Dynapharm products, distributor support, or business opportunities.',
+        'To route relevant enquiries to appropriate Dynapharm representatives, franchises, or management offices.',
+        'To maintain, secure, troubleshoot, and improve the website.',
+        'To understand website usage and improve content, navigation, and performance.',
+        'To comply with legal, regulatory, accounting, or security obligations.',
+      ],
+    },
+    {
+      heading: 'Cookies and Analytics',
+      paragraphs: [
+        'The website may use cookies, server logs, analytics tools, or similar technologies to support website functionality, measure traffic, detect errors, and improve user experience.',
+        'You can control cookies through your browser settings. Some website features may not work correctly if cookies are disabled.',
+      ],
+    },
+    {
+      heading: 'How Information Is Shared',
+      paragraphs: [
+        'We do not sell personal information. We do not share personal information for third-party advertising.',
+        'Information may be shared with Dynapharm management offices, participating franchises, authorized distributors, website hosting providers, analytics providers, email providers, security providers, and other service providers needed to operate the website and respond to enquiries.',
+      ],
+    },
+    {
+      heading: 'Health and Product Information',
+      paragraphs: [
+        'Website content about wellness, diseases, ingredients, and products is provided for general information and distributor education. Dynapharm products are food supplements, personal care, wellness, or agricultural products. They are not medicines and are not intended to diagnose, treat, cure, or prevent disease.',
+        'Always consult a qualified healthcare professional for medical advice, diagnosis, or treatment.',
+      ],
+    },
+    {
+      heading: 'Security',
+      paragraphs: [
+        'We use reasonable technical and organizational measures to protect information submitted through the website. No website or internet transmission can be guaranteed to be completely secure.',
+      ],
+    },
+    {
+      heading: 'Data Retention',
+      paragraphs: [
+        'We retain enquiry records, technical logs, and related website data for as long as reasonably needed to respond to requests, maintain business records, improve the website, resolve disputes, and comply with legal or security obligations.',
+      ],
+    },
+    {
+      heading: 'Your Privacy Choices',
+      paragraphs: [
+        'You may request access, correction, or deletion of personal information you submitted through the website. Some records may need to be retained for legitimate business, legal, accounting, audit, or security reasons.',
+      ],
+    },
+    {
+      heading: 'International Processing',
+      paragraphs: [
+        'Dynapharm Africa operates across multiple countries and uses third-party service providers. Information submitted through the website may be processed in countries other than your country of residence.',
+      ],
+    },
+    {
+      heading: 'Changes to This Policy',
+      paragraphs: [
+        'We may update this Website Privacy Policy when website features, legal requirements, service providers, or data practices change. The updated version will be posted on this page with a revised update date.',
+      ],
+    },
+    {
+      heading: 'Contact',
+      paragraphs: [
+        'For privacy questions or requests, contact Dynapharm Africa at info@dynapharmafrica.com.',
+      ],
+    },
+  ],
+} as const;
+
+const policySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'PrivacyPolicy',
+  name: c.title,
+  description: c.description,
+};
+---
+
+<BaseLayout
+  title={`${c.title} | Dynapharm Africa`}
+  description={c.description}
+  lang={lang}
+  structuredData={policySchema}
+  alternates={{ en: '/en/privacy-policy', fr: '/fr/privacy-policy' }}
+>
+  <section class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-30"></div>
+    <div class="section-container relative z-10 py-16 md:py-24">
+      <p class="font-accent text-sm font-semibold uppercase tracking-wider text-gold mb-4">Privacy Policy</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 max-w-4xl">{c.title}</h1>
+      <p class="font-accent text-sm text-grey-light">{c.lastUpdated}</p>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-8 md:h-12" aria-hidden="true">
+        <polygon fill="var(--color-cream)" points="0,60 1200,60 1200,0"></polygon>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <article class="section-container max-w-4xl">
+      <div class="bg-white rounded-2xl border border-grey-light/30 shadow-card p-6 md:p-10">
+        <div class="space-y-4 text-charcoal-light font-body text-base md:text-lg leading-relaxed">
+          {c.intro.map((paragraph) => <p>{paragraph}</p>)}
+          <p>
+            The Dynapharm Africa Distributors mobile app has a separate privacy policy. Read it here:{' '}
+            <a
+              href={`/${lang}/mobile-app-privacy-policy`}
+              class="text-dynared hover:text-dynared-dark font-semibold underline underline-offset-2"
+            >
+              Mobile App Privacy Policy
+            </a>.
+          </p>
+        </div>
+
+        <div class="mt-10 space-y-10">
+          {c.sections.map((section) => (
+            <section>
+              <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4">{section.heading}</h2>
+              {section.paragraphs && (
+                <div class="space-y-4 text-charcoal-light font-body leading-relaxed">
+                  {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+                </div>
+              )}
+              {section.list && (
+                <ul class="mt-4 space-y-3" role="list">
+                  {section.list.map((item) => (
+                    <li class="flex gap-3 text-charcoal-light font-body leading-relaxed">
+                      <span class="mt-2 h-2 w-2 rounded-full bg-dynared flex-shrink-0" aria-hidden="true"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
+        </div>
+      </div>
+    </article>
+  </section>
+</BaseLayout>
