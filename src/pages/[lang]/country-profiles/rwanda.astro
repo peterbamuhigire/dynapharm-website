@@ -1,0 +1,492 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image, getImage } from 'astro:assets';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+import rwandaFlag from '@assets/images/gallery/rwanda-flag.jpg';
+import rwandaMapFlag from '@assets/images/gallery/rwanda-map-flag.jpg';
+import diGrowFertilizer from '@assets/images/gallery/REAL-PIC-DI-GROW-FERTILIZER.jpg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+const heroBg = await getImage({ src: rwandaFlag, format: 'webp', width: 2000, quality: 75 });
+
+interface BusinessUnit {
+  name: string;
+  focus: string;
+  address: string[];
+  phone: string;
+}
+
+const businessUnits: BusinessUnit[] = [
+  {
+    name: 'Dynapharm Rwanda',
+    focus: 'Food supplements and wellness products',
+    address: ['P.O. Box 4241 Kigali', 'Old Gakinjiro Road', 'Junction House'],
+    phone: '+250 782 816 888',
+  },
+  {
+    name: 'DI Grow Seed Limited',
+    focus: 'DI Grow Organic Foliar Fertilizer',
+    address: ['Kigali Poid Lourd', 'Family House'],
+    phone: '+250 788 511 111',
+  },
+];
+
+const content = {
+  en: {
+    meta: {
+      title: 'Dynapharm Rwanda - DI Grow Seed Limited & Wellness Products in Kigali',
+      description: 'Official Dynapharm Rwanda country profile. Find the Kigali head office for Dynapharm Rwanda and DI Grow Seed Limited, with contacts for food supplements, wellness products and DI Grow Organic Foliar Fertilizer in Rwanda.',
+      keywords: 'Dynapharm Rwanda, DI Grow Rwanda, DI Grow Seed Limited, DI Grow Organic Foliar Fertilizer Rwanda, foliar fertilizer Rwanda, organic fertilizer Kigali, Dynapharm Kigali, Dynapharm Rwanda telephone, natural health products Rwanda, food supplements Rwanda, Spirulina Rwanda, Ganoderma Rwanda, Dynapharm distributor Rwanda',
+    },
+    breadcrumbCountries: 'Country Profiles',
+    breadcrumbThis: 'Rwanda',
+    hero: {
+      eyebrow: 'Country Profile - Republic of Rwanda',
+      heading: 'Dynapharm Rwanda',
+      subtitle: 'A Kigali-based presence serving wellness customers through Dynapharm Rwanda and agricultural growers through DI Grow Seed Limited.',
+      flagAlt: 'National flag of the Republic of Rwanda',
+    },
+    overview: {
+      heading: 'About Dynapharm Rwanda',
+      p1: 'Dynapharm Rwanda serves customers and distributors in Rwanda through a local structure shaped by Rwandan regulatory requirements. The food supplements and wellness arm operates as Dynapharm Rwanda, while DI Grow Organic Foliar Fertilizer is supplied through DI Grow Seed Limited.',
+      p2: 'The two businesses are presented separately for compliance and local market clarity, while remaining closely coordinated in day-to-day service, product education and distributor support. Customers can therefore identify the correct office for wellness products or for DI Grow agricultural enquiries.',
+      p3: 'Rwanda places strong energy behind DI Grow Organic Foliar Fertilizer, with particular attention to farmers, growers and agricultural communities looking for foliar nutrition support for healthier crops.',
+      stats: [
+        { value: '2', label: 'Local Entities' },
+        { value: '2', label: 'Kigali Contacts' },
+        { value: 'DI Grow', label: 'Agriculture Focus' },
+        { value: '90+', label: 'Wellness Products' },
+      ],
+      mapAlt: 'Map of Rwanda coloured with the national flag',
+    },
+    diGrow: {
+      heading: 'DI Grow Organic Foliar Fertilizer in Rwanda',
+      body: 'DI Grow is a central focus for the Rwanda operation. Sold locally through DI Grow Seed Limited, the foliar fertilizer line supports crop nutrition programmes for farmers, gardeners and commercial growers who want practical field support alongside product access.',
+      points: [
+        'Dedicated Rwanda contact for DI Grow fertilizer enquiries',
+        'Support for growers using foliar feeding in crop production',
+        'Local emphasis on agriculture alongside the Dynapharm wellness portfolio',
+      ],
+      imageAlt: 'DI Grow foliar fertilizer product used by Dynapharm Africa',
+    },
+    offices: {
+      heading: 'Rwanda Offices and Contacts',
+      subtitle: 'Use the wellness contact for Dynapharm Rwanda food supplements, and the agriculture contact for DI Grow Organic Foliar Fertilizer supplied by DI Grow Seed Limited.',
+      focusLabel: 'Focus',
+      phoneLabel: 'Telephone',
+      callLabel: 'Call',
+    },
+    faqHeading: 'Frequently Asked Questions - Dynapharm Rwanda',
+    faq: [
+      { q: 'Are Dynapharm Rwanda and DI Grow Seed Limited the same company?', a: 'They are presented as separate legal entities in Rwanda because food supplements and foliar fertilizer fall under different regulatory requirements. The two operations are closely coordinated locally, but customers should use the correct contact for the product category they need.' },
+      { q: 'Where is the Dynapharm Rwanda head office?', a: 'The Dynapharm Rwanda head office is P.O. Box 4241 Kigali, Old Gakinjiro Road, Junction House. Telephone: +250 782 816 888.' },
+      { q: 'Where can I buy DI Grow Organic Foliar Fertilizer in Rwanda?', a: 'DI Grow Organic Foliar Fertilizer is sold in Rwanda through DI Grow Seed Limited at Kigali Poid Lourd, Family House. Telephone: +250 788 511 111.' },
+      { q: 'What does DI Grow support?', a: 'DI Grow is a foliar fertilizer line used to support crop nutrition and plant growth programmes. In Rwanda, the local operation gives DI Grow particular attention for farmers, growers and agricultural customers.' },
+      { q: 'What products does Dynapharm Rwanda handle?', a: 'Dynapharm Rwanda handles the food supplements and wellness products side, including the wider Dynapharm natural health portfolio. DI Grow agricultural fertilizer enquiries should go through DI Grow Seed Limited.' },
+      { q: 'Can I become a Dynapharm distributor in Rwanda?', a: 'Yes. Contact Dynapharm Rwanda for food supplement and wellness distributor enquiries, or DI Grow Seed Limited for agriculture-focused DI Grow enquiries.' },
+    ],
+    cta: {
+      heading: 'Contact the Rwanda Team',
+      body: 'Call the appropriate Kigali office for product availability, distributor enquiries, farmer support or DI Grow Organic Foliar Fertilizer information.',
+      primary: 'Call Dynapharm Rwanda',
+      secondary: 'Call DI Grow Seed Limited',
+    },
+    backLink: 'Back to Country Profiles',
+    aboutCountry: 'About the country',
+    countryFacts: {
+      capital: 'Kigali',
+      population: 'approximately 14 million',
+      languages: 'Kinyarwanda, English, French and Swahili',
+      currency: 'Rwandan Franc (RWF)',
+      callingCode: '+250',
+    },
+    factLabels: {
+      capital: 'Capital',
+      population: 'Population',
+      languages: 'Languages',
+      currency: 'Currency',
+      callingCode: 'Calling code',
+    },
+  },
+  fr: {
+    meta: {
+      title: 'Dynapharm Rwanda - DI Grow Seed Limited et Produits Bien-Etre a Kigali',
+      description: 'Profil pays officiel de Dynapharm Rwanda. Retrouvez les contacts de Dynapharm Rwanda et DI Grow Seed Limited a Kigali pour les complements alimentaires, les produits bien-etre et DI Grow Organic Foliar Fertilizer au Rwanda.',
+      keywords: 'Dynapharm Rwanda, DI Grow Rwanda, DI Grow Seed Limited, DI Grow Organic Foliar Fertilizer Rwanda, engrais foliaire Rwanda, engrais organique Kigali, Dynapharm Kigali, produits naturels Rwanda, complements alimentaires Rwanda, Spiruline Rwanda, Ganoderma Rwanda, distributeur Dynapharm Rwanda',
+    },
+    breadcrumbCountries: 'Profils des Pays',
+    breadcrumbThis: 'Rwanda',
+    hero: {
+      eyebrow: 'Profil Pays - Republique du Rwanda',
+      heading: 'Dynapharm Rwanda',
+      subtitle: 'Une presence basee a Kigali, servant les clients bien-etre via Dynapharm Rwanda et les producteurs agricoles via DI Grow Seed Limited.',
+      flagAlt: 'Drapeau national de la Republique du Rwanda',
+    },
+    overview: {
+      heading: 'A Propos de Dynapharm Rwanda',
+      p1: 'Dynapharm Rwanda sert les clients et distributeurs au Rwanda avec une structure locale adaptee aux exigences reglementaires rwandaises. Les complements alimentaires et produits bien-etre sont geres par Dynapharm Rwanda, tandis que DI Grow Organic Foliar Fertilizer est fourni par DI Grow Seed Limited.',
+      p2: 'Les deux activites sont presentees separement pour la conformite et la clarte du marche local, tout en restant etroitement coordonnees dans le service quotidien, la formation produit et le soutien aux distributeurs.',
+      p3: 'Au Rwanda, une attention particuliere est accordee a DI Grow Organic Foliar Fertilizer, notamment pour les agriculteurs, producteurs et communautes agricoles qui recherchent un soutien nutritionnel foliaire pour leurs cultures.',
+      stats: [
+        { value: '2', label: 'Entites Locales' },
+        { value: '2', label: 'Contacts Kigali' },
+        { value: 'DI Grow', label: 'Priorite Agricole' },
+        { value: '90+', label: 'Produits Bien-Etre' },
+      ],
+      mapAlt: 'Carte du Rwanda aux couleurs du drapeau national',
+    },
+    diGrow: {
+      heading: 'DI Grow Organic Foliar Fertilizer au Rwanda',
+      body: 'DI Grow est un axe majeur pour les operations au Rwanda. Vendu localement par DI Grow Seed Limited, cet engrais foliaire soutient les programmes de nutrition des cultures pour les agriculteurs, jardiniers et producteurs commerciaux.',
+      points: [
+        'Contact rwandais dedie aux demandes sur DI Grow',
+        'Soutien aux producteurs utilisant la nutrition foliaire',
+        'Accent local sur l agriculture aux cotes du portefeuille bien-etre Dynapharm',
+      ],
+      imageAlt: 'Produit DI Grow foliar fertilizer utilise par Dynapharm Africa',
+    },
+    offices: {
+      heading: 'Bureaux et Contacts au Rwanda',
+      subtitle: 'Utilisez le contact bien-etre pour les complements alimentaires Dynapharm Rwanda, et le contact agricole pour DI Grow Organic Foliar Fertilizer fourni par DI Grow Seed Limited.',
+      focusLabel: 'Activite',
+      phoneLabel: 'Telephone',
+      callLabel: 'Appeler',
+    },
+    faqHeading: 'Foire aux questions - Dynapharm Rwanda',
+    faq: [
+      { q: 'Dynapharm Rwanda et DI Grow Seed Limited sont-ils la meme societe ?', a: 'Ils sont presentes comme deux entites juridiques separees au Rwanda car les complements alimentaires et les engrais foliaires relevent de cadres reglementaires differents. Les operations locales sont etroitement coordonnees, mais chaque categorie doit utiliser le bon contact.' },
+      { q: 'Ou se trouve le siege de Dynapharm Rwanda ?', a: 'Le siege de Dynapharm Rwanda est P.O. Box 4241 Kigali, Old Gakinjiro Road, Junction House. Telephone : +250 782 816 888.' },
+      { q: 'Ou acheter DI Grow Organic Foliar Fertilizer au Rwanda ?', a: 'DI Grow Organic Foliar Fertilizer est vendu au Rwanda par DI Grow Seed Limited a Kigali Poid Lourd, Family House. Telephone : +250 788 511 111.' },
+      { q: 'A quoi sert DI Grow ?', a: 'DI Grow est une gamme d engrais foliaires utilisee pour soutenir la nutrition des cultures et la croissance des plantes. Au Rwanda, cette gamme recoit une attention particuliere pour les agriculteurs et clients agricoles.' },
+      { q: 'Quels produits sont geres par Dynapharm Rwanda ?', a: 'Dynapharm Rwanda gere les complements alimentaires et produits bien-etre. Les demandes agricoles concernant DI Grow doivent etre adressees a DI Grow Seed Limited.' },
+      { q: 'Puis-je devenir distributeur Dynapharm au Rwanda ?', a: 'Oui. Contactez Dynapharm Rwanda pour les demandes liees aux produits bien-etre, ou DI Grow Seed Limited pour les demandes agricoles autour de DI Grow.' },
+    ],
+    cta: {
+      heading: 'Contacter l Equipe Rwanda',
+      body: 'Appelez le bureau de Kigali approprie pour la disponibilite des produits, les demandes distributeur, le soutien agricole ou les informations sur DI Grow Organic Foliar Fertilizer.',
+      primary: 'Appeler Dynapharm Rwanda',
+      secondary: 'Appeler DI Grow Seed Limited',
+    },
+    backLink: 'Retour aux Profils des Pays',
+    aboutCountry: 'A propos du pays',
+    countryFacts: {
+      capital: 'Kigali',
+      population: 'environ 14 millions',
+      languages: 'kinyarwanda, anglais, francais et swahili',
+      currency: 'Franc rwandais (RWF)',
+      callingCode: '+250',
+    },
+    factLabels: {
+      capital: 'Capitale',
+      population: 'Population',
+      languages: 'Langues',
+      currency: 'Monnaie',
+      callingCode: 'Indicatif',
+    },
+  },
+};
+
+const c = content[lang];
+const factEntries = Object.entries(c.factLabels) as [keyof typeof c.factLabels, string][];
+const siteHref = (Astro.site?.href || 'https://dynapharmafrica.com/').replace(/\/$/, '');
+const pageUrl = `${siteHref}/${lang}/country-profiles/rwanda`;
+const pageImage = `${siteHref}${heroBg.src}`;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: c.breadcrumbCountries, item: `${siteHref}/${lang}/country-profiles` },
+    { '@type': 'ListItem', position: 2, name: c.breadcrumbThis, item: pageUrl },
+  ],
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: c.meta.title,
+  url: pageUrl,
+  description: c.meta.description,
+  inLanguage: lang,
+  image: pageImage,
+  about: [
+    { '@type': 'Organization', name: 'Dynapharm Rwanda' },
+    { '@type': 'Organization', name: 'DI Grow Seed Limited' },
+    { '@type': 'Country', name: 'Rwanda' },
+  ],
+  keywords: c.meta.keywords,
+};
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Dynapharm Rwanda',
+  alternateName: ['DI Grow Seed Limited', 'DI Grow Rwanda'],
+  url: pageUrl,
+  parentOrganization: { '@type': 'Organization', name: 'Dynapharm International', url: 'https://www.dynapharm.com.my/' },
+  areaServed: { '@type': 'Country', name: 'Rwanda' },
+  description: lang === 'fr'
+    ? 'Dynapharm Rwanda gere les produits bien-etre, tandis que DI Grow Seed Limited fournit DI Grow Organic Foliar Fertilizer au Rwanda.'
+    : 'Dynapharm Rwanda handles wellness products, while DI Grow Seed Limited supplies DI Grow Organic Foliar Fertilizer in Rwanda.',
+  location: businessUnits.map((unit) => ({
+    '@type': 'LocalBusiness',
+    '@id': `${pageUrl}#${unit.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+    name: unit.name,
+    telephone: unit.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: unit.address.join(', '),
+      addressLocality: 'Kigali',
+      addressCountry: 'RW',
+    },
+    areaServed: 'Rwanda',
+  })),
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: c.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title={c.meta.title}
+  description={c.meta.description}
+  keywords={c.meta.keywords}
+  lang={lang}
+  ogImage={heroBg.src}
+  structuredData={[breadcrumbSchema, webPageSchema, orgSchema, faqSchema]}
+>
+  <section
+    class="relative overflow-hidden text-white"
+    style={`background-image: linear-gradient(rgba(20,20,20,0.52), rgba(20,20,20,0.76)), url('${heroBg.src}'); background-size: cover; background-position: center;`}
+    aria-label={c.hero.flagAlt}
+  >
+    <div class="absolute inset-0 grain-overlay opacity-25"></div>
+    <div class="section-container relative z-10 py-20 md:py-28 lg:py-32">
+      <nav class="mb-6 text-sm font-accent text-grey-light/90" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href={`/${lang}`} class="hover:text-white transition-colors">{lang === 'fr' ? 'Accueil' : 'Home'}</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href={`/${lang}/country-profiles`} class="hover:text-white transition-colors">{c.breadcrumbCountries}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white" aria-current="page">{c.breadcrumbThis}</li>
+        </ol>
+      </nav>
+      <p class="font-accent text-sm uppercase tracking-widest text-white/80 mb-3">
+        {c.hero.eyebrow}
+      </p>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-5 drop-shadow-lg">
+        {c.hero.heading}
+      </h1>
+      <p class="font-body text-lg md:text-xl text-white/90 max-w-2xl drop-shadow">
+        {c.hero.subtitle}
+      </p>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-8 md:h-12">
+        <polygon fill="var(--color-cream)" points="0,60 1200,60 1200,0"></polygon>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="grid gap-12 lg:grid-cols-5 lg:items-center">
+        <div class="lg:col-span-3">
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
+            <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+            {c.overview.heading}
+          </h2>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p1}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p2}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-8">{c.overview.p3}</p>
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {c.overview.stats.map((s) => (
+              <div class="bg-white rounded-xl border border-grey-light/40 p-4 text-center shadow-sm">
+                <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light mb-1">{s.label}</dt>
+                <dd class="font-heading text-2xl md:text-3xl font-bold text-dynared">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div class="lg:col-span-2">
+          <div class="rounded-2xl overflow-hidden bg-white p-4 border border-grey-light/40 shadow-sm">
+            <Image
+              src={rwandaMapFlag}
+              alt={c.overview.mapAlt}
+              class="w-full h-auto"
+              widths={[400, 800]}
+              sizes="(min-width: 1024px) 400px, 80vw"
+              loading="lazy"
+            />
+          </div>
+          <dl class="mt-4 bg-white rounded-2xl border border-grey-light/40 p-5 shadow-sm">
+            <p class="font-accent text-xs uppercase tracking-wider text-dynared font-semibold mb-3">{c.aboutCountry}</p>
+            {factEntries.map(([key, label]) => (
+              <div class="flex justify-between gap-4 py-2 border-b border-grey-light/30 last:border-0">
+                <dt class="font-accent text-sm text-charcoal-light">{label}</dt>
+                <dd class="font-body text-sm text-charcoal text-right">{c.countryFacts[key]}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div>
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
+            <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+            {c.diGrow.heading}
+          </h2>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-6">
+            {c.diGrow.body}
+          </p>
+          <ul class="space-y-3">
+            {c.diGrow.points.map((point) => (
+              <li class="flex gap-3 font-body text-charcoal-light">
+                <span class="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-dynared/10 text-dynared flex items-center justify-center" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.42l-7.25 7.2a1 1 0 01-1.41 0L3.296 9.18a1 1 0 111.41-1.42l4.04 4.02 6.54-6.49a1 1 0 011.418 0z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-grey-light/40 bg-cream shadow-sm">
+          <Image
+            src={diGrowFertilizer}
+            alt={c.diGrow.imageAlt}
+            class="w-full h-auto"
+            widths={[600, 1024]}
+            sizes="(min-width: 1024px) 520px, 100vw"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-3 flex items-center gap-3">
+          <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+          {c.offices.heading}
+        </h2>
+        <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed">
+          {c.offices.subtitle}
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        {businessUnits.map((unit) => (
+          <article id={unit.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')} class="bg-white rounded-2xl border border-grey-light/40 p-6 shadow-sm hover:shadow-md hover:border-dynared/40 transition-all duration-200" itemscope itemtype="https://schema.org/LocalBusiness">
+            <meta itemprop="name" content={unit.name} />
+            <div class="flex items-start gap-3 mb-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-dynared/10 text-dynared flex items-center justify-center" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-heading text-xl font-bold text-charcoal leading-tight">{unit.name}</h3>
+                <p class="font-accent text-xs uppercase tracking-wider text-dynared mt-1">{unit.focus}</p>
+              </div>
+            </div>
+            <dl class="text-sm mb-4 space-y-1">
+              <div class="flex gap-2">
+                <dt class="font-accent text-charcoal-light">{c.offices.focusLabel}:</dt>
+                <dd class="font-body text-charcoal">{unit.focus}</dd>
+              </div>
+              <div class="flex gap-2">
+                <dt class="font-accent text-charcoal-light">{c.offices.phoneLabel}:</dt>
+                <dd class="font-body text-charcoal" itemprop="telephone">{unit.phone}</dd>
+              </div>
+            </dl>
+            <address class="font-body not-italic text-sm text-charcoal-light leading-relaxed mb-5" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <span itemprop="streetAddress">
+                {unit.address.map((line) => (<span class="block">{line}</span>))}
+              </span>
+              <span class="block" itemprop="addressLocality">Kigali</span>
+              <meta itemprop="addressCountry" content="RW" />
+            </address>
+            <a
+              href={`tel:${unit.phone.replace(/\s+/g, '')}`}
+              class="inline-flex items-center gap-2 font-accent text-sm font-semibold text-dynared hover:text-dynared-700 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.21l-2.13 1.06a11 11 0 005.52 5.52l1.06-2.13a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.69.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z" />
+              </svg>
+              <span>{c.offices.callLabel}: {unit.phone}</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-white">
+    <div class="section-container max-w-4xl">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-8 flex items-center gap-3">
+        <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+        {c.faqHeading}
+      </h2>
+      <div class="space-y-4">
+        {c.faq.map((item) => (
+          <details class="group bg-cream rounded-xl border border-grey-light/40 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-heading text-base md:text-lg font-semibold text-charcoal flex items-start justify-between gap-4 hover:bg-dynared-50/40 transition-colors">
+              <span>{item.q}</span>
+              <span class="flex-shrink-0 text-dynared transition-transform group-open:rotate-180" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-1 border-t border-grey-light/30">
+              <p class="font-body text-base text-charcoal-light leading-relaxed">{item.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-20"></div>
+    <div class="section-container relative z-10 max-w-3xl text-center">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">{c.cta.heading}</h2>
+      <p class="font-body text-base md:text-lg text-grey-light leading-relaxed mb-8">{c.cta.body}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+250782816888" class="btn-primary">{c.cta.primary}</a>
+        <a href="tel:+250788511111" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-accent font-semibold border-2 border-white/40 hover:border-white hover:bg-white/10 transition-colors">
+          {c.cta.secondary}
+        </a>
+      </div>
+      <div class="mt-10">
+        <a href={`/${lang}/country-profiles`} class="inline-flex items-center gap-2 font-accent text-sm text-grey-light hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          {c.backLink}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

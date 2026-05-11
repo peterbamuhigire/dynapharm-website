@@ -64,6 +64,24 @@
       "notes": "White background — works well on cream/light sections"
     },
     {
+      "path": "gallery/rwanda-flag.jpg",
+      "source": "photo-bank/3d-illustration-rwanda-flag-waving-texture.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1369",
+      "description": "Republic of Rwanda flag with waving texture",
+      "usedIn": ["Country Profile - Rwanda (hero background)"],
+      "notes": "Use as full-bleed hero background with dark overlay for text readability"
+    },
+    {
+      "path": "gallery/rwanda-map-flag.jpg",
+      "source": "photo-bank/rwanda-map-flag-shaded-relief-color-height-map-white-background-3d-illustration.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1570",
+      "description": "3D shaded-relief map of Rwanda filled with the national flag",
+      "usedIn": ["Country Profile - Rwanda (overview)", "Country Profiles index card"],
+      "notes": "White background works well on cream/light sections"
+    },
+    {
       "path": "branding/Logo-Dark-Mode.png",
       "source": "photo-bank/branding/Logo-Dark-Mode.png",
       "category": "branding",
@@ -566,7 +584,8 @@
       "description": "Real photo of Di Grow fertiliser in use on farm",
       "usedIn": [
         "Products Page",
-        "Agriculture Section"
+        "Agriculture Section",
+        "Country Profile - Rwanda (DI Grow feature)"
       ],
       "notes": "Dimensions: 1024x851"
     },
@@ -2016,13 +2035,13 @@
     "hero/Hero-Home-Primary.jpg -- Need a primary hero for homepage. Multiple candidates in hero/ directory",
     "about/About-Mission-Statement.jpg -- Dedicated mission/vision photo not available, use CSS gradient or existing about/ photos"
   ],
-  "total_images": 165,
+  "total_images": 167,
   "categories": {
     "branding": 2,
     "hero": 5,
     "about": 5,
     "testimonials": 8,
-    "gallery": 44,
+    "gallery": 46,
     "products": 101
   }
 }
