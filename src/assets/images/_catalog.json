@@ -1,6 +1,33 @@
 {
   "images": [
     {
+      "path": "gallery/sierra-leone-flag.jpg",
+      "source": "photo-bank/close-up-realistic-texture-flag-sierra-leone.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1250",
+      "description": "Close-up realistic texture of the Sierra Leone national flag",
+      "usedIn": ["Country Profile - Sierra Leone (hero background)"],
+      "notes": "Wide landscape image suitable for full-bleed hero use with dark overlay. Source measured before placement."
+    },
+    {
+      "path": "gallery/sierra-leone-map-flag.jpg",
+      "source": "photo-bank/sierra-leone-map-shaded-relief-flag-height-map-3d-illustration.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1726",
+      "description": "3D shaded-relief map of Sierra Leone filled with the national flag",
+      "usedIn": ["Country Profile - Sierra Leone (overview)", "Country Profiles index card"],
+      "notes": "White background map illustration for country overview and index card. Source measured before placement."
+    },
+    {
+      "path": "gallery/sierra-leone-community-flag.jpg",
+      "source": "photo-bank/proud-citizen-sierra-leone-standing-outdoors-holding-national-flag-sierra-leone-stretched-their-shoulders.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1240",
+      "description": "Person standing outdoors holding the national flag of Sierra Leone",
+      "usedIn": ["Country Profile - Sierra Leone (local support section)"],
+      "notes": "Wide community and national identity image suitable for supporting profile section. Source measured before placement."
+    },
+    {
       "path": "gallery/Dynapharm-Namibia.jpeg",
       "source": "photo-bank/Dynapharm-Namibia.jpeg",
       "category": "gallery",
@@ -2035,13 +2062,13 @@
     "hero/Hero-Home-Primary.jpg -- Need a primary hero for homepage. Multiple candidates in hero/ directory",
     "about/About-Mission-Statement.jpg -- Dedicated mission/vision photo not available, use CSS gradient or existing about/ photos"
   ],
-  "total_images": 167,
+  "total_images": 170,
   "categories": {
     "branding": 2,
     "hero": 5,
     "about": 5,
     "testimonials": 8,
-    "gallery": 46,
+    "gallery": 49,
     "products": 101
   }
 }

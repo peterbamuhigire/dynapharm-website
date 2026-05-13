@@ -1,0 +1,540 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image, getImage } from 'astro:assets';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+import sierraLeoneFlag from '@assets/images/gallery/sierra-leone-flag.jpg';
+import sierraLeoneMapFlag from '@assets/images/gallery/sierra-leone-map-flag.jpg';
+import sierraLeoneCommunityFlag from '@assets/images/gallery/sierra-leone-community-flag.jpg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+const heroBg = await getImage({ src: sierraLeoneFlag, format: 'webp', width: 2000, quality: 75 });
+
+interface Dpc {
+  city: string;
+  area: string;
+  name: string;
+  contact: string;
+  address: string[];
+  phone: string;
+  isHeadOffice?: boolean;
+}
+
+const dpcs: Dpc[] = [
+  {
+    city: 'Freetown',
+    area: 'Fort Street',
+    name: 'Head Office',
+    contact: 'Kadiatu Conteh',
+    address: ['5 Fort Street'],
+    phone: '+232 75 155988',
+    isHeadOffice: true,
+  },
+  {
+    city: 'Bo',
+    area: 'Bo Shopping Plaza',
+    name: 'Bo DPC',
+    contact: 'Adama Lily Tucker',
+    address: ['11 Bo Shopping Plaza'],
+    phone: '+232 78 335503',
+  },
+  {
+    city: 'Freetown',
+    area: 'Circular Road',
+    name: 'Circular Road DPC',
+    contact: 'Mahmoud Kojo Lansana',
+    address: ['#4 Circular Road Freetown'],
+    phone: '+232 77721076',
+  },
+];
+
+const content = {
+  en: {
+    meta: {
+      title: 'Dynapharm Sierra Leone - Freetown, Bo & Circular Road DPCs',
+      description: 'Official Dynapharm Sierra Leone country profile. Find the Freetown Head Office at 5 Fort Street, the Bo DPC at 11 Bo Shopping Plaza, and the Circular Road DPC at #4 Circular Road Freetown, with contact people and phone numbers for products and distributor enquiries.',
+      keywords: 'Dynapharm Sierra Leone, Dynapharm Freetown, Dynapharm Bo, Dynapharm Circular Road, Dynapharm Fort Street, Dynapharm Sierra Leone Head Office, Dynapharm Sierra Leone DPC, Dynapharm Bo Shopping Plaza, Kadiatu Conteh Dynapharm, Adama Lily Tucker Dynapharm, Mahmoud Kojo Lansana Dynapharm, Dynapharm products Sierra Leone, natural health products Sierra Leone, Spirulina Sierra Leone, Ganoderma coffee Sierra Leone, Chlorophyll Sierra Leone, Dynapharm distributor Sierra Leone, network marketing Sierra Leone, wellness business Sierra Leone',
+    },
+    breadcrumbCountries: 'Country Profiles',
+    breadcrumbThis: 'Sierra Leone',
+    hero: {
+      eyebrow: 'Country Profile - Republic of Sierra Leone',
+      heading: 'Dynapharm Sierra Leone',
+      subtitle: 'A local Dynapharm presence serving wellness customers and distributors through Freetown, Bo and Circular Road DPC contacts.',
+      flagAlt: 'National flag of the Republic of Sierra Leone',
+    },
+    overview: {
+      heading: 'About Dynapharm Sierra Leone',
+      p1: 'Dynapharm Sierra Leone is the local Sierra Leone presence of Dynapharm Africa, connecting customers and distributors with Dynapharm natural wellness products and the Dynapharm business opportunity.',
+      p2: 'The country network currently lists three confirmed contact points: the Freetown Head Office at 5 Fort Street, the Bo DPC at 11 Bo Shopping Plaza, and the Circular Road DPC at #4 Circular Road Freetown.',
+      p3: 'Use the nearest DPC for product availability, distributor registration, product education, business support and guidance on joining the Dynapharm wellness community in Sierra Leone.',
+      stats: [
+        { value: '3', label: 'DPC Contacts' },
+        { value: '2', label: 'Cities Listed' },
+        { value: '+232', label: 'Calling Code' },
+        { value: '90+', label: 'Products' },
+      ],
+      mapAlt: 'Map of Sierra Leone coloured with the national flag',
+    },
+    dpcs: {
+      heading: 'Dynapharm Sierra Leone DPC Addresses',
+      subtitle: 'Confirmed Sierra Leone DPC addresses and contact people are listed below for quick local search and direct phone enquiries.',
+      contactLabel: 'Contact person',
+      areaLabel: 'Area',
+      headOfficeLabel: 'Head Office',
+      callLabel: 'Call',
+    },
+    localSupport: {
+      heading: 'Local Access, Direct Contacts',
+      body: 'The Sierra Leone profile is designed for people searching locally for Dynapharm products, DPC addresses, phone numbers and distributor registration support. Call the nearest contact before visiting to confirm product availability and meeting times.',
+      points: [
+        'Freetown Head Office contact for national enquiries',
+        'Bo DPC contact for customers and distributors around Bo',
+        'Circular Road contact for central Freetown access',
+      ],
+      imageAlt: 'Person holding the national flag of Sierra Leone outdoors',
+    },
+    faqHeading: 'Frequently Asked Questions - Dynapharm Sierra Leone',
+    faq: [
+      { q: 'Where is the Dynapharm Sierra Leone Head Office?', a: 'The Dynapharm Sierra Leone Head Office is in Freetown at 5 Fort Street. The contact person is Kadiatu Conteh and the phone number is +232 75 155988.' },
+      { q: 'Is there a Dynapharm DPC in Bo?', a: 'Yes. The Dynapharm Bo DPC is at 11 Bo Shopping Plaza. The contact person is Adama Lily Tucker and the phone number is +232 78 335503.' },
+      { q: 'Where is the Circular Road Dynapharm contact in Freetown?', a: 'The Circular Road DPC contact is Mahmoud Kojo Lansana at #4 Circular Road Freetown. The phone number is +232 77721076.' },
+      { q: 'How can I contact Dynapharm Sierra Leone?', a: 'Call the nearest DPC contact: Kadiatu Conteh in Freetown on +232 75 155988, Adama Lily Tucker in Bo on +232 78 335503, or Mahmoud Kojo Lansana on Circular Road Freetown on +232 77721076.' },
+      { q: 'Can I become a Dynapharm distributor in Sierra Leone?', a: 'Yes. Contact the Freetown Head Office, Bo DPC or Circular Road DPC to ask about distributor registration, product training and the Dynapharm business opportunity in Sierra Leone.' },
+      { q: 'What products can I ask about in Sierra Leone?', a: 'You can ask your local DPC contact about Dynapharm natural wellness products such as Spirulina, Ganoderma coffee, Liquid Chlorophyll, herbal supplements, personal care products and the broader Dynapharm catalogue.' },
+    ],
+    cta: {
+      heading: 'Contact Dynapharm Sierra Leone',
+      body: 'Call your nearest Sierra Leone contact for product availability, distributor registration, DPC support and business opportunity guidance.',
+      primary: 'Call Freetown Head Office',
+      secondary: 'Explore Our Products',
+    },
+    backLink: 'Back to Country Profiles',
+    aboutCountry: 'About this profile',
+    countryFacts: {
+      capital: 'Freetown',
+      dpcCities: 'Freetown and Bo',
+      contacts: 'Kadiatu Conteh, Adama Lily Tucker, Mahmoud Kojo Lansana',
+      callingCode: '+232',
+    },
+    factLabels: {
+      capital: 'Capital',
+      dpcCities: 'DPC cities',
+      contacts: 'Listed contacts',
+      callingCode: 'Calling code',
+    },
+  },
+  fr: {
+    meta: {
+      title: 'Dynapharm Sierra Leone - DPC a Freetown, Bo et Circular Road',
+      description: 'Profil pays officiel de Dynapharm Sierra Leone. Retrouvez le siege de Freetown au 5 Fort Street, le DPC de Bo au 11 Bo Shopping Plaza et le DPC de Circular Road au #4 Circular Road Freetown, avec les personnes de contact et numeros de telephone.',
+      keywords: 'Dynapharm Sierra Leone, Dynapharm Freetown, Dynapharm Bo, Dynapharm Circular Road, Dynapharm Fort Street, siege Dynapharm Sierra Leone, DPC Dynapharm Sierra Leone, Dynapharm Bo Shopping Plaza, Kadiatu Conteh Dynapharm, Adama Lily Tucker Dynapharm, Mahmoud Kojo Lansana Dynapharm, produits Dynapharm Sierra Leone, produits naturels Sierra Leone, Spiruline Sierra Leone, Ganoderma Sierra Leone, distributeur Dynapharm Sierra Leone',
+    },
+    breadcrumbCountries: 'Profils des Pays',
+    breadcrumbThis: 'Sierra Leone',
+    hero: {
+      eyebrow: 'Profil Pays - Republique de Sierra Leone',
+      heading: 'Dynapharm Sierra Leone',
+      subtitle: 'Une presence locale Dynapharm au service des clients bien-etre et des distributeurs a travers les contacts DPC de Freetown, Bo et Circular Road.',
+      flagAlt: 'Drapeau national de la Republique de Sierra Leone',
+    },
+    overview: {
+      heading: 'A Propos de Dynapharm Sierra Leone',
+      p1: 'Dynapharm Sierra Leone represente la presence locale de Dynapharm Africa en Sierra Leone, reliant les clients et distributeurs aux produits de bien-etre naturel Dynapharm et a l opportunite d affaires Dynapharm.',
+      p2: 'Le reseau national indique actuellement trois points de contact confirmes : le siege de Freetown au 5 Fort Street, le DPC de Bo au 11 Bo Shopping Plaza et le DPC de Circular Road au #4 Circular Road Freetown.',
+      p3: 'Utilisez le DPC le plus proche pour la disponibilite des produits, l inscription distributeur, l education produit, le soutien commercial et les informations pour rejoindre la communaute Dynapharm en Sierra Leone.',
+      stats: [
+        { value: '3', label: 'Contacts DPC' },
+        { value: '2', label: 'Villes Listees' },
+        { value: '+232', label: 'Indicatif' },
+        { value: '90+', label: 'Produits' },
+      ],
+      mapAlt: 'Carte de la Sierra Leone aux couleurs du drapeau national',
+    },
+    dpcs: {
+      heading: 'Adresses DPC Dynapharm Sierra Leone',
+      subtitle: 'Les adresses DPC et personnes de contact confirmees en Sierra Leone sont listees ci-dessous pour faciliter la recherche locale et les appels directs.',
+      contactLabel: 'Personne de contact',
+      areaLabel: 'Zone',
+      headOfficeLabel: 'Siege',
+      callLabel: 'Appeler',
+    },
+    localSupport: {
+      heading: 'Acces Local, Contacts Directs',
+      body: 'Ce profil Sierra Leone est concu pour les personnes qui recherchent localement les produits Dynapharm, les adresses DPC, les numeros de telephone et le soutien pour l inscription distributeur. Appelez le contact le plus proche avant votre visite pour confirmer la disponibilite des produits et les horaires de rencontre.',
+      points: [
+        'Contact du siege de Freetown pour les demandes nationales',
+        'Contact du DPC de Bo pour les clients et distributeurs autour de Bo',
+        'Contact de Circular Road pour un acces central a Freetown',
+      ],
+      imageAlt: 'Personne tenant le drapeau national de la Sierra Leone en plein air',
+    },
+    faqHeading: 'Foire aux questions - Dynapharm Sierra Leone',
+    faq: [
+      { q: 'Ou se trouve le siege de Dynapharm Sierra Leone ?', a: 'Le siege de Dynapharm Sierra Leone se trouve a Freetown, au 5 Fort Street. La personne de contact est Kadiatu Conteh et le numero de telephone est +232 75 155988.' },
+      { q: 'Existe-t-il un DPC Dynapharm a Bo ?', a: 'Oui. Le DPC Dynapharm de Bo se trouve au 11 Bo Shopping Plaza. La personne de contact est Adama Lily Tucker et le numero de telephone est +232 78 335503.' },
+      { q: 'Ou se trouve le contact Dynapharm de Circular Road a Freetown ?', a: 'Le contact DPC de Circular Road est Mahmoud Kojo Lansana, au #4 Circular Road Freetown. Le numero de telephone est +232 77721076.' },
+      { q: 'Comment contacter Dynapharm Sierra Leone ?', a: 'Appelez le contact DPC le plus proche : Kadiatu Conteh a Freetown au +232 75 155988, Adama Lily Tucker a Bo au +232 78 335503, ou Mahmoud Kojo Lansana a Circular Road Freetown au +232 77721076.' },
+      { q: 'Puis-je devenir distributeur Dynapharm en Sierra Leone ?', a: 'Oui. Contactez le siege de Freetown, le DPC de Bo ou le DPC de Circular Road pour demander l inscription distributeur, la formation produit et l opportunite d affaires Dynapharm en Sierra Leone.' },
+      { q: 'Quels produits puis-je demander en Sierra Leone ?', a: 'Vous pouvez demander a votre contact DPC local des informations sur les produits naturels Dynapharm, notamment Spiruline, cafe au Ganoderma, Chlorophylle liquide, complements a base de plantes, soins personnels et le catalogue Dynapharm plus large.' },
+    ],
+    cta: {
+      heading: 'Contacter Dynapharm Sierra Leone',
+      body: 'Appelez le contact Sierra Leone le plus proche pour la disponibilite des produits, l inscription distributeur, le soutien DPC et les informations sur l opportunite d affaires.',
+      primary: 'Appeler le Siege de Freetown',
+      secondary: 'Explorer Nos Produits',
+    },
+    backLink: 'Retour aux Profils des Pays',
+    aboutCountry: 'A propos de ce profil',
+    countryFacts: {
+      capital: 'Freetown',
+      dpcCities: 'Freetown et Bo',
+      contacts: 'Kadiatu Conteh, Adama Lily Tucker, Mahmoud Kojo Lansana',
+      callingCode: '+232',
+    },
+    factLabels: {
+      capital: 'Capitale',
+      dpcCities: 'Villes DPC',
+      contacts: 'Contacts listes',
+      callingCode: 'Indicatif',
+    },
+  },
+};
+
+const c = content[lang];
+const factEntries = Object.entries(c.factLabels) as [keyof typeof c.factLabels, string][];
+const siteHref = (Astro.site?.href || 'https://dynapharmafrica.com/').replace(/\/$/, '');
+const pageUrl = `${siteHref}/${lang}/country-profiles/sierra-leone`;
+const pageImage = `${siteHref}${heroBg.src}`;
+
+const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, '')}`;
+const dpcId = (dpc: Dpc) => dpc.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: c.breadcrumbCountries, item: `${siteHref}/${lang}/country-profiles` },
+    { '@type': 'ListItem', position: 2, name: c.breadcrumbThis, item: pageUrl },
+  ],
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: c.meta.title,
+  url: pageUrl,
+  description: c.meta.description,
+  inLanguage: lang,
+  image: pageImage,
+  about: [
+    { '@type': 'Organization', name: 'Dynapharm Sierra Leone' },
+    { '@type': 'Country', name: 'Sierra Leone' },
+    { '@type': 'Thing', name: 'Dynapharm DPC addresses in Sierra Leone' },
+  ],
+  mentions: dpcs.map((dpc) => ({
+    '@type': 'Place',
+    name: dpc.isHeadOffice ? 'Dynapharm Sierra Leone Head Office' : `Dynapharm Sierra Leone ${dpc.name}`,
+    address: dpc.address.join(', '),
+  })),
+  keywords: c.meta.keywords,
+};
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Dynapharm Sierra Leone',
+  alternateName: ['Dynapharm Freetown', 'Dynapharm Bo', 'Dynapharm Sierra Leone DPC'],
+  url: pageUrl,
+  parentOrganization: { '@type': 'Organization', name: 'Dynapharm Africa', url: siteHref },
+  areaServed: { '@type': 'Country', name: 'Sierra Leone' },
+  contactPoint: dpcs.map((dpc) => ({
+    '@type': 'ContactPoint',
+    name: dpc.contact,
+    telephone: dpc.phone,
+    contactType: dpc.isHeadOffice ? 'head office' : 'distribution point centre',
+    areaServed: dpc.city,
+    availableLanguage: ['en'],
+  })),
+  description: lang === 'fr'
+    ? 'Dynapharm Sierra Leone dessert les clients et distributeurs via le siege de Freetown, le DPC de Bo et le DPC de Circular Road.'
+    : 'Dynapharm Sierra Leone serves customers and distributors through the Freetown Head Office, Bo DPC and Circular Road DPC.',
+  location: dpcs.map((dpc) => ({
+    '@type': 'HealthAndBeautyBusiness',
+    '@id': `${pageUrl}#${dpcId(dpc)}`,
+    name: dpc.isHeadOffice ? 'Dynapharm Sierra Leone Head Office' : `Dynapharm Sierra Leone ${dpc.name}`,
+    branchOf: { '@type': 'Organization', name: 'Dynapharm Sierra Leone' },
+    telephone: dpc.phone,
+    employee: { '@type': 'Person', name: dpc.contact },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: dpc.address.join(', '),
+      addressLocality: dpc.city,
+      addressCountry: 'SL',
+    },
+    areaServed: dpc.city,
+  })),
+};
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Dynapharm Sierra Leone DPC contacts',
+  numberOfItems: dpcs.length,
+  itemListElement: dpcs.map((dpc, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: dpc.isHeadOffice ? 'Dynapharm Sierra Leone Head Office' : `Dynapharm Sierra Leone ${dpc.name}`,
+    url: `${pageUrl}#${dpcId(dpc)}`,
+  })),
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: c.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title={c.meta.title}
+  description={c.meta.description}
+  keywords={c.meta.keywords}
+  lang={lang}
+  ogImage={heroBg.src}
+  structuredData={[breadcrumbSchema, webPageSchema, orgSchema, itemListSchema, faqSchema]}
+>
+  <section
+    class="relative overflow-hidden text-white"
+    style={`background-image: linear-gradient(rgba(20,20,20,0.48), rgba(20,20,20,0.78)), url('${heroBg.src}'); background-size: cover; background-position: center;`}
+    aria-label={c.hero.flagAlt}
+  >
+    <div class="absolute inset-0 grain-overlay opacity-25"></div>
+    <div class="section-container relative z-10 py-20 md:py-28 lg:py-32">
+      <nav class="mb-6 text-sm font-accent text-grey-light/90" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href={`/${lang}`} class="hover:text-white transition-colors">{lang === 'fr' ? 'Accueil' : 'Home'}</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href={`/${lang}/country-profiles`} class="hover:text-white transition-colors">{c.breadcrumbCountries}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white" aria-current="page">{c.breadcrumbThis}</li>
+        </ol>
+      </nav>
+      <p class="font-accent text-sm uppercase tracking-widest text-white/80 mb-3">
+        {c.hero.eyebrow}
+      </p>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-5 drop-shadow-lg">
+        {c.hero.heading}
+      </h1>
+      <p class="font-body text-lg md:text-xl text-white/90 max-w-2xl drop-shadow">
+        {c.hero.subtitle}
+      </p>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-8 md:h-12">
+        <polygon fill="var(--color-cream)" points="0,60 1200,60 1200,0"></polygon>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="grid gap-12 lg:grid-cols-5 lg:items-center">
+        <div class="lg:col-span-3">
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
+            <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+            {c.overview.heading}
+          </h2>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p1}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p2}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-8">{c.overview.p3}</p>
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {c.overview.stats.map((s) => (
+              <div class="bg-white rounded-xl border border-grey-light/40 p-4 text-center shadow-sm">
+                <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light mb-1">{s.label}</dt>
+                <dd class="font-heading text-2xl md:text-3xl font-bold text-dynared">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div class="lg:col-span-2">
+          <div class="rounded-2xl overflow-hidden bg-white p-4 border border-grey-light/40 shadow-sm">
+            <Image
+              src={sierraLeoneMapFlag}
+              alt={c.overview.mapAlt}
+              class="w-full h-auto"
+              widths={[400, 800]}
+              sizes="(min-width: 1024px) 400px, 80vw"
+              loading="lazy"
+            />
+          </div>
+          <dl class="mt-4 bg-white rounded-2xl border border-grey-light/40 p-5 shadow-sm">
+            <p class="font-accent text-xs uppercase tracking-wider text-dynared font-semibold mb-3">{c.aboutCountry}</p>
+            {factEntries.map(([key, label]) => (
+              <div class="flex justify-between gap-4 py-2 border-b border-grey-light/30 last:border-0">
+                <dt class="font-accent text-sm text-charcoal-light">{label}</dt>
+                <dd class="font-body text-sm text-charcoal text-right">{c.countryFacts[key]}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-3 flex items-center gap-3">
+          <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+          {c.dpcs.heading}
+        </h2>
+        <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed">
+          {c.dpcs.subtitle}
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        {dpcs.map((dpc) => (
+          <article id={dpcId(dpc)} class="bg-cream rounded-2xl border border-grey-light/40 p-6 shadow-sm hover:shadow-md hover:border-dynared/40 transition-all duration-200" itemscope itemtype="https://schema.org/HealthAndBeautyBusiness">
+            <meta itemprop="name" content={dpc.isHeadOffice ? 'Dynapharm Sierra Leone Head Office' : `Dynapharm Sierra Leone ${dpc.name}`} />
+            <div class="flex items-start gap-3 mb-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-dynared/10 text-dynared flex items-center justify-center" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-heading text-xl font-bold text-charcoal leading-tight">{dpc.city}</h3>
+                <p class="font-accent text-xs uppercase tracking-wider text-dynared mt-1">
+                  {dpc.isHeadOffice ? c.dpcs.headOfficeLabel : dpc.name}
+                </p>
+              </div>
+            </div>
+            <dl class="text-sm mb-4 space-y-2">
+              <div>
+                <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light">{c.dpcs.contactLabel}</dt>
+                <dd class="font-body text-charcoal" itemprop="employee">{dpc.contact}</dd>
+              </div>
+              <div>
+                <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light">{c.dpcs.areaLabel}</dt>
+                <dd class="font-body text-charcoal">{dpc.area}</dd>
+              </div>
+            </dl>
+            <address class="font-body not-italic text-sm text-charcoal-light leading-relaxed mb-5" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <span itemprop="streetAddress">
+                {dpc.address.map((line) => (<span class="block">{line}</span>))}
+              </span>
+              <span class="block" itemprop="addressLocality">{dpc.city}</span>
+              <meta itemprop="addressCountry" content="SL" />
+            </address>
+            <a
+              href={telHref(dpc.phone)}
+              class="inline-flex items-center gap-2 font-accent text-sm font-semibold text-dynared hover:text-dynared-700 transition-colors"
+              itemprop="telephone"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.21l-2.13 1.06a11 11 0 005.52 5.52l1.06-2.13a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.69.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z" />
+              </svg>
+              <span>{c.dpcs.callLabel}: {dpc.phone}</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div class="rounded-2xl overflow-hidden border border-grey-light/40 bg-white shadow-sm">
+          <Image
+            src={sierraLeoneCommunityFlag}
+            alt={c.localSupport.imageAlt}
+            class="w-full h-full object-cover aspect-[16/10]"
+            widths={[600, 1024, 1400]}
+            sizes="(min-width: 1024px) 520px, 100vw"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
+            <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+            {c.localSupport.heading}
+          </h2>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-6">
+            {c.localSupport.body}
+          </p>
+          <ul class="space-y-3">
+            {c.localSupport.points.map((point) => (
+              <li class="flex gap-3 font-body text-charcoal-light">
+                <span class="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-dynared/10 text-dynared flex items-center justify-center" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.42l-7.25 7.2a1 1 0 01-1.41 0L3.296 9.18a1 1 0 111.41-1.42l4.04 4.02 6.54-6.49a1 1 0 011.418 0z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-white">
+    <div class="section-container max-w-4xl">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-8 flex items-center gap-3">
+        <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+        {c.faqHeading}
+      </h2>
+      <div class="space-y-4">
+        {c.faq.map((item) => (
+          <details class="group bg-cream rounded-xl border border-grey-light/40 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-heading text-base md:text-lg font-semibold text-charcoal flex items-start justify-between gap-4 hover:bg-dynared-50/40 transition-colors">
+              <span>{item.q}</span>
+              <span class="flex-shrink-0 text-dynared transition-transform group-open:rotate-180" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-1 border-t border-grey-light/30">
+              <p class="font-body text-base text-charcoal-light leading-relaxed">{item.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-20"></div>
+    <div class="section-container relative z-10 max-w-3xl text-center">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">{c.cta.heading}</h2>
+      <p class="font-body text-base md:text-lg text-grey-light leading-relaxed mb-8">{c.cta.body}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+23275155988" class="btn-primary">{c.cta.primary}</a>
+        <a href={`/${lang}/products`} class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-accent font-semibold border-2 border-white/40 hover:border-white hover:bg-white/10 transition-colors">
+          {c.cta.secondary}
+        </a>
+      </div>
+      <div class="mt-10">
+        <a href={`/${lang}/country-profiles`} class="inline-flex items-center gap-2 font-accent text-sm text-grey-light hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          {c.backLink}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

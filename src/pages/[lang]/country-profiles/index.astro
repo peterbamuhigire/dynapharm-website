@@ -9,6 +9,7 @@ import botswanaMap from '@assets/images/gallery/botswana-map-flag.jpg';
 import guineaMap from '@assets/images/gallery/guinea-map-flag.jpg';
 import namibiaMap from '@assets/images/gallery/namibia-map-flag.jpg';
 import rwandaMap from '@assets/images/gallery/rwanda-map-flag.jpg';
+import sierraLeoneMap from '@assets/images/gallery/sierra-leone-map-flag.jpg';
 
 export const getStaticPaths = (() => {
   return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
@@ -19,9 +20,9 @@ const { lang } = Astro.params as { lang: Lang };
 const content = {
   en: {
     meta: {
-      title: 'Dynapharm Country Profiles - Botswana, Guinea, Namibia, Rwanda DPCs & Outlets',
-      description: 'Browse official Dynapharm country profiles in alphabetical order: Botswana DPCs, Guinea outlets, Namibia outlets, Rwanda contacts and more. Find local addresses, contact details, natural health products, DI Grow and the Dynapharm business opportunity across Africa.',
-      keywords: 'Dynapharm country profiles, Dynapharm Botswana, Dynapharm Guinea, Dynapharm Namibia, Dynapharm Rwanda, DI Grow Rwanda, DI Grow Seed Limited, Dynapharm DPC addresses, Dynapharm outlets directory, Dynapharm Africa franchises, Dynapharm distributors Africa, where to buy Dynapharm, natural health products Africa, Spirulina Africa, Ganoderma coffee Africa, Dynapharm business opportunity Africa',
+      title: 'Dynapharm Country Profiles - Botswana, Guinea, Namibia, Rwanda, Sierra Leone',
+      description: 'Browse official Dynapharm country profiles in alphabetical order: Botswana DPCs, Guinea outlets, Namibia outlets, Rwanda contacts, Sierra Leone DPCs and more. Find local addresses, contact details, natural health products, DI Grow and the Dynapharm business opportunity across Africa.',
+      keywords: 'Dynapharm country profiles, Dynapharm Botswana, Dynapharm Guinea, Dynapharm Namibia, Dynapharm Rwanda, Dynapharm Sierra Leone, Dynapharm Freetown, Dynapharm Bo, DI Grow Rwanda, DI Grow Seed Limited, Dynapharm DPC addresses, Dynapharm outlets directory, Dynapharm Africa franchises, Dynapharm distributors Africa, where to buy Dynapharm, natural health products Africa, Spirulina Africa, Ganoderma coffee Africa, Dynapharm business opportunity Africa',
     },
     hero: {
       heading: 'Country Profiles',
@@ -77,6 +78,17 @@ const content = {
         outletsCount: 2,
         regions: 1,
       },
+      {
+        name: 'Sierra Leone',
+        slug: 'sierra-leone',
+        tagline: '3 DPC contacts - Freetown Head Office, Bo and Circular Road',
+        description: 'Dynapharm Sierra Leone lists confirmed DPC contacts in Freetown and Bo, including the Head Office at 5 Fort Street, Bo Shopping Plaza and Circular Road Freetown.',
+        cta: 'View Sierra Leone Profile',
+        image: sierraLeoneMap,
+        imageAlt: 'Map of Sierra Leone in the colours of the Sierra Leone flag',
+        outletsCount: 3,
+        regions: 2,
+      },
     ],
     outletsLabel: 'locations',
     regionsLabel: 'regions',
@@ -86,9 +98,9 @@ const content = {
   },
   fr: {
     meta: {
-      title: 'Profils Pays Dynapharm - Botswana, Guinée, Namibie, Rwanda',
-      description: 'Parcourez les profils pays officiels Dynapharm par ordre alphabétique : DPC Botswana, points de vente Guinée, points de vente Namibie, contacts Rwanda et plus. Trouvez les adresses locales, contacts, produits naturels, DI Grow et l\'opportunité d\'affaires Dynapharm en Afrique.',
-      keywords: 'profils pays Dynapharm, Dynapharm Botswana, Dynapharm Guinée, Dynapharm Namibie, Dynapharm Rwanda, DI Grow Rwanda, DI Grow Seed Limited, DPC Dynapharm, adresses Dynapharm, annuaire points de vente Dynapharm, franchises Dynapharm Afrique, distributeurs Dynapharm Afrique, où acheter Dynapharm, produits naturels Afrique, Spiruline Afrique, Ganoderma Afrique',
+      title: 'Profils Pays Dynapharm - Botswana, Guinée, Namibie, Rwanda, Sierra Leone',
+      description: 'Parcourez les profils pays officiels Dynapharm par ordre alphabétique : DPC Botswana, points de vente Guinée, points de vente Namibie, contacts Rwanda, DPC Sierra Leone et plus. Trouvez les adresses locales, contacts, produits naturels, DI Grow et l\'opportunité d\'affaires Dynapharm en Afrique.',
+      keywords: 'profils pays Dynapharm, Dynapharm Botswana, Dynapharm Guinée, Dynapharm Namibie, Dynapharm Rwanda, Dynapharm Sierra Leone, Dynapharm Freetown, Dynapharm Bo, DI Grow Rwanda, DI Grow Seed Limited, DPC Dynapharm, adresses Dynapharm, annuaire points de vente Dynapharm, franchises Dynapharm Afrique, distributeurs Dynapharm Afrique, où acheter Dynapharm, produits naturels Afrique, Spiruline Afrique, Ganoderma Afrique',
     },
     hero: {
       heading: 'Profils des Pays',
@@ -143,6 +155,17 @@ const content = {
         imageAlt: 'Carte du Rwanda aux couleurs du drapeau rwandais',
         outletsCount: 2,
         regions: 1,
+      },
+      {
+        name: 'Sierra Leone',
+        slug: 'sierra-leone',
+        tagline: '3 contacts DPC - Siege de Freetown, Bo et Circular Road',
+        description: 'Dynapharm Sierra Leone presente les contacts DPC confirmes a Freetown et Bo, notamment le siege au 5 Fort Street, Bo Shopping Plaza et Circular Road Freetown.',
+        cta: 'Voir le Profil de la Sierra Leone',
+        image: sierraLeoneMap,
+        imageAlt: 'Carte de la Sierra Leone aux couleurs du drapeau national',
+        outletsCount: 3,
+        regions: 2,
       },
     ],
     outletsLabel: 'sites',
