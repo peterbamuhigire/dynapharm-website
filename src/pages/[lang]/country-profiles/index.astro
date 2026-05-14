@@ -7,6 +7,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 import botswanaMap from '@assets/images/gallery/botswana-map-flag.jpg';
 import guineaMap from '@assets/images/gallery/guinea-map-flag.jpg';
+import kenyaMap from '@assets/images/gallery/kenya-map-flag.jpg';
 import namibiaMap from '@assets/images/gallery/namibia-map-flag.jpg';
 import rwandaMap from '@assets/images/gallery/rwanda-map-flag.jpg';
 import sierraLeoneMap from '@assets/images/gallery/sierra-leone-map-flag.jpg';
@@ -20,9 +21,9 @@ const { lang } = Astro.params as { lang: Lang };
 const content = {
   en: {
     meta: {
-      title: 'Dynapharm Country Profiles - Botswana, Guinea, Namibia, Rwanda, Sierra Leone',
-      description: 'Browse official Dynapharm country profiles in alphabetical order: Botswana DPCs, Guinea outlets, Namibia outlets, Rwanda contacts, Sierra Leone DPCs and more. Find local addresses, contact details, natural health products, DI Grow and the Dynapharm business opportunity across Africa.',
-      keywords: 'Dynapharm country profiles, Dynapharm Botswana, Dynapharm Guinea, Dynapharm Namibia, Dynapharm Rwanda, Dynapharm Sierra Leone, Dynapharm Freetown, Dynapharm Bo, DI Grow Rwanda, DI Grow Seed Limited, Dynapharm DPC addresses, Dynapharm outlets directory, Dynapharm Africa franchises, Dynapharm distributors Africa, where to buy Dynapharm, natural health products Africa, Spirulina Africa, Ganoderma coffee Africa, Dynapharm business opportunity Africa',
+      title: 'Dynapharm Country Profiles - Botswana, Guinea, Kenya, Namibia, Rwanda',
+      description: 'Browse official Dynapharm country profiles in alphabetical order: Botswana DPCs, Guinea outlets, Kenya DPC locations, Namibia outlets, Rwanda contacts, Sierra Leone DPCs and more. Find local addresses, contact details, natural health products, DI Grow and the Dynapharm business opportunity across Africa.',
+      keywords: 'Dynapharm country profiles, Dynapharm Botswana, Dynapharm Guinea, Dynapharm Kenya, Dynapharm Nairobi, Dynapharm Mombasa, Dynapharm Namibia, Dynapharm Rwanda, Dynapharm Sierra Leone, Dynapharm Freetown, Dynapharm Bo, DI Grow Rwanda, DI Grow Seed Limited, Dynapharm DPC addresses, Dynapharm outlets directory, Dynapharm Africa franchises, Dynapharm distributors Africa, where to buy Dynapharm, natural health products Africa, Spirulina Africa, Ganoderma coffee Africa, Dynapharm business opportunity Africa',
     },
     hero: {
       heading: 'Country Profiles',
@@ -55,6 +56,17 @@ const content = {
         imageAlt: 'Map of the Republic of Guinea in the colours of the Guinean flag',
         outletsCount: 6,
         regions: 5,
+      },
+      {
+        name: 'Kenya',
+        slug: 'kenya',
+        tagline: '18 DPC locations - Nairobi, Mombasa, Kisumu, Nakuru and beyond',
+        description: 'Dynapharm Kenya lists 18 DPC locations across Nairobi CBD, Mombasa, Kisumu, Nakuru, Eldoret, Thika, Nyeri, Kitale, Ruiru, Kitengela, Buruburu, Kasarani and Voi.',
+        cta: 'View Kenya Profile',
+        image: kenyaMap,
+        imageAlt: 'Map of Kenya in the colours of the Kenyan flag',
+        outletsCount: 18,
+        regions: 8,
       },
       {
         name: 'Namibia',
@@ -93,14 +105,14 @@ const content = {
     outletsLabel: 'locations',
     regionsLabel: 'regions',
     comingSoonHeading: 'More Country Profiles Coming Soon',
-    comingSoonBody: 'We are gathering profiles from franchises across the continent - Uganda, Kenya, Tanzania, Nigeria, Senegal, Ghana, Cameroon, Zambia, Mozambique, South Africa, Côte d\'Ivoire, Burkina Faso, Mali, Togo, Benin, Burundi, DRC and more. If you represent a Dynapharm franchise and would like to be featured, please get in touch.',
+    comingSoonBody: 'We are gathering profiles from franchises across the continent - Uganda, Tanzania, Nigeria, Senegal, Ghana, Cameroon, Zambia, Mozambique, South Africa, Côte d\'Ivoire, Burkina Faso, Mali, Togo, Benin, Burundi, DRC and more. If you represent a Dynapharm franchise and would like to be featured, please get in touch.',
     contactCta: 'Contact Us to Be Featured',
   },
   fr: {
     meta: {
-      title: 'Profils Pays Dynapharm - Botswana, Guinée, Namibie, Rwanda, Sierra Leone',
-      description: 'Parcourez les profils pays officiels Dynapharm par ordre alphabétique : DPC Botswana, points de vente Guinée, points de vente Namibie, contacts Rwanda, DPC Sierra Leone et plus. Trouvez les adresses locales, contacts, produits naturels, DI Grow et l\'opportunité d\'affaires Dynapharm en Afrique.',
-      keywords: 'profils pays Dynapharm, Dynapharm Botswana, Dynapharm Guinée, Dynapharm Namibie, Dynapharm Rwanda, Dynapharm Sierra Leone, Dynapharm Freetown, Dynapharm Bo, DI Grow Rwanda, DI Grow Seed Limited, DPC Dynapharm, adresses Dynapharm, annuaire points de vente Dynapharm, franchises Dynapharm Afrique, distributeurs Dynapharm Afrique, où acheter Dynapharm, produits naturels Afrique, Spiruline Afrique, Ganoderma Afrique',
+      title: 'Profils Pays Dynapharm - Botswana, Guinée, Kenya, Namibie, Rwanda',
+      description: 'Parcourez les profils pays officiels Dynapharm par ordre alphabétique : DPC Botswana, points de vente Guinée, sites DPC Kenya, points de vente Namibie, contacts Rwanda, DPC Sierra Leone et plus. Trouvez les adresses locales, contacts, produits naturels, DI Grow et l\'opportunité d\'affaires Dynapharm en Afrique.',
+      keywords: 'profils pays Dynapharm, Dynapharm Botswana, Dynapharm Guinée, Dynapharm Kenya, Dynapharm Nairobi, Dynapharm Mombasa, Dynapharm Namibie, Dynapharm Rwanda, Dynapharm Sierra Leone, Dynapharm Freetown, Dynapharm Bo, DI Grow Rwanda, DI Grow Seed Limited, DPC Dynapharm, adresses Dynapharm, annuaire points de vente Dynapharm, franchises Dynapharm Afrique, distributeurs Dynapharm Afrique, où acheter Dynapharm, produits naturels Afrique, Spiruline Afrique, Ganoderma Afrique',
     },
     hero: {
       heading: 'Profils des Pays',
@@ -133,6 +145,17 @@ const content = {
         imageAlt: 'Carte de la République de Guinée aux couleurs du drapeau guinéen',
         outletsCount: 6,
         regions: 5,
+      },
+      {
+        name: 'Kenya',
+        slug: 'kenya',
+        tagline: '18 DPC - Nairobi, Mombasa, Kisumu, Nakuru et plus',
+        description: 'Dynapharm Kenya presente 18 sites DPC a Nairobi CBD, Mombasa, Kisumu, Nakuru, Eldoret, Thika, Nyeri, Kitale, Ruiru, Kitengela, Buruburu, Kasarani et Voi.',
+        cta: 'Voir le Profil du Kenya',
+        image: kenyaMap,
+        imageAlt: 'Carte du Kenya aux couleurs du drapeau kenyan',
+        outletsCount: 18,
+        regions: 8,
       },
       {
         name: 'Namibie',
@@ -171,7 +194,7 @@ const content = {
     outletsLabel: 'sites',
     regionsLabel: 'régions',
     comingSoonHeading: 'D\'Autres Profils Pays à Venir',
-    comingSoonBody: 'Nous rassemblons les profils des franchises à travers le continent - Ouganda, Kenya, Tanzanie, Nigeria, Sénégal, Ghana, Cameroun, Zambie, Mozambique, Afrique du Sud, Côte d\'Ivoire, Burkina Faso, Mali, Togo, Bénin, Burundi, RDC et bien d\'autres. Si vous représentez une franchise Dynapharm et souhaitez être mis en avant, veuillez nous contacter.',
+    comingSoonBody: 'Nous rassemblons les profils des franchises à travers le continent - Ouganda, Tanzanie, Nigeria, Sénégal, Ghana, Cameroun, Zambie, Mozambique, Afrique du Sud, Côte d\'Ivoire, Burkina Faso, Mali, Togo, Bénin, Burundi, RDC et bien d\'autres. Si vous représentez une franchise Dynapharm et souhaitez être mis en avant, veuillez nous contacter.',
     contactCta: 'Contactez-nous pour Apparaître ici',
   },
 };

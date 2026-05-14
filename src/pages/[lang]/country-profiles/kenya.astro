@@ -1,0 +1,612 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image, getImage } from 'astro:assets';
+import { SUPPORTED_LANGS } from '@utils/i18n';
+import type { Lang } from '@utils/i18n';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+import kenyaFlag from '@assets/images/gallery/kenya-flag.jpg';
+import kenyaMapFlag from '@assets/images/gallery/kenya-map-flag.jpg';
+import kenyaMapCloseup from '@assets/images/gallery/kenya-map-closeup.jpg';
+import kenyaCoastFlag from '@assets/images/gallery/kenya-coast-flag.jpg';
+
+export const getStaticPaths = (() => {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params as { lang: Lang };
+
+const heroBg = await getImage({ src: kenyaFlag, format: 'webp', width: 2000, quality: 75 });
+
+interface KenyaLocation {
+  name: string;
+  address: string;
+  locality: string;
+  county: string;
+  corridor: string;
+  context: Record<Lang, string>;
+}
+
+const locations: KenyaLocation[] = [
+  { name: 'Hazina Towers', address: 'Hazina Towers', locality: 'Nairobi CBD', county: 'Nairobi City County', corridor: 'Nairobi Central', context: { en: 'Central business district access near government, commercial and public transport activity.', fr: 'Acces au quartier central des affaires, proche des services publics, du commerce et des transports.' } },
+  { name: 'Sanlam', address: 'Sanlam', locality: 'Nairobi CBD', county: 'Nairobi City County', corridor: 'Nairobi Central', context: { en: 'A Nairobi central location for customers searching from the inner-city office and retail core.', fr: 'Un point central a Nairobi pour les clients du noyau administratif et commercial.' } },
+  { name: 'Norwich', address: 'Norwich', locality: 'Nairobi CBD', county: 'Nairobi City County', corridor: 'Nairobi Central', context: { en: 'Norwich Union House is associated with Mama Ngina Street in the heart of Nairobi CBD.', fr: 'Norwich Union House est associe a Mama Ngina Street, au coeur du centre-ville de Nairobi.' } },
+  { name: 'Accra', address: 'Accra', locality: 'Nairobi CBD', county: 'Nairobi City County', corridor: 'Nairobi Central', context: { en: 'A high-footfall Nairobi CBD area useful for product pickup, distributor movement and local search.', fr: 'Un secteur tres frequente du centre de Nairobi, utile pour le retrait de produits et les distributeurs.' } },
+  { name: 'Thika', address: 'Thika', locality: 'Thika', county: 'Kiambu County', corridor: 'Central & Thika Road', context: { en: 'An industrial and agricultural-processing town on the Thika Road growth corridor.', fr: 'Une ville industrielle et agro-industrielle situee sur le corridor de croissance de Thika Road.' } },
+  { name: "Murang'a", address: "Murang'a", locality: "Murang'a", county: "Murang'a County", corridor: 'Central Highlands', context: { en: 'A Central Kenya highlands town linked with tea, coffee, farming communities and market trade.', fr: 'Une ville des hautes terres du Kenya central, liee au the, au cafe, a l agriculture et au commerce.' } },
+  { name: 'Mombasa Qamar Plaza', address: 'Mombasa Qamar Plaza', locality: 'Mombasa', county: 'Mombasa County', corridor: 'Coast & Port', context: { en: 'Coastal access in Kenya\'s historic port city and Indian Ocean trade gateway.', fr: 'Acces cotier dans la ville portuaire historique du Kenya, ouverte sur le commerce de l Ocean Indien.' } },
+  { name: 'Kitale', address: 'Kitale', locality: 'Kitale', county: 'Trans Nzoia County', corridor: 'North Rift', context: { en: 'A North Rift agricultural hub and Trans Nzoia administrative centre.', fr: 'Un pole agricole du North Rift et centre administratif de Trans Nzoia.' } },
+  { name: 'Mombasa', address: 'Mombasa', locality: 'Mombasa', county: 'Mombasa County', corridor: 'Coast & Port', context: { en: 'Kenya\'s main coastal city, important for port, tourism, logistics and regional movement.', fr: 'La principale ville cotiere du Kenya, importante pour le port, le tourisme, la logistique et les echanges.' } },
+  { name: 'Nakuru', address: 'Nakuru', locality: 'Nakuru', county: 'Nakuru County', corridor: 'Rift Valley', context: { en: 'A Rift Valley city with strong agriculture, manufacturing, transport and tourism links.', fr: 'Une ville de la Rift Valley avec des liens forts dans l agriculture, l industrie, le transport et le tourisme.' } },
+  { name: 'Nyeri', address: 'Nyeri', locality: 'Nyeri', county: 'Nyeri County', corridor: 'Central Highlands', context: { en: 'A Mount Kenya highlands town near the Aberdare and Mount Kenya tourism and farming belt.', fr: 'Une ville des hautes terres du mont Kenya, proche de la zone agricole et touristique des Aberdare et du mont Kenya.' } },
+  { name: 'Ruiru', address: 'Ruiru', locality: 'Ruiru', county: 'Kiambu County', corridor: 'Nairobi Metro', context: { en: 'A fast-growing Nairobi metropolitan municipality along the Thika Superhighway corridor.', fr: 'Une municipalite en forte croissance dans la metropole de Nairobi, le long de Thika Superhighway.' } },
+  { name: 'Buruburu', address: 'Buruburu', locality: 'Buruburu, Nairobi', county: 'Nairobi City County', corridor: 'Nairobi Eastlands', context: { en: 'A major Eastlands residential estate with strong neighbourhood retail and commuter activity.', fr: 'Un grand quartier residentiel d Eastlands, avec commerce de proximite et forte mobilite quotidienne.' } },
+  { name: 'Kitengela', address: 'Kitengela', locality: 'Kitengela', county: 'Kajiado County', corridor: 'Nairobi Metro South', context: { en: 'A rapidly urbanising Kajiado municipality south of Nairobi and part of the wider metropolitan area.', fr: 'Une municipalite de Kajiado en urbanisation rapide, au sud de Nairobi et dans l aire metropolitaine.' } },
+  { name: 'Eldoret', address: 'Eldoret', locality: 'Eldoret', county: 'Uasin Gishu County', corridor: 'North Rift', context: { en: 'A North Rift city on the road and rail route towards western Kenya and Uganda.', fr: 'Une ville du North Rift situee sur l axe routier et ferroviaire vers l ouest du Kenya et l Ouganda.' } },
+  { name: 'Kisumu', address: 'Kisumu', locality: 'Kisumu', county: 'Kisumu County', corridor: 'Lake Victoria', context: { en: 'Kenya\'s Lake Victoria city, an inland port and western Kenya commercial centre.', fr: 'La ville kenyane du lac Victoria, port interieur et centre commercial de l ouest du Kenya.' } },
+  { name: 'Voi', address: 'Voi', locality: 'Voi', county: 'Taita Taveta County', corridor: 'Coast & Tsavo', context: { en: 'A strategic town on the Nairobi-Mombasa route and gateway to the Tsavo landscape.', fr: 'Une ville strategique sur l axe Nairobi-Mombasa et porte d entree vers le paysage de Tsavo.' } },
+  { name: 'Kasarani', address: 'Kasarani', locality: 'Kasarani, Nairobi', county: 'Nairobi City County', corridor: 'Nairobi Thika Road', context: { en: 'A mixed-use northeast Nairobi area on the Thika Road urban corridor.', fr: 'Un secteur mixte du nord-est de Nairobi, situe sur le corridor urbain de Thika Road.' } },
+];
+
+const clusters = [
+  {
+    name: { en: 'Nairobi CBD & Metropolitan Reach', fr: 'Nairobi CBD et Aire Metropolitaine' },
+    places: ['Hazina Towers', 'Sanlam', 'Norwich', 'Accra', 'Buruburu', 'Kasarani', 'Ruiru', 'Kitengela'],
+    body: {
+      en: 'The Kenya network is anchored in Nairobi, from CBD footfall to Eastlands, Thika Road and the southern metropolitan corridor.',
+      fr: 'Le reseau Kenya est ancre a Nairobi, du centre-ville tres frequente a Eastlands, Thika Road et le corridor metropolitain sud.',
+    },
+  },
+  {
+    name: { en: 'Central Highlands', fr: 'Hautes Terres Centrales' },
+    places: ['Thika', "Murang'a", 'Nyeri'],
+    body: {
+      en: 'Central Kenya locations support market towns, farming communities, tea and coffee belts, and customers around Mount Kenya.',
+      fr: 'Les sites du Kenya central couvrent les villes de marche, les communautes agricoles, les zones the/cafe et les clients autour du mont Kenya.',
+    },
+  },
+  {
+    name: { en: 'Rift Valley, Lake & North Rift', fr: 'Rift Valley, Lac et North Rift' },
+    places: ['Nakuru', 'Eldoret', 'Kisumu', 'Kitale'],
+    body: {
+      en: 'Western and Rift Valley coverage links agricultural towns, Lake Victoria trade, and the North Rift transport corridor.',
+      fr: 'La couverture ouest et Rift Valley relie les villes agricoles, le commerce du lac Victoria et le corridor de transport du North Rift.',
+    },
+  },
+  {
+    name: { en: 'Coast & Tsavo Route', fr: 'Cote et Axe de Tsavo' },
+    places: ['Mombasa Qamar Plaza', 'Mombasa', 'Voi'],
+    body: {
+      en: 'Coastal and Mombasa-road locations connect port-city customers, tourism communities and movement towards Tsavo.',
+      fr: 'Les sites cotiers et de l axe Mombasa relient les clients de la ville portuaire, les communautes touristiques et le mouvement vers Tsavo.',
+    },
+  },
+];
+
+const content = {
+  en: {
+    meta: {
+      title: 'Dynapharm Kenya - 18 DPC Locations & Country Profile',
+      description: 'Official Dynapharm Kenya country profile with 18 DPC locations in Nairobi, Mombasa, Kisumu, Nakuru, Eldoret, Thika, Nyeri, Kitale, Ruiru, Voi, Kitengela and more.',
+      keywords: 'Dynapharm Kenya, Dynapharm Nairobi, Dynapharm Mombasa, Dynapharm Kisumu, Dynapharm Nakuru, Dynapharm Eldoret, Dynapharm Thika, Dynapharm Nyeri, Dynapharm Kitale, Dynapharm Ruiru, Dynapharm Kitengela, Dynapharm Kasarani, Dynapharm Buruburu, Dynapharm Hazina Towers, Dynapharm Sanlam, Dynapharm Norwich, Dynapharm Accra Road, natural health products Kenya, Spirulina Kenya, Ganoderma coffee Kenya, Chlorophyll Kenya, Dynapharm distributor Kenya, wellness business Kenya',
+    },
+    breadcrumbCountries: 'Country Profiles',
+    breadcrumbThis: 'Kenya',
+    hero: {
+      eyebrow: 'Country Profile - Republic of Kenya',
+      heading: 'Dynapharm Kenya',
+      subtitle: 'A nationwide DPC footprint linking Nairobi, the coast, Central Kenya, the Rift Valley, Lake Victoria and the North Rift with Dynapharm wellness products and distributor support.',
+      flagAlt: 'National flag of the Republic of Kenya',
+    },
+    overview: {
+      heading: 'A High-Visibility Kenya Network',
+      p1: 'Dynapharm Kenya serves one of East Africa\'s most connected markets through 18 listed DPC locations. The footprint starts in Nairobi\'s central business district and extends through major urban, agricultural, coastal and inland trading corridors.',
+      p2: 'The network covers customer search intent in practical language: Dynapharm Nairobi, Dynapharm Mombasa, Dynapharm Kisumu, Dynapharm Nakuru, Dynapharm Eldoret, Dynapharm Thika, Dynapharm Nyeri, Dynapharm Kitale, Dynapharm Ruiru, Dynapharm Kitengela, Dynapharm Buruburu and Dynapharm Kasarani.',
+      p3: 'Use this page to identify the nearest Kenya location, understand the regional context, and connect with the Dynapharm product and business opportunity ecosystem across Kenya.',
+      stats: [
+        { value: '18', label: 'DPC Locations' },
+        { value: '13+', label: 'Towns & Urban Areas' },
+        { value: '8+', label: 'Counties Reached' },
+        { value: '90+', label: 'Products' },
+      ],
+      mapAlt: 'Map of Kenya coloured with the national flag',
+    },
+    clusters: {
+      heading: 'Kenya Coverage by Corridor',
+      subtitle: 'Locations are grouped by how customers actually search and travel: Nairobi, Central Kenya, the Rift Valley, Lake Victoria, the North Rift and the coast.',
+      placesLabel: 'Locations',
+    },
+    dpcs: {
+      heading: 'Dynapharm Kenya DPC Locations',
+      subtitle: 'DPC codes have been removed. Each listing keeps the location name and address supplied, then adds regional context for local SEO and AI search clarity.',
+      addressLabel: 'Address',
+      localityLabel: 'Locality',
+      countyLabel: 'County',
+      corridorLabel: 'Corridor',
+      contextLabel: 'Local context',
+    },
+    feature: {
+      heading: 'Built for Local Search in Kenya',
+      body: 'Kenya search behaviour is highly place-based. A customer may search for a CBD landmark, a neighbourhood such as Buruburu or Kasarani, a fast-growing commuter town such as Ruiru or Kitengela, or a regional city such as Kisumu, Nakuru, Eldoret or Mombasa. This page is structured so search engines and AI answer engines can recognise each location as part of one Kenya-wide Dynapharm network.',
+      points: [
+        'Clear DPC names and addresses with no internal codes',
+        'Country, county, locality and corridor signals for structured discovery',
+        'FAQ content written around real customer and distributor questions',
+      ],
+      imageAlt: 'Kenya flag and coastal landscape representing Dynapharm Kenya coverage',
+    },
+    faqHeading: 'Frequently Asked Questions - Dynapharm Kenya',
+    faq: [
+      { q: 'Where is Dynapharm Kenya located?', a: 'Dynapharm Kenya has listed DPC locations in Nairobi CBD, Thika, Murang\'a, Mombasa, Kitale, Nakuru, Nyeri, Ruiru, Buruburu, Kitengela, Eldoret, Kisumu, Voi and Kasarani.' },
+      { q: 'How many Dynapharm Kenya DPC locations are listed?', a: 'This country profile lists 18 Kenya DPC locations after removing the internal DPC codes supplied in the source list.' },
+      { q: 'Is there a Dynapharm location in Nairobi CBD?', a: 'Yes. Nairobi CBD entries include Hazina Towers, Sanlam, Norwich and Accra, with additional Nairobi-area coverage in Buruburu and Kasarani.' },
+      { q: 'Is Dynapharm available in Mombasa?', a: 'Yes. The Kenya list includes Mombasa and Mombasa Qamar Plaza, supporting customers and distributors around the coastal port city.' },
+      { q: 'Which Central Kenya towns are listed?', a: 'Central Kenya and Mount Kenya corridor locations include Thika, Ruiru, Murang\'a and Nyeri.' },
+      { q: 'Which western and Rift Valley locations are listed?', a: 'The listed locations include Nakuru, Eldoret, Kisumu and Kitale, supporting Rift Valley, Lake Victoria and North Rift search coverage.' },
+      { q: 'Can I become a Dynapharm distributor in Kenya?', a: 'Yes. Visit or contact the nearest Kenya DPC location for distributor registration guidance, product education and business opportunity support.' },
+    ],
+    cta: {
+      heading: 'Find Your Nearest Kenya DPC',
+      body: 'Use the directory above to match your town, neighbourhood or travel corridor with the nearest listed Dynapharm Kenya location.',
+      primary: 'Explore Products',
+      secondary: 'Back to Country Profiles',
+    },
+    backLink: 'Back to Country Profiles',
+    aboutCountry: 'About the country',
+    countryFacts: {
+      capital: 'Nairobi',
+      population: 'approximately 57 million',
+      languages: 'English and Kiswahili (official)',
+      currency: 'Kenyan Shilling (KES)',
+      callingCode: '+254',
+    },
+    factLabels: {
+      capital: 'Capital',
+      population: 'Population',
+      languages: 'Languages',
+      currency: 'Currency',
+      callingCode: 'Calling code',
+    },
+  },
+  fr: {
+    meta: {
+      title: 'Dynapharm Kenya - 18 DPC et Profil Pays',
+      description: 'Profil pays officiel de Dynapharm Kenya avec 18 DPC a Nairobi, Mombasa, Kisumu, Nakuru, Eldoret, Thika, Nyeri, Kitale, Ruiru, Voi, Kitengela et plus.',
+      keywords: 'Dynapharm Kenya, Dynapharm Nairobi, Dynapharm Mombasa, Dynapharm Kisumu, Dynapharm Nakuru, Dynapharm Eldoret, Dynapharm Thika, Dynapharm Nyeri, Dynapharm Kitale, Dynapharm Ruiru, Dynapharm Kitengela, Dynapharm Kasarani, Dynapharm Buruburu, Dynapharm Hazina Towers, Dynapharm Sanlam, Dynapharm Norwich, produits naturels Kenya, Spiruline Kenya, Ganoderma Kenya, Chlorophylle Kenya, distributeur Dynapharm Kenya',
+    },
+    breadcrumbCountries: 'Profils des Pays',
+    breadcrumbThis: 'Kenya',
+    hero: {
+      eyebrow: 'Profil Pays - Republique du Kenya',
+      heading: 'Dynapharm Kenya',
+      subtitle: 'Un reseau DPC national reliant Nairobi, la cote, le Kenya central, la Rift Valley, le lac Victoria et le North Rift aux produits bien-etre Dynapharm et au soutien distributeur.',
+      flagAlt: 'Drapeau national de la Republique du Kenya',
+    },
+    overview: {
+      heading: 'Un Reseau Kenya a Forte Visibilite',
+      p1: 'Dynapharm Kenya sert l un des marches les plus connectes d Afrique de l Est avec 18 DPC listes. La presence commence dans le quartier central des affaires de Nairobi et s etend vers les grands corridors urbains, agricoles, cotiers et commerciaux interieurs.',
+      p2: 'Le reseau couvre les recherches locales dans un langage pratique : Dynapharm Nairobi, Dynapharm Mombasa, Dynapharm Kisumu, Dynapharm Nakuru, Dynapharm Eldoret, Dynapharm Thika, Dynapharm Nyeri, Dynapharm Kitale, Dynapharm Ruiru, Dynapharm Kitengela, Dynapharm Buruburu et Dynapharm Kasarani.',
+      p3: 'Utilisez cette page pour identifier le site Kenya le plus proche, comprendre son contexte regional, et vous connecter a l ecosysteme produits et opportunite d affaires Dynapharm au Kenya.',
+      stats: [
+        { value: '18', label: 'DPC' },
+        { value: '13+', label: 'Villes et Zones Urbaines' },
+        { value: '8+', label: 'Comtes Couverts' },
+        { value: '90+', label: 'Produits' },
+      ],
+      mapAlt: 'Carte du Kenya aux couleurs du drapeau national',
+    },
+    clusters: {
+      heading: 'Couverture Kenya par Corridor',
+      subtitle: 'Les sites sont regroupes selon les recherches et les deplacements reels des clients : Nairobi, Kenya central, Rift Valley, lac Victoria, North Rift et cote.',
+      placesLabel: 'Sites',
+    },
+    dpcs: {
+      heading: 'Sites DPC Dynapharm Kenya',
+      subtitle: 'Les codes DPC ont ete retires. Chaque fiche conserve le nom et l adresse fournis, puis ajoute un contexte regional pour le referencement local et la recherche IA.',
+      addressLabel: 'Adresse',
+      localityLabel: 'Localite',
+      countyLabel: 'Comte',
+      corridorLabel: 'Corridor',
+      contextLabel: 'Contexte local',
+    },
+    feature: {
+      heading: 'Structure pour la Recherche Locale au Kenya',
+      body: 'La recherche au Kenya est fortement liee aux lieux. Un client peut chercher un repere du centre-ville, un quartier comme Buruburu ou Kasarani, une ville en croissance comme Ruiru ou Kitengela, ou une ville regionale comme Kisumu, Nakuru, Eldoret ou Mombasa. Cette page aide les moteurs de recherche et les moteurs IA a reconnaitre chaque site comme partie d un meme reseau Dynapharm Kenya.',
+      points: [
+        'Noms et adresses DPC clairs, sans codes internes',
+        'Signaux pays, comte, localite et corridor pour une meilleure decouverte',
+        'FAQ orientee vers les vraies questions clients et distributeurs',
+      ],
+      imageAlt: 'Drapeau du Kenya et paysage cotier representant la couverture Dynapharm Kenya',
+    },
+    faqHeading: 'Foire aux questions - Dynapharm Kenya',
+    faq: [
+      { q: 'Ou se trouve Dynapharm Kenya ?', a: 'Dynapharm Kenya liste des DPC a Nairobi CBD, Thika, Murang\'a, Mombasa, Kitale, Nakuru, Nyeri, Ruiru, Buruburu, Kitengela, Eldoret, Kisumu, Voi et Kasarani.' },
+      { q: 'Combien de DPC Dynapharm Kenya sont listes ?', a: 'Ce profil pays liste 18 sites DPC au Kenya apres suppression des codes internes fournis dans la liste source.' },
+      { q: 'Existe-t-il un site Dynapharm dans le centre de Nairobi ?', a: 'Oui. Les entrees Nairobi CBD comprennent Hazina Towers, Sanlam, Norwich et Accra, avec une couverture complementaire a Buruburu et Kasarani.' },
+      { q: 'Dynapharm est-il disponible a Mombasa ?', a: 'Oui. La liste Kenya comprend Mombasa et Mombasa Qamar Plaza, pour soutenir les clients et distributeurs de la ville portuaire cotiere.' },
+      { q: 'Quelles villes du Kenya central sont listees ?', a: 'Les sites du corridor Kenya central et mont Kenya comprennent Thika, Ruiru, Murang\'a et Nyeri.' },
+      { q: 'Quels sites couvrent l ouest et la Rift Valley ?', a: 'Les sites listes comprennent Nakuru, Eldoret, Kisumu et Kitale, pour la Rift Valley, le lac Victoria et le North Rift.' },
+      { q: 'Puis-je devenir distributeur Dynapharm au Kenya ?', a: 'Oui. Visitez ou contactez le DPC Kenya le plus proche pour l inscription distributeur, l education produit et le soutien a l opportunite d affaires.' },
+    ],
+    cta: {
+      heading: 'Trouvez Votre DPC Kenya le Plus Proche',
+      body: 'Utilisez l annuaire ci-dessus pour relier votre ville, quartier ou corridor de deplacement au site Dynapharm Kenya le plus proche.',
+      primary: 'Explorer les Produits',
+      secondary: 'Retour aux Profils Pays',
+    },
+    backLink: 'Retour aux Profils des Pays',
+    aboutCountry: 'A propos du pays',
+    countryFacts: {
+      capital: 'Nairobi',
+      population: 'environ 57 millions',
+      languages: 'anglais et kiswahili (officiels)',
+      currency: 'Shilling kenyan (KES)',
+      callingCode: '+254',
+    },
+    factLabels: {
+      capital: 'Capitale',
+      population: 'Population',
+      languages: 'Langues',
+      currency: 'Monnaie',
+      callingCode: 'Indicatif',
+    },
+  },
+};
+
+const c = content[lang];
+const factEntries = Object.entries(c.factLabels) as [keyof typeof c.factLabels, string][];
+const siteHref = (Astro.site?.href || 'https://dynapharmafrica.com/').replace(/\/$/, '');
+const pageUrl = `${siteHref}/${lang}/country-profiles/kenya`;
+const pageImage = `${siteHref}${heroBg.src}`;
+
+const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: c.breadcrumbCountries, item: `${siteHref}/${lang}/country-profiles` },
+    { '@type': 'ListItem', position: 2, name: c.breadcrumbThis, item: pageUrl },
+  ],
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: c.meta.title,
+  url: pageUrl,
+  description: c.meta.description,
+  inLanguage: lang,
+  image: pageImage,
+  about: [
+    { '@type': 'Organization', name: 'Dynapharm Kenya' },
+    { '@type': 'Country', name: 'Kenya' },
+    { '@type': 'Thing', name: 'Dynapharm DPC locations in Kenya' },
+  ],
+  keywords: c.meta.keywords,
+};
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Dynapharm Kenya',
+  alternateName: ['Dynapharm Kenya DPC', 'Dynapharm Kenya locations'],
+  url: pageUrl,
+  parentOrganization: { '@type': 'Organization', name: 'Dynapharm International', url: 'https://www.dynapharm.com.my/' },
+  areaServed: { '@type': 'Country', name: 'Kenya' },
+  description: lang === 'fr'
+    ? 'Dynapharm Kenya dessert les clients et distributeurs via 18 sites DPC a Nairobi, Mombasa, Kisumu, Nakuru, Eldoret, Thika, Nyeri et au-dela.'
+    : 'Dynapharm Kenya serves customers and distributors through 18 DPC locations in Nairobi, Mombasa, Kisumu, Nakuru, Eldoret, Thika, Nyeri and beyond.',
+  location: locations.map((loc) => ({
+    '@type': 'HealthAndBeautyBusiness',
+    '@id': `${pageUrl}#${slugify(loc.name)}`,
+    name: `Dynapharm Kenya ${loc.name} DPC`,
+    branchOf: { '@type': 'Organization', name: 'Dynapharm Kenya' },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: loc.address,
+      addressLocality: loc.locality,
+      addressRegion: loc.county,
+      addressCountry: 'KE',
+    },
+    areaServed: loc.locality,
+  })),
+};
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Dynapharm Kenya DPC Locations',
+  numberOfItems: locations.length,
+  itemListElement: locations.map((loc, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: `Dynapharm Kenya ${loc.name}`,
+    url: `${pageUrl}#${slugify(loc.name)}`,
+    description: `${loc.address}, ${loc.locality}, ${loc.county}`,
+  })),
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: c.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout
+  title={c.meta.title}
+  description={c.meta.description}
+  keywords={c.meta.keywords}
+  lang={lang}
+  ogImage={heroBg.src}
+  structuredData={[breadcrumbSchema, webPageSchema, orgSchema, itemListSchema, faqSchema]}
+>
+  <section
+    class="relative overflow-hidden text-white"
+    style={`background-image: linear-gradient(115deg, rgba(12,48,18,0.88), rgba(20,20,20,0.58) 48%, rgba(154,22,48,0.74)), url('${heroBg.src}'); background-size: cover; background-position: center;`}
+    aria-label={c.hero.flagAlt}
+  >
+    <div class="absolute inset-0 grain-overlay opacity-25"></div>
+    <div class="section-container relative z-10 py-20 md:py-28 lg:py-36">
+      <nav class="mb-6 text-sm font-accent text-grey-light/90" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href={`/${lang}`} class="hover:text-white transition-colors">{lang === 'fr' ? 'Accueil' : 'Home'}</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href={`/${lang}/country-profiles`} class="hover:text-white transition-colors">{c.breadcrumbCountries}</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white" aria-current="page">{c.breadcrumbThis}</li>
+        </ol>
+      </nav>
+      <div class="max-w-4xl">
+        <p class="font-accent text-sm uppercase tracking-widest text-white/80 mb-3">
+          {c.hero.eyebrow}
+        </p>
+        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-5 drop-shadow-lg">
+          {c.hero.heading}
+        </h1>
+        <p class="font-body text-lg md:text-xl text-white/90 max-w-3xl drop-shadow">
+          {c.hero.subtitle}
+        </p>
+      </div>
+      <dl class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 max-w-4xl">
+        {c.overview.stats.map((s) => (
+          <div class="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-sm">
+            <dt class="font-accent text-xs uppercase tracking-wider text-white/72">{s.label}</dt>
+            <dd class="font-heading text-2xl md:text-3xl font-bold text-white">{s.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" class="w-full h-8 md:h-12">
+        <polygon fill="var(--color-cream)" points="0,60 1200,60 1200,0"></polygon>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="grid gap-12 lg:grid-cols-5 lg:items-center">
+        <div class="lg:col-span-3">
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
+            <span class="w-1 h-8 bg-green rounded-full inline-block" aria-hidden="true"></span>
+            {c.overview.heading}
+          </h2>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p1}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-4">{c.overview.p2}</p>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed">{c.overview.p3}</p>
+        </div>
+        <div class="lg:col-span-2">
+          <div class="rounded-2xl overflow-hidden bg-white p-4 border border-grey-light/40 shadow-card">
+            <Image
+              src={kenyaMapFlag}
+              alt={c.overview.mapAlt}
+              class="w-full h-auto"
+              widths={[400, 800]}
+              sizes="(min-width: 1024px) 400px, 80vw"
+              loading="lazy"
+            />
+          </div>
+          <dl class="mt-4 bg-white rounded-2xl border border-grey-light/40 p-5 shadow-sm">
+            <p class="font-accent text-xs uppercase tracking-wider text-dynared font-semibold mb-3">{c.aboutCountry}</p>
+            {factEntries.map(([key, label]) => (
+              <div class="flex justify-between gap-4 py-2 border-b border-grey-light/30 last:border-0">
+                <dt class="font-accent text-sm text-charcoal-light">{label}</dt>
+                <dd class="font-body text-sm text-charcoal text-right">{c.countryFacts[key]}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-3 flex items-center gap-3">
+          <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+          {c.clusters.heading}
+        </h2>
+        <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed">
+          {c.clusters.subtitle}
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-4">
+        {clusters.map((cluster) => (
+          <article class="bg-cream rounded-2xl border border-grey-light/40 p-6 shadow-sm">
+            <h3 class="font-heading text-xl font-bold text-charcoal mb-3">{cluster.name[lang]}</h3>
+            <p class="font-body text-sm text-charcoal-light leading-relaxed mb-5">{cluster.body[lang]}</p>
+            <p class="font-accent text-xs uppercase tracking-wider text-dynared font-semibold mb-2">{c.clusters.placesLabel}</p>
+            <div class="flex flex-wrap gap-2">
+              {cluster.places.map((place) => (
+                <a href={`#${slugify(place)}`} class="inline-flex rounded-full bg-white px-3 py-1 text-xs font-accent font-semibold text-charcoal hover:text-dynared transition-colors">
+                  {place}
+                </a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <div class="section-container">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div>
+          <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-4 flex items-center gap-3">
+            <span class="w-1 h-8 bg-green rounded-full inline-block" aria-hidden="true"></span>
+            {c.feature.heading}
+          </h2>
+          <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-6">
+            {c.feature.body}
+          </p>
+          <ul class="space-y-3">
+            {c.feature.points.map((point) => (
+              <li class="flex gap-3 font-body text-charcoal-light">
+                <span class="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-green/10 text-green flex items-center justify-center" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.42l-7.25 7.2a1 1 0 01-1.41 0L3.296 9.18a1 1 0 111.41-1.42l4.04 4.02 6.54-6.49a1 1 0 011.418 0z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-2xl overflow-hidden border border-grey-light/40 bg-white p-3 shadow-sm">
+            <Image
+              src={kenyaMapCloseup}
+              alt={c.overview.mapAlt}
+              class="w-full h-full object-cover rounded-xl aspect-square"
+              widths={[400, 700]}
+              sizes="(min-width: 1024px) 300px, 50vw"
+              loading="lazy"
+            />
+          </div>
+          <div class="rounded-2xl overflow-hidden border border-grey-light/40 bg-white p-3 shadow-sm sm:mt-10">
+            <Image
+              src={kenyaCoastFlag}
+              alt={c.feature.imageAlt}
+              class="w-full h-full object-cover rounded-xl aspect-square"
+              widths={[400, 700]}
+              sizes="(min-width: 1024px) 300px, 50vw"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-white">
+    <div class="section-container">
+      <div class="mb-10 max-w-3xl">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-3 flex items-center gap-3">
+          <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+          {c.dpcs.heading}
+        </h2>
+        <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed">
+          {c.dpcs.subtitle}
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {locations.map((loc) => (
+          <article id={slugify(loc.name)} class="bg-cream rounded-2xl border border-grey-light/40 p-6 shadow-sm hover:shadow-md hover:border-dynared/40 transition-all duration-200 scroll-mt-28" itemscope itemtype="https://schema.org/HealthAndBeautyBusiness">
+            <meta itemprop="name" content={`Dynapharm Kenya ${loc.name} DPC`} />
+            <div class="flex items-start gap-3 mb-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-dynared/10 text-dynared flex items-center justify-center" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="font-heading text-xl font-bold text-charcoal leading-tight">{loc.name}</h3>
+                <p class="font-accent text-xs uppercase tracking-wider text-dynared mt-1">{loc.corridor}</p>
+              </div>
+            </div>
+            <dl class="text-sm mb-4 space-y-2">
+              <div class="flex gap-2">
+                <dt class="font-accent text-charcoal-light">{c.dpcs.addressLabel}:</dt>
+                <dd class="font-body text-charcoal">{loc.address}</dd>
+              </div>
+              <div class="flex gap-2">
+                <dt class="font-accent text-charcoal-light">{c.dpcs.localityLabel}:</dt>
+                <dd class="font-body text-charcoal" itemprop="addressLocality">{loc.locality}</dd>
+              </div>
+              <div class="flex gap-2">
+                <dt class="font-accent text-charcoal-light">{c.dpcs.countyLabel}:</dt>
+                <dd class="font-body text-charcoal" itemprop="addressRegion">{loc.county}</dd>
+              </div>
+            </dl>
+            <address class="font-body not-italic text-sm text-charcoal-light leading-relaxed mb-4" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <span itemprop="streetAddress">{loc.address}</span>
+              <span class="block" itemprop="addressLocality">{loc.locality}</span>
+              <span class="block" itemprop="addressRegion">{loc.county}</span>
+              <meta itemprop="addressCountry" content="KE" />
+            </address>
+            <div class="rounded-xl bg-white p-4 border border-grey-light/30">
+              <p class="font-accent text-xs uppercase tracking-wider text-green font-semibold mb-1">{c.dpcs.contextLabel}</p>
+              <p class="font-body text-sm text-charcoal-light leading-relaxed">{loc.context[lang]}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <div class="section-container max-w-4xl">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-charcoal mb-8 flex items-center gap-3">
+        <span class="w-1 h-8 bg-dynared rounded-full inline-block" aria-hidden="true"></span>
+        {c.faqHeading}
+      </h2>
+      <div class="space-y-4">
+        {c.faq.map((item) => (
+          <details class="group bg-white rounded-xl border border-grey-light/40 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-heading text-base md:text-lg font-semibold text-charcoal flex items-start justify-between gap-4 hover:bg-dynared-50/40 transition-colors">
+              <span>{item.q}</span>
+              <span class="flex-shrink-0 text-dynared transition-transform group-open:rotate-180" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-1 border-t border-grey-light/30">
+              <p class="font-body text-base text-charcoal-light leading-relaxed">{item.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding bg-charcoal text-white relative overflow-hidden">
+    <div class="absolute inset-0 grain-overlay opacity-20"></div>
+    <div class="section-container relative z-10 max-w-3xl text-center">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold mb-4">{c.cta.heading}</h2>
+      <p class="font-body text-base md:text-lg text-grey-light leading-relaxed mb-8">{c.cta.body}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`/${lang}/products`} class="btn-primary">{c.cta.primary}</a>
+        <a href={`/${lang}/country-profiles`} class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-accent font-semibold border-2 border-white/40 hover:border-white hover:bg-white/10 transition-colors">
+          {c.cta.secondary}
+        </a>
+      </div>
+      <div class="mt-10">
+        <a href={`/${lang}/country-profiles`} class="inline-flex items-center gap-2 font-accent text-sm text-grey-light hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          {c.backLink}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
