@@ -317,14 +317,25 @@ const galleryItems = [
         return this.products.filter(p => p.category === this.activeCategory);
       },
       openModal(product) {
+        this._returnFocus = document.activeElement;
         this.selectedProduct = product;
         this.showModal = true;
         document.body.style.overflow = 'hidden';
+        this.$nextTick(() => { this.$refs.modalPanel && this.$refs.modalPanel.focus(); });
       },
       closeModal() {
         this.showModal = false;
         this.selectedProduct = null;
         document.body.style.overflow = '';
+        this.$nextTick(() => { this._returnFocus && this._returnFocus.focus && this._returnFocus.focus(); });
+      },
+      trapTab(e) {
+        if (!this.$refs.modalPanel) return;
+        const f = this.$refs.modalPanel.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       }
     }`}
     x-on:keydown.escape.window="closeModal()"
@@ -375,6 +386,7 @@ const galleryItems = [
               role="button"
               tabindex="0"
               x-on:keydown.enter={`openModal(products[${index}])`}
+              x-on:keydown.space.prevent={`openModal(products[${index}])`}
               aria-label={`${t.viewDetails}: ${product.name[lang]}`}
             >
               <div class="card overflow-hidden">
@@ -435,6 +447,7 @@ const galleryItems = [
       role="dialog"
       aria-modal="true"
       x-bind:aria-label="selectedProduct ? selectedProduct.name : ''"
+      x-on:keydown.tab="trapTab($event)"
     >
       <!-- Backdrop -->
       <div
@@ -455,7 +468,9 @@ const galleryItems = [
 
       <!-- Modal Panel -->
       <div
-        class="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        class="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto focus:outline-none"
+        x-ref="modalPanel"
+        tabindex="-1"
         x-show="showModal"
         x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 scale-95 translate-y-4"

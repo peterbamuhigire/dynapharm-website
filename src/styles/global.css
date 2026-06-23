@@ -72,7 +72,9 @@
   --color-cream-dark: #F5EDE0;
   --color-charcoal: #2D2926;
   --color-charcoal-light: #4A4543;
-  --color-grey: #9E9792;
+  /* Secondary text — darkened from #9E9792 (2.8:1) to clear WCAG 1.4.3 (≈5.5:1 on cream/white) */
+  --color-grey: #6B655F;
+  /* Light neutral for text/borders on DARK surfaces only (e.g. charcoal footer) */
   --color-grey-light: #D4CFC9;
 
   /* Font Families */
@@ -151,6 +153,25 @@
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.01em;
+  }
+
+  /* Keep the sticky header from covering focused / anchored targets (WCAG 2.4.11) */
+  :target,
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  /* Consistent keyboard focus affordance across all interactive elements */
+  a:focus-visible,
+  button:focus-visible,
+  [role='button']:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--color-dynared);
+    outline-offset: 2px;
+    border-radius: 0.375rem;
   }
 
   /* Skip to content link for accessibility */
@@ -270,6 +291,25 @@
     outline-offset: 2px;
   }
 
+  /* Pressed state — distinct from hover (interaction-states completeness) */
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-gold:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Disabled state */
+  .btn-primary:disabled,
+  .btn-gold:disabled,
+  .btn-primary[aria-disabled='true'],
+  .btn-gold[aria-disabled='true'] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
   /* Section container */
   .section-container {
     max-width: 80rem;
@@ -357,5 +397,32 @@
   /* Subtle grain texture overlay */
   .grain-overlay {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+}
+
+/* === Reduced Motion (WCAG 2.3.3 + motion doctrine: no motion when the OS asks for none) === */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Neutralize hover/active transforms so nothing lifts, slides, or scales */
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-gold:hover,
+  .card:hover,
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-gold:active {
+    transform: none !important;
   }
 }
