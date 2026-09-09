@@ -1,0 +1,545 @@
+{
+  "htmlPages": 45,
+  "languagePages": 44,
+  "sitemapPages": 44,
+  "errors": [],
+  "warnings": [],
+  "pages": [
+    {
+      "route": "/en/about/",
+      "title": "About Dynapharm Africa — Our Story, Mission & Values",
+      "descriptionLength": 147,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/blog/ganoderma-benefits/",
+      "title": "Ganoderma (Reishi): Benefits, Uses & How To Take It",
+      "descriptionLength": 149,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/blog/ginkgo-biloba-benefits/",
+      "title": "Ginkgo Biloba: Health Benefits, Uses & Safety Guide",
+      "descriptionLength": 145,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/blog/ginseng-benefits/",
+      "title": "Ginseng: Health Benefits, Types & How To Use It Safely",
+      "descriptionLength": 150,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/blog/green-tea-benefits/",
+      "title": "Green Tea: Health Benefits, Catechins & Daily Use",
+      "descriptionLength": 149,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/blog/",
+      "title": "Health & Wellness Blog — Natural Health Insights | Dynapharm Africa",
+      "descriptionLength": 137,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "Blog",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/business-opportunity/",
+      "title": "Business Opportunity — Build Your Wellness Business | Dynapharm Africa",
+      "descriptionLength": 146,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/contact/",
+      "title": "Contact Dynapharm Africa — Get in Touch",
+      "descriptionLength": 133,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/country-profiles/botswana/",
+      "title": "Dynapharm Botswana - DPCs in Gaborone, Francistown, Maun, Serowe & More",
+      "descriptionLength": 142,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage",
+        "Organization",
+        "FAQPage"
+      ]
+    },
+    {
+      "route": "/en/country-profiles/guinea/",
+      "title": "Dynapharm Guinea — Outlets in Conakry, Boké, Labé, Faranah, Siguiri",
+      "descriptionLength": 140,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "Organization",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/country-profiles/",
+      "title": "Dynapharm Country Profiles | Local Information in Africa",
+      "descriptionLength": 144,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "CollectionPage",
+        "ItemList"
+      ]
+    },
+    {
+      "route": "/en/country-profiles/kenya/",
+      "title": "Dynapharm Kenya - 18 DPC Locations & Country Profile",
+      "descriptionLength": 143,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage",
+        "Organization",
+        "ItemList",
+        "FAQPage"
+      ]
+    },
+    {
+      "route": "/en/country-profiles/namibia/",
+      "title": "Dynapharm Namibia — 15 Outlets in Windhoek, Swakopmund, Oshakati & Beyond",
+      "descriptionLength": 135,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "Organization",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/country-profiles/rwanda/",
+      "title": "Dynapharm Rwanda - DI Grow Seed Limited & Wellness Products in Kigali",
+      "descriptionLength": 141,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage",
+        "Organization",
+        "FAQPage"
+      ]
+    },
+    {
+      "route": "/en/country-profiles/senegal/",
+      "title": "Dynapharm Senegal | Products & Distributor Enquiries",
+      "descriptionLength": 154,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "route": "/en/country-profiles/sierra-leone/",
+      "title": "Dynapharm Sierra Leone - Head Office and DPC Contacts in Freetown and Bo",
+      "descriptionLength": 137,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage",
+        "Organization",
+        "ItemList",
+        "FAQPage"
+      ]
+    },
+    {
+      "route": "/en/faq/",
+      "title": "FAQ — Frequently Asked Questions | Dynapharm Africa",
+      "descriptionLength": 132,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "FAQPage",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/",
+      "title": "Dynapharm Africa — Natural Health Products & Business Opportunity in Africa",
+      "descriptionLength": 158,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/mobile-app-privacy-policy/",
+      "title": "Privacy Policy for Dynapharm Africa Distributors Mobile App | Dynapharm Africa",
+      "descriptionLength": 149,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "PrivacyPolicy",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/privacy-policy/",
+      "title": "Website Privacy Policy | Dynapharm Africa",
+      "descriptionLength": 139,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "PrivacyPolicy",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/products/",
+      "title": "Our Products — 90+ Natural Health & Wellness Products | Dynapharm Africa",
+      "descriptionLength": 145,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/en/wellness-guide/",
+      "title": "Wellness Guide — Natural Health Solutions by Category | Dynapharm Africa",
+      "descriptionLength": 133,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/about/",
+      "title": "À propos de Dynapharm Africa — Notre histoire et nos valeurs",
+      "descriptionLength": 138,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ganoderma/",
+      "title": "Ganoderma (Reishi) : bienfaits, utilisations et mode d'emploi",
+      "descriptionLength": 139,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ginkgo-biloba/",
+      "title": "Ginkgo Biloba : bienfaits, utilisations et guide de sécurité",
+      "descriptionLength": 143,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ginseng/",
+      "title": "Ginseng : bienfaits, variétés et utilisation en toute sécurité",
+      "descriptionLength": 141,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-the-vert/",
+      "title": "Thé Vert : bienfaits santé, catéchines et usage quotidien",
+      "descriptionLength": 146,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BlogPosting",
+        "BreadcrumbList",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/blog/",
+      "title": "Blog Santé & Bien-Être — Articles santé naturelle | Dynapharm Africa",
+      "descriptionLength": 146,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "Blog",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/business-opportunity/",
+      "title": "Opportunité d'Affaires — Créez votre activité bien-être | Dynapharm Africa",
+      "descriptionLength": 148,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/contact/",
+      "title": "Contactez Dynapharm Africa — Nous Contacter",
+      "descriptionLength": 147,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/country-profiles/botswana/",
+      "title": "Dynapharm Botswana - DPC à Gaborone, Francistown, Maun, Serowe et Plus",
+      "descriptionLength": 153,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage",
+        "Organization",
+        "FAQPage"
+      ]
+    },
+    {
+      "route": "/fr/country-profiles/guinea/",
+      "title": "Dynapharm Guinée — Points de vente à Conakry, Boké, Labé, Faranah, Siguiri",
+      "descriptionLength": 145,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "Organization",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/country-profiles/",
+      "title": "Dynapharm en Afrique | Profils pays et contacts locaux",
+      "descriptionLength": 143,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "CollectionPage",
+        "ItemList"
+      ]
+    },
+    {
+      "route": "/fr/country-profiles/kenya/",
+      "title": "Dynapharm Kenya - 18 DPC et Profil Pays",
+      "descriptionLength": 152,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage",
+        "Organization",
+        "ItemList",
+        "FAQPage"
+      ]
+    },
+    {
+      "route": "/fr/country-profiles/namibia/",
+      "title": "Dynapharm Namibie — 15 points de vente à Windhoek, Swakopmund, Oshakati et plus",
+      "descriptionLength": 149,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "Organization",
+        "FAQPage",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/country-profiles/rwanda/",
+      "title": "Dynapharm Rwanda - DI Grow Seed Limited et Produits Bien-Etre a Kigali",
+      "descriptionLength": 142,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage",
+        "Organization",
+        "FAQPage"
+      ]
+    },
+    {
+      "route": "/fr/country-profiles/senegal/",
+      "title": "Dynapharm Sénégal | Produits, DI Grow et distributeurs",
+      "descriptionLength": 146,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "route": "/fr/country-profiles/sierra-leone/",
+      "title": "Dynapharm Sierra Leone - Siege et Contacts DPC a Freetown et Bo",
+      "descriptionLength": 147,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage",
+        "Organization",
+        "ItemList",
+        "FAQPage"
+      ]
+    },
+    {
+      "route": "/fr/faq/",
+      "title": "FAQ — Foire aux questions | Dynapharm Africa",
+      "descriptionLength": 148,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "FAQPage",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/",
+      "title": "Dynapharm Africa — Produits naturels de santé et opportunité d'affaires en Afrique",
+      "descriptionLength": 141,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/mobile-app-privacy-policy/",
+      "title": "Privacy Policy for Dynapharm Africa Distributors Mobile App | Dynapharm Africa",
+      "descriptionLength": 149,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "PrivacyPolicy",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/privacy-policy/",
+      "title": "Website Privacy Policy | Dynapharm Africa",
+      "descriptionLength": 139,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "PrivacyPolicy",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/products/",
+      "title": "Nos Produits — Plus de 90 produits naturels | Dynapharm Africa",
+      "descriptionLength": 153,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    },
+    {
+      "route": "/fr/wellness-guide/",
+      "title": "Guide Bien-Être — Solutions de santé naturelles | Dynapharm Africa",
+      "descriptionLength": 133,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "WebPage"
+      ]
+    }
+  ]
+}

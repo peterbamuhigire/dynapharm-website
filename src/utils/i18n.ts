@@ -24,8 +24,8 @@ export function getLangFromUrl(url: URL): Lang {
  * safely switched between languages.
  */
 export function getLocalizedPath(path: string, lang: Lang): string {
-  const cleanPath = path.replace(/^\/(en|fr)/, '').replace(/^\//, '');
-  return `/${lang}/${cleanPath}`.replace(/\/$/, '') || `/${lang}`;
+  const cleanPath = path.replace(/^\/(en|fr)(?=\/|$)/, '').replace(/^\/+|\/+$/g, '');
+  return cleanPath ? `/${lang}/${cleanPath}/` : `/${lang}/`;
 }
 
 /**

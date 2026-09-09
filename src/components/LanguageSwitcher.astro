@@ -17,7 +17,7 @@ const altLangData = LANGUAGES[altLang];
 const ariaLabel = t(lang, 'common', 'languageSwitcher');
 ---
 
-<nav aria-label={ariaLabel} class="language-switcher">
+<div role="group" aria-label={ariaLabel} class="language-switcher inline-flex shrink-0 items-center whitespace-nowrap">
   <span class="inline-flex items-center gap-1 font-accent text-sm font-medium" aria-current="true">
     <span aria-hidden="true">{currentLangData.flag}</span>
     <span class="uppercase">{lang}</span>
@@ -26,10 +26,10 @@ const ariaLabel = t(lang, 'common', 'languageSwitcher');
   <a
     href={altPath}
     hreflang={altLang}
-    class="inline-flex items-center gap-1 font-accent text-sm font-medium text-grey hover:text-dynared transition-colors duration-200"
-    aria-label={`${altLangData.name}`}
+    class="inline-flex min-h-11 min-w-11 items-center justify-center gap-1 rounded-md px-2 font-accent text-sm font-medium text-grey hover:text-dynared transition-colors duration-200"
+    aria-label={`${ariaLabel}: ${altLangData.name}`}
   >
     <span aria-hidden="true">{altLangData.flag}</span>
     <span class="uppercase">{altLang}</span>
   </a>
-</nav>
+</div>

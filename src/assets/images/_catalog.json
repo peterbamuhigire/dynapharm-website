@@ -1,6 +1,39 @@
 {
   "images": [
     {
+      "path": "gallery/senegal-dakar-boats.jpg",
+      "source": "photo-bank/fishing-boats-beach-dakar-senegal.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1481",
+      "description": "Fishing boats on a beach in Dakar, Senegal",
+      "usedIn": [
+        "Senegal EN/FR hero and social preview"
+      ],
+      "notes": "User-supplied; measured with Pillow. Original preserved, no upscaling. Country context only, not evidence of an office. Publication rights require owner confirmation."
+    },
+    {
+      "path": "gallery/senegal-flag.jpg",
+      "source": "photo-bank/senegal-flag-wrinkled-dark-background-3d-render.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1196",
+      "description": "Senegal flag on a dark textured background",
+      "usedIn": [
+        "Senegal EN/FR identity section"
+      ],
+      "notes": "User-supplied; measured with Pillow. Original preserved, no upscaling. Country context only, not evidence of an office. Publication rights require owner confirmation."
+    },
+    {
+      "path": "gallery/senegal-map-flag.jpg",
+      "source": "photo-bank/senegal-map-flag-shaded-relief-color-height-map-white-background-3d-illustration.jpg",
+      "category": "gallery",
+      "dimensions": "2222x1662",
+      "description": "Illustrated map of Senegal in national flag colours",
+      "usedIn": [
+        "Senegal EN/FR overview and country directory"
+      ],
+      "notes": "User-supplied; measured with Pillow. Original preserved, no upscaling. Country context only, not evidence of an office. Publication rights require owner confirmation."
+    },
+    {
       "path": "gallery/sierra-leone-flag.jpg",
       "source": "photo-bank/close-up-realistic-texture-flag-sierra-leone.jpg",
       "category": "gallery",

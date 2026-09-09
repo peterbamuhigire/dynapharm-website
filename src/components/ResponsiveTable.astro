@@ -1,0 +1,28 @@
+---
+import type { Lang } from '@utils/i18n';
+import { frontmatter as english } from '../../docs/en/search-metadata.md';
+import { frontmatter as french } from '../../docs/fr/search-metadata.md';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const label = lang === 'fr' ? french.tableLabel : english.tableLabel;
+---
+
+<div class="table-scroll" role="region" tabindex="0" aria-label={label}>
+  <slot />
+</div>
+
+<style>
+  .table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    margin-block: 1.5rem;
+  }
+  .table-scroll:focus-visible {
+    outline: 3px solid var(--color-dynared);
+    outline-offset: 3px;
+  }
+</style>

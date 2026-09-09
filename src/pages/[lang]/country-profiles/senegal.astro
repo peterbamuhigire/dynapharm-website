@@ -1,0 +1,155 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image, getImage } from 'astro:assets';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SUPPORTED_LANGS, type Lang } from '@utils/i18n';
+import { frontmatter as english } from '../../../../docs/en/country-senegal.md';
+import { frontmatter as french } from '../../../../docs/fr/country-senegal.md';
+import boats from '@assets/images/gallery/senegal-dakar-boats.jpg';
+import flag from '@assets/images/gallery/senegal-flag.jpg';
+import countryMap from '@assets/images/gallery/senegal-map-flag.jpg';
+
+export const getStaticPaths = (() => SUPPORTED_LANGS.map((lang) => ({ params: { lang } }))) satisfies GetStaticPaths;
+const { lang } = Astro.params as { lang: Lang };
+const content = lang === 'fr' ? french : english;
+const siteUrl = Astro.site || new URL('https://dynapharmafrica.com/');
+const canonical = new URL(`/${lang}/country-profiles/senegal/`, siteUrl).href;
+const socialImage = await getImage({ src: boats, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 82 });
+const sections = [
+  { id: 'overview', label: content.overviewLabel },
+  { id: 'products', label: content.productsLabel },
+  { id: 'enquiries', label: content.contactLabel },
+  { id: 'questions', label: content.faqLabel },
+  { id: 'sources', label: content.sourcesLabel },
+];
+const schemas = [
+  {
+    '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical,
+    url: canonical, name: content.title, description: content.description, inLanguage: lang,
+    isPartOf: { '@id': `${siteUrl.href}#website` },
+    about: { '@type': 'Country', name: content.name, identifier: 'SN' },
+    image: new URL(socialImage.src, siteUrl).href,
+    citation: content.corporateUrl,
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: content.home, item: new URL(`/${lang}/`, siteUrl).href },
+      { '@type': 'ListItem', position: 2, name: content.directory, item: new URL(`/${lang}/country-profiles/`, siteUrl).href },
+      { '@type': 'ListItem', position: 3, name: content.name, item: canonical },
+    ],
+  },
+];
+---
+
+<BaseLayout title={content.title} description={content.description} keywords={content.keywords} lang={lang}
+  locale={lang === 'fr' ? 'fr_SN' : 'en_GB'} structuredData={schemas}
+  ogImage={socialImage.src} ogImageWidth={1200} ogImageHeight={630} ogImageAlt={content.heroAlt}>
+  <section class="relative isolate overflow-hidden bg-charcoal text-white">
+    <Image src={boats} alt={content.heroAlt} widths={[480, 768, 1280, 1920]} sizes="100vw"
+      width={1920} loading="eager" fetchpriority="high" quality={72} class="absolute inset-0 -z-20 h-full w-full object-cover" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-charcoal/95 via-charcoal/80 to-charcoal/35" aria-hidden="true"></div>
+    <div class="section-container py-10 md:py-16 lg:py-24">
+      <nav aria-label={content.directory} class="mb-10 text-sm text-white/90">
+        <ol class="flex flex-wrap items-center gap-3">
+          <li><a href={`/${lang}/`} class="underline underline-offset-4">{content.home}</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href={`/${lang}/country-profiles/`} class="underline underline-offset-4">{content.directory}</a></li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page">{content.name}</li>
+        </ol>
+      </nav>
+      <p class="font-accent text-sm font-semibold tracking-widest uppercase mb-5">{content.eyebrow}</p>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold max-w-3xl leading-tight mb-6">{content.heading}</h1>
+      <p class="font-body text-lg md:text-xl leading-relaxed max-w-2xl text-white/95">{content.intro}</p>
+      <a href="#enquiries" class="btn-primary mt-8">{content.contactLabel}</a>
+    </div>
+  </section>
+
+  <nav class="border-b border-grey-light bg-white" aria-label={content.heading}>
+    <ul class="section-container flex flex-wrap gap-x-5 gap-y-1 py-3">
+      {sections.map((section) => <li><a href={`#${section.id}`} class="inline-flex min-h-11 items-center text-sm font-semibold text-charcoal hover:text-dynared underline-offset-4 hover:underline">{section.label}</a></li>)}
+    </ul>
+  </nav>
+
+  <section id="overview" class="section-padding bg-cream">
+    <div class="section-container grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-center">
+      <div>
+        <h2 class="font-heading text-2xl md:text-3xl font-bold mb-5">{content.overviewHeading}</h2>
+        <p class="leading-relaxed text-charcoal-light mb-7">{content.overviewBody}</p>
+        <dl class="space-y-6 border-l-4 border-dynared pl-6">
+          <div><dt class="font-semibold mb-2">{content.verifiedLabel}</dt><dd class="text-charcoal-light">{content.verifiedValue}</dd></div>
+          <div><dt class="font-semibold mb-2">{content.pendingLabel}</dt><dd class="text-charcoal-light leading-relaxed">{content.pendingValue}</dd></div>
+        </dl>
+      </div>
+      <figure>
+        <Image src={countryMap} alt={content.mapAlt} widths={[400, 640, 800]} sizes="(min-width: 1024px) 40vw, 90vw" loading="lazy" class="w-full rounded-2xl bg-white p-6" />
+        <figcaption class="text-sm text-charcoal-light mt-4 leading-relaxed">{content.photoCaption}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="products" class="section-padding bg-white">
+    <div class="section-container">
+      <div class="max-w-3xl mb-10">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold mb-5">{content.productsHeading}</h2>
+        <p class="text-charcoal-light leading-relaxed">{content.productsIntro}</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {content.categories.map((category: { title: string; body: string; href: string }) => (
+          <article class="border-t-2 border-dynared pt-6 flex flex-col items-start">
+            <h3 class="font-heading text-xl font-bold mb-4">{category.title}</h3>
+            <p class="text-charcoal-light leading-relaxed mb-5 flex-1">{category.body}</p>
+            <a href={`/${lang}/${category.href}/`} class="min-h-11 inline-flex items-center font-semibold text-dynared underline underline-offset-4">{content.catalogueCta}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="enquiries" class="section-padding bg-cream">
+    <div class="section-container grid lg:grid-cols-2 gap-10 lg:gap-16">
+      <div>
+        <h2 class="font-heading text-2xl md:text-3xl font-bold mb-5">{content.contactHeading}</h2>
+        <p class="text-charcoal-light leading-relaxed mb-7">{content.contactIntro}</p>
+        <p class="font-semibold mb-2">{content.emailLabel}</p>
+        <a href={`mailto:${content.email}`} class="inline-flex min-h-11 items-center text-dynared font-semibold break-all underline underline-offset-4">{content.email}</a>
+        <div class="flex flex-wrap gap-4 mt-6">
+          <a href={`/${lang}/contact/`} class="btn-primary">{content.contactCta}</a>
+          <a href={`/${lang}/business-opportunity/`} class="inline-flex min-h-11 items-center text-dynared font-semibold underline underline-offset-4">{content.businessCta}</a>
+        </div>
+      </div>
+      <ol class="space-y-7">
+        {content.steps.map((step: { title: string; body: string }, index: number) => (
+          <li class="flex gap-5"><span aria-hidden="true" class="font-heading text-3xl font-bold text-dynared">{String(index + 1).padStart(2, '0')}</span><div><h3 class="font-heading text-xl font-bold mb-2">{step.title}</h3><p class="text-charcoal-light leading-relaxed">{step.body}</p></div></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="questions" class="section-padding bg-white">
+    <div class="section-container grid lg:grid-cols-[1fr_1.6fr] gap-10 lg:gap-16 items-start">
+      <div><h2 class="font-heading text-2xl md:text-3xl font-bold mb-6">{content.faqHeading}</h2><Image src={flag} alt={content.flagAlt} widths={[400, 640]} sizes="(min-width: 1024px) 30vw, 90vw" loading="lazy" class="w-full rounded-xl" /></div>
+      <div class="divide-y divide-grey-light border-y border-grey-light">
+        {content.faqs.map((faq: { question: string; answer: string }) => (
+          <details class="py-5"><summary class="cursor-pointer min-h-11 font-semibold text-charcoal leading-relaxed pr-3">{faq.question}</summary><p class="pt-4 leading-relaxed text-charcoal-light">{faq.answer}</p></details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream py-10">
+    <div class="section-container"><h2 class="font-heading text-xl font-bold mb-4">{content.relatedHeading}</h2><a href={`/${lang}/country-profiles/`} class="min-h-11 inline-flex items-center text-dynared font-semibold underline underline-offset-4">{content.relatedCountries}</a></div>
+  </section>
+
+  <section id="sources" class="bg-white py-12 border-t border-grey-light">
+    <div class="section-container max-w-4xl">
+      <h2 class="font-heading text-2xl font-bold mb-3">{content.sourcesHeading}</h2>
+      <p class="text-sm font-semibold text-charcoal-light mb-4"><time datetime="2026-09-09">{content.reviewedLabel}</time></p>
+      <p class="text-charcoal-light leading-relaxed mb-4">{content.sourceNote}</p>
+      <a href={content.corporateUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-dynared underline underline-offset-4">{content.corporateSource} ({content.newTab})</a>
+      <aside class="border-l-4 border-dynared bg-cream p-5 my-5 text-sm leading-relaxed">{content.sourceWarning}</aside>
+      <a href={content.originalUrl} target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer" class="inline-flex min-h-11 items-center text-dynared font-semibold underline underline-offset-4">{content.originalSource} ({content.newTab})</a>
+    </div>
+  </section>
+</BaseLayout>

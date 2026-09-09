@@ -11,6 +11,11 @@ import kenyaMap from '@assets/images/gallery/kenya-map-flag.jpg';
 import namibiaMap from '@assets/images/gallery/namibia-map-flag.jpg';
 import rwandaMap from '@assets/images/gallery/rwanda-map-flag.jpg';
 import sierraLeoneMap from '@assets/images/gallery/sierra-leone-map-flag.jpg';
+import senegalMap from '@assets/images/gallery/senegal-map-flag.jpg';
+import { frontmatter as englishSenegal } from '../../../../docs/en/country-senegal.md';
+import { frontmatter as frenchSenegal } from '../../../../docs/fr/country-senegal.md';
+import { frontmatter as englishSearch } from '../../../../docs/en/search-metadata.md';
+import { frontmatter as frenchSearch } from '../../../../docs/fr/search-metadata.md';
 
 export const getStaticPaths = (() => {
   return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
@@ -105,7 +110,7 @@ const content = {
     outletsLabel: 'locations',
     regionsLabel: 'regions',
     comingSoonHeading: 'More Country Profiles Coming Soon',
-    comingSoonBody: 'We are gathering profiles from franchises across the continent - Uganda, Tanzania, Nigeria, Senegal, Ghana, Cameroon, Zambia, Mozambique, South Africa, Côte d\'Ivoire, Burkina Faso, Mali, Togo, Benin, Burundi, DRC and more. If you represent a Dynapharm franchise and would like to be featured, please get in touch.',
+    comingSoonBody: 'We are gathering profiles from franchises across the continent - Uganda, Tanzania, Nigeria, Ghana, Cameroon, Zambia, Mozambique, South Africa, Côte d\'Ivoire, Burkina Faso, Mali, Togo, Benin, Burundi, DRC and more. If you represent a Dynapharm franchise and would like to be featured, please get in touch.',
     contactCta: 'Contact Us to Be Featured',
   },
   fr: {
@@ -194,14 +199,21 @@ const content = {
     outletsLabel: 'sites',
     regionsLabel: 'régions',
     comingSoonHeading: 'D\'Autres Profils Pays à Venir',
-    comingSoonBody: 'Nous rassemblons les profils des franchises à travers le continent - Ouganda, Tanzanie, Nigeria, Sénégal, Ghana, Cameroun, Zambie, Mozambique, Afrique du Sud, Côte d\'Ivoire, Burkina Faso, Mali, Togo, Bénin, Burundi, RDC et bien d\'autres. Si vous représentez une franchise Dynapharm et souhaitez être mis en avant, veuillez nous contacter.',
+    comingSoonBody: 'Nous rassemblons les profils des franchises à travers le continent - Ouganda, Tanzanie, Nigeria, Ghana, Cameroun, Zambie, Mozambique, Afrique du Sud, Côte d\'Ivoire, Burkina Faso, Mali, Togo, Bénin, Burundi, RDC et bien d\'autres. Si vous représentez une franchise Dynapharm et souhaitez être mis en avant, veuillez nous contacter.',
     contactCta: 'Contactez-nous pour Apparaître ici',
   },
 };
 
-const c = content[lang];
+const senegal = lang === 'fr' ? frenchSenegal : englishSenegal;
+const search = lang === 'fr' ? frenchSearch : englishSearch;
+const c = {
+  ...content[lang],
+  meta: { ...content[lang].meta, ...search.pages['country-profiles'] },
+  countries: [...content[lang].countries, { ...senegal.directoryCard, image: senegalMap }]
+    .sort((first, second) => first.name.localeCompare(second.name, lang)),
+};
 const siteHref = (Astro.site?.href || 'https://dynapharmafrica.com/').replace(/\/$/, '');
-const pageUrl = `${siteHref}/${lang}/country-profiles`;
+const pageUrl = `${siteHref}/${lang}/country-profiles/`;
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -237,7 +249,7 @@ const itemListSchema = {
     '@type': 'ListItem',
     position: idx + 1,
     name: `Dynapharm ${country.name}`,
-    url: `${siteHref}/${lang}/country-profiles/${country.slug}`,
+    url: `${siteHref}/${lang}/country-profiles/${country.slug}/`,
     description: country.description,
   })),
 };
@@ -281,6 +293,7 @@ const itemListSchema = {
 
   <section class="section-padding bg-white">
     <div class="section-container">
+      <h2 class="sr-only">{c.hero.heading}</h2>
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {c.countries.map((country) => (
           <a
@@ -310,10 +323,10 @@ const itemListSchema = {
               <p class="font-body text-base text-charcoal-light leading-relaxed mb-4">
                 {country.description}
               </p>
-              <div class="flex gap-4 mb-4 text-xs font-accent text-charcoal-light">
+              {country.outletsCount !== null && country.regions !== null && <div class="flex gap-4 mb-4 text-xs font-accent text-charcoal-light">
                 <span><strong class="text-dynared">{country.outletsCount}</strong> {c.outletsLabel}</span>
                 <span><strong class="text-dynared">{country.regions}</strong> {c.regionsLabel}</span>
-              </div>
+              </div>}
               <span class="inline-flex items-center gap-2 font-accent text-sm font-semibold text-dynared">
                 {country.cta}
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7-7 7M5 12h16" /></svg>

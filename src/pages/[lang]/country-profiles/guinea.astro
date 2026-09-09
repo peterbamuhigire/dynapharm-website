@@ -265,7 +265,9 @@ const faqSchema = {
   description={c.meta.description}
   keywords={c.meta.keywords}
   lang={lang}
-  ogImage="/_assets/guinea-flag.jpg"
+  ogImage={heroBg.src}
+  ogImageWidth={heroBg.width}
+  ogImageHeight={heroBg.height}
   structuredData={[breadcrumbSchema, orgSchema, faqSchema]}
 >
   <!-- Hero with flag background -->

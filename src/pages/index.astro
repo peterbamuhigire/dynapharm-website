@@ -5,13 +5,13 @@ import { DEFAULT_LANG } from '@utils/i18n';
 <html lang={DEFAULT_LANG}>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content={`0;url=/${DEFAULT_LANG}`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={new URL(`/${DEFAULT_LANG}/`, Astro.site).href} />
+    <meta http-equiv="refresh" content={`0;url=/${DEFAULT_LANG}/`} />
     <title>Redirecting&hellip;</title>
   </head>
   <body>
-    <p>Redirecting to <a href={`/${DEFAULT_LANG}`}>/{DEFAULT_LANG}</a>&hellip;</p>
-    <script define:vars={{ DEFAULT_LANG }}>
-      window.location.replace(`/${DEFAULT_LANG}`);
-    </script>
+    <p>Redirecting to <a href={`/${DEFAULT_LANG}/`}>/{DEFAULT_LANG}</a>&hellip;</p>
   </body>
 </html>

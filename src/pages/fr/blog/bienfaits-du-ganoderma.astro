@@ -1,4 +1,5 @@
 ---
+import ResponsiveTable from '@components/ResponsiveTable.astro';
 import { Image } from 'astro:assets';
 import BlogPostLayout from '@layouts/BlogPostLayout.astro';
 import { getPost } from '@data/blog';
@@ -147,6 +148,7 @@ const references = [
   </p>
 
   <h2 id="tableau-preuves">En un coup d\'œil : niveau de preuves du Ganoderma</h2>
+  <ResponsiveTable lang="fr">
   <table>
     <thead>
       <tr>
@@ -188,6 +190,7 @@ const references = [
       </tr>
     </tbody>
   </table>
+  </ResponsiveTable>
 
   <h2 id="utilisation">Comment utiliser le Ganoderma</h2>
   <h3>Dose quotidienne recommandée</h3>

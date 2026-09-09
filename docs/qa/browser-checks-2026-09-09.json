@@ -1,0 +1,861 @@
+{
+  "date": "2026-09-09",
+  "origin": "http://127.0.0.1:4321",
+  "scope": "Local Chrome DOM geometry and selected interactions; not WCAG or Lighthouse certification",
+  "mobileChecks": [
+    {
+      "route": "/en/about/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/blog/ganoderma-benefits/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/blog/ginkgo-biloba-benefits/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/blog/ginseng-benefits/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/blog/green-tea-benefits/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/blog/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/business-opportunity/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/contact/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/country-profiles/botswana/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/country-profiles/guinea/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/country-profiles/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/country-profiles/kenya/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/country-profiles/namibia/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/country-profiles/rwanda/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/country-profiles/senegal/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/country-profiles/sierra-leone/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/faq/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/mobile-app-privacy-policy/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/privacy-policy/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/products/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/en/wellness-guide/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/about/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ganoderma/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ginkgo-biloba/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ginseng/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-the-vert/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/blog/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/business-opportunity/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/contact/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/country-profiles/botswana/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/country-profiles/guinea/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/country-profiles/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/country-profiles/kenya/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/country-profiles/namibia/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/country-profiles/rwanda/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/country-profiles/senegal/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/country-profiles/sierra-leone/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/faq/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/mobile-app-privacy-policy/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/privacy-policy/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/products/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "route": "/fr/wellness-guide/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "overflowingControls": [],
+      "scrollWidth": 360,
+      "width": 375
+    }
+  ],
+  "desktopChecks": [
+    {
+      "route": "/en/about/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/blog/ganoderma-benefits/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/blog/ginkgo-biloba-benefits/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/blog/ginseng-benefits/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/blog/green-tea-benefits/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/blog/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/business-opportunity/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/contact/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/country-profiles/botswana/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/country-profiles/guinea/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/country-profiles/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/country-profiles/kenya/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/country-profiles/namibia/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/country-profiles/rwanda/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/country-profiles/senegal/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/country-profiles/sierra-leone/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/faq/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/mobile-app-privacy-policy/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/privacy-policy/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/products/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/en/wellness-guide/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/about/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ganoderma/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ginkgo-biloba/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ginseng/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-the-vert/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/blog/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/business-opportunity/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/contact/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/country-profiles/botswana/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/country-profiles/guinea/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/country-profiles/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/country-profiles/kenya/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/country-profiles/namibia/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/country-profiles/rwanda/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/country-profiles/senegal/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/country-profiles/sierra-leone/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/faq/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/mobile-app-privacy-policy/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/privacy-policy/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/products/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "/fr/wellness-guide/",
+      "brokenLoadedImages": [],
+      "h1": 1,
+      "scrollWidth": 1265,
+      "width": 1280
+    }
+  ],
+  "additionalWidths": [
+    {
+      "route": "/fr/",
+      "scrollWidth": 305,
+      "visibleHeaderControls": 2,
+      "width": 320
+    },
+    {
+      "route": "/en/",
+      "scrollWidth": 305,
+      "visibleHeaderControls": 2,
+      "width": 320
+    },
+    {
+      "route": "/fr/country-profiles/senegal/",
+      "scrollWidth": 305,
+      "visibleHeaderControls": 2,
+      "width": 320
+    },
+    {
+      "route": "/en/country-profiles/senegal/",
+      "scrollWidth": 305,
+      "visibleHeaderControls": 2,
+      "width": 320
+    },
+    {
+      "route": "/fr/country-profiles/",
+      "scrollWidth": 305,
+      "visibleHeaderControls": 2,
+      "width": 320
+    },
+    {
+      "route": "/fr/contact/",
+      "scrollWidth": 305,
+      "visibleHeaderControls": 2,
+      "width": 320
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ginkgo-biloba/",
+      "scrollWidth": 305,
+      "visibleHeaderControls": 4,
+      "width": 320
+    },
+    {
+      "route": "/fr/",
+      "scrollWidth": 753,
+      "visibleHeaderControls": 2,
+      "width": 768
+    },
+    {
+      "route": "/en/",
+      "scrollWidth": 753,
+      "visibleHeaderControls": 2,
+      "width": 768
+    },
+    {
+      "route": "/fr/country-profiles/senegal/",
+      "scrollWidth": 753,
+      "visibleHeaderControls": 2,
+      "width": 768
+    },
+    {
+      "route": "/en/country-profiles/senegal/",
+      "scrollWidth": 753,
+      "visibleHeaderControls": 2,
+      "width": 768
+    },
+    {
+      "route": "/fr/country-profiles/",
+      "scrollWidth": 753,
+      "visibleHeaderControls": 2,
+      "width": 768
+    },
+    {
+      "route": "/fr/contact/",
+      "scrollWidth": 753,
+      "visibleHeaderControls": 2,
+      "width": 768
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ginkgo-biloba/",
+      "scrollWidth": 753,
+      "visibleHeaderControls": 4,
+      "width": 768
+    },
+    {
+      "route": "/fr/",
+      "scrollWidth": 1521,
+      "visibleHeaderControls": 11,
+      "width": 1536
+    },
+    {
+      "route": "/en/",
+      "scrollWidth": 1521,
+      "visibleHeaderControls": 11,
+      "width": 1536
+    },
+    {
+      "route": "/fr/country-profiles/senegal/",
+      "scrollWidth": 1521,
+      "visibleHeaderControls": 11,
+      "width": 1536
+    },
+    {
+      "route": "/en/country-profiles/senegal/",
+      "scrollWidth": 1521,
+      "visibleHeaderControls": 11,
+      "width": 1536
+    },
+    {
+      "route": "/fr/country-profiles/",
+      "scrollWidth": 1521,
+      "visibleHeaderControls": 11,
+      "width": 1536
+    },
+    {
+      "route": "/fr/contact/",
+      "scrollWidth": 1521,
+      "visibleHeaderControls": 11,
+      "width": 1536
+    },
+    {
+      "route": "/fr/blog/bienfaits-du-ginkgo-biloba/",
+      "scrollWidth": 1521,
+      "visibleHeaderControls": 13,
+      "width": 1536
+    }
+  ],
+  "productChecks": [
+    {
+      "phase": "French modal open",
+      "dialogVisible": true,
+      "focusInsideDialog": true,
+      "scrollWidth": 375,
+      "width": 375
+    },
+    {
+      "phase": "Reverse Tab",
+      "focus": "Contacter Votre Distributeur",
+      "focusInsideDialog": true
+    },
+    {
+      "phase": "Forward Tab wrap",
+      "focus": "Fermer",
+      "focusInsideDialog": true
+    },
+    {
+      "phase": "Escape close",
+      "dialogHidden": false,
+      "focus": "Voir les Détails: Bio-fertilisant D.I. Grow (Rouge et Vert)"
+    },
+    {
+      "phase": "English Escape after transition",
+      "dialogHidden": true,
+      "focus": "View Details: D.I. Grow Bio-Fertiliser (Red & Green)"
+    },
+    {
+      "phase": "French Escape after transition",
+      "dialogHidden": true,
+      "focus": "Voir les Détails: Bio-fertilisant D.I. Grow (Rouge et Vert)"
+    }
+  ],
+  "finalProductGeometry": [
+    {
+      "lang": "en",
+      "emptyVisibleLinks": 0,
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "lang": "fr",
+      "emptyVisibleLinks": 0,
+      "scrollWidth": 360,
+      "width": 375
+    },
+    {
+      "lang": "en",
+      "emptyVisibleLinks": 0,
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "lang": "fr",
+      "emptyVisibleLinks": 0,
+      "scrollWidth": 1265,
+      "width": 1280
+    }
+  ],
+  "sourcePlacement": {
+    "lastMainLink": "https://dynapharmsenegal.com/",
+    "markdownLink": "https://dynapharmafrica.com/fr/country-profiles/senegal/index.md"
+  }
+}

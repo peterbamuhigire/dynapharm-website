@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { Image } from 'astro:assets';
+import { getImage, Image } from 'astro:assets';
+import brandLogo from '@assets/images/branding/Logo-Full-Color.png';
 import type { Lang } from '@utils/i18n';
 import { POSTS, postPath, postAlternates, type BlogPostSummary } from '@data/blog';
 
@@ -30,10 +31,37 @@ const heroEntry = Object.entries(blogImages).find(([path]) =>
 const heroImage = heroEntry ? heroEntry[1].default : null;
 
 const siteUrl = Astro.site?.href || 'https://dynapharmafrica.com/';
-const canonicalHref = new URL(postPath(post, lang), siteUrl).href;
-const ogImagePath = `assets/images/blog/${post.heroImage}`;
+const withTrailingSlash = (path: string) => `${path.replace(/\/+$/, '')}/`;
+const canonicalPath = withTrailingSlash(postPath(post, lang));
+const canonicalHref = new URL(canonicalPath, siteUrl).href;
+const heroWidths = heroImage
+  ? Array.from(
+      new Set(
+        [640, 1024, 1600, heroImage.width].filter((width) => width <= heroImage.width),
+      ),
+    ).sort((leftWidth, rightWidth) => leftWidth - rightWidth)
+  : [];
+const heroSocialImage = heroImage
+  ? await getImage({
+      src: heroImage,
+      width: Math.min(heroImage.width, 1600),
+      format: 'webp',
+    })
+  : null;
+const heroSocialImageUrl = heroSocialImage
+  ? new URL(heroSocialImage.src, siteUrl).href
+  : null;
+const publisherLogoImage = await getImage({
+  src: brandLogo,
+  width: Math.min(brandLogo.width, 982),
+  format: 'png',
+});
+const publisherLogoUrl = new URL(publisherLogoImage.src, siteUrl).href;
 
-const alternates = postAlternates(post);
+const alternates = Object.fromEntries(
+  Object.entries(postAlternates(post)).map(([language, path]) => [language, withTrailingSlash(path)]),
+) as Record<Lang, string>;
+const blogPath = `/${lang}/blog/`;
 
 // Format date in a locale-appropriate way
 const dateFmt = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-GB', {
@@ -89,7 +117,14 @@ const blogPostingSchema: Record<string, unknown> = {
   '@id': canonicalHref + '#article',
   headline: post.title[lang],
   description: post.description[lang],
-  image: new URL(ogImagePath, siteUrl).href,
+  image: heroSocialImage
+    ? {
+        '@type': 'ImageObject',
+        url: heroSocialImageUrl,
+        width: heroSocialImage.attributes.width,
+        height: heroSocialImage.attributes.height,
+      }
+    : undefined,
   datePublished: post.datePublished,
   dateModified: post.datePublished,
   inLanguage: lang === 'fr' ? 'fr-FR' : 'en-GB',
@@ -100,14 +135,15 @@ const blogPostingSchema: Record<string, unknown> = {
   author: {
     '@type': 'Organization',
     name: ui.author,
-    url: `${siteUrl}${lang}/about`,
+    url: new URL(`/${lang}/about/`, siteUrl).href,
   },
   publisher: {
-    '@type': 'Organization',
-    name: 'Dynapharm Africa',
+    '@id': `${siteUrl}#organization`,
     logo: {
       '@type': 'ImageObject',
-      url: `${siteUrl}assets/images/branding/Logo-Full-Color.png`,
+      url: publisherLogoUrl,
+      width: publisherLogoImage.attributes.width,
+      height: publisherLogoImage.attributes.height,
     },
   },
   articleSection: post.category[lang],
@@ -119,8 +155,8 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: ui.breadcrumbHome, item: `${siteUrl}${lang}/` },
-    { '@type': 'ListItem', position: 2, name: ui.breadcrumbBlog, item: `${siteUrl}${lang}/blog` },
+    { '@type': 'ListItem', position: 1, name: ui.breadcrumbHome, item: new URL(`/${lang}/`, siteUrl).href },
+    { '@type': 'ListItem', position: 2, name: ui.breadcrumbBlog, item: new URL(blogPath, siteUrl).href },
     { '@type': 'ListItem', position: 3, name: post.title[lang], item: canonicalHref },
   ],
 };
@@ -148,7 +184,11 @@ if (faqSchema) allSchemas.push(faqSchema);
   description={post.description[lang]}
   lang={lang}
   keywords={post.keywords[lang]}
-  ogImage={ogImagePath}
+  ogImage={heroSocialImageUrl ?? undefined}
+  ogImageAlt={post.heroAlt[lang]}
+  ogImageWidth={heroSocialImage?.attributes.width}
+  ogImageHeight={heroSocialImage?.attributes.height}
+  ogType="article"
   alternates={alternates}
   structuredData={allSchemas}
 >
@@ -159,9 +199,9 @@ if (faqSchema) allSchemas.push(faqSchema);
         <div class="absolute inset-0">
           <Image
             src={heroImage}
-            alt=""
+            alt={post.heroAlt[lang]}
             class="w-full h-full object-cover opacity-30"
-            widths={[640, 1024, 1600]}
+            widths={heroWidths}
             sizes="100vw"
             loading="eager"
           />
@@ -173,11 +213,11 @@ if (faqSchema) allSchemas.push(faqSchema);
         <nav aria-label="Breadcrumb" class="mb-6">
           <ol class="flex flex-wrap items-center gap-2 font-accent text-sm text-green-100/80">
             <li>
-              <a href={`/${lang}`} class="hover:text-white transition-colors">{ui.breadcrumbHome}</a>
+              <a href={`/${lang}/`} class="hover:text-white transition-colors">{ui.breadcrumbHome}</a>
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <a href={`/${lang}/blog`} class="hover:text-white transition-colors">{ui.breadcrumbBlog}</a>
+              <a href={blogPath} class="hover:text-white transition-colors">{ui.breadcrumbBlog}</a>
             </li>
             <li aria-hidden="true">/</li>
             <li class="text-white/60 truncate max-w-xs" aria-current="page">{post.title[lang]}</li>
@@ -254,7 +294,7 @@ if (faqSchema) allSchemas.push(faqSchema);
         </aside>
 
         <div class="mt-10 flex justify-between items-center">
-          <a href={`/${lang}/blog`} class="inline-flex items-center gap-2 font-accent text-sm font-medium text-green hover:text-green-dark transition-colors">
+          <a href={blogPath} class="inline-flex items-center gap-2 font-accent text-sm font-medium text-green hover:text-green-dark transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
             {ui.backToBlog}
           </a>
@@ -276,7 +316,7 @@ if (faqSchema) allSchemas.push(faqSchema);
               );
               const relImage = relImgEntry ? relImgEntry[1].default : null;
               return (
-                <a href={postPath(related, lang)} class="card group block">
+                <a href={withTrailingSlash(postPath(related, lang))} class="card group block">
                   {relImage && (
                     <div class="aspect-[16/9] overflow-hidden">
                       <Image

@@ -24,6 +24,17 @@ The site is **franchise-neutral** — it represents the Dynapharm brand globally
 | Contact | `/contact` | Enquiry form (info@dynapharmafrica.com), distributor CTA |
 | FAQ | `/faq` | 20+ questions covering products, business, and company |
 
+## Country Profiles and Search Maintenance
+
+- Senegal is available at /en/country-profiles/senegal/ and /fr/country-profiles/senegal/.
+- Edit docs/en/country-senegal.md and docs/fr/country-senegal.md for the profile; both HTML and readable Markdown are generated from those same sources.
+- The supplied Senegal photography is catalogued in src/assets/images/_catalog.json. It represents country context, not verified company premises.
+- Country attribution appears at the bottom and opens in a new tab. The Senegal source showed integrity problems on 9 September 2026, so the profile warns visitors and does not claim verified local contacts, stock or prices.
+- Page-specific search descriptions live in docs/en/search-metadata.md and docs/fr/search-metadata.md. Canonicals, bilingual alternates, social previews and site entities are handled by BaseLayout.
+- /llms.txt is an optional, French-first content index built from docs/{lang}/ai-discovery.md. Senegal Markdown is at /{lang}/country-profiles/senegal/index.md. This does not guarantee search ranking or AI citation.
+- Run npm run build followed by npm run verify:site. The verifier checks all built language pages, sitemaps, local assets, link targets, attribution and AI-content parity.
+- See docs/kaizen-search-social-plan-2026-09-09.md for keyword hypotheses, draft social copy and measurement planning; docs/kaizen-completion-2026-09-09.md records QA and remaining release gates.
+
 ## Languages
 
 - **English** (en) — default

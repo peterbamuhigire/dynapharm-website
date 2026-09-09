@@ -1,4 +1,5 @@
 ---
+import ResponsiveTable from '@components/ResponsiveTable.astro';
 import { Image } from 'astro:assets';
 import BlogPostLayout from '@layouts/BlogPostLayout.astro';
 import { getPost } from '@data/blog';
@@ -151,6 +152,7 @@ const references = [
   </p>
 
   <h2 id="evidence-table">At a glance: Ginseng evidence summary</h2>
+  <ResponsiveTable lang="en">
   <table>
     <thead>
       <tr>
@@ -192,6 +194,7 @@ const references = [
       </tr>
     </tbody>
   </table>
+  </ResponsiveTable>
 
   <h2 id="how-to-use">How to use Ginseng</h2>
   <h3>Recommended daily dose</h3>

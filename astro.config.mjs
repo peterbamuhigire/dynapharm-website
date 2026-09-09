@@ -5,8 +5,10 @@ import alpinejs from '@astrojs/alpinejs';
 
 export default defineConfig({
   site: 'https://dynapharmafrica.com',
+  trailingSlash: 'ignore',
   integrations: [
     sitemap({
+      filter: (page) => new URL(page).pathname !== '/',
       i18n: {
         defaultLocale: 'en',
         locales: {
@@ -38,6 +40,14 @@ export default defineConfig({
             { lang, url: `${url.origin}/${path}/` },
             { lang: otherLang, url: `${url.origin}/${counterpart}/` },
             { lang: 'x-default', url: `${url.origin}/${path.startsWith('en/') ? path : counterpart}/` },
+          ];
+        }
+        if (!counterpart && /^\/(en|fr)\//.test(url.pathname)) {
+          const route = url.pathname.replace(/^\/(en|fr)\//, '');
+          item.links = [
+            { lang: 'en', url: `${url.origin}/en/${route}` },
+            { lang: 'fr', url: `${url.origin}/fr/${route}` },
+            { lang: 'x-default', url: `${url.origin}/en/${route}` },
           ];
         }
         return item;

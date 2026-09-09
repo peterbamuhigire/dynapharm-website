@@ -232,9 +232,10 @@
     transform: translateY(-2px);
   }
 
-  .btn-primary:focus {
-    outline: 2px solid var(--color-dynared);
-    outline-offset: 2px;
+  .btn-primary:focus-visible {
+    outline: 3px solid var(--color-charcoal);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px white;
   }
 
   /* Secondary button (outline) */
@@ -260,7 +261,7 @@
   }
 
   .btn-secondary:focus {
-    outline: 2px solid var(--color-dynared);
+    outline: 3px solid var(--color-dynared-dark);
     outline-offset: 2px;
   }
 
@@ -287,8 +288,15 @@
   }
 
   .btn-gold:focus {
-    outline: 2px solid var(--color-gold);
+    outline: 3px solid var(--color-charcoal);
     outline-offset: 2px;
+  }
+
+  footer a:focus-visible,
+  footer button:focus-visible,
+  footer [role='button']:focus-visible,
+  footer [tabindex]:focus-visible {
+    outline-color: var(--color-gold-300);
   }
 
   /* Pressed state — distinct from hover (interaction-states completeness) */
@@ -402,7 +410,8 @@
 
 /* === Reduced Motion (WCAG 2.3.3 + motion doctrine: no motion when the OS asks for none) === */
 @media (prefers-reduced-motion: reduce) {
-  html {
+  html,
+  html.scroll-smooth {
     scroll-behavior: auto;
   }
 

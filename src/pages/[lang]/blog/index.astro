@@ -1,6 +1,6 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { SUPPORTED_LANGS } from '@utils/i18n';
 import type { Lang } from '@utils/i18n';
 import BaseLayout from '@layouts/BaseLayout.astro';
@@ -56,29 +56,28 @@ const dateFmt = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-GB', {
 
 const siteUrl = Astro.site?.href || 'https://dynapharmafrica.com/';
 
+const postImages = new Map(await Promise.all(POSTS.map(async (post) => {
+  const image = Object.entries(blogImages).find(([path]) => path.endsWith(`/${post.heroImage}`))?.[1].default;
+  const optimised = image ? await getImage({ src: image, width: Math.min(image.width, 1200), format: 'jpg' }) : null;
+  return [post.id, optimised] as const;
+})));
+
 // Blog (CollectionPage) JSON-LD
 const blogSchema = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
   name: ui.heading,
   description: ui.description,
-  url: `${siteUrl}${lang}/blog`,
+  url: `${siteUrl}${lang}/blog/`,
   inLanguage: lang === 'fr' ? 'fr-FR' : 'en-GB',
-  publisher: {
-    '@type': 'Organization',
-    name: 'Dynapharm Africa',
-    logo: {
-      '@type': 'ImageObject',
-      url: `${siteUrl}assets/images/branding/Logo-Full-Color.png`,
-    },
-  },
+  publisher: { '@id': `${siteUrl}#organization` },
   blogPost: POSTS.map((p) => ({
     '@type': 'BlogPosting',
     headline: p.title[lang],
     description: p.description[lang],
-    url: new URL(postPath(p, lang), siteUrl).href,
+    url: new URL(`${postPath(p, lang).replace(/\/$/, '')}/`, siteUrl).href,
     datePublished: p.datePublished,
-    image: new URL(`assets/images/blog/${p.heroImage}`, siteUrl).href,
+    image: postImages.get(p.id) ? new URL(postImages.get(p.id)!.src, siteUrl).href : undefined,
   })),
 };
 ---

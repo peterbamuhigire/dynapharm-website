@@ -4,12 +4,22 @@ import type { Lang } from '@utils/i18n';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import '@styles/global.css';
+import { getImage } from 'astro:assets';
+import brandLogo from '@assets/images/branding/Logo-Full-Color.png';
+import brandIcon from '@assets/images/branding/Logo-Dark-Mode.png';
+import { frontmatter as englishSearch } from '../../docs/en/search-metadata.md';
+import { frontmatter as frenchSearch } from '../../docs/fr/search-metadata.md';
 
 interface Props {
   title: string;
   description: string;
   lang?: Lang;
   ogImage?: string;
+  ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogType?: string;
+  locale?: string;
   keywords?: string;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
   /** Optional override for cross-language URLs — used by pages whose
@@ -19,20 +29,40 @@ interface Props {
 }
 
 const {
-  title,
-  description,
+  title: pageTitle,
+  description: pageDescription,
   lang = 'en' as Lang,
   ogImage,
+  ogImageAlt = pageTitle,
+  ogImageWidth,
+  ogImageHeight,
+  ogType = 'website',
+  locale,
   keywords,
   structuredData,
   alternates,
 } = Astro.props;
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const siteUrl = Astro.site?.href || 'https://dynapharmafrica.com';
-const ogImageUrl = ogImage
-  ? new URL(ogImage, Astro.site).href
-  : `${siteUrl}assets/images/branding/Logo-Full-Color.png`;
+const routeKey = Astro.url.pathname.replace(/^\/(en|fr)\/?/, '').replace(/\/$/, '');
+const searchContent = lang === 'fr' ? frenchSearch : englishSearch;
+const metadata = searchContent.pages[routeKey] || {};
+const title = metadata.title || pageTitle;
+const description = metadata.description || pageDescription;
+const siteUrl = Astro.site?.href || 'https://dynapharmafrica.com/';
+const absoluteUrl = (path: string) => {
+  const url = new URL(path, siteUrl);
+  if (!url.pathname.endsWith('/') && !/\.[a-z0-9]+$/i.test(url.pathname)) url.pathname += '/';
+  return url.href;
+};
+const canonicalUrl = new URL(absoluteUrl(Astro.url.pathname));
+const socialLogo = await getImage({ src: brandLogo, width: 982, format: 'png' });
+const favicon = await getImage({ src: brandIcon, width: 64, format: 'png' });
+const ogImageUrl = new URL(ogImage || socialLogo.src, siteUrl).href;
+const socialWidth = ogImage ? ogImageWidth : socialLogo.attributes.width;
+const socialHeight = ogImage ? ogImageHeight : socialLogo.attributes.height;
+const suppliedSchemas = !structuredData ? [] : Array.isArray(structuredData) ? structuredData : [structuredData];
+const hasBreadcrumb = suppliedSchemas.some((schema) => schema['@type'] === 'BreadcrumbList');
+const hasWebPage = suppliedSchemas.some((schema) => ['WebPage', 'CollectionPage'].includes(String(schema['@type'])));
 
 const localeMap: Record<string, string> = {
   en: 'en_GB',
@@ -43,9 +73,10 @@ const localeMap: Record<string, string> = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': `${siteUrl}#organization`,
   name: 'Dynapharm Africa',
   url: siteUrl,
-  logo: `${siteUrl}assets/images/branding/Logo-Full-Color.png`,
+  logo: absoluteUrl(socialLogo.src),
   description: lang === 'fr'
     ? 'Entreprise internationale de santé et bien-être proposant plus de 90 produits naturels et une opportunité d\'affaires éprouvée dans plus de 40 pays en Afrique.'
     : 'International health and wellness company offering 90+ natural products and a proven business opportunity across 40+ countries in Africa and beyond.',
@@ -68,7 +99,7 @@ const organizationSchema = {
 // BreadcrumbList schema for inner pages
 const pathSegments = Astro.url.pathname.replace(/^\//, '').replace(/\/$/, '').split('/');
 const isHomePage = pathSegments.length <= 1 || (pathSegments.length === 2 && pathSegments[1] === '');
-const breadcrumbSchema = !isHomePage ? {
+const breadcrumbSchema = !isHomePage && !hasBreadcrumb ? {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
@@ -92,16 +123,29 @@ const breadcrumbSchema = !isHomePage ? {
 const altLang = getAlternateLang(lang);
 const altPath = alternates?.[altLang] ?? getLocalizedPath(Astro.url.pathname, altLang);
 
-// Collect all schemas
-const allSchemas: Record<string, unknown>[] = [organizationSchema];
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}#website`,
+  url: siteUrl,
+  name: 'Dynapharm Africa',
+  inLanguage: ['en', 'fr'],
+  publisher: { '@id': `${siteUrl}#organization` },
+};
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': canonicalUrl.href,
+  url: canonicalUrl.href,
+  name: title,
+  description,
+  inLanguage: lang,
+  isPartOf: { '@id': `${siteUrl}#website` },
+};
+const allSchemas: Record<string, unknown>[] = [organizationSchema, websiteSchema, ...suppliedSchemas];
 if (breadcrumbSchema) allSchemas.push(breadcrumbSchema);
-if (structuredData) {
-  if (Array.isArray(structuredData)) {
-    allSchemas.push(...structuredData);
-  } else {
-    allSchemas.push(structuredData);
-  }
-}
+if (!hasWebPage) allSchemas.push(webPageSchema);
+
 ---
 
 <!DOCTYPE html>
@@ -116,46 +160,51 @@ if (structuredData) {
     {keywords && <meta name="keywords" content={keywords} />}
 
     <!-- Geo targeting — Africa -->
-    <meta name="geo.region" content="002" />
-    <meta name="geo.placename" content="Africa" />
-    <meta name="content-language" content={lang} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
 
     <!-- Canonical -->
     <link rel="canonical" href={canonicalUrl.href} />
+    <link rel="describedby" type="text/plain" href={new URL('/llms.txt', siteUrl).href} />
+    {routeKey === 'country-profiles/senegal' && (
+      <link rel="alternate" type="text/markdown" href={new URL('index.md', canonicalUrl).href} />
+    )}
 
     <!-- Hreflang alternates -->
     {SUPPORTED_LANGS.map((l) => (
       <link
         rel="alternate"
         hreflang={l}
-        href={new URL(alternates?.[l] ?? getLocalizedPath(Astro.url.pathname, l), Astro.site).href}
+        href={absoluteUrl(alternates?.[l] ?? getLocalizedPath(Astro.url.pathname, l))}
       />
     ))}
     <link
       rel="alternate"
       hreflang="x-default"
-      href={new URL(alternates?.en ?? getLocalizedPath(Astro.url.pathname, 'en'), Astro.site).href}
+      href={absoluteUrl(alternates?.en ?? getLocalizedPath(Astro.url.pathname, 'en'))}
     />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Dynapharm Africa" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl.href} />
-    <meta property="og:locale" content={localeMap[lang] || 'en_GB'} />
+    <meta property="og:locale" content={locale || localeMap[lang]} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:locale:alternate" content={localeMap[getAlternateLang(lang)]} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    {socialWidth && <meta property="og:image:width" content={socialWidth} />}
+    {socialHeight && <meta property="og:image:height" content={socialHeight} />}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="64x64" href={favicon.src} />
 
     <!-- Fonts are self-hosted via Fontsource (@import in global.css) and ship with
          font-display: swap, so no external preconnect/CDN handshake is needed. -->
@@ -163,7 +212,7 @@ if (structuredData) {
 
     <!-- Structured Data -->
     {allSchemas.map((schema) => (
-      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
     ))}
   </head>
   <body class="min-h-screen flex flex-col bg-cream text-charcoal font-body antialiased">
@@ -174,7 +223,7 @@ if (structuredData) {
 
     <Header lang={lang} altPath={altPath} />
 
-    <main id="main-content" class="flex-1">
+    <main id="main-content" tabindex="-1" class="flex-1">
       <slot />
     </main>
 
@@ -194,7 +243,7 @@ if (structuredData) {
       x-transition:leave-start="opacity-100 scale-100"
       x-transition:leave-end="opacity-0 scale-90"
       x-cloak
-      x-on:click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      x-on:click="window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })"
       aria-label={t(lang, 'common', 'backToTop')}
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
