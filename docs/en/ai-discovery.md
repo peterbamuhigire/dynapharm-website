@@ -1,8 +1,8 @@
 ---
 title: Dynapharm Africa
 summary: Product information, country profiles and distributor enquiries in English and French.
-scope: This index points to public website content. Product ranges in the Africa catalogue do not confirm local stock, prices or availability in a particular country.
-senegalNote: The Senegal profile distinguishes the corporate country listing from unverified local contact details. Its source notes explain the integrity concerns recorded for the Senegal website on 9 September 2026. The general Africa email is not a verified Senegal office contact.
+scope: This index presents Dynapharm Africa products, country profiles and distributor information.
+senegalNote: A DPC network in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll, connecting customers and distributors with Dynapharm products and support.
 section: English
 pages:
   - { label: Home, route: '' }

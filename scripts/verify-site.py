@@ -172,18 +172,27 @@ def main():
     for language in ['en', 'fr']:
         markdown_path = DIST / language / 'country-profiles' / 'senegal' / 'index.md'
         discovery_files.append(markdown_path)
+        source = (ROOT / 'docs' / language / 'country-senegal.md').read_text(encoding='utf-8')
+        content = json.loads(source.split('---', 2)[1])
         if markdown_path.is_file():
             markdown = markdown_path.read_text(encoding='utf-8')
-            source = (ROOT / 'docs' / language / 'country-senegal.md').read_text(encoding='utf-8')
-            content = json.loads(source.split('---', 2)[1])
-            required_text = [content[key] for key in ['heading', 'intro', 'overviewBody', 'pendingValue', 'productsIntro', 'contactIntro', 'email', 'sourceWarning', 'sourceNote']]
+            if 'mailto:' in markdown or re.search(r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}', markdown):
+                errors.append({'route': str(markdown_path.relative_to(DIST)), 'check': 'Country Markdown contains no contact details'})
+            required_text = [content[key] for key in ['heading', 'intro', 'overviewBody', 'locationsHeading', 'productsIntro']]
             required_text.extend(faq['answer'] for faq in content['faqs'])
+            required_text.extend(location['city'] for location in content['locations'])
             if any(text not in markdown for text in required_text):
-                errors.append({'route': str(markdown_path.relative_to(DIST)), 'check': 'Markdown preserves visible source facts, answers and warnings'})
+                errors.append({'route': str(markdown_path.relative_to(DIST)), 'check': 'Markdown preserves visible source facts, DPC cities and answers'})
         country_page = by_path[DIST / language / 'country-profiles' / 'senegal' / 'index.html']
-        source_links = [link for link in country_page.links if link.get('href') == 'https://dynapharmsenegal.com/']
-        if len(source_links) != 1 or source_links[0].get('target') != '_blank' or not {'noopener', 'noreferrer', 'nofollow'}.issubset(set(source_links[0].get('rel', '').split())):
-            errors.append({'route': country_page.route, 'check': 'Senegal attribution opens safely in a new tab with no endorsement'})
+        country_html = country_page.path.read_text(encoding='utf-8')
+        locations_section = re.search(r'<section\b[^>]*id="locations"[^>]*>(.*?)</section>', country_html, re.S)
+        if not locations_section or re.search(r'<a\b', locations_section.group(1)):
+            errors.append({'route': country_page.route, 'check': 'DPC cities are listed without links'})
+        if 'mailto:' in country_html or 'id="enquiries"' in country_html or re.search(r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}', country_html):
+            errors.append({'route': country_page.route, 'check': 'Country profile contains no contact details'})
+        for location in content['locations']:
+            if location['city'] not in country_html:
+                errors.append({'route': country_page.route, 'check': 'DPC city appears in country profile: ' + location['city']})
     for discovery_file in discovery_files:
         if not discovery_file.is_file():
             errors.append({'route': str(discovery_file.relative_to(DIST)), 'check': 'AI discovery file exists'})

@@ -8,9 +8,10 @@ import logoDark from '@assets/images/branding/Logo-Dark-Mode.png';
 interface Props {
   lang: Lang;
   altPath?: string;
+  showContactDetails?: boolean;
 }
 
-const { lang, altPath } = Astro.props;
+const { lang, altPath, showContactDetails = true } = Astro.props;
 const footer = tSection(lang, 'footer');
 const nav = tSection(lang, 'nav');
 
@@ -29,7 +30,7 @@ const footerNavItems = [
 <footer class="bg-charcoal text-cream" role="contentinfo">
   <div class="section-container">
     <!-- Main Footer Content -->
-    <div class="py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+    <div class:list={["py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12", showContactDetails ? "lg:grid-cols-4" : "lg:grid-cols-3"]}>
       <!-- Column 1: Logo + Tagline -->
       <div class="lg:col-span-1">
         <a href={`/${lang}`} class="inline-block mb-4" aria-label="Dynapharm Africa">
@@ -86,8 +87,7 @@ const footerNavItems = [
         </ul>
       </div>
 
-      <!-- Column 4: Contact -->
-      <div>
+      {showContactDetails && <div>
         <h3 class="font-heading text-sm font-semibold uppercase tracking-wider text-gold-300 mb-4">
           {lang === 'en' ? 'Get in Touch' : 'Nous Contacter'}
         </h3>
@@ -115,6 +115,7 @@ const footerNavItems = [
           </li>
         </ul>
       </div>
+      }
     </div>
 
     <!-- Bottom Bar -->

@@ -14,6 +14,7 @@ interface Props {
   title: string;
   description: string;
   lang?: Lang;
+  showContactDetails?: boolean;
   ogImage?: string;
   ogImageAlt?: string;
   ogImageWidth?: number;
@@ -40,6 +41,7 @@ const {
   locale,
   keywords,
   structuredData,
+  showContactDetails = true,
   alternates,
 } = Astro.props;
 
@@ -80,7 +82,7 @@ const organizationSchema = {
   description: lang === 'fr'
     ? 'Entreprise internationale de santé et bien-être proposant plus de 90 produits naturels et une opportunité d\'affaires éprouvée dans plus de 40 pays en Afrique.'
     : 'International health and wellness company offering 90+ natural products and a proven business opportunity across 40+ countries in Africa and beyond.',
-  email: 'info@dynapharmafrica.com',
+  ...(showContactDetails ? { email: 'info@dynapharmafrica.com' } : {}),
   foundingDate: '1981',
   knowsLanguage: ['en', 'fr'],
   areaServed: [
@@ -227,7 +229,7 @@ if (!hasWebPage) allSchemas.push(webPageSchema);
       <slot />
     </main>
 
-    <Footer lang={lang} altPath={altPath} />
+    <Footer lang={lang} altPath={altPath} showContactDetails={showContactDetails} />
 
     <!-- Back to top button -->
     <button

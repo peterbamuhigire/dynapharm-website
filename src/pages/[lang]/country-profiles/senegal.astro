@@ -17,19 +17,29 @@ const canonical = new URL(`/${lang}/country-profiles/senegal/`, siteUrl).href;
 const socialImage = await getImage({ src: boats, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 82 });
 const sections = [
   { id: 'overview', label: content.overviewLabel },
+  { id: 'locations', label: content.locationsLabel },
   { id: 'products', label: content.productsLabel },
-  { id: 'enquiries', label: content.contactLabel },
   { id: 'questions', label: content.faqLabel },
-  { id: 'sources', label: content.sourcesLabel },
 ];
 const schemas = [
+  {
+    '@context': 'https://schema.org', '@type': 'ItemList', '@id': canonical + '#locations',
+    name: content.locationsHeading, numberOfItems: content.locations.length,
+    itemListElement: content.locations.map((location, index) => ({
+      '@type': 'ListItem', position: index + 1,
+      item: {
+        '@type': 'Place', name: location.name,
+        address: { '@type': 'PostalAddress', addressLocality: location.city, addressCountry: 'SN' },
+      },
+    })),
+  },
   {
     '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical,
     url: canonical, name: content.title, description: content.description, inLanguage: lang,
     isPartOf: { '@id': `${siteUrl.href}#website` },
     about: { '@type': 'Country', name: content.name, identifier: 'SN' },
     image: new URL(socialImage.src, siteUrl).href,
-    citation: content.corporateUrl,
+    mainEntity: { '@id': canonical + '#locations' },
   },
   {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -42,7 +52,7 @@ const schemas = [
 ];
 ---
 
-<BaseLayout title={content.title} description={content.description} keywords={content.keywords} lang={lang}
+<BaseLayout title={content.title} description={content.description} keywords={content.keywords} lang={lang} showContactDetails={false}
   locale={lang === 'fr' ? 'fr_SN' : 'en_GB'} structuredData={schemas}
   ogImage={socialImage.src} ogImageWidth={1200} ogImageHeight={630} ogImageAlt={content.heroAlt}>
   <section class="relative isolate overflow-hidden bg-charcoal text-white">
@@ -62,7 +72,7 @@ const schemas = [
       <p class="font-accent text-sm font-semibold tracking-widest uppercase mb-5">{content.eyebrow}</p>
       <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold max-w-3xl leading-tight mb-6">{content.heading}</h1>
       <p class="font-body text-lg md:text-xl leading-relaxed max-w-2xl text-white/95">{content.intro}</p>
-      <a href="#enquiries" class="btn-primary mt-8">{content.contactLabel}</a>
+      <a href="#locations" class="btn-primary mt-8">{content.locationsLabel}</a>
     </div>
   </section>
 
@@ -78,14 +88,32 @@ const schemas = [
         <h2 class="font-heading text-2xl md:text-3xl font-bold mb-5">{content.overviewHeading}</h2>
         <p class="leading-relaxed text-charcoal-light mb-7">{content.overviewBody}</p>
         <dl class="space-y-6 border-l-4 border-dynared pl-6">
-          <div><dt class="font-semibold mb-2">{content.verifiedLabel}</dt><dd class="text-charcoal-light">{content.verifiedValue}</dd></div>
-          <div><dt class="font-semibold mb-2">{content.pendingLabel}</dt><dd class="text-charcoal-light leading-relaxed">{content.pendingValue}</dd></div>
+          {content.highlights.map((highlight) => (
+            <div><dt class="font-semibold mb-2">{highlight.label}</dt><dd class="text-charcoal-light">{highlight.value}</dd></div>
+          ))}
         </dl>
       </div>
       <figure>
         <Image src={countryMap} alt={content.mapAlt} widths={[400, 640, 800]} sizes="(min-width: 1024px) 40vw, 90vw" loading="lazy" class="w-full rounded-2xl bg-white p-6" />
         <figcaption class="text-sm text-charcoal-light mt-4 leading-relaxed">{content.photoCaption}</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section id="locations" class="section-padding bg-white">
+    <div class="section-container">
+      <div class="max-w-3xl mb-10">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold mb-5">{content.locationsHeading}</h2>
+        <p class="text-charcoal-light leading-relaxed">{content.locationsIntro}</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        {content.locations.map((location, index) => (
+          <article class="rounded-xl border border-grey-light bg-cream p-6 md:p-7">
+            <span class="font-accent text-sm font-semibold tracking-wider text-dynared" aria-hidden="true">{String(index + 1).padStart(2, '0')} · DPC</span>
+            <h3 class="font-heading text-2xl font-bold mt-3">{location.city}</h3>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -107,26 +135,6 @@ const schemas = [
     </div>
   </section>
 
-  <section id="enquiries" class="section-padding bg-cream">
-    <div class="section-container grid lg:grid-cols-2 gap-10 lg:gap-16">
-      <div>
-        <h2 class="font-heading text-2xl md:text-3xl font-bold mb-5">{content.contactHeading}</h2>
-        <p class="text-charcoal-light leading-relaxed mb-7">{content.contactIntro}</p>
-        <p class="font-semibold mb-2">{content.emailLabel}</p>
-        <a href={`mailto:${content.email}`} class="inline-flex min-h-11 items-center text-dynared font-semibold break-all underline underline-offset-4">{content.email}</a>
-        <div class="flex flex-wrap gap-4 mt-6">
-          <a href={`/${lang}/contact/`} class="btn-primary">{content.contactCta}</a>
-          <a href={`/${lang}/business-opportunity/`} class="inline-flex min-h-11 items-center text-dynared font-semibold underline underline-offset-4">{content.businessCta}</a>
-        </div>
-      </div>
-      <ol class="space-y-7">
-        {content.steps.map((step: { title: string; body: string }, index: number) => (
-          <li class="flex gap-5"><span aria-hidden="true" class="font-heading text-3xl font-bold text-dynared">{String(index + 1).padStart(2, '0')}</span><div><h3 class="font-heading text-xl font-bold mb-2">{step.title}</h3><p class="text-charcoal-light leading-relaxed">{step.body}</p></div></li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
   <section id="questions" class="section-padding bg-white">
     <div class="section-container grid lg:grid-cols-[1fr_1.6fr] gap-10 lg:gap-16 items-start">
       <div><h2 class="font-heading text-2xl md:text-3xl font-bold mb-6">{content.faqHeading}</h2><Image src={flag} alt={content.flagAlt} widths={[400, 640]} sizes="(min-width: 1024px) 30vw, 90vw" loading="lazy" class="w-full rounded-xl" /></div>
@@ -142,14 +150,4 @@ const schemas = [
     <div class="section-container"><h2 class="font-heading text-xl font-bold mb-4">{content.relatedHeading}</h2><a href={`/${lang}/country-profiles/`} class="min-h-11 inline-flex items-center text-dynared font-semibold underline underline-offset-4">{content.relatedCountries}</a></div>
   </section>
 
-  <section id="sources" class="bg-white py-12 border-t border-grey-light">
-    <div class="section-container max-w-4xl">
-      <h2 class="font-heading text-2xl font-bold mb-3">{content.sourcesHeading}</h2>
-      <p class="text-sm font-semibold text-charcoal-light mb-4"><time datetime="2026-09-09">{content.reviewedLabel}</time></p>
-      <p class="text-charcoal-light leading-relaxed mb-4">{content.sourceNote}</p>
-      <a href={content.corporateUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-dynared underline underline-offset-4">{content.corporateSource} ({content.newTab})</a>
-      <aside class="border-l-4 border-dynared bg-cream p-5 my-5 text-sm leading-relaxed">{content.sourceWarning}</aside>
-      <a href={content.originalUrl} target="_blank" rel="noopener noreferrer nofollow" referrerpolicy="no-referrer" class="inline-flex min-h-11 items-center text-dynared font-semibold underline underline-offset-4">{content.originalSource} ({content.newTab})</a>
-    </div>
-  </section>
 </BaseLayout>

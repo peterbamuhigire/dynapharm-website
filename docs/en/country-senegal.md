@@ -2,113 +2,111 @@
 {
   "name": "Senegal",
   "eyebrow": "West Africa · Country profile",
-  "title": "Dynapharm Senegal | Products & Distributor Enquiries",
-  "description": "Explore Dynapharm Senegal: product information, DI Grow enquiries and distributor guidance. Check source notes and request verified local contact details.",
-  "keywords": "Dynapharm Senegal, Dynapharm Dakar, DI Grow Senegal, Dynapharm products Senegal, distributor enquiries Senegal",
-  "heading": "Dynapharm in Senegal",
-  "intro": "A practical starting point for product and distributor enquiries in Senegal, with a clear distinction between corporate information and local details awaiting confirmation.",
+  "title": "Dynapharm Senegal | DPC Locations, Products & Distributors",
+  "description": "Find Dynapharm DPCs in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll. Explore products, DI Grow and distributor information in Senegal.",
+  "keywords": "Dynapharm Senegal, Dynapharm Dakar DPC, Dynapharm Thiès, Dynapharm Kédougou, Dynapharm Touba, Dynapharm Saint-Louis, Dynapharm Richard-Toll, Dynapharm products Senegal, DI Grow Senegal, Dynapharm distributors Senegal",
+  "heading": "Dynapharm Senegal",
+  "intro": "A DPC network in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll, connecting customers and distributors with Dynapharm products and support.",
   "home": "Home",
   "directory": "Country profiles",
   "overviewLabel": "Overview",
   "productsLabel": "Products",
-  "contactLabel": "Enquiries",
   "faqLabel": "Questions",
-  "sourcesLabel": "Sources",
   "heroAlt": "Colourful fishing boats on a beach in Dakar, Senegal",
   "mapAlt": "Illustrated map of Senegal in the colours of its flag",
   "flagAlt": "Green, yellow and red Senegal flag with a central green star",
-  "overviewHeading": "A country profile built on clear information",
-  "overviewBody": "Dynapharm International lists Senegal among its country entries. This profile brings together corporate product information and a general enquiry route; it is not a verified directory of Senegalese shops.",
-  "verifiedLabel": "Corporate country listing",
-  "verifiedValue": "Senegal appears on Dynapharm International’s website.",
-  "pendingLabel": "Local details awaiting confirmation",
-  "pendingValue": "A current street address, local telephone number, opening hours and stock list have not been independently confirmed.",
-  "photoCaption": "Dakar imagery provides country context; it does not show a Dynapharm office or point of sale.",
-  "productsHeading": "Explore the ranges before you enquire",
-  "productsIntro": "The Africa catalogue covers several product categories. These links describe the wider range, not confirmed stock or authorisation for sale in Senegal. Ask for the exact product name and current local availability.",
+  "overviewHeading": "A local network across Senegal",
+  "overviewBody": "Dynapharm has Distribution Centres (DPCs) in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll. This local network supports product discovery and the development of distributor businesses in Senegal.",
+  "photoCaption": "Senegal, West Africa.",
+  "productsHeading": "Explore the Dynapharm range",
+  "productsIntro": "Explore the Dynapharm catalogue, from beverages and nutritional supplements to personal care and agricultural products.",
   "categories": [
     {
       "title": "Beverages and nutrition",
-      "body": "Explore beverages and nutritional supplements in the corporate catalogue, then request the product information relevant to your enquiry.",
+      "body": "Discover beverages and nutritional supplements in the Dynapharm catalogue.",
       "href": "products"
     },
     {
-      "title": "Personal care and everyday wellbeing",
-      "body": "Browse the catalogue to identify a specific personal care or wellness product before asking where it can be obtained.",
+      "title": "Personal care and wellbeing",
+      "body": "Explore the personal care range and products for everyday wellbeing.",
       "href": "products"
     },
     {
-      "title": "DI Grow and agricultural enquiries",
-      "body": "Looking for DI Grow in Senegal? Ask the corporate contact to confirm the appropriate local contact and current product information.",
+      "title": "DI Grow and agriculture",
+      "body": "Find DI Grow and information about the agricultural range in the Dynapharm catalogue.",
       "href": "products"
     }
   ],
   "catalogueCta": "Explore the catalogue",
-  "contactHeading": "How to enquire from Senegal",
-  "contactIntro": "Use the Dynapharm Africa general enquiry route to ask for verified local information. This is an Africa-wide contact, not a Senegal office or a local customer service line.",
-  "emailLabel": "Dynapharm Africa · General enquiries",
-  "email": "info@dynapharmafrica.com",
-  "contactCta": "View contact options",
-  "businessCta": "Read distributor information",
-  "steps": [
-    {
-      "title": "Explain what you need",
-      "body": "Specify whether your enquiry concerns a product, DI Grow or distributor registration, and name your town or city."
-    },
-    {
-      "title": "Request current local details",
-      "body": "Ask for the authorised contact, exact address, opening hours and product availability before travelling or placing an order."
-    },
-    {
-      "title": "Confirm the terms directly",
-      "body": "Request written details of any registration requirements or purchase terms. Existing distributors can also consult their sponsor."
-    }
-  ],
   "faqHeading": "Questions about Dynapharm Senegal",
   "faqs": [
     {
-      "question": "Where can I buy Dynapharm products in Senegal?",
-      "answer": "This profile does not yet contain a verified Senegal outlet address. Contact Dynapharm Africa at info@dynapharmafrica.com and ask for current local details before visiting a shop or placing an order."
+      "question": "Where can I find a Dynapharm DPC in Senegal?",
+      "answer": "Dynapharm has DPCs in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll."
     },
     {
-      "question": "Are DI Grow and nutritional supplements available in Senegal?",
-      "answer": "These ranges appear in Dynapharm Africa’s wider catalogue. Their current availability in Senegal has not been confirmed for this profile. Ask about the exact product and local stock."
+      "question": "Which product ranges can I explore?",
+      "answer": "The Dynapharm catalogue features beverages, nutritional supplements, personal care and agricultural products."
     },
     {
-      "question": "How can I enquire about becoming a distributor in Senegal?",
-      "answer": "Read the general distributor information and contact Dynapharm Africa for the applicable local process. Do not assume that requirements or terms are identical in every country."
-    },
-    {
-      "question": "Why does this profile flag the Senegal website?",
-      "answer": "The source website showed altered metadata and links to an unrelated domain during the 9 September 2026 review. Its contacts, prices and commercial claims have therefore not been treated as verified current information."
+      "question": "Where can I find information about DI Grow?",
+      "answer": "The DI Grow range appears in the Agriculture category of the Dynapharm catalogue."
     }
   ],
-  "sourcesHeading": "Sources and verification notes",
-  "reviewedLabel": "Reviewed on 9 September 2026",
-  "sourceNote": "This page uses the corporate country listing and the Africa catalogue/contact information. Local contact details, stock and prices require confirmation. The next source review is due on 16 September 2026.",
-  "corporateSource": "Dynapharm International · Country listing",
-  "corporateUrl": "https://www.dynapharm.net/index1.html",
-  "sourceWarning": "External-source caution: the Senegal website showed signs of compromise when reviewed. It is referenced for attribution, not endorsed as a safe purchasing or registration channel. Do not enter personal details or make payments there until its integrity has been confirmed.",
-  "originalSource": "Referenced website: Dynapharm Senegal",
-  "originalUrl": "https://dynapharmsenegal.com/",
-  "newTab": "opens in a new tab",
   "relatedHeading": "Continue exploring",
   "relatedCountries": "Other African country profiles",
   "directoryCard": {
     "name": "Senegal",
     "slug": "senegal",
-    "tagline": "Product and distributor enquiries · Local details to confirm",
-    "description": "Explore the Senegal profile, corporate product information and a general enquiry route, with transparent source-verification notes.",
+    "tagline": "DPCs in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll",
+    "description": "Explore Dynapharm in Senegal: DPCs in six cities, product ranges, DI Grow and distributor information.",
     "cta": "View Senegal profile",
     "imageAlt": "Illustrated map of Senegal in the colours of its flag",
     "outletsCount": null,
     "regions": null
-  }
+  },
+  "highlights": [
+    {
+      "label": "DPCs in six cities",
+      "value": "Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll."
+    },
+    {
+      "label": "Products and distribution",
+      "value": "Explore the Dynapharm range and find information about joining the distributor network."
+    }
+  ],
+  "locationsLabel": "Our DPCs",
+  "locationsHeading": "Dynapharm DPC locations in Senegal",
+  "locationsIntro": "Dynapharm DPCs are present in the following cities.",
+  "locations": [
+    {
+      "city": "Dakar",
+      "name": "DPC Dynapharm — Dakar"
+    },
+    {
+      "city": "Thiès",
+      "name": "DPC Dynapharm — Thiès"
+    },
+    {
+      "city": "Kédougou",
+      "name": "DPC Dynapharm — Kédougou"
+    },
+    {
+      "city": "Touba",
+      "name": "DPC Dynapharm — Touba"
+    },
+    {
+      "city": "Saint-Louis",
+      "name": "DPC Dynapharm — Saint-Louis"
+    },
+    {
+      "city": "Richard-Toll",
+      "name": "DPC Dynapharm — Richard-Toll"
+    }
+  ]
 }
 ---
 
-# Dynapharm in Senegal
+# Dynapharm Senegal
 
-Source of truth for the rendered Senegal profile. Structured editorial fields above are consumed at build time; update this file, not duplicate page strings.
-
-Evidence: ../research/senegal-source-register-2026-09-09.md. Supplied photography depicts country context, not company premises.
+Source of truth for the rendered country profile and Markdown export. DPC city locations were confirmed by Peter Bamuhigire on 9 September 2026. See ../research/senegal-source-register-2026-09-09.md for internal editorial provenance.

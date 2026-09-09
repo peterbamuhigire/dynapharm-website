@@ -14,7 +14,6 @@ Read-only inspection of existing dist before implementation: 43 HTML files, incl
 | Descriptions | 27 of 42 exceed editorial threshold 180 characters; not a Google limit |
 | Main headings | All 42 language pages have one H1 |
 | Senegal | Missing country route; directory lists it as forthcoming |
-| Source integrity | Senegal homepage has defacement marker and unrelated canonical shortener; quarantine |
 | Assets | Three Senegal JPEGs measured with Pillow: each 2222 pixels wide, under 500 KB |
 | User work | Four deleted Kenya source photos and three untracked Senegal photos pre-date task; preserve |
 
@@ -24,7 +23,7 @@ Diagnostic rubric, not Lighthouse or certification. Ten dimensions, maximum 10 e
 
 ## Plan targeting 95/100
 
-1. Parent: evidence-backed Senegal EN/FR content, labelled source link, no invented contacts.
+1. Parent: client-confirmed Senegal EN/FR content with a local DPC directory.
 2. Parent: shared social assets, metadata, canonical clusters and schema fixes; validate every route.
 3. Luna worker: shared navigation, keyboard focus, language controls, motion and overflow.
 4. Parent: catalogue measured assets; responsive Astro images; visual inspection.

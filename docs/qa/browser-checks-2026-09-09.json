@@ -854,8 +854,5 @@
       "width": 1280
     }
   ],
-  "sourcePlacement": {
-    "lastMainLink": "https://dynapharmsenegal.com/",
-    "markdownLink": "https://dynapharmafrica.com/fr/country-profiles/senegal/index.md"
-  }
+  "editorialRevision": "The Senegal profile was subsequently updated using client-confirmed DPC city locations; prior geometry observations are historical."
 }
