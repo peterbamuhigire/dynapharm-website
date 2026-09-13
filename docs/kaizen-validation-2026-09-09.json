@@ -183,11 +183,12 @@
     {
       "route": "/en/country-profiles/senegal/",
       "title": "Dynapharm Senegal | DPC Locations, Products & Distributors",
-      "descriptionLength": 149,
+      "descriptionLength": 176,
       "schemaTypes": [
         "Organization",
         "WebSite",
         "ItemList",
+        "LocalBusiness",
         "WebPage",
         "BreadcrumbList"
       ]
@@ -452,11 +453,12 @@
     {
       "route": "/fr/country-profiles/senegal/",
       "title": "Dynapharm Sénégal | DPC, produits et distributeurs",
-      "descriptionLength": 152,
+      "descriptionLength": 178,
       "schemaTypes": [
         "Organization",
         "WebSite",
         "ItemList",
+        "LocalBusiness",
         "WebPage",
         "BreadcrumbList"
       ]

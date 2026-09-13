@@ -176,20 +176,23 @@ def main():
         content = json.loads(source.split('---', 2)[1])
         if markdown_path.is_file():
             markdown = markdown_path.read_text(encoding='utf-8')
-            if 'mailto:' in markdown or re.search(r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}', markdown):
-                errors.append({'route': str(markdown_path.relative_to(DIST)), 'check': 'Country Markdown contains no contact details'})
             required_text = [content[key] for key in ['heading', 'intro', 'overviewBody', 'locationsHeading', 'productsIntro']]
+            required_text.extend([content['headOffice']['heading'], content['headOffice']['intro'], *content['headOffice']['address'], content['headOffice']['telephone'], content['headOffice']['whatsapp'], content['headOffice']['email']])
             required_text.extend(faq['answer'] for faq in content['faqs'])
             required_text.extend(location['city'] for location in content['locations'])
             if any(text not in markdown for text in required_text):
-                errors.append({'route': str(markdown_path.relative_to(DIST)), 'check': 'Markdown preserves visible source facts, DPC cities and answers'})
+                errors.append({'route': str(markdown_path.relative_to(DIST)), 'check': 'Markdown preserves visible source facts, head office details, DPC cities and answers'})
         country_page = by_path[DIST / language / 'country-profiles' / 'senegal' / 'index.html']
         country_html = country_page.path.read_text(encoding='utf-8')
+        head_office_section = re.search(r'<section\b[^>]*id="head-office"[^>]*>(.*?)</section>', country_html, re.S)
         locations_section = re.search(r'<section\b[^>]*id="locations"[^>]*>(.*?)</section>', country_html, re.S)
+        if not head_office_section or country_html.find('id="head-office"') > country_html.find('id="locations"'):
+            errors.append({'route': country_page.route, 'check': 'Head office appears before the DPC city list'})
         if not locations_section or re.search(r'<a\b', locations_section.group(1)):
             errors.append({'route': country_page.route, 'check': 'DPC cities are listed without links'})
-        if 'mailto:' in country_html or 'id="enquiries"' in country_html or re.search(r'[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}', country_html):
-            errors.append({'route': country_page.route, 'check': 'Country profile contains no contact details'})
+        for detail in [*content['headOffice']['address'], content['headOffice']['telephone'], content['headOffice']['whatsapp'], content['headOffice']['email']]:
+            if detail not in country_html:
+                errors.append({'route': country_page.route, 'check': 'Head office detail appears in country profile: ' + detail})
         for location in content['locations']:
             if location['city'] not in country_html:
                 errors.append({'route': country_page.route, 'check': 'DPC city appears in country profile: ' + location['city']})

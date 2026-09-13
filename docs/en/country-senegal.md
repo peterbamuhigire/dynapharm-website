@@ -3,10 +3,10 @@
   "name": "Senegal",
   "eyebrow": "West Africa · Country profile",
   "title": "Dynapharm Senegal | DPC Locations, Products & Distributors",
-  "description": "Find Dynapharm DPCs in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll. Explore products, DI Grow and distributor information in Senegal.",
-  "keywords": "Dynapharm Senegal, Dynapharm Dakar DPC, Dynapharm Thiès, Dynapharm Kédougou, Dynapharm Touba, Dynapharm Saint-Louis, Dynapharm Richard-Toll, Dynapharm products Senegal, DI Grow Senegal, Dynapharm distributors Senegal",
+  "description": "Find the Dynapharm Senegal head office in Dakar, plus DPC cities in Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll. Explore products, DI Grow and distributor information.",
+  "keywords": "Dynapharm Senegal, Dynapharm Senegal head office, Dynapharm Dakar, 49 Rue WAGANE DIOUF, Dynapharm DPC Senegal, Dynapharm Thiès, Dynapharm Kédougou, Dynapharm Touba, Dynapharm Saint-Louis, Dynapharm Richard-Toll, Dynapharm products Senegal, DI Grow Senegal, Dynapharm distributors Senegal",
   "heading": "Dynapharm Senegal",
-  "intro": "A DPC network in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll, connecting customers and distributors with Dynapharm products and support.",
+  "intro": "Connect with the Dynapharm Senegal head office in Dakar, with DPC city locations across Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll.",
   "home": "Home",
   "directory": "Country profiles",
   "overviewLabel": "Overview",
@@ -16,7 +16,7 @@
   "mapAlt": "Illustrated map of Senegal in the colours of its flag",
   "flagAlt": "Green, yellow and red Senegal flag with a central green star",
   "overviewHeading": "A local network across Senegal",
-  "overviewBody": "Dynapharm has Distribution Centres (DPCs) in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll. This local network supports product discovery and the development of distributor businesses in Senegal.",
+  "overviewBody": "The confirmed Dynapharm Senegal head office is in Dakar. The wider local network also includes DPC city locations in Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll, supporting product enquiries and distributor businesses in Senegal.",
   "photoCaption": "Senegal, West Africa.",
   "productsHeading": "Explore the Dynapharm range",
   "productsIntro": "Explore the Dynapharm catalogue, from beverages and nutritional supplements to personal care and agricultural products.",
@@ -41,8 +41,16 @@
   "faqHeading": "Questions about Dynapharm Senegal",
   "faqs": [
     {
+      "question": "Where is the Dynapharm Senegal head office?",
+      "answer": "The Dynapharm Senegal head office is at 49 Rue WAGANE DIOUF, Av. G. Pompidou, Dakar, Senegal."
+    },
+    {
+      "question": "How can I contact the Dynapharm Senegal head office?",
+      "answer": "Call +221 33 822 20 73, send a WhatsApp message to +221 77 292 48 12, or email deodynapharm@gmail.com."
+    },
+    {
       "question": "Where can I find a Dynapharm DPC in Senegal?",
-      "answer": "Dynapharm has DPCs in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll."
+      "answer": "Confirmed DPC city locations are listed for Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll. The only confirmed street address currently published is the Dakar head office."
     },
     {
       "question": "Which product ranges can I explore?",
@@ -75,9 +83,25 @@
       "value": "Explore the Dynapharm range and find information about joining the distributor network."
     }
   ],
-  "locationsLabel": "Our DPCs",
+  "headOffice": {
+    "label": "Senegal Head Office",
+    "heading": "Visit or contact the Dynapharm Senegal head office",
+    "intro": "For product enquiries, distributor registration and local support, please contact the confirmed Dakar head office.",
+    "address": ["49 Rue WAGANE DIOUF", "Av. G. Pompidou", "Dakar, Senegal"],
+    "addressLabel": "Address",
+    "telephone": "+221 33 822 20 73",
+    "telephoneLabel": "Telephone",
+    "whatsapp": "+221 77 292 48 12",
+    "whatsappLabel": "WhatsApp",
+    "email": "deodynapharm@gmail.com",
+    "emailLabel": "Email",
+    "callCta": "Call the head office",
+    "whatsappCta": "Message on WhatsApp",
+    "emailCta": "Email the head office"
+  },
+  "locationsLabel": "DPC cities",
   "locationsHeading": "Dynapharm DPC locations in Senegal",
-  "locationsIntro": "Dynapharm DPCs are present in the following cities.",
+  "locationsIntro": "The confirmed Dakar head office is shown above. The entries below record DPC city locations; street addresses and direct contacts are not currently available for the other cities.",
   "locations": [
     {
       "city": "Dakar",

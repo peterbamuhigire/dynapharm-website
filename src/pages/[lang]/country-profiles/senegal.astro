@@ -17,10 +17,12 @@ const canonical = new URL(`/${lang}/country-profiles/senegal/`, siteUrl).href;
 const socialImage = await getImage({ src: boats, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 82 });
 const sections = [
   { id: 'overview', label: content.overviewLabel },
+  { id: 'head-office', label: content.headOffice.label },
   { id: 'locations', label: content.locationsLabel },
   { id: 'products', label: content.productsLabel },
   { id: 'questions', label: content.faqLabel },
 ];
+const whatsappHref = `https://wa.me/${content.headOffice.whatsapp.replace(/\D/g, '')}`;
 const schemas = [
   {
     '@context': 'https://schema.org', '@type': 'ItemList', '@id': canonical + '#locations',
@@ -34,12 +36,29 @@ const schemas = [
     })),
   },
   {
+    '@context': 'https://schema.org', '@type': 'LocalBusiness', '@id': canonical + '#head-office',
+    name: content.headOffice.label, url: canonical,
+    telephone: content.headOffice.telephone, email: content.headOffice.email,
+    sameAs: [whatsappHref],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: content.headOffice.address.join(', '),
+      addressLocality: 'Dakar', addressCountry: 'SN',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint', telephone: content.headOffice.telephone,
+      email: content.headOffice.email, contactType: 'customer service',
+      areaServed: 'SN', availableLanguage: ['en', 'fr'],
+    },
+  },
+  {
     '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical,
     url: canonical, name: content.title, description: content.description, inLanguage: lang,
     isPartOf: { '@id': `${siteUrl.href}#website` },
     about: { '@type': 'Country', name: content.name, identifier: 'SN' },
     image: new URL(socialImage.src, siteUrl).href,
     mainEntity: { '@id': canonical + '#locations' },
+    mentions: { '@id': canonical + '#head-office' },
   },
   {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -97,6 +116,41 @@ const schemas = [
         <Image src={countryMap} alt={content.mapAlt} widths={[400, 640, 800]} sizes="(min-width: 1024px) 40vw, 90vw" loading="lazy" class="w-full rounded-2xl bg-white p-6" />
         <figcaption class="text-sm text-charcoal-light mt-4 leading-relaxed">{content.photoCaption}</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section id="head-office" class="section-padding bg-charcoal text-white">
+    <div class="section-container grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-start">
+      <div>
+        <p class="font-accent text-sm font-semibold tracking-widest uppercase text-dynared-light mb-4">{content.headOffice.label}</p>
+        <h2 class="font-heading text-2xl md:text-3xl font-bold mb-5">{content.headOffice.heading}</h2>
+        <p class="leading-relaxed text-white/80 max-w-xl">{content.headOffice.intro}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={`tel:${content.headOffice.telephone.replace(/[^\d+]/g, '')}`} class="btn-primary">{content.headOffice.callCta}</a>
+          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="min-h-11 inline-flex items-center justify-center rounded-full border border-white/40 px-5 py-3 font-semibold text-white hover:border-white hover:bg-white/10 transition-colors">{content.headOffice.whatsappCta}</a>
+        </div>
+      </div>
+      <div class="rounded-2xl bg-white text-charcoal p-6 md:p-8 shadow-xl">
+        <p class="font-accent text-xs uppercase tracking-wider text-dynared font-semibold mb-3">{content.headOffice.addressLabel}</p>
+        <address class="not-italic font-heading text-xl font-bold leading-relaxed mb-7">
+          {content.headOffice.address.map((line: string) => <span class="block">{line}</span>)}
+        </address>
+        <dl class="space-y-5 border-t border-grey-light pt-6">
+          <div>
+            <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light mb-1">{content.headOffice.telephoneLabel}</dt>
+            <dd><a href={`tel:${content.headOffice.telephone.replace(/[^\d+]/g, '')}`} class="font-semibold text-dynared underline underline-offset-4 break-words">{content.headOffice.telephone}</a></dd>
+          </div>
+          <div>
+            <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light mb-1">{content.headOffice.whatsappLabel}</dt>
+            <dd><a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="font-semibold text-dynared underline underline-offset-4 break-words">{content.headOffice.whatsapp}</a></dd>
+          </div>
+          <div>
+            <dt class="font-accent text-xs uppercase tracking-wider text-charcoal-light mb-1">{content.headOffice.emailLabel}</dt>
+            <dd><a href={`mailto:${content.headOffice.email}`} class="font-semibold text-dynared underline underline-offset-4 break-all">{content.headOffice.email}</a></dd>
+          </div>
+        </dl>
+        <a href={`mailto:${content.headOffice.email}`} class="mt-7 min-h-11 inline-flex items-center font-semibold text-dynared underline underline-offset-4">{content.headOffice.emailCta}</a>
+      </div>
     </div>
   </section>
 

@@ -3,10 +3,10 @@
   "name": "Sénégal",
   "eyebrow": "Afrique de l’Ouest · Profil pays",
   "title": "Dynapharm Sénégal | DPC, produits et distributeurs",
-  "description": "Retrouvez les DPC Dynapharm à Dakar, Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll. Découvrez les produits, DI Grow et la distribution au Sénégal.",
-  "keywords": "Dynapharm Sénégal, DPC Dynapharm Dakar, Dynapharm Thiès, Dynapharm Kédougou, Dynapharm Touba, Dynapharm Saint-Louis, Dynapharm Richard-Toll, produits Dynapharm Sénégal, DI Grow Sénégal, distributeur Dynapharm Sénégal",
+  "description": "Retrouvez le siège Dynapharm Sénégal à Dakar, ainsi que les villes DPC de Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll. Découvrez les produits, DI Grow et la distribution.",
+  "keywords": "Dynapharm Sénégal, siège Dynapharm Sénégal, Dynapharm Dakar, 49 Rue WAGANE DIOUF, DPC Dynapharm Sénégal, Dynapharm Thiès, Dynapharm Kédougou, Dynapharm Touba, Dynapharm Saint-Louis, Dynapharm Richard-Toll, produits Dynapharm Sénégal, DI Grow Sénégal, distributeur Dynapharm Sénégal",
   "heading": "Dynapharm Sénégal",
-  "intro": "Un réseau de DPC à Dakar, Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll pour vous accompagner dans vos demandes de produits et votre activité de distributeur.",
+  "intro": "Retrouvez le siège Dynapharm Sénégal à Dakar et des villes DPC à Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll.",
   "home": "Accueil",
   "directory": "Profils pays",
   "overviewLabel": "Présentation",
@@ -16,7 +16,7 @@
   "mapAlt": "Carte illustrée du Sénégal aux couleurs du drapeau national",
   "flagAlt": "Drapeau sénégalais vert, jaune et rouge avec une étoile verte au centre",
   "overviewHeading": "Un réseau de proximité au Sénégal",
-  "overviewBody": "Dynapharm est présent au Sénégal avec des Centres de Distribution (DPC) à Dakar, Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll. Ce réseau de proximité accompagne la découverte des produits et le développement de l’activité des distributeurs.",
+  "overviewBody": "Le siège confirmé de Dynapharm Sénégal se trouve à Dakar. Le réseau local comprend également des villes DPC à Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll pour accompagner les demandes de produits et l’activité des distributeurs au Sénégal.",
   "photoCaption": "Le Sénégal, en Afrique de l’Ouest.",
   "productsHeading": "Découvrez les gammes Dynapharm",
   "productsIntro": "Boissons, compléments alimentaires, soins personnels et solutions pour l’agriculture : découvrez les gammes du catalogue Dynapharm.",
@@ -41,8 +41,16 @@
   "faqHeading": "Questions fréquentes sur Dynapharm au Sénégal",
   "faqs": [
     {
+      "question": "Où se trouve le siège de Dynapharm Sénégal ?",
+      "answer": "Le siège de Dynapharm Sénégal se trouve au 49 Rue WAGANE DIOUF, Av. G. Pompidou, Dakar, Sénégal."
+    },
+    {
+      "question": "Comment contacter le siège de Dynapharm Sénégal ?",
+      "answer": "Appelez le +221 33 822 20 73, envoyez un message WhatsApp au +221 77 292 48 12 ou écrivez à deodynapharm@gmail.com."
+    },
+    {
       "question": "Où trouver un DPC Dynapharm au Sénégal ?",
-      "answer": "Dynapharm dispose de DPC à Dakar, Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll."
+      "answer": "Les villes DPC confirmées sont Dakar, Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll. La seule adresse postale confirmée publiée à ce jour est celle du siège de Dakar."
     },
     {
       "question": "Quelles gammes de produits découvrir ?",
@@ -75,9 +83,25 @@
       "value": "Découvrez les gammes Dynapharm et les informations utiles pour rejoindre le réseau."
     }
   ],
-  "locationsLabel": "Nos DPC",
+  "headOffice": {
+    "label": "Siège de Dynapharm Sénégal",
+    "heading": "Visitez ou contactez le siège de Dynapharm Sénégal",
+    "intro": "Pour vos demandes concernant les produits, l’inscription comme distributeur et l’accompagnement local, veuillez contacter le siège confirmé à Dakar.",
+    "address": ["49 Rue WAGANE DIOUF", "Av. G. Pompidou", "Dakar, Sénégal"],
+    "addressLabel": "Adresse",
+    "telephone": "+221 33 822 20 73",
+    "telephoneLabel": "Téléphone",
+    "whatsapp": "+221 77 292 48 12",
+    "whatsappLabel": "WhatsApp",
+    "email": "deodynapharm@gmail.com",
+    "emailLabel": "Email",
+    "callCta": "Appeler le siège",
+    "whatsappCta": "Écrire sur WhatsApp",
+    "emailCta": "Envoyer un email au siège"
+  },
+  "locationsLabel": "Villes DPC",
   "locationsHeading": "Les DPC Dynapharm au Sénégal",
-  "locationsIntro": "Les DPC Dynapharm sont présents dans les villes suivantes.",
+  "locationsIntro": "Le siège confirmé de Dakar est présenté ci-dessus. Les entrées ci-dessous indiquent les villes DPC ; les adresses et contacts directs des autres villes ne sont pas disponibles à ce jour.",
   "locations": [
     {
       "city": "Dakar",

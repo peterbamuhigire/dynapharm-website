@@ -1,12 +1,12 @@
 # Senegal country profile — editorial provenance
 
-Updated 9 September 2026. Owner: Peter Bamuhigire.
+Updated 13 September 2026. Owner: Peter Bamuhigire.
 
 ## Client-confirmed DPC locations
 
-Peter Bamuhigire confirmed DPCs in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll in the project conversation on 9 September 2026. These six city locations are the source for the bilingual DPC directory, FAQs, metadata and location schema. This confirms the listed cities, not an exclusive nationwide total of centres.
+Peter Bamuhigire confirmed DPCs in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll in the project conversation on 9 September 2026. On 13 September 2026, he confirmed the Dynapharm Senegal head office at 49 Rue WAGANE DIOUF, Av. G. Pompidou, Dakar, Senegal, with telephone +221 33 822 20 73, WhatsApp +221 77 292 48 12 and email deodynapharm@gmail.com. These six city locations are the source for the bilingual DPC directory, FAQs, metadata and location schema. This confirms the listed cities, not an exclusive nationwide total of centres.
 
-The public profile uses a confident, service-oriented tone consistent with the other country profiles. The city listings are informational only. The profile does not publish email addresses, local telephone numbers, street addresses, opening hours or DPC contact links.
+The public profile uses a confident, service-oriented tone consistent with the other country profiles. The confirmed Dakar head office is the primary contact block. The city listings remain informational only: apart from the Dakar head-office details above, the profile does not publish street addresses, opening hours or direct DPC contact links.
 
 ## Corporate background references
 

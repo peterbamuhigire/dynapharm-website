@@ -15,6 +15,12 @@ export const GET: APIRoute = ({ params, site }) => {
     '## ' + content.overviewHeading, '', content.overviewBody, '',
   ];
   for (const highlight of content.highlights) lines.push('- **' + highlight.label + '**: ' + highlight.value);
+  lines.push('', '## ' + content.headOffice.heading, '', content.headOffice.intro, '');
+  lines.push('**' + content.headOffice.addressLabel + '**', '');
+  for (const line of content.headOffice.address) lines.push(line);
+  lines.push('', '**' + content.headOffice.telephoneLabel + '**: ' + content.headOffice.telephone,
+    '**' + content.headOffice.whatsappLabel + '**: ' + content.headOffice.whatsapp,
+    '**' + content.headOffice.emailLabel + '**: ' + content.headOffice.email, '');
   lines.push('', '## ' + content.locationsHeading, '', content.locationsIntro, '');
   for (const location of content.locations) lines.push('- ' + location.name);
   lines.push('', '## ' + content.productsHeading, '', content.productsIntro, '');
