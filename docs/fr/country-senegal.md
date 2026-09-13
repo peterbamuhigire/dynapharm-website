@@ -66,8 +66,8 @@
   "directoryCard": {
     "name": "Sénégal",
     "slug": "senegal",
-    "tagline": "DPC à Dakar, Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll",
-    "description": "Découvrez le réseau Dynapharm au Sénégal : DPC dans six villes, gammes de produits, DI Grow et informations pour les distributeurs.",
+    "tagline": "Siège à Dakar ; villes DPC à Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll",
+    "description": "Retrouvez le siège confirmé à Dakar, les villes DPC, les gammes de produits, DI Grow et les informations distributeurs au Sénégal.",
     "cta": "Voir le profil du Sénégal",
     "imageAlt": "Carte illustrée du Sénégal aux couleurs du drapeau national",
     "outletsCount": null,

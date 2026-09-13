@@ -66,8 +66,8 @@
   "directoryCard": {
     "name": "Senegal",
     "slug": "senegal",
-    "tagline": "DPCs in Dakar, Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll",
-    "description": "Explore Dynapharm in Senegal: DPCs in six cities, product ranges, DI Grow and distributor information.",
+    "tagline": "Head office in Dakar; DPC cities in Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll",
+    "description": "Find the confirmed Dakar head office and DPC city locations, product ranges, DI Grow and distributor information in Senegal.",
     "cta": "View Senegal profile",
     "imageAlt": "Illustrated map of Senegal in the colours of its flag",
     "outletsCount": null,

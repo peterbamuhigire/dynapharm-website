@@ -2,7 +2,7 @@
 title: Dynapharm Africa
 summary: Informations produits, profils pays et demandes de distribution en français et en anglais.
 scope: Cet index présente les produits, les profils pays et les informations distributeurs de Dynapharm Africa.
-senegalNote: Un réseau de DPC à Dakar, Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll pour vous accompagner dans vos demandes de produits et votre activité de distributeur.
+senegalNote: Le siège de Dynapharm Sénégal se trouve à Dakar, avec des villes DPC à Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll. Le profil présente l’adresse et les coordonnées confirmées du siège, ainsi que les informations sur les produits et la distribution.
 section: Français
 pages:
   - { label: Accueil, route: '' }
