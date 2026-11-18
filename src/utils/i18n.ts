@@ -159,14 +159,14 @@ export interface NavItem {
  */
 export function getNavItems(lang: Lang): NavItem[] {
   return [
-    { label: t(lang, 'nav', 'home'), href: `/${lang}` },
-    { label: t(lang, 'nav', 'products'), href: `/${lang}/products` },
-    { label: t(lang, 'nav', 'business'), href: `/${lang}/business-opportunity` },
-    { label: t(lang, 'nav', 'wellness'), href: `/${lang}/wellness-guide` },
-    { label: t(lang, 'nav', 'countries'), href: `/${lang}/country-profiles` },
-    { label: t(lang, 'nav', 'about'), href: `/${lang}/about` },
-    { label: t(lang, 'nav', 'blog'), href: `/${lang}/blog` },
-    { label: t(lang, 'nav', 'contact'), href: `/${lang}/contact` },
+    { label: t(lang, 'nav', 'home'), href: `/${lang}/` },
+    { label: t(lang, 'nav', 'products'), href: `/${lang}/products/` },
+    { label: t(lang, 'nav', 'business'), href: `/${lang}/business-opportunity/` },
+    { label: t(lang, 'nav', 'wellness'), href: `/${lang}/wellness-guide/` },
+    { label: t(lang, 'nav', 'countries'), href: `/${lang}/country-profiles/` },
+    { label: t(lang, 'nav', 'about'), href: `/${lang}/about/` },
+    { label: t(lang, 'nav', 'blog'), href: `/${lang}/blog/` },
+    { label: t(lang, 'nav', 'contact'), href: `/${lang}/contact/` },
   ];
 }
 

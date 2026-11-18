@@ -118,7 +118,7 @@ const content = {
   },
   fr: {
     meta: {
-      title: 'Dynapharm Rwanda - DI Grow Seed Limited et Produits Bien-Etre a Kigali',
+      title: 'Dynapharm Rwanda - DI Grow Seed Limited et produits bien-être à Kigali',
       description: 'Profil pays officiel de Dynapharm Rwanda. Retrouvez les contacts de Dynapharm Rwanda et DI Grow Seed Limited a Kigali pour les complements alimentaires, les produits bien-etre et DI Grow Organic Foliar Fertilizer au Rwanda.',
       keywords: 'Dynapharm Rwanda, DI Grow Rwanda, DI Grow Seed Limited, DI Grow Organic Foliar Fertilizer Rwanda, engrais foliaire Rwanda, engrais organique Kigali, Dynapharm Kigali, produits naturels Rwanda, complements alimentaires Rwanda, Spiruline Rwanda, Ganoderma Rwanda, distributeur Dynapharm Rwanda',
     },
@@ -279,9 +279,9 @@ const faqSchema = {
     <div class="section-container relative z-10 py-20 md:py-28 lg:py-32">
       <nav class="mb-6 text-sm font-accent text-grey-light/90" aria-label="Breadcrumb">
         <ol class="flex flex-wrap items-center gap-2">
-          <li><a href={`/${lang}`} class="hover:text-white transition-colors">{lang === 'fr' ? 'Accueil' : 'Home'}</a></li>
+          <li><a href={`/${lang}/`} class="hover:text-white transition-colors">{lang === 'fr' ? 'Accueil' : 'Home'}</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href={`/${lang}/country-profiles`} class="hover:text-white transition-colors">{c.breadcrumbCountries}</a></li>
+          <li><a href={`/${lang}/country-profiles/`} class="hover:text-white transition-colors">{c.breadcrumbCountries}</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white" aria-current="page">{c.breadcrumbThis}</li>
         </ol>
@@ -482,7 +482,7 @@ const faqSchema = {
         </a>
       </div>
       <div class="mt-10">
-        <a href={`/${lang}/country-profiles`} class="inline-flex items-center gap-2 font-accent text-sm text-grey-light hover:text-white transition-colors">
+        <a href={`/${lang}/country-profiles/`} class="inline-flex items-center gap-2 font-accent text-sm text-grey-light hover:text-white transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
           {c.backLink}
         </a>

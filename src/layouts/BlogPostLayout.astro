@@ -224,7 +224,7 @@ if (faqSchema) allSchemas.push(faqSchema);
           </ol>
         </nav>
 
-        <span class="inline-block font-accent text-xs font-semibold uppercase tracking-widest text-gold bg-gold/15 border border-gold/40 rounded-full px-3 py-1 mb-5">
+        <span class="inline-block font-accent text-xs font-semibold uppercase tracking-widest text-gold-light bg-gold/15 border border-gold/40 rounded-full px-3 py-1 mb-5">
           {post.category[lang]}
         </span>
 
@@ -559,10 +559,12 @@ if (faqSchema) allSchemas.push(faqSchema);
     background-color: var(--color-cream);
   }
 
-  .prose-blog .product-card h4 {
+  .prose-blog .product-card h3 {
     margin-top: 0;
     margin-bottom: 0.35em;
     font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: inherit;
     color: var(--color-charcoal);
   }
 

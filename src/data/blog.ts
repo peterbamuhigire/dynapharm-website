@@ -154,7 +154,7 @@ export function getPost(id: string): BlogPostSummary | undefined {
 
 /** Build the full path for a post in a given language. */
 export function postPath(post: BlogPostSummary, lang: Lang): string {
-  return `/${lang}/blog/${post.slug[lang]}`;
+  return `/${lang}/blog/${post.slug[lang]}/`;
 }
 
 /** Build a cross-lang `alternates` map for BaseLayout. */

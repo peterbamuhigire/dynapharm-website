@@ -9,6 +9,8 @@ export const getStaticPaths = (() => {
 }) satisfies GetStaticPaths;
 
 const { lang } = Astro.params as { lang: Lang };
+// The policy text is maintained in English only; mark it so assistive technology reads it correctly on French routes.
+const contentLang = lang === 'fr' ? 'en' : undefined;
 
 const c = {
   title: 'Website Privacy Policy',
@@ -98,25 +100,18 @@ const c = {
   ],
 } as const;
 
-const policySchema = {
-  '@context': 'https://schema.org',
-  '@type': 'PrivacyPolicy',
-  name: c.title,
-  description: c.description,
-};
 ---
 
 <BaseLayout
   title={`${c.title} | Dynapharm Africa`}
   description={c.description}
   lang={lang}
-  structuredData={policySchema}
   alternates={{ en: '/en/privacy-policy', fr: '/fr/privacy-policy' }}
 >
   <section class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 text-white relative overflow-hidden">
     <div class="absolute inset-0 grain-overlay opacity-30"></div>
-    <div class="section-container relative z-10 py-16 md:py-24">
-      <p class="font-accent text-sm font-semibold uppercase tracking-wider text-gold mb-4">Privacy Policy</p>
+    <div class="section-container relative z-10 py-16 md:py-24" lang={contentLang}>
+      <p class="font-accent text-sm font-semibold uppercase tracking-wider text-gold-light mb-4">Privacy Policy</p>
       <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 max-w-4xl">{c.title}</h1>
       <p class="font-accent text-sm text-grey-light">{c.lastUpdated}</p>
     </div>
@@ -128,14 +123,14 @@ const policySchema = {
   </section>
 
   <section class="section-padding bg-cream">
-    <article class="section-container max-w-4xl">
+    <article class="section-container max-w-4xl" lang={contentLang}>
       <div class="bg-white rounded-2xl border border-grey-light/30 shadow-card p-6 md:p-10">
         <div class="space-y-4 text-charcoal-light font-body text-base md:text-lg leading-relaxed">
           {c.intro.map((paragraph) => <p>{paragraph}</p>)}
           <p>
             The Dynapharm Africa Distributors mobile app has a separate privacy policy. Read it here:{' '}
             <a
-              href={`/${lang}/mobile-app-privacy-policy`}
+              href={`/${lang}/mobile-app-privacy-policy/`}
               class="text-dynared hover:text-dynared-dark font-semibold underline underline-offset-2"
             >
               Mobile App Privacy Policy

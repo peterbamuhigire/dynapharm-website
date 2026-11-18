@@ -457,7 +457,7 @@ const categoryIcons: Record<string, string> = {
 
                   <!-- Link to products page -->
                   <a
-                    href={`/${lang}/products`}
+                    href={`/${lang}/products/`}
                     class="inline-flex items-center gap-1.5 mt-5 font-accent text-sm font-medium text-green hover:text-green-dark transition-colors"
                   >
                     {t.viewProduct}
@@ -500,11 +500,11 @@ const categoryIcons: Record<string, string> = {
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{t.ctaTitle}</h2>
       <p class="text-white/80 font-body text-lg max-w-2xl mx-auto mb-8">{t.ctaText}</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={`/${lang}/contact`} class="inline-flex items-center justify-center px-8 py-4 bg-white text-dynared font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-xl transition-all duration-300 text-lg gap-2">
+        <a href={`/${lang}/contact/`} class="inline-flex items-center justify-center px-8 py-4 bg-white text-dynared font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-xl transition-all duration-300 text-lg gap-2">
           {t.ctaButton}
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <a href={`/${lang}/products`} class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-heading font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 text-lg">
+        <a href={`/${lang}/products/`} class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-heading font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 text-lg">
           {t.productsLink}
         </a>
       </div>

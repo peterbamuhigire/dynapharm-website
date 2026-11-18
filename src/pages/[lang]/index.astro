@@ -252,10 +252,10 @@ const pillarColors = [
           {c.hero.subtitle}
         </p>
         <div class="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href={`/${lang}/contact`} class="btn-primary text-base px-8 py-4">
+          <a href={`/${lang}/contact/`} class="btn-primary text-base px-8 py-4">
             {c.hero.ctaPrimary}
           </a>
-          <a href={`/${lang}/products`} class="btn-secondary text-base px-8 py-4 border-white text-white hover:bg-white hover:text-charcoal">
+          <a href={`/${lang}/products/`} class="btn-secondary text-base px-8 py-4 border-white text-white hover:bg-white hover:text-charcoal">
             {c.hero.ctaSecondary}
           </a>
         </div>
@@ -290,7 +290,7 @@ const pillarColors = [
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {c.categories.items.map((cat, i) => (
           <a
-            href={`/${lang}/products`}
+            href={`/${lang}/products/`}
             class="card group p-6 md:p-7 text-center flex flex-col items-center gap-3 border-t-4 border-transparent hover:border-dynared"
           >
             <!-- Icon -->
@@ -394,7 +394,7 @@ const pillarColors = [
           <p class="text-lg text-charcoal-light font-body mb-10 leading-relaxed max-w-2xl mx-auto">
             {c.business.description}
           </p>
-          <a href={`/${lang}/business-opportunity`} class="btn-primary text-base px-8 py-4 font-bold">
+          <a href={`/${lang}/business-opportunity/`} class="btn-primary text-base px-8 py-4 font-bold">
             {c.business.cta}
           </a>
         </div>
@@ -517,10 +517,10 @@ const pillarColors = [
         {c.finalCta.subtitle}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={`/${lang}/contact`} class="inline-flex items-center justify-center px-8 py-4 bg-white text-dynared font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-xl transition-all duration-300 text-base font-bold">
+        <a href={`/${lang}/contact/`} class="inline-flex items-center justify-center px-8 py-4 bg-white text-dynared font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-xl transition-all duration-300 text-base font-bold">
           {c.finalCta.ctaPrimary}
         </a>
-        <a href={`/${lang}/products`} class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-heading font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 text-base">
+        <a href={`/${lang}/products/`} class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-heading font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 text-base">
           {c.finalCta.ctaSecondary}
         </a>
       </div>

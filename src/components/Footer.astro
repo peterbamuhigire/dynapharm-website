@@ -16,14 +16,14 @@ const footer = tSection(lang, 'footer');
 const nav = tSection(lang, 'nav');
 
 const footerNavItems = [
-  { label: nav.products, href: `/${lang}/products` },
-  { label: nav.business, href: `/${lang}/business-opportunity` },
-  { label: nav.wellness, href: `/${lang}/wellness-guide` },
-  { label: nav.blog, href: `/${lang}/blog` },
-  { label: nav.about, href: `/${lang}/about` },
-  { label: nav.contact, href: `/${lang}/contact` },
-  { label: footer.faq, href: `/${lang}/faq` },
-  { label: lang === 'en' ? 'Privacy Policy' : 'Politique de confidentialite', href: `/${lang}/privacy-policy` },
+  { label: nav.products, href: `/${lang}/products/` },
+  { label: nav.business, href: `/${lang}/business-opportunity/` },
+  { label: nav.wellness, href: `/${lang}/wellness-guide/` },
+  { label: nav.blog, href: `/${lang}/blog/` },
+  { label: nav.about, href: `/${lang}/about/` },
+  { label: nav.contact, href: `/${lang}/contact/` },
+  { label: footer.faq, href: `/${lang}/faq/` },
+  { label: lang === 'en' ? 'Privacy Policy' : 'Politique de confidentialité', href: `/${lang}/privacy-policy/` },
 ];
 ---
 
@@ -33,7 +33,7 @@ const footerNavItems = [
     <div class:list={["py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12", showContactDetails ? "lg:grid-cols-4" : "lg:grid-cols-3"]}>
       <!-- Column 1: Logo + Tagline -->
       <div class="lg:col-span-1">
-        <a href={`/${lang}`} class="inline-block mb-4" aria-label="Dynapharm Africa">
+        <a href={`/${lang}/`} class="inline-block mb-4" aria-label="Dynapharm Africa">
           <Image
             src={logoDark}
             alt="Dynapharm Africa"

@@ -297,7 +297,7 @@ const itemListSchema = {
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {c.countries.map((country) => (
           <a
-            href={`/${lang}/country-profiles/${country.slug}`}
+            href={`/${lang}/country-profiles/${country.slug}/`}
             class="group block bg-cream rounded-2xl overflow-hidden border border-grey-light/40 hover:border-dynared/50 hover:shadow-xl transition-all duration-300"
           >
             <div class="relative aspect-[4/3] overflow-hidden bg-white flex items-center justify-center p-4">
@@ -346,7 +346,7 @@ const itemListSchema = {
       <p class="font-body text-base md:text-lg text-charcoal-light leading-relaxed mb-8">
         {c.comingSoonBody}
       </p>
-      <a href={`/${lang}/contact`} class="btn-primary">
+      <a href={`/${lang}/contact/`} class="btn-primary">
         {c.contactCta}
       </a>
     </div>
