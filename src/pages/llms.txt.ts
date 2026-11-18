@@ -15,6 +15,8 @@ export const GET: APIRoute = ({ site }) => {
   const lines = [
     '# ' + english.title, '',
     '> ' + french.summary + ' ' + english.summary, '',
+    'Generated: ' + new Date().toISOString().slice(0, 10),
+    'Canonical site: ' + new URL('/', origin).href, '',
     french.scope, '', english.scope, '',
     french.senegalNote, '', english.senegalNote,
   ];
@@ -24,7 +26,9 @@ export const GET: APIRoute = ({ site }) => {
     lines.push('- [' + content.senegalMarkdown + '](' + markdownUrl + '): ' + senegal.description);
     for (const page of content.pages) {
       const path = '/' + lang + '/' + (page.route ? page.route + '/' : '');
-      lines.push('- [' + page.label + '](' + new URL(path, origin) + '): ' + search.pages[page.route].description);
+      const description = page.route === 'country-profiles/senegal' ? senegal.description : search.pages[page.route]?.description;
+      if (!description) throw new Error('llms.txt: no search description for ' + lang + ' route ' + page.route);
+      lines.push('- [' + page.label + '](' + new URL(path, origin) + '): ' + description);
     }
   }
   return new Response(lines.join('\n') + '\n', {

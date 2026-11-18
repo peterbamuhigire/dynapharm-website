@@ -11,6 +11,20 @@ pages:
   - { label: Informations distributeurs, route: business-opportunity }
   - { label: Demandes générales, route: contact }
   - { label: Questions fréquentes, route: faq }
+  - { label: À propos de Dynapharm Africa, route: about }
+  - { label: Guide bien-être, route: wellness-guide }
+  - { label: Profil Botswana, route: country-profiles/botswana }
+  - { label: Profil Guinée, route: country-profiles/guinea }
+  - { label: Profil Kenya, route: country-profiles/kenya }
+  - { label: Profil Namibie, route: country-profiles/namibia }
+  - { label: Profil Rwanda, route: country-profiles/rwanda }
+  - { label: Profil Sénégal, route: country-profiles/senegal }
+  - { label: Profil Sierra Leone, route: country-profiles/sierra-leone }
+  - { label: Blog bien-être, route: blog }
+  - { label: Guide du ganoderma, route: blog/bienfaits-du-ganoderma }
+  - { label: Guide du ginkgo biloba, route: blog/bienfaits-du-ginkgo-biloba }
+  - { label: Guide du ginseng, route: blog/bienfaits-du-ginseng }
+  - { label: Guide du thé vert, route: blog/bienfaits-du-the-vert }
 senegalMarkdown: Profil Sénégal — version Markdown
 ---
 
