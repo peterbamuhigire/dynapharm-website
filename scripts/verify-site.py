@@ -10,6 +10,8 @@ from xml.etree import ElementTree
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
 ORIGIN = 'https://dynapharmafrica.com'
+# Root language redirect and the 404 page: noindex, outside the sitemap and hreflang clusters.
+UTILITY_ROUTES = {'/', '/404.html'}
 
 
 class Page(HTMLParser):
@@ -101,8 +103,9 @@ def main():
         def check(condition, message):
             if not condition:
                 errors.append({'route': page.route, 'check': message})
-        if page.route == '/':
-            check('noindex' in page.meta.get('robots', ''), 'redirect should not be indexed')
+        if page.route in UTILITY_ROUTES:
+            check('noindex' in page.meta.get('robots', ''), 'utility page should not be indexed')
+            check(page.route == '/' or not any(link.get('rel') == 'canonical' for link in page.links), '404 page has no canonical')
             continue
         check(page.language == page.route.split('/')[1], 'correct document language')
         check(page.headings.count(1) == 1, 'exactly one H1')
@@ -155,17 +158,17 @@ def main():
             location = item.find('{http://www.sitemaps.org/schemas/sitemap/0.9}loc').text
             sitemap_urls.add(location)
             sitemap_alternates[location] = {link.attrib['hreflang']: link.attrib['href'] for link in item.findall('{http://www.w3.org/1999/xhtml}link')}
-    expected = {ORIGIN + page.route for page in pages if page.route != '/'}
+    expected = {ORIGIN + page.route for page in pages if page.route not in UTILITY_ROUTES}
     if sitemap_urls != expected:
         errors.append({'route': 'sitemap', 'check': 'sitemap must contain all and only canonical language pages', 'missing': sorted(expected - sitemap_urls), 'extra': sorted(sitemap_urls - expected)})
     for page in pages:
-        if page.route == '/':
+        if page.route in UTILITY_ROUTES:
             continue
         html_alternates = {link['hreflang']: link['href'] for link in page.links if link.get('rel') == 'alternate' and link.get('hreflang')}
         if sitemap_alternates.get(ORIGIN + page.route) != html_alternates:
             errors.append({'route': page.route, 'check': 'sitemap and HTML language alternates agree'})
     for language in ['en', 'fr']:
-        titles = collections.Counter(page.title for page in pages if page.language == language and page.route != '/')
+        titles = collections.Counter(page.title for page in pages if page.language == language and page.route not in UTILITY_ROUTES)
         if any(count > 1 for count in titles.values()):
             errors.append({'route': language, 'check': 'titles unique within language'})
     discovery_files = [DIST / 'llms.txt']

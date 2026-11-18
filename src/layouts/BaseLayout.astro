@@ -27,6 +27,8 @@ interface Props {
    * slug differs per language (e.g. blog posts). Keys are language codes,
    * values are pathnames such as `/fr/blog/bienfaits-du-ginkgo-biloba`. */
   alternates?: Partial<Record<Lang, string>>;
+  /** Utility pages such as the 404 page: noindex, no canonical or language alternates. */
+  noindex?: boolean;
 }
 
 const {
@@ -43,6 +45,7 @@ const {
   structuredData,
   showContactDetails = true,
   alternates,
+  noindex = false,
 } = Astro.props;
 
 const routeKey = Astro.url.pathname.replace(/^\/(en|fr)\/?/, '').replace(/\/$/, '');
@@ -145,8 +148,8 @@ const webPageSchema = {
   isPartOf: { '@id': `${siteUrl}#website` },
 };
 const allSchemas: Record<string, unknown>[] = [organizationSchema, websiteSchema, ...suppliedSchemas];
-if (breadcrumbSchema) allSchemas.push(breadcrumbSchema);
-if (!hasWebPage) allSchemas.push(webPageSchema);
+if (breadcrumbSchema && !noindex) allSchemas.push(breadcrumbSchema);
+if (!hasWebPage && !noindex) allSchemas.push(webPageSchema);
 
 ---
 
@@ -161,36 +164,37 @@ if (!hasWebPage) allSchemas.push(webPageSchema);
     <meta name="description" content={description} />
     {keywords && <meta name="keywords" content={keywords} />}
 
-    <!-- Geo targeting — Africa -->
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
 
     <!-- Canonical -->
-    <link rel="canonical" href={canonicalUrl.href} />
+    {!noindex && <link rel="canonical" href={canonicalUrl.href} />}
     <link rel="describedby" type="text/plain" href={new URL('/llms.txt', siteUrl).href} />
     {routeKey === 'country-profiles/senegal' && (
       <link rel="alternate" type="text/markdown" href={new URL('index.md', canonicalUrl).href} />
     )}
 
     <!-- Hreflang alternates -->
-    {SUPPORTED_LANGS.map((l) => (
+    {!noindex && SUPPORTED_LANGS.map((l) => (
       <link
         rel="alternate"
         hreflang={l}
         href={absoluteUrl(alternates?.[l] ?? getLocalizedPath(Astro.url.pathname, l))}
       />
     ))}
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href={absoluteUrl(alternates?.en ?? getLocalizedPath(Astro.url.pathname, 'en'))}
-    />
+    {!noindex && (
+      <link
+        rel="alternate"
+        hreflang="x-default"
+        href={absoluteUrl(alternates?.en ?? getLocalizedPath(Astro.url.pathname, 'en'))}
+      />
+    )}
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Dynapharm Africa" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalUrl.href} />
+    {!noindex && <meta property="og:url" content={canonicalUrl.href} />}
     <meta property="og:locale" content={locale || localeMap[lang]} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:locale:alternate" content={localeMap[getAlternateLang(lang)]} />

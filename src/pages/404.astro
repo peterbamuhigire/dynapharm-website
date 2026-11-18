@@ -1,0 +1,63 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+// Served by the web server for any unknown URL, so it carries both languages.
+const links = {
+  en: [
+    { label: 'Home', href: '/en/' },
+    { label: 'Products', href: '/en/products/' },
+    { label: 'Country profiles', href: '/en/country-profiles/' },
+    { label: 'Contact', href: '/en/contact/' },
+  ],
+  fr: [
+    { label: 'Accueil', href: '/fr/' },
+    { label: 'Produits', href: '/fr/products/' },
+    { label: 'Profils pays', href: '/fr/country-profiles/' },
+    { label: 'Contact', href: '/fr/contact/' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Page not found | Dynapharm Africa"
+  description="The page you requested could not be found on the Dynapharm Africa website. Use the links to reach the home page, products or contact page."
+  lang="en"
+  noindex
+  alternates={{ en: '/en/', fr: '/fr/' }}
+>
+  <section class="bg-gradient-to-br from-charcoal via-charcoal to-dynared-900 text-white">
+    <div class="section-container py-16 md:py-24">
+      <p class="font-accent text-sm font-semibold uppercase tracking-wider text-gold-light mb-4">404</p>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4 max-w-3xl">Page not found</h1>
+      <p class="font-body text-lg text-cream/90 max-w-2xl">
+        The page you asked for does not exist or has moved. Choose a page below to continue.
+      </p>
+      <p lang="fr" class="font-body text-lg text-cream/90 max-w-2xl mt-3">
+        Page introuvable. La page demandée n’existe pas ou a été déplacée. Choisissez une page ci-dessous pour continuer.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding bg-cream">
+    <div class="section-container grid gap-10 md:grid-cols-2 max-w-4xl">
+      {(['en', 'fr'] as const).map((language) => (
+        <nav aria-label={language === 'en' ? 'English pages' : 'Pages en français'} lang={language}>
+          <h2 class="font-heading text-2xl font-bold text-charcoal mb-4">{language === 'en' ? 'English' : 'Français'}</h2>
+          <ul class="space-y-2" role="list">
+            {links[language].map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  hreflang={language}
+                  class="inline-flex min-h-11 items-center font-accent font-semibold text-dynared hover:text-dynared-dark underline underline-offset-4"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
