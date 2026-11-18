@@ -45,7 +45,7 @@ const content = {
       messagePlaceholder: 'How can we help you?',
       submit: 'Send Your Message',
       required: 'Required',
-      successMessage: 'Thank you for your message. We shall respond within 2\u20133 working days.',
+      successMessage: 'Your email app should now open with your message ready to send. Please press Send there to deliver it. If nothing opens, email us at info@dynapharmafrica.com. We shall respond within 2\u20133 working days.',
       errorMessage: 'Please fill in all required fields before submitting.',
       sending: 'Sending...',
     },
@@ -102,7 +102,7 @@ const content = {
       messagePlaceholder: 'Comment pouvons-nous vous aider ?',
       submit: 'Envoyer votre message',
       required: 'Obligatoire',
-      successMessage: 'Merci pour votre message. Nous vous r\u00e9pondrons dans un d\u00e9lai de 2 \u00e0 3 jours ouvrables.',
+      successMessage: 'Votre application de messagerie devrait s\u2019ouvrir avec votre message pr\u00eat \u00e0 envoyer. Appuyez sur Envoyer pour le transmettre. Si rien ne s\u2019ouvre, \u00e9crivez-nous \u00e0 info@dynapharmafrica.com. Nous vous r\u00e9pondrons dans un d\u00e9lai de 2 \u00e0 3 jours ouvrables.',
       errorMessage: 'Veuillez remplir tous les champs obligatoires avant de soumettre.',
       sending: 'Envoi en cours...',
     },
@@ -206,18 +206,17 @@ const c = content[lang];
                     this.submitted = false;
                     return false;
                   }
-                  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                  if (!emailRegex.test(this.email)) {
+                  // No backslashes here: Astro strips them from this attribute value.
+                  const emailRegex = /^[^@ ]+@[^@ ]+[.][^@ ]+$/;
+                  if (!emailRegex.test(this.email.trim())) {
                     this.error = true;
                     this.submitted = false;
                     return false;
                   }
                   this.error = false;
-                  this.sending = true;
-                  setTimeout(() => {
-                    this.sending = false;
-                    this.submitted = true;
-                  }, 1000);
+                  const body = [this.message, '', this.name, this.email.trim()].join(String.fromCharCode(10));
+                  window.location.href = 'mailto:info@dynapharmafrica.com?subject=' + encodeURIComponent(this.subject) + '&body=' + encodeURIComponent(body);
+                  this.submitted = true;
                   return true;
                 }
               }"
@@ -226,6 +225,7 @@ const c = content[lang];
               <!-- Success message -->
               <div
                 x-show="submitted"
+                role="status"
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 -translate-y-2"
                 x-transition:enter-end="opacity-100 translate-y-0"
@@ -241,6 +241,7 @@ const c = content[lang];
               <!-- Error message -->
               <div
                 x-show="error"
+                role="alert"
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 -translate-y-2"
                 x-transition:enter-end="opacity-100 translate-y-0"
@@ -420,7 +421,7 @@ const c = content[lang];
             </ul>
           </div>
 
-          <a href={`/${lang}/business-opportunity`} class="inline-flex items-center justify-center px-8 py-4 bg-white text-dynared font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-xl transition-all duration-300 text-base font-bold">
+          <a href={`/${lang}/business-opportunity/`} class="inline-flex items-center justify-center px-8 py-4 bg-white text-dynared font-heading font-semibold rounded-lg hover:bg-cream hover:shadow-xl transition-all duration-300 text-base font-bold">
             {c.distributor.cta}
           </a>
         </div>
