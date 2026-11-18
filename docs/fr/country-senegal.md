@@ -3,7 +3,7 @@
   "name": "Sénégal",
   "eyebrow": "Afrique de l’Ouest · Profil pays",
   "title": "Dynapharm Sénégal | DPC, produits et distributeurs",
-  "description": "Retrouvez le siège Dynapharm Sénégal à Dakar, ainsi que les villes DPC de Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll. Découvrez les produits, DI Grow et la distribution.",
+  "description": "Siège Dynapharm Sénégal à Dakar et villes DPC de Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll. Découvrez les produits, DI Grow et la distribution.",
   "keywords": "Dynapharm Sénégal, siège Dynapharm Sénégal, Dynapharm Dakar, 49 Rue WAGANE DIOUF, DPC Dynapharm Sénégal, Dynapharm Thiès, Dynapharm Kédougou, Dynapharm Touba, Dynapharm Saint-Louis, Dynapharm Richard-Toll, produits Dynapharm Sénégal, DI Grow Sénégal, distributeur Dynapharm Sénégal",
   "heading": "Dynapharm Sénégal",
   "intro": "Retrouvez le siège Dynapharm Sénégal à Dakar et des villes DPC à Thiès, Kédougou, Touba, Saint-Louis et Richard-Toll.",

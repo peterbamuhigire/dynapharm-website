@@ -3,7 +3,7 @@
   "name": "Senegal",
   "eyebrow": "West Africa · Country profile",
   "title": "Dynapharm Senegal | DPC Locations, Products & Distributors",
-  "description": "Find the Dynapharm Senegal head office in Dakar, plus DPC cities in Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll. Explore products, DI Grow and distributor information.",
+  "description": "Find the Dynapharm Senegal head office in Dakar and DPC cities in Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll, plus products and DI Grow.",
   "keywords": "Dynapharm Senegal, Dynapharm Senegal head office, Dynapharm Dakar, 49 Rue WAGANE DIOUF, Dynapharm DPC Senegal, Dynapharm Thiès, Dynapharm Kédougou, Dynapharm Touba, Dynapharm Saint-Louis, Dynapharm Richard-Toll, Dynapharm products Senegal, DI Grow Senegal, Dynapharm distributors Senegal",
   "heading": "Dynapharm Senegal",
   "intro": "Connect with the Dynapharm Senegal head office in Dakar, with DPC city locations across Thiès, Kédougou, Touba, Saint-Louis and Richard-Toll.",

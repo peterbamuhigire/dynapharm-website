@@ -5,16 +5,19 @@
   "tableLabel": "Article data table — scroll horizontally if needed",
   "pages": {
     "": {
-      "description": "Explore Dynapharm Africa products, country profiles and distributor information. Find nutrition, personal care and agricultural ranges, plus contact guidance."
+      "description": "Explore Dynapharm Africa products, country profiles and distributor information. Find nutrition, personal care and agricultural ranges, plus contact guidance.",
+      "title": "Dynapharm Africa | Natural Health Products & Business Opportunity"
     },
     "about": {
       "description": "Learn about Dynapharm Africa, its origins and product ranges. Explore our approach to wellness and find information for customers and distributors."
     },
     "products": {
-      "description": "Browse Dynapharm products: beverages, nutritional supplements, personal care, wellness foods and DI Grow. Ask about availability in your country."
+      "description": "Browse Dynapharm products: beverages, nutritional supplements, personal care, wellness foods and DI Grow. Ask about availability in your country.",
+      "title": "Dynapharm Products | 90+ Natural Health & Wellness Products"
     },
     "business-opportunity": {
-      "description": "Explore the Dynapharm distributor opportunity, training and support. Learn how to enquire about registration and the requirements in your country."
+      "description": "Explore the Dynapharm distributor opportunity, training and support. Learn how to enquire about registration and the requirements in your country.",
+      "title": "Business Opportunity | Build a Wellness Business | Dynapharm"
     },
     "contact": {
       "description": "Contact Dynapharm Africa for product enquiries, country contacts and distributor information. Find the right route for your question."
@@ -24,7 +27,8 @@
       "title": "Dynapharm Country Profiles | Local Information in Africa"
     },
     "country-profiles/botswana": {
-      "description": "Find Dynapharm Botswana DPC information for Gaborone, Francistown, Maun and other listed locations. Explore product and distributor enquiries."
+      "description": "Find Dynapharm Botswana DPC information for Gaborone, Francistown, Maun and other listed locations. Explore product and distributor enquiries.",
+      "title": "Dynapharm Botswana | DPCs in Gaborone, Francistown, Maun & More"
     },
     "country-profiles/guinea": {
       "description": "Explore Dynapharm Guinea outlet information, local contact guidance and product ranges. Find details for customer and distributor enquiries."
@@ -33,19 +37,23 @@
       "description": "Find Dynapharm Kenya DPC locations in Nairobi, Mombasa, Kisumu and beyond. Explore local product enquiries and distributor contact information."
     },
     "country-profiles/namibia": {
-      "description": "Explore Dynapharm Namibia outlets in Windhoek and other listed locations. Find local information for product and distributor enquiries."
+      "description": "Explore Dynapharm Namibia outlets in Windhoek and other listed locations. Find local information for product and distributor enquiries.",
+      "title": "Dynapharm Namibia | 15 Outlets in Windhoek, Swakopmund & More"
     },
     "country-profiles/rwanda": {
-      "description": "Find Dynapharm Rwanda and DI Grow Seed Limited contact information in Kigali, with guidance for wellness products and agricultural enquiries."
+      "description": "Find Dynapharm Rwanda and DI Grow Seed Limited contact information in Kigali, with guidance for wellness products and agricultural enquiries.",
+      "title": "Dynapharm Rwanda | DI Grow Seed Limited & Wellness in Kigali"
     },
     "country-profiles/sierra-leone": {
-      "description": "Find Dynapharm Sierra Leone DPC contacts in Freetown and Bo. Explore listed addresses and guidance for product and distributor enquiries."
+      "description": "Find Dynapharm Sierra Leone DPC contacts in Freetown and Bo. Explore listed addresses and guidance for product and distributor enquiries.",
+      "title": "Dynapharm Sierra Leone | Head Office and DPCs in Freetown, Bo"
     },
     "faq": {
       "description": "Find answers to common questions about Dynapharm products, country availability, distributor registration and support across Africa."
     },
     "wellness-guide": {
-      "description": "Explore the Dynapharm wellness guide, product categories and practical questions to discuss with a qualified healthcare professional."
+      "description": "Explore the Dynapharm wellness guide, product categories and practical questions to discuss with a qualified healthcare professional.",
+      "title": "Wellness Guide by Product Category | Dynapharm Africa"
     },
     "blog": {
       "description": "Read the Dynapharm wellness journal: ingredient guides, references and important health cautions. Explore articles in English and French."
@@ -61,6 +69,9 @@
     },
     "blog/green-tea-benefits": {
       "description": "Read our green tea guide, research references and health cautions. Explore the ingredient and find further reading on the Dynapharm wellness journal."
+    },
+    "mobile-app-privacy-policy": {
+      "title": "Distributors Mobile App Privacy Policy | Dynapharm Africa"
     }
   }
 }
